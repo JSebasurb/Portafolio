@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{SITE_TITLE}}</title>
+<meta name="description" content="{{SITE_DESC}}">
+<meta property="og:title" content="{{SITE_TITLE}}">
+<meta property="og:description" content="{{SITE_DESC}}">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div class="top"><div>
+  <span class="brand">Taller 3D</span>
+  <div class="tabs">
+    <button class="on" data-t="perfil">Perfil</button>
+    <button data-t="tienda">Tienda</button>
+    <button data-t="auto">Automatización</button>
+    <button data-t="ia">Contenido IA</button>
+    <button data-t="ing">Ingeniería</button>
+    <button data-t="tools">Herramientas</button>
+  </div>
+</div></div>
+
+<div class="hero">
+  <p class="eyebrow">Datos · Automatización · IA · Ingeniería · 3D</p>
+  <h1>Hazlo <span>tuyo.</span></h1>
+  <p class="lead">Soy Juan Sebastián Sánchez, ingeniero de datos y automatización. Aquí encuentras mi perfil, mis servicios, herramientas propias y productos personalizados.</p>
+  <div class="ctas">
+    <button class="pill" id="goCv">Ver mi perfil</button>
+    <button class="link" id="goLab">Diseñar un producto ›</button>
+    <a class="link" id="wa" href="#" target="_blank" rel="noopener">Escribir por WhatsApp ›</a>
+  </div>
+</div>
+
+<main>
+<section class="tab" id="tienda">
+  <h2>Personalización que se siente única.</h2>
+  <p class="sub">Estampados de alta definición sobre aluminio y vidrio. Impresión 3D para cualquier idea.</p>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🔑</div><h3>Llaveros estampados</h3><p>Tu foto, nombre o logo sobre llaveros con lámina de aluminio. Colores vivos y muy resistentes.</p></div><div class="from">Desde <b>$8.000</b></div></div>
+    <div class="tile rv"><div><div class="ico">📱</div><h3>Estuches en aluminio</h3><p>Estampado a todo color sobre lámina de aluminio. Acabado brillante y duradero.</p></div><div class="from">Desde <b>$35.000</b></div></div>
+    <div class="tile rv"><div><div class="ico">🔮</div><h3>Estuches en vidrio</h3><p>Estampado sobre vidrio con efecto espejo y una profundidad de color increíble.</p></div><div class="from">Desde <b>$40.000</b></div></div>
+    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA, PETG y más.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b></div></div>
+  </div>
+
+  <h2 id="labT">Diséñalo en segundos.</h2>
+  <p class="sub">Elige, personaliza y pídelo directo por WhatsApp.</p>
+  <div class="lab rv" id="lab">
+    <div class="ctrl">
+      <h3>Tu diseño</h3>
+      <div class="f"><label>PRODUCTO</label><div class="seg" id="prodC"><button class="on" data-v="key">Llavero</button><button data-v="case">Aluminio</button><button data-v="glass">Vidrio</button></div></div>
+      <div class="f"><label>TEXTO</label><input type="text" id="txt" maxlength="16" value="Tu nombre" autocomplete="off"></div>
+      <div class="f"><label>ÍCONO</label><div class="dots emo" id="emC"><button class="on">⭐</button><button>❤️</button><button>🐾</button><button>⚽</button><button>🎮</button><button>🌸</button></div></div>
+      <div class="f"><label>COLOR</label><div class="dots" id="colC">
+        <button class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
+        <button style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
+        <button style="background:linear-gradient(135deg,#30d158,#0a9d8f)" data-v="linear-gradient(135deg,#30d158,#0a9d8f)"></button>
+        <button style="background:linear-gradient(135deg,#bf5af2,#ff2d92)" data-v="linear-gradient(135deg,#bf5af2,#ff2d92)"></button>
+        <button style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>
+      <button class="pill" id="order">Pedir por WhatsApp</button>
+    </div>
+    <div class="stage"><div class="prod key" id="prod"><div class="em" id="pem">⭐</div><div class="tx" id="ptx">Tu nombre</div></div></div>
+  </div>
+</section>
+
+<section class="tab" id="auto">
+  <h2>Tu negocio, en piloto automático.</h2>
+  <p class="sub">Conecta tus herramientas y deja que los procesos trabajen por ti.</p>
+  <div class="flow">
+    <div class="node"><i>💬</i>Cliente</div><div class="wire"></div>
+    <div class="node"><i>⚙️</i>n8n</div><div class="wire"></div>
+    <div class="node"><i>🤖</i>IA</div><div class="wire"></div>
+    <div class="node"><i>📊</i>CRM</div>
+  </div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🔗</div><h3>Flujos con n8n</h3><p>Conectamos WhatsApp, Google Sheets, CRM, correo y tiendas en flujos automáticos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🧩</div><h3>Automatización de apps</h3><p>Integraciones por API, bots, reportes automáticos y sincronización de datos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">📣</div><h3>Marketing digital</h3><p>Redes sociales, captación de clientes, embudos, campañas y mensajes automáticos.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🛎️</div><h3>Chatbots 24/7</h3><p>Atención, agendamiento y seguimiento de clientes sin intervención manual.</p></div></div>
+  </div>
+  <div class="chips"><span>n8n</span><span>APIs</span><span>Webhooks</span><span>Google Workspace</span><span>WhatsApp</span><span>CRM</span><span>IA</span></div>
+</section>
+
+<section class="tab" id="ia">
+  <h2>Contenido con IA que vende.</h2>
+  <p class="sub">Imágenes, videos y textos creados con inteligencia artificial para que tu marca destaque en redes.</p>
+  <div class="promptbox rv"><span class="pl">Prompt</span><div class="pt" id="pt"></div><span class="cur"></span></div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🖼️</div><h3>Imágenes y diseños</h3><p>Fotos de producto, mockups, logos y piezas gráficas generadas con IA, listas para publicar.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🎬</div><h3>Videos y reels con IA</h3><p>Videos cortos, animaciones de producto y anuncios para Instagram, TikTok y WhatsApp.</p></div></div>
+    <div class="tile rv"><div><div class="ico">✍️</div><h3>Textos y calendario</h3><p>Copys, guiones, descripciones y un calendario de contenido pensado para tu negocio.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🎙️</div><h3>Voz y avatares</h3><p>Locuciones, presentadores virtuales y contenido automatizado conectado con n8n.</p></div></div>
+  </div>
+  <div class="chips"><span>Imágenes IA</span><span>Video IA</span><span>Redes sociales</span><span>Branding</span><span>Automatización de publicaciones</span></div>
+</section>
+
+<section class="tab" id="ing">
+  <h2>Ingeniería que funciona.</h2>
+  <p class="sub">Automatización industrial, de la idea a la puesta en marcha.</p>
+  <div class="plc">
+    <svg viewBox="0 0 460 120" aria-label="Diagrama ladder animado">
+      <line x1="20" y1="10" x2="20" y2="110" class="wl on"/><line x1="440" y1="10" x2="440" y2="110" class="wl on"/>
+      <path id="r1" d="M20 40H120M170 40H270M320 40H400" class="wl"/>
+      <path d="M20 90H400" class="wl"/>
+      <path d="M120 28v24M170 28v24" stroke="#f5f5f7" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="295" cy="40" r="22" fill="none" stroke="#f5f5f7" stroke-width="3"/>
+      <path d="M400 40H440" class="wl on"/>
+      <text x="108" y="22">START</text><text x="160" y="22">STOP</text><text x="274" y="80">MOTOR</text>
+      <text x="26" y="108">PLC · Ladder</text>
+    </svg>
+  </div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🏭</div><h3>Automatización industrial</h3><p>Diseño e implementación de procesos automatizados y modernización de líneas.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🧠</div><h3>Programación de PLC</h3><p>Desarrollo, modificación y depuración de programas PLC, HMI y control de procesos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">💻</div><h3>Programación y software</h3><p>Apps web, paneles de datos y herramientas a la medida de tu operación.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🛠️</div><h3>Asesoría y soporte</h3><p>Diagnóstico, documentación técnica y acompañamiento en tus proyectos.</p></div></div>
+  </div>
+</section>
+
+{{PROFILE_SECTION}}
+
+<section class="tab" id="tools">
+  <h2>Herramientas hechas por mí.</h2>
+  <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
+  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button></div>
+
+  <div class="tool on" id="t1">
+    <div class="rd">
+      <div class="rd-in">
+        <div class="rd-bar">
+          <label class="mini" for="hFile">📂 Abrir<input type="file" id="hFile" accept=".html,.htm,.txt" hidden></label>
+          <button class="mini" id="hSample">Ejemplo</button>
+          <button class="mini" id="hCopy">Copiar</button>
+          <button class="mini" id="hDown">Descargar</button>
+          <button class="mini" id="hClear">Limpiar</button>
+        </div>
+        <textarea id="hSrc" spellcheck="false" aria-label="Código HTML" placeholder="Pega aquí tu HTML o arrastra un archivo .html"></textarea>
+        <div class="rd-stat"><span id="hStat"></span> <b id="hMsg"></b></div>
+      </div>
+      <div class="rd-out">
+        <div class="rd-bar">
+          <div class="seg sm" id="hView"><button class="on" data-v="prev">Vista previa</button><button data-v="code">Código</button></div>
+          <div class="seg sm" id="hDev"><button class="on" data-w="100%">💻</button><button data-w="390px">📱</button></div>
+          <button class="mini" id="hOpen">↗ Pestaña</button>
+        </div>
+        <div id="hPrev"><div id="hFrameBox"><iframe id="hFrame" title="Vista previa" sandbox="allow-scripts allow-forms allow-modals"></iframe></div></div>
+        <div id="hCodeWrap" style="display:none"><pre class="code" id="hCode"></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool" id="t2">
+    <div class="mini-card">
+      <div class="f"><label>NÚMERO (con código de país)</label><input id="wNum" inputmode="numeric" placeholder="573001234567"></div>
+      <div class="f"><label>MENSAJE (opcional)</label><input id="wMsg" placeholder="Hola, quiero cotizar…"></div>
+      <div class="f"><label>ENLACE</label><input id="wOut" readonly placeholder="Aquí aparecerá tu enlace"></div>
+      <div class="rd-bar"><button class="pill sm" id="wCopy">Copiar enlace</button><button class="link" id="wTest">Probar ›</button><b id="wTip" class="tip"></b></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t3">
+    <div class="mini-card">
+      <div class="f"><label>JSON DE ENTRADA</label><textarea id="jIn" spellcheck="false" placeholder='{"nombre":"Sebas","servicios":["3D","n8n","PLC"]}'></textarea></div>
+      <div class="rd-bar"><button class="pill sm" id="jFmt">Formatear</button><button class="mini" id="jMin">Minificar</button><button class="mini" id="jCopy">Copiar resultado</button><b id="jErr"></b></div>
+      <div class="f" style="margin-top:14px"><label>RESULTADO</label><textarea id="jOut" readonly spellcheck="false"></textarea></div>
+    </div>
+  </div>
+
+  <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Bash</span><span>YAML</span><span>JSON</span><span>SVG</span><span>Markdown</span></div>
+</section>
+
+<div class="about rv">
+  <div class="av">S</div>
+  <div>
+    <p class="eyebrow" style="margin:0">Sobre mí</p>
+    <h3>Hola, soy Sebas.</h3>
+    <p>Ingeniero en Automática Industrial y maestrante en Ciencia de Datos e IA, con perfil de Ingeniero de Datos Junior. Diseño pipelines ETL, automatizaciones con n8n y soluciones con IA, y desde mi taller creo productos personalizados en 3D. Vivo en Cali, Colombia.</p>
+    <div class="chips" style="justify-content:flex-start;margin-top:16px"><span>Python · R · SQL</span><span>ETL y AWS</span><span>n8n</span><span>Automatización y PLC</span><span>CNC y robótica</span><span>Machine Learning</span></div>
+  </div>
+</div>
+
+<div class="cta rv">
+  <h2>¿Hablamos de tu proyecto?</h2>
+  <p class="sub">Cuéntanos tu idea y te respondemos con una cotización.</p>
+  <a class="pill" id="wa2" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+</div>
+</main>
+<footer>© {{YEAR}} Taller 3D &amp; Automatización · Colombia</footer>
+<script src="assets/js/app.js" defer></script>
+<script src="assets/js/tools.js" defer></script>
+</body>
+</html>

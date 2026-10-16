@@ -1,0 +1,29 @@
+{
+  "name": "Juan Sebastián Sánchez Urbano",
+  "headline": "Ingeniero de Datos Junior · Automatización ETL, Cloud (AWS) & Machine Learning",
+  "location": "Cali, Colombia",
+  "email": "sebasurb01mx@gmail.com",
+  "phone_display": "+57 301 389 2534",
+  "linkedin": "https://linkedin.com/in/sebasurb01",
+  "github": "https://github.com/JSebasurb",
+  "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez.pdf",
+  "summary": "Ingeniero en Automática Industrial y maestrante en Ciencia de Datos e Inteligencia Artificial, con perfil de Ingeniero de Datos Junior. Sólida experiencia en el diseño e implementación de pipelines ETL, gestión de bases de datos relacionales (SQL), programación analítica en Python y R, despliegue de servicios en la nube (AWS) y desarrollo de modelos de Machine Learning. Especializado en la automatización de procesos e integración de datos mediante APIs REST, flujos de IA y plataformas como n8n bajo metodologías de mejora continua (PHVA), garantizando la integridad, disponibilidad y calidad de la información para la toma de decisiones estratégicas.",
+  "skills": [
+    {"icon": "🗄️", "title": "Ingeniería de Datos & Cloud", "items": ["Pipelines ETL", "Arquitectura Cloud en AWS", "Integración de APIs REST", "SQL avanzado", "Modelado de bases de datos", "Limpieza y consolidación de datos"]},
+    {"icon": "🐍", "title": "Lenguajes & Ciencia de Datos", "items": ["Python", "R", "SQL", "Machine Learning", "Modelado predictivo", "Clasificación", "Análisis estadístico", "Git y GitHub"]},
+    {"icon": "⚙️", "title": "Automatización, BI & IoT", "items": ["n8n y agentes de IA", "Power BI", "Excel avanzado", "Sensores e instrumentación IoT en tiempo real"]},
+    {"icon": "🧭", "title": "Metodologías & Gestión", "items": ["PHVA (mejora continua)", "Validación e integridad de información", "Resolución analítica de problemas", "Orientación a resultados", "Comunicación efectiva"]}
+  ],
+  "experience": [
+    {"period": "2019 – Nov 2025 · Mar 2026 – Actualidad", "role": "Asesor Técnico, Comercial y de Automatización de Datos", "company": "Proeléctricos", "text": "Analizo y valido información técnica y operativa de clientes para estructurar soluciones integrales, asegurando la calidad y trazabilidad de los registros comerciales.", "achievement": "Diseñé e implementé un chatbot con IA para el canal web, integrado a un pipeline de automatización en n8n, que extrae, valida y enruta automáticamente reportes e información hacia las áreas responsables."},
+    {"period": "Oct 2025 – Ene 2026", "role": "Líder de Área CNC y Robótica (Análisis de Datos de Producción)", "company": "Metálicas Mundial", "text": "Lideré la captura y el análisis de variables críticas de producción y control de calidad, garantizando la confiabilidad de los datos del proceso de manufactura.", "achievement": "Identifiqué cuellos de botella y optimicé los tiempos de ciclo mediante el análisis de datos operativos de maquinaria bajo metodologías ágiles de mejora continua, incrementando directamente la productividad del área."}
+  ],
+  "projects": [
+    {"icon": "🔄", "title": "Pipeline ETL Automatizado End-to-End", "meta": "MinTIC / Talento Tech · 2026", "text": "Arquitectura de extracción, transformación y carga con Python, n8n y consumo de APIs REST para automatizar flujos de información y consolidar bases de datos centralizadas.", "impact": "Eliminación del 100% de la digitación manual, con datos íntegros, estandarizados y confiables para análisis ejecutivo."},
+    {"icon": "📡", "title": "Captura de Datos en Tiempo Real y Alertas (IoT Industrial)", "meta": "Proyectos de Ingeniería · 2022 – 2024", "text": "Integración de sensores e instrumentación industrial para ingesta de datos en tiempo real, validación automática de variables operativas críticas y generación oportuna de alertas de control.", "impact": ""}
+  ],
+  "education": [
+    {"title": "Maestría en Ciencia de Datos e Inteligencia Artificial", "meta": "En curso", "text": "Arquitectura y servicios Cloud (AWS), modelos de Machine Learning, diseño de procesos ETL, programación estadística en R y Python y analítica avanzada."},
+    {"title": "Ingeniería en Automática Industrial", "meta": "Ingeniero titulado", "text": ""}
+  ]
+}

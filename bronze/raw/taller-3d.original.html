@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taller 3D & Automatización</title>
+<style>
+:root{--bg:#fbfbfd;--surface:#ffffff;--soft:#f5f5f7;--text:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--blue:#0071e3;--blue-h:#0077ed;--glass:#fbfbfdcc;--shadow:0 20px 50px #0000001a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#a1a1a6;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}}
+:root[data-theme="dark"]{--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#a1a1a6;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,Arial,sans-serif;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--glass);border-bottom:1px solid var(--line)}
+.top>div{max-width:1024px;margin:0 auto;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px}
+.brand{font-weight:600;font-size:1rem;white-space:nowrap}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs button{background:none;border:0;color:var(--muted);font:inherit;font-size:.85rem;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.25s}
+.tabs button:hover{color:var(--text)}
+.tabs button.on{background:var(--soft);color:var(--text);font-weight:600}
+.hero{text-align:center;padding:72px 20px 40px;max-width:900px;margin:0 auto}
+.eyebrow{color:var(--blue);font-weight:600;font-size:1.05rem;margin:0 0 6px}
+h1{font-size:clamp(2.6rem,9vw,5.2rem);line-height:1.04;letter-spacing:-.03em;margin:0;font-weight:700}
+h1 span{background:linear-gradient(90deg,#ff9f0a,#ff375f,#bf5af2,#0a84ff);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:sh 6s ease infinite alternate}
+@keyframes sh{to{background-position:100%}}
+.lead{font-size:clamp(1.15rem,3.6vw,1.5rem);color:var(--muted);margin:18px auto 0;max-width:640px;line-height:1.35}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.pill{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border:0;font:inherit;font-size:1.05rem;padding:12px 24px;border-radius:999px;cursor:pointer;transition:.25s}
+.pill:hover{background:var(--blue-h);transform:scale(1.03)}
+.link{color:var(--blue);text-decoration:none;font-size:1.05rem;padding:12px 6px;cursor:pointer;background:none;border:0;font-family:inherit}
+.link:hover{text-decoration:underline}
+main{max-width:1024px;margin:0 auto;padding:0 16px 40px}
+section.tab{display:none}section.tab.on{display:block;animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}}
+h2{font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:-.025em;line-height:1.1;margin:50px 0 8px;font-weight:700;text-align:center}
+.sub{color:var(--muted);font-size:1.2rem;text-align:center;margin:0 auto 32px;max-width:560px;line-height:1.35}
+.bento{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(max-width:640px){.bento{grid-template-columns:1fr}}
+.tile{background:var(--soft);border-radius:28px;padding:32px 28px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.tile:hover{transform:scale(1.02);box-shadow:var(--shadow)}
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:24px}
+@media(max-width:640px){.tile.wide{flex-direction:column;align-items:flex-start}}
+.ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:var(--surface);box-shadow:0 2px 10px #0000000f;margin-bottom:18px}
+.tile h3{font-size:1.6rem;letter-spacing:-.02em;margin:0 0 6px;line-height:1.15}
+.tile p{margin:0;color:var(--muted);font-size:1.05rem;line-height:1.4}
+.from{margin-top:16px;font-size:.95rem;color:var(--muted)}.from b{color:var(--text);font-size:1.1rem}
+.dark{background:#000;color:#f5f5f7}.dark p{color:#a1a1a6}.dark .ico{background:#1c1c1e}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+.lab{display:grid;grid-template-columns:1fr;background:var(--soft);border-radius:34px;overflow:hidden;margin-top:14px}
+@media(min-width:760px){.lab{grid-template-columns:1fr 1fr}}
+.ctrl{padding:36px 30px}
+.ctrl h3{font-size:1.7rem;letter-spacing:-.02em;margin:0 0 20px}
+.f{margin-bottom:20px}
+.f label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:8px;font-weight:600;letter-spacing:.02em}
+.seg{display:flex;background:var(--surface);border-radius:12px;padding:3px;gap:2px}
+.seg button{flex:1;border:0;background:none;color:var(--text);font:inherit;font-size:.88rem;padding:9px 4px;border-radius:9px;cursor:pointer;transition:.25s}
+.seg button.on{background:var(--blue);color:#fff;font-weight:600;box-shadow:0 2px 8px #0071e355}
+.f input{width:100%;font:inherit;font-size:1.1rem;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:0;transition:.2s}
+.f input:focus{border-color:var(--blue);box-shadow:0 0 0 4px #0071e333}
+.dots{display:flex;gap:14px;flex-wrap:wrap}
+.dots button{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;box-shadow:inset 0 0 0 1px #0002;transition:.25s;outline:2px solid transparent;outline-offset:3px}
+.dots button.on{outline-color:var(--blue);transform:scale(1.1)}
+.emo button{width:42px;height:42px;font-size:1.3rem;border-radius:12px;background:var(--surface)!important;box-shadow:none;outline-offset:0}
+.stage{display:grid;place-items:center;min-height:380px;background:radial-gradient(circle at 50% 35%,var(--surface),var(--soft) 75%);padding:30px}
+.prod{position:relative;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;box-shadow:0 30px 60px #00000040,inset 0 0 0 1px #ffffff40;animation:fl 5s ease-in-out infinite;transition:background .5s,width .5s,height .5s,border-radius .5s}
+@keyframes fl{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+.prod.key{width:170px;height:120px;border-radius:26px;margin-top:20px}
+.prod.key:before{content:"";position:absolute;top:12px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--soft);box-shadow:inset 0 2px 4px #0005}
+.prod.case{width:140px;height:280px;border-radius:40px}
+.prod.case:before{content:"";position:absolute;top:14px;left:14px;width:56px;height:56px;border-radius:18px;background:#000a;box-shadow:inset 0 0 0 2px #ffffff33}
+.prod.glass:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,#ffffff99 48%,transparent 62%);background-size:260%;animation:gl 4s ease-in-out infinite}
+@keyframes gl{from{background-position:160%}to{background-position:-60%}}
+.prod .em{font-size:2.8rem;filter:drop-shadow(0 4px 8px #0004)}.prod .tx{font-weight:700;font-size:1.15rem;padding:0 10px;word-break:break-word;letter-spacing:-.01em}
+.flow{display:flex;align-items:center;justify-content:center;gap:0;overflow-x:auto;padding:10px 4px 26px}
+.node{flex:none;background:var(--soft);border-radius:22px;padding:16px 18px;text-align:center;font-weight:600;font-size:.9rem;min-width:100px;animation:glow 4s infinite}
+.node i{display:block;font-style:normal;font-size:1.8rem;margin-bottom:4px}
+.node:nth-child(3){animation-delay:1s}.node:nth-child(5){animation-delay:2s}.node:nth-child(7){animation-delay:3s}
+@keyframes glow{0%,25%,100%{box-shadow:0 0 0 0 #0071e300}10%{box-shadow:0 0 0 3px #0071e3,0 10px 30px #0071e355}}
+.wire{flex:none;width:42px;height:2px;background:linear-gradient(90deg,var(--line),var(--blue),var(--line));background-size:200%;animation:wr 1.6s linear infinite}
+@keyframes wr{to{background-position:-200%}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.chips span{background:var(--soft);padding:9px 18px;border-radius:999px;font-size:.92rem;font-weight:500;transition:.25s}
+.chips span:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.plc{background:#000;border-radius:28px;padding:26px 22px;margin-bottom:14px;overflow-x:auto}
+.plc svg{display:block;min-width:440px;width:100%}
+.plc .wl{stroke:#3a3a3c;stroke-width:3;fill:none;stroke-linecap:round;transition:stroke .4s}
+.plc .on{stroke:#30d158;filter:drop-shadow(0 0 5px #30d158)}
+.plc text{fill:#a1a1a6;font:500 11px -apple-system,Helvetica,sans-serif}
+.cta{background:var(--soft);border-radius:34px;text-align:center;padding:56px 24px;margin-top:60px}
+.cta h2{margin-top:0}
+footer{max-width:1024px;margin:0 auto;padding:24px 16px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;text-align:center}
+.promptbox{background:#000;color:#f5f5f7;border-radius:22px;padding:20px 22px;margin-bottom:14px;font:500 1.05rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:96px}
+.pl{display:inline-block;font:600 .7rem -apple-system,sans-serif;letter-spacing:.08em;color:#000;background:#30d158;padding:3px 9px;border-radius:999px;margin-bottom:10px;text-transform:uppercase}
+.pt{display:inline}.cur{display:inline-block;width:8px;height:1.1em;background:#30d158;vertical-align:text-bottom;margin-left:2px;animation:bk 1s steps(2) infinite}
+@keyframes bk{50%{opacity:0}}
+.about{display:flex;gap:24px;align-items:center;background:var(--soft);border-radius:34px;padding:36px 30px;margin-top:60px}
+@media(max-width:640px){.about{flex-direction:column;align-items:flex-start}}
+.av{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:2.6rem;font-weight:700;color:#fff;background:linear-gradient(135deg,#ff9f0a,#ff375f,#bf5af2,#0a84ff)}
+.about h3{font-size:1.9rem;letter-spacing:-.02em;margin:4px 0 8px}
+.about p{color:var(--muted);font-size:1.08rem;margin:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="top"><div>
+  <span class="brand">Taller 3D</span>
+  <div class="tabs">
+    <button class="on" data-t="tienda">Tienda</button>
+    <button data-t="auto">Automatización</button>
+    <button data-t="ia">Contenido IA</button>
+    <button data-t="ing">Ingeniería</button>
+  </div>
+</div></div>
+
+<div class="hero">
+  <p class="eyebrow">Estampados · 3D · Automatización · Contenido IA</p>
+  <h1>Hazlo <span>tuyo.</span></h1>
+  <p class="lead">Llaveros y estuches personalizados, piezas en 3D, flujos con n8n y soluciones de ingeniería. Todo en un solo lugar.</p>
+  <div class="ctas">
+    <button class="pill" id="goLab">Diseñar el mío</button>
+    <a class="link" id="wa" href="#" target="_blank" rel="noopener">Escribir por WhatsApp ›</a>
+  </div>
+</div>
+
+<main>
+<section class="tab on" id="tienda">
+  <h2>Personalización que se siente única.</h2>
+  <p class="sub">Estampados de alta definición sobre aluminio y vidrio. Impresión 3D para cualquier idea.</p>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🔑</div><h3>Llaveros estampados</h3><p>Tu foto, nombre o logo sobre llaveros con lámina de aluminio. Colores vivos y muy resistentes.</p></div><div class="from">Desde <b>$8.000</b></div></div>
+    <div class="tile rv"><div><div class="ico">📱</div><h3>Estuches en aluminio</h3><p>Estampado a todo color sobre lámina de aluminio. Acabado brillante y duradero.</p></div><div class="from">Desde <b>$35.000</b></div></div>
+    <div class="tile rv"><div><div class="ico">🔮</div><h3>Estuches en vidrio</h3><p>Estampado sobre vidrio con efecto espejo y una profundidad de color increíble.</p></div><div class="from">Desde <b>$40.000</b></div></div>
+    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA, PETG y más.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b></div></div>
+  </div>
+
+  <h2 id="labT">Diséñalo en segundos.</h2>
+  <p class="sub">Elige, personaliza y pídelo directo por WhatsApp.</p>
+  <div class="lab rv" id="lab">
+    <div class="ctrl">
+      <h3>Tu diseño</h3>
+      <div class="f"><label>PRODUCTO</label><div class="seg" id="prodC"><button class="on" data-v="key">Llavero</button><button data-v="case">Aluminio</button><button data-v="glass">Vidrio</button></div></div>
+      <div class="f"><label>TEXTO</label><input type="text" id="txt" maxlength="16" value="Tu nombre" autocomplete="off"></div>
+      <div class="f"><label>ÍCONO</label><div class="dots emo" id="emC"><button class="on">⭐</button><button>❤️</button><button>🐾</button><button>⚽</button><button>🎮</button><button>🌸</button></div></div>
+      <div class="f"><label>COLOR</label><div class="dots" id="colC">
+        <button class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
+        <button style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
+        <button style="background:linear-gradient(135deg,#30d158,#0a9d8f)" data-v="linear-gradient(135deg,#30d158,#0a9d8f)"></button>
+        <button style="background:linear-gradient(135deg,#bf5af2,#ff2d92)" data-v="linear-gradient(135deg,#bf5af2,#ff2d92)"></button>
+        <button style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>
+      <button class="pill" id="order">Pedir por WhatsApp</button>
+    </div>
+    <div class="stage"><div class="prod key" id="prod"><div class="em" id="pem">⭐</div><div class="tx" id="ptx">Tu nombre</div></div></div>
+  </div>
+</section>
+
+<section class="tab" id="auto">
+  <h2>Tu negocio, en piloto automático.</h2>
+  <p class="sub">Conecta tus herramientas y deja que los procesos trabajen por ti.</p>
+  <div class="flow">
+    <div class="node"><i>💬</i>Cliente</div><div class="wire"></div>
+    <div class="node"><i>⚙️</i>n8n</div><div class="wire"></div>
+    <div class="node"><i>🤖</i>IA</div><div class="wire"></div>
+    <div class="node"><i>📊</i>CRM</div>
+  </div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🔗</div><h3>Flujos con n8n</h3><p>Conectamos WhatsApp, Google Sheets, CRM, correo y tiendas en flujos automáticos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🧩</div><h3>Automatización de apps</h3><p>Integraciones por API, bots, reportes automáticos y sincronización de datos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">📣</div><h3>Marketing digital</h3><p>Redes sociales, captación de clientes, embudos, campañas y mensajes automáticos.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🛎️</div><h3>Chatbots 24/7</h3><p>Atención, agendamiento y seguimiento de clientes sin intervención manual.</p></div></div>
+  </div>
+  <div class="chips"><span>n8n</span><span>APIs</span><span>Webhooks</span><span>Google Workspace</span><span>WhatsApp</span><span>CRM</span><span>IA</span></div>
+</section>
+
+<section class="tab" id="ia">
+  <h2>Contenido con IA que vende.</h2>
+  <p class="sub">Imágenes, videos y textos creados con inteligencia artificial para que tu marca destaque en redes.</p>
+  <div class="promptbox rv"><span class="pl">Prompt</span><div class="pt" id="pt"></div><span class="cur"></span></div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🖼️</div><h3>Imágenes y diseños</h3><p>Fotos de producto, mockups, logos y piezas gráficas generadas con IA, listas para publicar.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🎬</div><h3>Videos y reels con IA</h3><p>Videos cortos, animaciones de producto y anuncios para Instagram, TikTok y WhatsApp.</p></div></div>
+    <div class="tile rv"><div><div class="ico">✍️</div><h3>Textos y calendario</h3><p>Copys, guiones, descripciones y un calendario de contenido pensado para tu negocio.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🎙️</div><h3>Voz y avatares</h3><p>Locuciones, presentadores virtuales y contenido automatizado conectado con n8n.</p></div></div>
+  </div>
+  <div class="chips"><span>Imágenes IA</span><span>Video IA</span><span>Redes sociales</span><span>Branding</span><span>Automatización de publicaciones</span></div>
+</section>
+
+<section class="tab" id="ing">
+  <h2>Ingeniería que funciona.</h2>
+  <p class="sub">Automatización industrial, de la idea a la puesta en marcha.</p>
+  <div class="plc">
+    <svg viewBox="0 0 460 120" aria-label="Diagrama ladder animado">
+      <line x1="20" y1="10" x2="20" y2="110" class="wl on"/><line x1="440" y1="10" x2="440" y2="110" class="wl on"/>
+      <path id="r1" d="M20 40H120M170 40H270M320 40H400" class="wl"/>
+      <path d="M20 90H400" class="wl"/>
+      <path d="M120 28v24M170 28v24" stroke="#f5f5f7" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="295" cy="40" r="22" fill="none" stroke="#f5f5f7" stroke-width="3"/>
+      <path d="M400 40H440" class="wl on"/>
+      <text x="108" y="22">START</text><text x="160" y="22">STOP</text><text x="274" y="80">MOTOR</text>
+      <text x="26" y="108">PLC · Ladder</text>
+    </svg>
+  </div>
+  <div class="bento">
+    <div class="tile rv"><div><div class="ico">🏭</div><h3>Automatización industrial</h3><p>Diseño e implementación de procesos automatizados y modernización de líneas.</p></div></div>
+    <div class="tile rv"><div><div class="ico">🧠</div><h3>Programación de PLC</h3><p>Desarrollo, modificación y depuración de programas PLC, HMI y control de procesos.</p></div></div>
+    <div class="tile rv"><div><div class="ico">💻</div><h3>Programación y software</h3><p>Apps web, paneles de datos y herramientas a la medida de tu operación.</p></div></div>
+    <div class="tile dark rv"><div><div class="ico">🛠️</div><h3>Asesoría y soporte</h3><p>Diagnóstico, documentación técnica y acompañamiento en tus proyectos.</p></div></div>
+  </div>
+</section>
+
+<div class="about rv">
+  <div class="av">S</div>
+  <div>
+    <p class="eyebrow" style="margin:0">Sobre mí</p>
+    <h3>Hola, soy Sebas.</h3>
+    <p>Ingeniero automático industrial y estudiante de la Maestría en Ciencia de Datos e IA. Combino la ingeniería, el código y la inteligencia artificial para crear productos, automatizar procesos y generar contenido para tu negocio.</p>
+    <div class="chips" style="justify-content:flex-start;margin-top:16px"><span>Automatización y PLC</span><span>CNC y robótica</span><span>Desarrollo web full-stack</span><span>Datos e IA</span></div>
+  </div>
+</div>
+
+<div class="cta rv">
+  <h2>¿Hablamos de tu proyecto?</h2>
+  <p class="sub">Cuéntanos tu idea y te respondemos con una cotización.</p>
+  <a class="pill" id="wa2" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+</div>
+</main>
+<footer>© 2026 Taller 3D &amp; Automatización · Colombia</footer>
+<script>
+var NUM='573000000000';
+function wa(m){return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(m)}
+var u=wa('Hola, quiero cotizar un servicio');
+document.getElementById('wa').href=u;document.getElementById('wa2').href=u;
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1}):null;
+function observe(){document.querySelectorAll('.rv:not(.in)').forEach(function(el,i){if(io){el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)}else el.classList.add('in')})}
+function show(t){
+  document.querySelectorAll('.tabs button').forEach(function(x){x.classList.toggle('on',x.dataset.t===t)});
+  document.querySelectorAll('section.tab').forEach(function(x){x.classList.toggle('on',x.id===t)});observe()}
+document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.t);window.scrollTo({top:0,behavior:'smooth'})})});
+document.getElementById('goLab').addEventListener('click',function(){show('tienda');setTimeout(function(){document.getElementById('labT').scrollIntoView({behavior:'smooth'})},50)});
+observe();
+var P={v:'key',t:'Tu nombre',e:'⭐',c:'linear-gradient(135deg,#ff9f0a,#ff375f)'},prod=document.getElementById('prod');
+function draw(){prod.className='prod '+(P.v==='key'?'key':'case'+(P.v==='glass'?' glass':''));prod.style.background=P.c;
+  document.getElementById('pem').textContent=P.e;document.getElementById('ptx').textContent=P.t||' '}
+function group(id,fn){document.querySelectorAll('#'+id+' button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('#'+id+' button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');fn(b)})})}
+group('prodC',function(b){P.v=b.dataset.v;draw()});
+group('emC',function(b){P.e=b.textContent;draw()});
+group('colC',function(b){P.c=b.dataset.v;draw()});
+document.getElementById('txt').addEventListener('input',function(e){P.t=e.target.value;draw()});
+document.getElementById('order').addEventListener('click',function(){
+  var n={key:'llavero',case:'estuche en aluminio',glass:'estuche en vidrio'}[P.v];
+  window.open(wa('Hola, quiero un '+n+' con el texto "'+P.t+'" y el ícono '+P.e+'. ¿Me cotizas?'),'_blank')});
+draw();
+var ps=['Foto de producto: llavero de aluminio con diseño neón, fondo de estudio, luz suave…','Reel de 15 s mostrando el proceso de estampado en estuches de vidrio…','Calendario de 30 días de contenido para una tienda de regalos personalizados…'],pi=0,pc=0,pe=document.getElementById('pt');
+function type(){var t=ps[pi];if(pc<=t.length){pe.textContent=t.slice(0,pc++);setTimeout(type,38)}else{setTimeout(function(){pc=0;pi=(pi+1)%ps.length;type()},2200)}}
+type();
+var r1=document.getElementById('r1'),on=false;
+setInterval(function(){on=!on;r1.classList.toggle('on',on)},1500);
+</script>
+</body>
+</html>
