@@ -1,0 +1,204 @@
+{
+  "name": "Juan Sebastián Sánchez Urbano",
+  "headline": "Junior Data Engineer · ETL Automation, Cloud (AWS), Machine Learning & AI",
+  "location": "Cali, Colombia",
+  "email": "sebasurb01mx@gmail.com",
+  "phone_display": "+57 301 389 2534",
+  "linkedin": "https://linkedin.com/in/sebasurb01",
+  "github": "https://github.com/JSebasurb",
+  "portfolio": "https://jsebasurb.github.io/Portafolio/",
+  "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
+  "summary": "Industrial Automation Engineer and Master's student in Data Science and Artificial Intelligence, with a Junior Data Engineer profile. I design and build ETL pipelines with medallion architecture (Bronze/Silver/Gold), work with relational databases (SQL, MySQL), program in Python and R, and develop automation workflows with n8n, REST APIs and AI agents. I combine industrial engineering with data analytics to ensure the integrity, availability and quality of information, under continuous improvement methodologies (PDCA). I maintain a public portfolio with projects, my own tools and data, automation and 3D printing services.",
+  "skills": [
+    {
+      "icon": "🗄️",
+      "title": "Data Engineering & Cloud",
+      "items": [
+        "ETL pipelines",
+        "Medallion architecture",
+        "AWS",
+        "REST APIs",
+        "Advanced SQL",
+        "MySQL",
+        "Data modeling and consolidation",
+        "Data quality and cleaning"
+      ]
+    },
+    {
+      "icon": "🐍",
+      "title": "Languages & Data Science",
+      "items": [
+        "Python",
+        "R",
+        "SQL",
+        "Machine Learning",
+        "Predictive modeling",
+        "Classification",
+        "Statistical analysis",
+        "EDA",
+        "Git and GitHub"
+      ]
+    },
+    {
+      "icon": "⚙️",
+      "title": "Automation, BI & IoT",
+      "items": [
+        "n8n and AI agents",
+        "AI chatbots",
+        "Power BI",
+        "Advanced Excel",
+        "HTML dashboards",
+        "Real-time IoT sensors and instrumentation"
+      ]
+    },
+    {
+      "icon": "🌐",
+      "title": "Web Development & Deployment",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bash",
+        "YAML",
+        "GitHub Actions",
+        "GitHub Pages"
+      ]
+    },
+    {
+      "icon": "🏭",
+      "title": "Industrial Engineering",
+      "items": [
+        "Industrial automation",
+        "PLC programming",
+        "CNC and robotics"
+      ]
+    },
+    {
+      "icon": "🧭",
+      "title": "Methodologies & Management",
+      "items": [
+        "PDCA (continuous improvement)",
+        "Information validation and integrity",
+        "Analytical problem solving",
+        "Results orientation",
+        "Effective communication"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2019 – Nov 2025 · Mar 2026 – Present",
+      "role": "Technical, Sales and Data Automation Advisor",
+      "company": "Proeléctricos",
+      "text": "I analyze and validate customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
+      "achievement": "I designed and implemented an AI chatbot for the web channel, integrated into an n8n automation pipeline that automatically extracts, validates and routes reports and information to the responsible areas."
+    },
+    {
+      "period": "Oct 2025 – Jan 2026",
+      "role": "CNC and Robotics Area Lead (Production Data Analysis)",
+      "company": "Metálicas Mundial",
+      "text": "I led the capture and analysis of critical production and quality-control variables, ensuring the reliability of manufacturing process data.",
+      "achievement": "I identified bottlenecks and optimized cycle times by analyzing machinery operating data under agile continuous-improvement methodologies, increasing the area's productivity."
+    }
+  ],
+  "projects": [
+    {
+      "icon": "🔄",
+      "title": "End-to-end automated ETL pipeline",
+      "meta": "MinTIC / Talento Tech · 2026",
+      "text": "An extraction, transformation and loading architecture with Python, n8n and REST API calls to consolidate centralized databases.",
+      "impact": "100% of manual data entry eliminated, with complete, standardized and reliable data for executive analysis.",
+      "tags": [
+        "Python",
+        "n8n",
+        "REST APIs",
+        "ETL"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🦟",
+      "title": "SIVIGILA epidemiological ETL 2018–2022",
+      "meta": "Dengue · SARI · Tuberculosis",
+      "text": "An ETL process over five National Institute of Health Excel files, with extraction, transformation and loading scripts, medallion architecture and an HTML dashboard to visualize results.",
+      "impact": "",
+      "tags": [
+        "Python",
+        "Excel",
+        "Medallion",
+        "HTML dashboard"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "📦",
+      "title": "Kaismart Solutions ETL lab",
+      "meta": "Universidad Autónoma de Occidente",
+      "text": "Integration of a MySQL sales table (5,000 records) with 50,000 logistics events in Excel, joined by order ID. Includes exploratory analysis, medallion architecture, 10 business questions and scheduled execution.",
+      "impact": "",
+      "tags": [
+        "MySQL",
+        "Python",
+        "Excel",
+        "Medallion",
+        "Schedule"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🌐",
+      "title": "Web portfolio with medallion architecture",
+      "meta": "2026",
+      "text": "Site published on GitHub Pages with a repository in Bronze/Silver/Gold layers, an automated Python build and continuous deployment with GitHub Actions. Includes my own tools: an HTML reader with safe preview, a WhatsApp link generator and a JSON formatter.",
+      "impact": "",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python",
+        "GitHub Actions"
+      ],
+      "link": "https://github.com/JSebasurb/Portafolio"
+    },
+    {
+      "icon": "📡",
+      "title": "Real-time data capture and alerts (industrial IoT)",
+      "meta": "Engineering projects · 2022 – 2024",
+      "text": "Integration of industrial sensors and instrumentation for real-time data ingestion, automatic validation of critical operating variables and timely control alerts.",
+      "impact": "",
+      "tags": [
+        "IoT",
+        "Sensors",
+        "Alerts",
+        "Real time"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🧊",
+      "title": "3D Workshop and automation services",
+      "meta": "Business venture",
+      "text": "Custom products (printed keychains and cases, 3D printing) and automation services with n8n, AI content and industrial engineering, with a product designer connected to WhatsApp.",
+      "impact": "",
+      "tags": [
+        "3D printing",
+        "n8n",
+        "AI",
+        "WhatsApp"
+      ],
+      "link": ""
+    }
+  ],
+  "education": [
+    {
+      "title": "Master's in Data Science and Artificial Intelligence · Universidad Autónoma de Occidente",
+      "meta": "In progress",
+      "text": "Cloud architecture and services (AWS), Machine Learning models, ETL process design, statistical programming in R and Python, and advanced analytics."
+    },
+    {
+      "title": "Industrial Automation Engineering",
+      "meta": "Graduate engineer",
+      "text": ""
+    }
+  ]
+}

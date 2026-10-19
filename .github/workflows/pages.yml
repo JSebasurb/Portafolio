@@ -27,6 +27,8 @@ jobs:
           python-version: "3.12"
       - name: Build (silver -> gold)
         run: python scripts/build.py
+      - name: Revisar enlaces
+        run: python scripts/check_links.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

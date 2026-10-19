@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{LANG}}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -8,20 +8,44 @@
 <meta property="og:title" content="{{SITE_TITLE}}">
 <meta property="og:description" content="{{SITE_DESC}}">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-<link rel="stylesheet" href="assets/css/styles.css">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{SITE_URL}}assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="{{OG_LOCALE}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{SITE_TITLE}}">
+<meta name="twitter:image" content="{{SITE_URL}}assets/img/og-image.png">
+<meta name="author" content="Juan Sebastián Sánchez Urbano">
+<meta name="theme-color" content="#0071e3">
+<link rel="canonical" href="{{CANONICAL}}">
+<link rel="alternate" hreflang="es" href="{{SITE_URL}}">
+<link rel="alternate" hreflang="en" href="{{SITE_URL}}en/">
+<link rel="alternate" hreflang="x-default" href="{{SITE_URL}}">
+<link rel="manifest" href="{{ROOT}}manifest.webmanifest">
+<link rel="apple-touch-icon" href="{{ROOT}}assets/img/icon-192.png">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<link rel="icon" type="image/svg+xml" href="{{ROOT}}assets/img/favicon.svg">
+<link rel="stylesheet" href="{{ROOT}}assets/css/styles.css">
 </head>
 <body>
+<a class="skip" href="#main">Saltar al contenido</a>
 <div class="top"><div>
-  <span class="brand">Taller 3D</span>
+  <span class="brand">Sebas · Datos &amp; 3D</span>
   <div class="tabs">
     <button class="on" data-t="perfil">Perfil</button>
+    <button data-t="proyectos">Proyectos</button>
     <button data-t="tienda">Tienda</button>
+    <button data-t="imp3d">Impresión 3D</button>
     <button data-t="auto">Automatización</button>
     <button data-t="ia">Contenido IA</button>
     <button data-t="ing">Ingeniería</button>
     <button data-t="tools">Herramientas</button>
+    <button data-t="blog">Blog</button>
+    <button data-t="contacto">Contacto</button>
   </div>
+  <a class="lang" id="langBtn" href="{{ALT_URL}}" data-base="{{ALT_URL}}" hreflang="{{ALT_CODE}}" lang="{{ALT_CODE}}" aria-label="{{ALT_ARIA}}" title="{{ALT_ARIA}}">{{ALT_LABEL}}</a>
+  <button class="tbtn" id="themeBtn" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro/oscuro">🌓</button>
 </div></div>
 
 <div class="hero">
@@ -35,7 +59,7 @@
   </div>
 </div>
 
-<main>
+<main id="main">
 <section class="tab" id="tienda">
   <h2>Personalización que se siente única.</h2>
   <p class="sub">Estampados de alta definición sobre aluminio y vidrio. Impresión 3D para cualquier idea.</p>
@@ -43,8 +67,10 @@
     <div class="tile rv"><div><div class="ico">🔑</div><h3>Llaveros estampados</h3><p>Tu foto, nombre o logo sobre llaveros con lámina de aluminio. Colores vivos y muy resistentes.</p></div><div class="from">Desde <b>$8.000</b></div></div>
     <div class="tile rv"><div><div class="ico">📱</div><h3>Estuches en aluminio</h3><p>Estampado a todo color sobre lámina de aluminio. Acabado brillante y duradero.</p></div><div class="from">Desde <b>$35.000</b></div></div>
     <div class="tile rv"><div><div class="ico">🔮</div><h3>Estuches en vidrio</h3><p>Estampado sobre vidrio con efecto espejo y una profundidad de color increíble.</p></div><div class="from">Desde <b>$40.000</b></div></div>
-    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA, PETG y más.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b></div></div>
+    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b> · <button class="link" data-go="imp3d" style="padding:0;color:#2997ff">Ver más ›</button></div></div>
   </div>
+
+  {{CATALOG_SECTION}}
 
   <h2 id="labT">Diséñalo en segundos.</h2>
   <p class="sub">Elige, personaliza y pídelo directo por WhatsApp.</p>
@@ -54,6 +80,8 @@
       <div class="f"><label>PRODUCTO</label><div class="seg" id="prodC"><button class="on" data-v="key">Llavero</button><button data-v="case">Aluminio</button><button data-v="glass">Vidrio</button></div></div>
       <div class="f"><label>TEXTO</label><input type="text" id="txt" maxlength="16" value="Tu nombre" autocomplete="off"></div>
       <div class="f"><label>ÍCONO</label><div class="dots emo" id="emC"><button class="on">⭐</button><button>❤️</button><button>🐾</button><button>⚽</button><button>🎮</button><button>🌸</button></div></div>
+      <div class="f"><label>TU IMAGEN (OPCIONAL)</label><div class="rd-bar" style="margin-bottom:6px"><label class="mini" for="imgIn">Elegir imagen<input type="file" id="imgIn" accept="image/*" hidden></label><button class="mini" type="button" id="imgClr" hidden>Quitar</button></div><small class="hint">Tu imagen se queda en tu dispositivo. Adjúntala en WhatsApp al hacer el pedido.</small></div>
+      <div class="f two"><div><label>CANTIDAD</label><input type="number" id="qty" min="1" max="999" value="1" inputmode="numeric"></div><div id="modelF" hidden><label>MODELO DE CELULAR</label><input id="model" maxlength="40" placeholder="Ej. iPhone 15 Pro" autocomplete="off"></div></div>
       <div class="f"><label>COLOR</label><div class="dots" id="colC">
         <button class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
         <button style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
@@ -62,8 +90,25 @@
         <button style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>
       <button class="pill" id="order">Pedir por WhatsApp</button>
     </div>
-    <div class="stage"><div class="prod key" id="prod"><div class="em" id="pem">⭐</div><div class="tx" id="ptx">Tu nombre</div></div></div>
+    <div class="stage"><div class="dwrap" id="wrap"><div class="ring" id="ring"></div><div class="prod key" id="prod"><div class="em" id="pem">⭐</div><div class="tx" id="ptx">Tu nombre</div></div></div></div>
   </div>
+
+  <h2>Ideas para cada ocasión.</h2>
+  <p class="sub">Llaveros y estuches que dicen algo de quien los lleva.</p>
+  <div class="bento ideas">
+    <div class="tile rv"><div><div class="ico">💞</div><h3>Parejas</h3><p>Un regalo con su foto o una ilustración de los dos.</p></div><button class="link idea-go" data-msg="Hola, quiero un llavero o estuche para parejas">Pedir ›</button></div>
+    <div class="tile rv"><div><div class="ico">🐾</div><h3>Mascotas</h3><p>Tu perro o gato en un llavero que llevas a todas partes.</p></div><button class="link idea-go" data-msg="Hola, quiero un llavero o estuche con mi mascota">Pedir ›</button></div>
+    <div class="tile rv"><div><div class="ico">🏢</div><h3>Negocios y marcas</h3><p>Tu logo o mascota de marca en llaveros y estuches para clientes y equipo.</p></div><button class="link idea-go" data-msg="Hola, quiero llaveros o estuches con el logo de mi negocio">Pedir ›</button></div>
+    <div class="tile rv"><div><div class="ico">🎉</div><h3>Eventos y cumpleaños</h3><p>Recordatorios únicos para tus invitados. Pregunta por varias unidades.</p></div><button class="link idea-go" data-msg="Hola, quiero cotizar varias unidades para un evento">Pedir ›</button></div>
+  </div>
+
+  <h2>Pedir es fácil.</h2>
+  <div class="bento steps">
+    <div class="tile rv"><div><div class="ico">1</div><h3>Elige</h3><p>Escoge un diseño del catálogo o crea el tuyo en el diseñador.</p></div></div>
+    <div class="tile rv"><div><div class="ico">2</div><h3>Envía tu imagen</h3><p>Pulsa pedir por WhatsApp y adjunta tu foto, logo o idea.</p></div></div>
+    <div class="tile rv"><div><div class="ico">3</div><h3>Confirmamos</h3><p>Revisamos los detalles, el modelo de celular y te enviamos la cotización.</p></div></div>
+  </div>
+  <p class="sub" style="margin-top:22px">¿Regalos, eventos o tu empresa? Pregunta por pedidos de varias unidades.</p>
 </section>
 
 <section class="tab" id="auto">
@@ -122,6 +167,12 @@
 
 {{PROFILE_SECTION}}
 
+{{PROJECTS_SECTION}}
+
+{{PRINT3D_SECTION}}
+
+{{BLOG_SECTION}}
+
 <section class="tab" id="tools">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
@@ -172,6 +223,26 @@
   <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Bash</span><span>YAML</span><span>JSON</span><span>SVG</span><span>Markdown</span></div>
 </section>
 
+<section class="tab" id="contacto">
+  <h2>Hablemos.</h2>
+  <p class="sub">Déjame tus datos y tu mensaje. Te respondo con información y una cotización.</p>
+  <div class="mini-card">
+    <form id="cForm" novalidate>
+      <div class="f"><label for="cNombre">NOMBRE</label><input id="cNombre" name="nombre" autocomplete="name" maxlength="80" required><small class="err" data-err="nombre"></small></div>
+      <div class="f"><label for="cCorreo">CORREO</label><input id="cCorreo" name="correo" type="email" autocomplete="email" maxlength="120" required><small class="err" data-err="correo"></small></div>
+      <div class="f"><label for="cTel">TELÉFONO / WHATSAPP</label><input id="cTel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+57 300 000 0000" required><small class="err" data-err="telefono"></small></div>
+      <div class="f"><label for="cMsj">MENSAJE</label><textarea id="cMsj" name="mensaje" rows="5" maxlength="1000" required></textarea><small class="err" data-err="mensaje"></small></div>
+      <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="chk"><input type="checkbox" name="acepto"><span>Autorizo el tratamiento de mis datos personales para que Juan Sebastián Sánchez me contacte por correo, teléfono o WhatsApp, incluidos mensajes elaborados con apoyo de inteligencia artificial, sobre mi solicitud y sus servicios.</span></label>
+      <small class="err" data-err="acepto"></small>
+      <details class="priv"><summary>Aviso de privacidad</summary><p>Responsable: Juan Sebastián Sánchez Urbano ({{CONTACT_EMAIL}}). Finalidad: responder tu solicitud y enviarte información sobre sus productos y servicios. No vende tus datos a terceros; solo se usan las herramientas necesarias para enviarte los mensajes. Puedes conocer, actualizar o pedir la eliminación de tus datos escribiendo a ese correo (Ley 1581 de 2012).</p></details>
+      <div class="rd-bar" style="margin-top:16px"><button class="pill" id="cSend" type="submit">Enviar mensaje</button></div>
+      <p class="cout" id="cOut" role="status"></p>
+    </form>
+  </div>
+  {{FAQ_SECTION}}
+</section>
+
 <div class="about rv">
   <div class="av">S</div>
   <div>
@@ -188,8 +259,15 @@
   <a class="pill" id="wa2" href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a>
 </div>
 </main>
+<a class="fab" href="https://wa.me/{{WA_NUMBER}}?text={{FAB_MSG}}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬 <span>WhatsApp</span></a>
 <footer>© {{YEAR}} Taller 3D &amp; Automatización · Colombia</footer>
-<script src="assets/js/app.js" defer></script>
-<script src="assets/js/tools.js" defer></script>
+<script src="{{ROOT}}assets/js/i18n.{{LANG}}.js" defer></script>
+<script src="{{ROOT}}assets/js/app.js" defer></script>
+<script src="{{ROOT}}assets/js/catalog.js" defer></script>
+<script src="{{ROOT}}assets/js/stl.js" defer></script>
+<script src="{{ROOT}}assets/js/tools.js" defer></script>
+<script src="{{ROOT}}assets/js/projects.js" defer></script>
+<script src="{{ROOT}}assets/js/contact.js" defer></script>
+<script src="{{ROOT}}assets/js/chat.js" defer></script>
 </body>
 </html>

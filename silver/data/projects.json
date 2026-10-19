@@ -1,0 +1,254 @@
+{
+  "_ayuda": "Cada proyecto: title, category, description, thumbnail (nombre del archivo en silver/assets/projects/, ej. 'etl-sivigila.webp'; vacío = ícono con color), link (URL del proyecto, repo o demo; vacío = sin botón), tags, emoji, year. Pon visible:false para ocultar un proyecto sin borrarlo.",
+  "projects": [
+    {
+      "title": "Pipeline ETL automatizado end-to-end",
+      "category": "Datos",
+      "year": "2026",
+      "emoji": "🔄",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Extracción, transformación y carga con Python, n8n y APIs REST. Eliminó el 100% de la digitación manual y dejó datos estandarizados para análisis ejecutivo.",
+      "tags": [
+        "Python",
+        "n8n",
+        "APIs REST",
+        "ETL"
+      ],
+      "visible": true,
+      "id": "etl-pipeline",
+      "case": {
+        "problem": "Los datos se digitaban a mano, con riesgo de errores y poca estandarización.",
+        "solution": "Arquitectura ETL con Python, n8n y consumo de APIs REST que consolida bases de datos centralizadas.",
+        "result": "Se eliminó el 100% de la digitación manual, con datos íntegros y estandarizados para el análisis ejecutivo."
+      },
+      "en": {
+        "title": "End-to-end automated ETL pipeline",
+        "description": "Extraction, transformation and loading with Python, n8n and REST APIs. It eliminated 100% of manual data entry and left standardized data for executive analysis.",
+        "link_label": "View project",
+        "category": "Data",
+        "case": {
+          "problem": "Data was entered by hand, with a risk of errors and little standardization.",
+          "solution": "An ETL architecture using Python, n8n and REST API calls that consolidates centralized databases.",
+          "result": "100% of manual data entry was eliminated, with complete and standardized data for executive analysis."
+        }
+      }
+    },
+    {
+      "title": "ETL epidemiológico SIVIGILA 2018–2022",
+      "category": "Datos",
+      "year": "2026",
+      "emoji": "🦟",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Proceso ETL sobre reportes del Instituto Nacional de Salud (dengue, IRAG, tuberculosis) con arquitectura medallón y dashboard HTML.",
+      "tags": [
+        "Python",
+        "Excel",
+        "Medallón",
+        "Dashboard"
+      ],
+      "visible": true,
+      "id": "sivigila",
+      "en": {
+        "title": "SIVIGILA epidemiological ETL 2018–2022",
+        "description": "ETL over National Institute of Health reports (dengue, SARI, tuberculosis) with medallion architecture and an HTML dashboard.",
+        "link_label": "View project",
+        "category": "Data"
+      }
+    },
+    {
+      "title": "Laboratorio ETL Kaismart Solutions",
+      "category": "Datos",
+      "year": "2026",
+      "emoji": "📦",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Integración de 5.000 ventas en MySQL con 50.000 eventos logísticos en Excel: EDA, medallón, 10 preguntas de negocio y ejecución con schedule.",
+      "tags": [
+        "MySQL",
+        "Python",
+        "Medallón"
+      ],
+      "visible": true,
+      "id": "kaismart",
+      "en": {
+        "title": "Kaismart Solutions ETL lab",
+        "description": "Integration of 5,000 MySQL sales with 50,000 logistics events in Excel: EDA, medallion, 10 business questions and scheduled runs.",
+        "link_label": "View project",
+        "category": "Data"
+      }
+    },
+    {
+      "title": "Chatbot con IA y flujo en n8n",
+      "category": "Automatización",
+      "year": "2025",
+      "emoji": "🤖",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Chatbot web integrado a un pipeline en n8n que extrae, valida y enruta reportes automáticamente hacia las áreas responsables.",
+      "tags": [
+        "n8n",
+        "IA",
+        "Chatbot"
+      ],
+      "visible": true,
+      "id": "chatbot-n8n",
+      "en": {
+        "title": "AI chatbot and n8n workflow",
+        "description": "Web chatbot integrated into an n8n pipeline that extracts, validates and routes reports automatically to the responsible areas.",
+        "link_label": "View project",
+        "category": "Automation"
+      }
+    },
+    {
+      "title": "Portafolio web con arquitectura medallón",
+      "category": "Web",
+      "year": "2026",
+      "emoji": "🌐",
+      "thumbnail": "",
+      "link": "https://github.com/JSebasurb/Portafolio",
+      "link_label": "Ver código en GitHub",
+      "description": "Sitio en GitHub Pages con capas Bronze/Silver/Gold, build en Python, despliegue con GitHub Actions y herramientas propias.",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python"
+      ],
+      "visible": true,
+      "id": "portafolio",
+      "en": {
+        "title": "Web portfolio with medallion architecture",
+        "description": "GitHub Pages site with Bronze/Silver/Gold layers, a Python build, continuous deployment with GitHub Actions and custom tools.",
+        "link_label": "View code on GitHub",
+        "category": "Web"
+      }
+    },
+    {
+      "title": "Captura de datos en tiempo real y alertas (IoT)",
+      "category": "Industrial",
+      "year": "2022–2024",
+      "emoji": "📡",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Sensores e instrumentación industrial con ingesta en tiempo real, validación automática de variables críticas y alertas de control.",
+      "tags": [
+        "IoT",
+        "Sensores",
+        "Alertas"
+      ],
+      "visible": true,
+      "id": "iot",
+      "en": {
+        "title": "Real-time data capture and alerts (IoT)",
+        "description": "Industrial sensors and instrumentation with real-time ingestion, automatic validation of critical variables and control alerts.",
+        "link_label": "View project",
+        "category": "Industrial"
+      }
+    },
+    {
+      "title": "Taller 3D: llaveros y estuches personalizados",
+      "category": "Taller 3D",
+      "year": "2026",
+      "emoji": "🧊",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Estampados en aluminio y vidrio, impresión 3D y diseñador de productos conectado a WhatsApp.",
+      "tags": [
+        "Impresión 3D",
+        "Estampado"
+      ],
+      "visible": true,
+      "id": "taller3d",
+      "en": {
+        "title": "3D Workshop: custom keychains and cases",
+        "description": "Prints on aluminum and glass, 3D printing and a product designer connected to WhatsApp.",
+        "link_label": "View project",
+        "category": "3D Workshop"
+      }
+    },
+    {
+      "title": "Proyecto 8 (editar)",
+      "category": "Datos",
+      "year": "",
+      "emoji": "📊",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Describe aquí tu proyecto en 1 o 2 frases.",
+      "tags": [],
+      "visible": false,
+      "id": "extra-8",
+      "en": {
+        "title": "Project 8 (edit)",
+        "description": "Describe your project here in 1 or 2 sentences.",
+        "link_label": "View project",
+        "category": "Data"
+      }
+    },
+    {
+      "title": "Proyecto 9 (editar)",
+      "category": "Automatización",
+      "year": "",
+      "emoji": "⚙️",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Describe aquí tu proyecto en 1 o 2 frases.",
+      "tags": [],
+      "visible": false,
+      "id": "extra-9",
+      "en": {
+        "title": "Project 9 (edit)",
+        "description": "Describe your project here in 1 or 2 sentences.",
+        "link_label": "View project",
+        "category": "Automation"
+      }
+    },
+    {
+      "title": "Proyecto 10 (editar)",
+      "category": "Web",
+      "year": "",
+      "emoji": "💻",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Describe aquí tu proyecto en 1 o 2 frases.",
+      "tags": [],
+      "visible": false,
+      "id": "extra-10",
+      "en": {
+        "title": "Project 10 (edit)",
+        "description": "Describe your project here in 1 or 2 sentences.",
+        "link_label": "View project",
+        "category": "Web"
+      }
+    },
+    {
+      "title": "Proyecto 11 (editar)",
+      "category": "Industrial",
+      "year": "",
+      "emoji": "🏭",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Describe aquí tu proyecto en 1 o 2 frases.",
+      "tags": [],
+      "visible": false,
+      "id": "extra-11",
+      "en": {
+        "title": "Project 11 (edit)",
+        "description": "Describe your project here in 1 or 2 sentences.",
+        "link_label": "View project",
+        "category": "Industrial"
+      }
+    }
+  ]
+}

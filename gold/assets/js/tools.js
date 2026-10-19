@@ -1,5 +1,6 @@
 /* Herramientas del portafolio: Lector HTML, Generador de enlace WhatsApp y Formateador JSON */
 (function () {
+  var T = window.T;
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   var toast = function (el, msg) { el.textContent = msg; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ''; }, 2400); };
@@ -15,7 +16,7 @@
 
   /* ---------- 1) Lector HTML ---------- */
   var src = $('hSrc'), frame = $('hFrame'), code = $('hCode'), stat = $('hStat'), msg = $('hMsg'), timer;
-  var SAMPLE = '<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="UTF-8">\n<style>\n  body{font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0;background:#111;color:#fff}\n  button{padding:12px 22px;border:0;border-radius:99px;background:#0a84ff;color:#fff;font-size:1rem;cursor:pointer}\n</style>\n</head>\n<body>\n  <div style="text-align:center">\n    <h1>Hola, mundo 👋</h1>\n    <button onclick="this.textContent=\'¡Funciona!\'">Pruébame</button>\n  </div>\n</body>\n</html>';
+  var SAMPLE = '<!DOCTYPE html>\n<html lang="'+window.LANG+'">\n<head>\n<meta charset="UTF-8">\n<style>\n  body{font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0;background:#111;color:#fff}\n  button{padding:12px 22px;border:0;border-radius:99px;background:#0a84ff;color:#fff;font-size:1rem;cursor:pointer}\n</style>\n</head>\n<body>\n  <div style="text-align:center">\n    <h1>'+T('Hola, mundo 👋')+'</h1>\n    <button onclick="this.textContent=\''+T('¡Funciona!')+'\'">'+T('Pruébame')+'</button>\n  </div>\n</body>\n</html>';
 
   function hl(line) {
     return esc(line)
@@ -28,7 +29,7 @@
     frame.srcdoc = v;
     code.innerHTML = v.split('\n').map(function (l) { return '<span class="ln">' + (hl(l) || ' ') + '</span>'; }).join('');
     var lines = v ? v.split('\n').length : 0;
-    stat.textContent = lines + ' líneas · ' + v.length + ' caracteres · ' + (new Blob([v]).size / 1024).toFixed(1) + ' KB';
+    stat.textContent = lines + T(' líneas · ') + v.length + T(' caracteres · ') + (new Blob([v]).size / 1024).toFixed(1) + ' KB';
   }
   function later() { clearTimeout(timer); timer = setTimeout(render, 250); }
   src.addEventListener('input', later);
@@ -52,7 +53,7 @@
   function readFile(f) {
     if (!f) return;
     var r = new FileReader();
-    r.onload = function () { src.value = r.result; render(); toast(msg, 'Cargado: ' + f.name); };
+    r.onload = function () { src.value = r.result; render(); toast(msg, T('Cargado:') + ' ' + f.name); };
     r.readAsText(f);
   }
   $('hFile').addEventListener('change', function (e) { readFile(e.target.files[0]); e.target.value = ''; });
@@ -66,8 +67,8 @@
   $('hClear').addEventListener('click', function () { src.value = ''; render(); });
   $('hCopy').addEventListener('click', function () {
     (navigator.clipboard ? navigator.clipboard.writeText(src.value) : Promise.reject())
-      .then(function () { toast(msg, 'Código copiado'); })
-      .catch(function () { src.select(); toast(msg, 'Selecciona y copia manualmente'); });
+      .then(function () { toast(msg, T('Código copiado')); })
+      .catch(function () { src.select(); toast(msg, T('Selecciona y copia manualmente')); });
   });
   $('hDown').addEventListener('click', function () {
     var a = document.createElement('a');
@@ -88,12 +89,12 @@
   }
   wn.addEventListener('input', wlink); wm.addEventListener('input', wlink);
   $('wCopy').addEventListener('click', function () {
-    if (!wo.value) return toast($('wTip'), 'Escribe un número primero');
+    if (!wo.value) return toast($('wTip'), T('Escribe un número primero'));
     (navigator.clipboard ? navigator.clipboard.writeText(wo.value) : Promise.reject())
-      .then(function () { toast($('wTip'), 'Enlace copiado'); })
+      .then(function () { toast($('wTip'), T('Enlace copiado')); })
       .catch(function () { wo.select(); });
   });
-  $('wTest').addEventListener('click', function () { if (wo.value) window.open(wo.value, '_blank'); else toast($('wTip'), 'Escribe un número primero'); });
+  $('wTest').addEventListener('click', function () { if (wo.value) window.open(wo.value, '_blank'); else toast($('wTip'), T('Escribe un número primero')); });
 
   /* ---------- 3) Formateador JSON ---------- */
   var jin = $('jIn'), jout = $('jOut'), jerr = $('jErr');
@@ -101,12 +102,12 @@
     try {
       var o = JSON.parse(jin.value);
       jout.value = JSON.stringify(o, null, space);
-      jerr.textContent = '✓ JSON válido'; jerr.className = 'ok';
+      jerr.textContent = T('✓ JSON válido'); jerr.className = 'ok';
     } catch (e) { jout.value = ''; jerr.textContent = '✗ ' + e.message; jerr.className = 'bad'; }
   }
   $('jFmt').addEventListener('click', function () { jrun(2); });
   $('jMin').addEventListener('click', function () { jrun(0); });
   $('jCopy').addEventListener('click', function () {
-    if (jout.value && navigator.clipboard) navigator.clipboard.writeText(jout.value).then(function () { toast(jerr, 'Copiado'); });
+    if (jout.value && navigator.clipboard) navigator.clipboard.writeText(jout.value).then(function () { toast(jerr, T('Copiado')); });
   });
 })();

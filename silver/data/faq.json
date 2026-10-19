@@ -1,0 +1,235 @@
+{
+  "es": [
+    {
+      "q": "¿Cómo pido un llavero o estuche personalizado?",
+      "a": "Elige un diseño del catálogo o crea el tuyo en el diseñador y pulsa «Pedir por WhatsApp». Allí envías tu imagen o logo y Sebas confirma los detalles y la cotización.",
+      "k": [
+        "como pido",
+        "como pedir",
+        "pedido",
+        "ordenar",
+        "comprar"
+      ]
+    },
+    {
+      "q": "¿Qué necesito para personalizar mi llavero?",
+      "a": "Tu foto, nombre o logo. Mientras mejor calidad tenga la imagen, mejor se ve el resultado.",
+      "k": [
+        "necesito",
+        "personalizar",
+        "foto",
+        "logo",
+        "imagen"
+      ]
+    },
+    {
+      "q": "¿Para qué celulares hacen los estuches?",
+      "a": "Dime la marca y el modelo de tu celular al pedir. Sebas confirma si puede hacer el estuche para ese modelo.",
+      "k": [
+        "modelo",
+        "compatible",
+        "iphone",
+        "samsung",
+        "marca de celular"
+      ]
+    },
+    {
+      "q": "¿Con qué materiales y tamaño imprimen en 3D?",
+      "a": "Imprimo en PLA de 1,75 mm con una Dremel DigiLab 3D20. El tamaño máximo es 230 × 150 × 140 mm. Si tu pieza necesita otro material, cuéntame tu caso.",
+      "k": [
+        "material",
+        "materiales",
+        "pla",
+        "petg",
+        "abs",
+        "tamano maximo",
+        "que tan grande",
+        "tamano"
+      ]
+    },
+    {
+      "q": "¿Hacen piezas que brillan en la oscuridad, tricolor o de ajedrez?",
+      "a": "Sí: hago piezas que brillan en la oscuridad, piezas tricolor, piezas de ajedrez y esqueletos articulados tipo llavero. Escríbeme con tu idea y te cotizo.",
+      "k": [
+        "brilla en la oscuridad",
+        "brillan",
+        "fosforescente",
+        "tricolor",
+        "ajedrez",
+        "esqueleto",
+        "articulado"
+      ]
+    },
+    {
+      "q": "¿Cuánto se demora?",
+      "a": "El tiempo depende del producto y de la cantidad. Sebas te lo confirma al cotizar.",
+      "k": [
+        "cuanto se demora",
+        "cuanto tarda",
+        "demora",
+        "tarda",
+        "tiempo de entrega",
+        "cuando llega",
+        "plazo"
+      ]
+    },
+    {
+      "q": "¿Cómo se paga?",
+      "a": "Los medios de pago se acuerdan al cotizar, por WhatsApp.",
+      "k": [
+        "como se paga",
+        "como pago",
+        "pago",
+        "pagar",
+        "transferencia",
+        "nequi",
+        "efectivo"
+      ]
+    },
+    {
+      "q": "¿Hacen pedidos de varias unidades?",
+      "a": "Pregunta por pedidos de varias unidades para regalos, eventos o tu empresa. Sebas te cotiza según la cantidad.",
+      "k": [
+        "varias unidades",
+        "por mayor",
+        "mayoreo",
+        "cantidad",
+        "evento",
+        "regalos"
+      ]
+    },
+    {
+      "q": "¿Qué hacen con mis datos?",
+      "a": "Se usan solo para responder tu solicitud y enviarte información sobre productos y servicios. No se venden a terceros, y puedes pedir que los actualicen o eliminen escribiendo al correo del aviso de privacidad.",
+      "k": [
+        "datos",
+        "privacidad",
+        "habeas"
+      ]
+    },
+    {
+      "q": "¿Trabajan con empresas en datos o automatización?",
+      "a": "Sebas ofrece ingeniería de datos y automatización con n8n. Cuéntale tu caso en el formulario o por WhatsApp.",
+      "k": [
+        "empresa",
+        "empresas",
+        "negocio",
+        "consultoria"
+      ]
+    }
+  ],
+  "en": [
+    {
+      "q": "How do I order a custom keychain or case?",
+      "a": "Pick a design from the catalog or create yours in the designer and press “Order via WhatsApp”. There you send your image or logo and Sebas confirms the details and the quote.",
+      "k": [
+        "how do i order",
+        "how to order",
+        "order",
+        "buy",
+        "purchase"
+      ]
+    },
+    {
+      "q": "What do I need to customize my keychain?",
+      "a": "Your photo, name or logo. The better the image quality, the better the result.",
+      "k": [
+        "need",
+        "customize",
+        "photo",
+        "logo",
+        "image"
+      ]
+    },
+    {
+      "q": "Which phones do you make cases for?",
+      "a": "Tell me your phone brand and model when you order. Sebas will confirm whether he can make the case for that model.",
+      "k": [
+        "model",
+        "compatible",
+        "iphone",
+        "samsung",
+        "phone brand"
+      ]
+    },
+    {
+      "q": "What materials and sizes do you 3D print?",
+      "a": "I print in 1.75 mm PLA with a Dremel DigiLab 3D20. The maximum size is 230 × 150 × 140 mm. If your part needs another material, tell me about your case.",
+      "k": [
+        "material",
+        "materials",
+        "pla",
+        "petg",
+        "abs",
+        "maximum size",
+        "how big",
+        "size"
+      ]
+    },
+    {
+      "q": "Do you make glow-in-the-dark, three-color or chess pieces?",
+      "a": "Yes: I make glow-in-the-dark pieces, three-color pieces, chess pieces and articulated skeleton keychains. Write to me with your idea and I'll quote it.",
+      "k": [
+        "glow in the dark",
+        "glow",
+        "phosphorescent",
+        "three-color",
+        "tricolor",
+        "chess",
+        "skeleton",
+        "articulated"
+      ]
+    },
+    {
+      "q": "How long does it take?",
+      "a": "It depends on the product and the quantity. Sebas confirms it when quoting.",
+      "k": [
+        "how long",
+        "delivery time",
+        "takes",
+        "when will",
+        "deadline"
+      ]
+    },
+    {
+      "q": "How do I pay?",
+      "a": "Payment methods are agreed on when quoting, via WhatsApp.",
+      "k": [
+        "pay",
+        "payment",
+        "transfer",
+        "cash"
+      ]
+    },
+    {
+      "q": "Do you take multi-unit orders?",
+      "a": "Ask about multi-unit orders for gifts, events or your company. Sebas quotes according to quantity.",
+      "k": [
+        "multiple units",
+        "bulk",
+        "wholesale",
+        "quantity",
+        "event",
+        "gifts"
+      ]
+    },
+    {
+      "q": "What do you do with my data?",
+      "a": "It is used only to answer your request and send you information about products and services. It is not sold to third parties, and you can ask for it to be updated or deleted by writing to the email in the privacy notice.",
+      "k": [
+        "data",
+        "privacy"
+      ]
+    },
+    {
+      "q": "Do you work with companies on data or automation?",
+      "a": "Sebas offers data engineering and automation with n8n. Tell him about your case in the form or on WhatsApp.",
+      "k": [
+        "company",
+        "companies",
+        "business",
+        "consulting"
+      ]
+    }
+  ]
+}

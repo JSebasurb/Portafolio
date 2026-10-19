@@ -1,0 +1,416 @@
+{
+  "es": {
+    "title": "Impresión 3D.",
+    "sub": "De tu idea a una pieza real. Imprimo prototipos, repuestos y piezas funcionales en PLA con mi Dremel DigiLab 3D20.",
+    "cta_quote": "Cotizar mi pieza",
+    "cta_msg": "Hola, quiero cotizar una pieza en 3D",
+    "cta_form": "Usar el formulario ›",
+    "printer": {
+      "eyebrow": "Mi equipo",
+      "name": "Dremel DigiLab 3D20",
+      "text": "Una impresora 3D de cámara cerrada con tecnología FDM: derrite filamento de PLA y construye la pieza capa por capa.",
+      "specs": [
+        [
+          "Tecnología",
+          "FDM (deposición de filamento fundido)"
+        ],
+        [
+          "Volumen máximo",
+          "230 × 150 × 140 mm"
+        ],
+        [
+          "Resolución de capa",
+          "Desde 0,1 mm (100 micras)"
+        ],
+        [
+          "Boquilla y extrusor",
+          "0,4 mm · hasta 230 °C"
+        ],
+        [
+          "Material",
+          "PLA de 1,75 mm"
+        ],
+        [
+          "Cámara",
+          "Cerrada, con pantalla táctil de 3,5\""
+        ],
+        [
+          "Cama",
+          "Sin calefacción, con cinta de impresión"
+        ],
+        [
+          "Archivos",
+          "SD de hasta 32 GB y 4 GB internos"
+        ]
+      ]
+    },
+    "h_viewer": "Visor 3D: revisa tu pieza",
+    "v_sub": "Abre un archivo STL y míralo en 3D. Te muestro sus medidas, si cabe en la impresora y cuánto PLA necesitaría (estimación aproximada). Tu archivo se queda en tu dispositivo.",
+    "v": {
+      "gear": "Engranaje",
+      "key": "Llavero",
+      "vase": "Florero",
+      "open": "📂 Abrir STL",
+      "auto": "Girar",
+      "zin": "Acercar",
+      "zout": "Alejar",
+      "file": "Archivo",
+      "dims": "Dimensiones (mm)",
+      "vol": "Volumen",
+      "mass": "PLA estimado",
+      "infill": "Relleno",
+      "fit": "¿Cabe en la 3D20?",
+      "quote": "Cotizar esta pieza",
+      "hint": "Estimación aproximada: depende del programa de laminado y de los ajustes de impresión. Arrastra para girar la pieza.",
+      "canvas": "Visor 3D de la pieza",
+      "pawn": "Peón"
+    },
+    "h_uses": "¿Qué puedo imprimir?",
+    "uses": [
+      [
+        "🧩",
+        "Prototipos",
+        "Prueba una idea en físico antes de fabricarla en serie."
+      ],
+      [
+        "🔧",
+        "Repuestos",
+        "Piezas de reemplazo para equipos, muebles y herramientas, según el tamaño y el material."
+      ],
+      [
+        "📦",
+        "Carcasas y soportes",
+        "Cajas para sensores, placas electrónicas y proyectos de automatización."
+      ],
+      [
+        "🎁",
+        "Figuras y regalos",
+        "Llaveros, figuras y detalles personalizados."
+      ],
+      [
+        "🏫",
+        "Proyectos académicos",
+        "Maquetas y piezas para trabajos, ferias y semilleros."
+      ],
+      [
+        "🛠️",
+        "Organizadores",
+        "Soportes, ganchos y organizadores a tu medida."
+      ]
+    ],
+    "h_process": "Del archivo a la pieza",
+    "steps": [
+      [
+        "Paso 1",
+        "Tu idea o modelo",
+        "Envíame un archivo STL, OBJ o 3MF, o cuéntame qué necesitas y vemos cómo lograrlo."
+      ],
+      [
+        "Paso 2",
+        "Revisión",
+        "Reviso medidas, orientación y si necesita soportes, y te confirmo si cabe en la impresora."
+      ],
+      [
+        "Paso 3",
+        "Laminado",
+        "Preparo el archivo en el programa de laminado: altura de capa, relleno y soportes."
+      ],
+      [
+        "Paso 4",
+        "Impresión",
+        "La pieza se construye capa por capa en PLA."
+      ],
+      [
+        "Paso 5",
+        "Acabado y entrega",
+        "Retiro los soportes, reviso la pieza y coordinamos la entrega."
+      ]
+    ],
+    "h_mat": "Material",
+    "mat": {
+      "title": "PLA, el material de esta impresora",
+      "pros_t": "Ventajas",
+      "pros": [
+        "Fácil de imprimir y con buen nivel de detalle",
+        "Rígido, ideal para prototipos y piezas decorativas",
+        "De origen vegetal, según el fabricante"
+      ],
+      "cons_t": "Límites",
+      "cons": [
+        "Se ablanda con el calor: no lo dejes en un carro al sol",
+        "No es para piezas con mucha carga o desgaste",
+        "No sirve para uso prolongado a la intemperie"
+      ],
+      "note": "Con esta impresora trabajo solo con PLA, incluidos colores especiales como el que brilla en la oscuridad. Si tu pieza necesita PETG, ABS o un material flexible, cuéntame tu caso."
+    },
+    "h_tips": "Consejos de diseño",
+    "tips": [
+      [
+        "Pared mínima",
+        "Usa paredes de al menos 1,2 mm para que la pieza sea resistente."
+      ],
+      [
+        "Voladizos",
+        "Los ángulos de más de 45° sobre el vacío suelen necesitar soportes."
+      ],
+      [
+        "Tolerancias",
+        "Deja 0,2 a 0,3 mm de holgura entre piezas que deben encajar o moverse."
+      ],
+      [
+        "Orientación",
+        "Las capas son más débiles entre sí: orienta la pieza según el esfuerzo que va a soportar."
+      ],
+      [
+        "Agujeros",
+        "Los agujeros salen un poco más pequeños; para tornillos, suma unos 0,2 mm al diámetro."
+      ],
+      [
+        "Tamaño máximo",
+        "Hasta 230 × 150 × 140 mm. Las piezas más grandes se pueden dividir y pegar."
+      ]
+    ],
+    "cta_title": "¿Tienes una pieza en mente?",
+    "cta_sub": "Envíame tu archivo o cuéntame la idea y te cotizo.",
+    "h_special": "Piezas especiales",
+    "special_sub": "Más allá de lo básico: acabados y juegos de colores para que tu pieza destaque.",
+    "special": [
+      [
+        "🌙",
+        "Brillan en la oscuridad",
+        "Piezas en PLA fotoluminiscente: se cargan con la luz y brillan cuando se apaga. Ideales para llaveros, figuras y decoración.",
+        "Hola, quiero una pieza en 3D que brille en la oscuridad",
+        ""
+      ],
+      [
+        "🎨",
+        "Piezas tricolor",
+        "Piezas con tres colores, logradas con cambios de filamento por capas o con partes ensambladas. Para llaveros, letreros y figuras.",
+        "Hola, quiero una pieza en 3D tricolor",
+        ""
+      ],
+      [
+        "♟️",
+        "Piezas de ajedrez",
+        "Piezas sueltas o sets completos, en los colores que elijas.",
+        "Hola, quiero cotizar piezas de ajedrez impresas en 3D",
+        ""
+      ],
+      [
+        "💀",
+        "Esqueletos articulados",
+        "Figuras con articulaciones móviles, ideales como llavero o para coleccionar.",
+        "Hola, quiero un esqueleto articulado impreso en 3D",
+        "esqueleto-articulado.webp"
+      ]
+    ],
+    "special_cta": "Pedir ›"
+  },
+  "en": {
+    "title": "3D printing.",
+    "sub": "From your idea to a real part. I print prototypes, spare parts and functional parts in PLA with my Dremel DigiLab 3D20.",
+    "cta_quote": "Quote my part",
+    "cta_msg": "Hi, I'd like a quote for a 3D part",
+    "cta_form": "Use the form ›",
+    "printer": {
+      "eyebrow": "My equipment",
+      "name": "Dremel DigiLab 3D20",
+      "text": "An enclosed FDM 3D printer: it melts PLA filament and builds the part layer by layer.",
+      "specs": [
+        [
+          "Technology",
+          "FDM (fused filament fabrication)"
+        ],
+        [
+          "Maximum volume",
+          "230 × 150 × 140 mm"
+        ],
+        [
+          "Layer resolution",
+          "From 0.1 mm (100 microns)"
+        ],
+        [
+          "Nozzle and extruder",
+          "0.4 mm · up to 230 °C"
+        ],
+        [
+          "Material",
+          "1.75 mm PLA"
+        ],
+        [
+          "Chamber",
+          "Enclosed, with a 3.5\" touch screen"
+        ],
+        [
+          "Bed",
+          "Unheated, with build tape"
+        ],
+        [
+          "Files",
+          "SD card up to 32 GB and 4 GB internal"
+        ]
+      ]
+    },
+    "h_viewer": "3D viewer: check your part",
+    "v_sub": "Open an STL file and see it in 3D. I show its dimensions, whether it fits the printer and how much PLA it would need (rough estimate). Your file stays on your device.",
+    "v": {
+      "gear": "Gear",
+      "key": "Keychain",
+      "vase": "Vase",
+      "open": "📂 Open STL",
+      "auto": "Spin",
+      "zin": "Zoom in",
+      "zout": "Zoom out",
+      "file": "File",
+      "dims": "Dimensions (mm)",
+      "vol": "Volume",
+      "mass": "Estimated PLA",
+      "infill": "Infill",
+      "fit": "Fits the 3D20?",
+      "quote": "Quote this part",
+      "hint": "Rough estimate: it depends on the slicer and print settings. Drag to rotate the part.",
+      "canvas": "3D viewer of the part",
+      "pawn": "Pawn"
+    },
+    "h_uses": "What can I print?",
+    "uses": [
+      [
+        "🧩",
+        "Prototypes",
+        "Test an idea physically before producing it in volume."
+      ],
+      [
+        "🔧",
+        "Spare parts",
+        "Replacement parts for equipment, furniture and tools, depending on size and material."
+      ],
+      [
+        "📦",
+        "Enclosures and mounts",
+        "Boxes for sensors, electronic boards and automation projects."
+      ],
+      [
+        "🎁",
+        "Figures and gifts",
+        "Keychains, figures and custom details."
+      ],
+      [
+        "🏫",
+        "Academic projects",
+        "Models and parts for coursework, fairs and research groups."
+      ],
+      [
+        "🛠️",
+        "Organizers",
+        "Holders, hooks and organizers made to measure."
+      ]
+    ],
+    "h_process": "From file to part",
+    "steps": [
+      [
+        "Step 1",
+        "Your idea or model",
+        "Send me an STL, OBJ or 3MF file, or tell me what you need and we'll work out how to do it."
+      ],
+      [
+        "Step 2",
+        "Review",
+        "I check dimensions, orientation and whether it needs supports, and confirm it fits the printer."
+      ],
+      [
+        "Step 3",
+        "Slicing",
+        "I prepare the file in the slicer: layer height, infill and supports."
+      ],
+      [
+        "Step 4",
+        "Printing",
+        "The part is built layer by layer in PLA."
+      ],
+      [
+        "Step 5",
+        "Finishing and delivery",
+        "I remove supports, check the part and we arrange delivery."
+      ]
+    ],
+    "h_mat": "Material",
+    "mat": {
+      "title": "PLA, this printer's material",
+      "pros_t": "Advantages",
+      "pros": [
+        "Easy to print with a good level of detail",
+        "Rigid, ideal for prototypes and decorative parts",
+        "Plant-based, according to the manufacturer"
+      ],
+      "cons_t": "Limits",
+      "cons": [
+        "It softens with heat: don't leave it in a car in the sun",
+        "Not for parts under heavy load or wear",
+        "Not suited to long-term outdoor use"
+      ],
+      "note": "With this printer I work only with PLA, including special colors such as glow-in-the-dark. If your part needs PETG, ABS or a flexible material, tell me about your case."
+    },
+    "h_tips": "Design tips",
+    "tips": [
+      [
+        "Minimum wall",
+        "Use walls of at least 1.2 mm so the part is strong."
+      ],
+      [
+        "Overhangs",
+        "Angles beyond 45° over empty space usually need supports."
+      ],
+      [
+        "Tolerances",
+        "Leave 0.2 to 0.3 mm of clearance between parts that must fit or move."
+      ],
+      [
+        "Orientation",
+        "Layers are weaker between each other: orient the part according to the load it will carry."
+      ],
+      [
+        "Holes",
+        "Holes come out slightly smaller; for screws, add about 0.2 mm to the diameter."
+      ],
+      [
+        "Maximum size",
+        "Up to 230 × 150 × 140 mm. Larger parts can be split and glued."
+      ]
+    ],
+    "cta_title": "Have a part in mind?",
+    "cta_sub": "Send me your file or tell me the idea and I'll quote it.",
+    "h_special": "Special pieces",
+    "special_sub": "Beyond the basics: finishes and color combinations so your piece stands out.",
+    "special": [
+      [
+        "🌙",
+        "Glow in the dark",
+        "Photoluminescent PLA pieces: they charge with light and glow when it goes out. Great for keychains, figures and decoration.",
+        "Hi, I'd like a glow-in-the-dark 3D piece",
+        ""
+      ],
+      [
+        "🎨",
+        "Three-color pieces",
+        "Pieces with three colors, made with filament changes by layer or with assembled parts. For keychains, signs and figures.",
+        "Hi, I'd like a three-color 3D piece",
+        ""
+      ],
+      [
+        "♟️",
+        "Chess pieces",
+        "Single pieces or full sets, in the colors you choose.",
+        "Hi, I'd like a quote for 3D-printed chess pieces",
+        ""
+      ],
+      [
+        "💀",
+        "Articulated skeletons",
+        "Figures with movable joints, great as a keychain or a collectible.",
+        "Hi, I'd like a 3D-printed articulated skeleton",
+        "esqueleto-articulado.webp"
+      ]
+    ],
+    "special_cta": "Order ›"
+  }
+}

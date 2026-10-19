@@ -1,0 +1,109 @@
+{
+  "_ayuda": "Cada producto: category, name, desc, image (archivo en silver/assets/catalog/), visible (true/false), en:{category,name,desc}. Agrega fotos nuevas en silver/assets/catalog/ (WebP 450x600 para llaveros) y copia un bloque.",
+  "items": [
+    {
+      "id": "pareja",
+      "category": "Llaveros",
+      "name": "Pareja ilustrada",
+      "desc": "Ideal para regalar: tu foto o una ilustración de los dos en un llavero redondo con acabado brillante.",
+      "image": "pareja-chibi.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Couple illustration",
+        "desc": "Perfect as a gift: your photo or an illustration of the two of you on a round keychain with a glossy finish."
+      }
+    },
+    {
+      "id": "bruja",
+      "category": "Llaveros",
+      "name": "Brujita",
+      "desc": "Un diseño con personalidad. Pídelo así o con tu propia imagen.",
+      "image": "bruja.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Little witch",
+        "desc": "A design with personality. Order it as is or with your own image."
+      }
+    },
+    {
+      "id": "axolotl",
+      "category": "Llaveros",
+      "name": "Axolotl",
+      "desc": "Tierno y colorido. También se puede hacer con tu mascota o tu ilustración.",
+      "image": "axolotl.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Axolotl",
+        "desc": "Cute and colorful. Can also be made with your pet or your illustration."
+      }
+    },
+    {
+      "id": "panda",
+      "category": "Llaveros",
+      "name": "Panda",
+      "desc": "Fondo y colores a tu gusto. Pídelo tal cual o con tu propia imagen.",
+      "image": "panda.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Panda",
+        "desc": "Background and colors to your taste. Order it as is or with your own image."
+      }
+    },
+    {
+      "id": "astronauta",
+      "category": "Llaveros",
+      "name": "Astronauta",
+      "desc": "Para soñadores y amantes del espacio. Acabado brillante.",
+      "image": "astronauta.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Astronaut",
+        "desc": "For dreamers and space lovers. Glossy finish."
+      }
+    },
+    {
+      "id": "shiba",
+      "category": "Llaveros",
+      "name": "Shiba",
+      "desc": "Para quienes aman a los perros. Hazlo con la cara de tu mascota.",
+      "image": "shiba.webp",
+      "visible": true,
+      "en": {
+        "category": "Keychains",
+        "name": "Shiba",
+        "desc": "For dog lovers. Make it with your own pet's face."
+      }
+    },
+    {
+      "id": "estuche-logo",
+      "category": "Estuches",
+      "name": "Estuche con tu logo",
+      "desc": "Tu logo o mascota de marca a todo color en un estuche para celular. Ideal para negocios y regalos corporativos.",
+      "image": "estuche-dino.webp",
+      "visible": true,
+      "en": {
+        "category": "Cases",
+        "name": "Case with your logo",
+        "desc": "Your logo or brand mascot in full color on a phone case. Great for businesses and corporate gifts."
+      }
+    },
+    {
+      "id": "esqueleto",
+      "category": "Impresión 3D",
+      "name": "Esqueleto articulado",
+      "desc": "Figura con articulaciones móviles impresa en 3D, ideal como llavero o para coleccionar.",
+      "image": "esqueleto-articulado.webp",
+      "visible": true,
+      "en": {
+        "category": "3D printing",
+        "name": "Articulated skeleton",
+        "desc": "A 3D-printed figure with movable joints, ideal as a keychain or a collectible."
+      }
+    }
+  ]
+}

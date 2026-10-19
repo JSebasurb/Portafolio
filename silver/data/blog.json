@@ -1,0 +1,74 @@
+{
+  "es": [
+    {
+      "id": "medallon",
+      "date": "2026-10-16",
+      "title": "Arquitectura medallón en 5 minutos",
+      "summary": "Bronze, Silver y Gold: una forma simple de ordenar un pipeline de datos.",
+      "tags": [
+        "ETL",
+        "Datos"
+      ],
+      "body": [
+        "La arquitectura medallón organiza los datos en tres capas según su nivel de calidad. Sirve para que un pipeline sea ordenado, trazable y fácil de reprocesar.",
+        "Bronze guarda los datos tal como llegan de la fuente, sin modificarlos. Si algo falla más adelante, siempre puedes volver aquí y empezar de nuevo.",
+        "Silver contiene los datos limpios: tipos corregidos, duplicados eliminados y reglas de validación aplicadas. Es la base confiable para cualquier análisis.",
+        "Gold guarda tablas listas para el negocio: agregados, indicadores y vistas pensadas para dashboards y reportes.",
+        "Lo apliqué en el ETL de SIVIGILA y en este mismo portafolio, donde bronze guarda los originales, silver el código limpio y gold el sitio que se publica."
+      ]
+    },
+    {
+      "id": "n8n-formulario",
+      "date": "2026-10-16",
+      "title": "De un formulario a una hoja de cálculo con n8n",
+      "summary": "Un flujo básico para guardar cada contacto automáticamente.",
+      "tags": [
+        "n8n",
+        "Automatización"
+      ],
+      "body": [
+        "Un flujo muy útil para empezar con n8n es recibir los datos de un formulario web y guardarlos en Google Sheets sin tocar nada a mano.",
+        "Paso 1: crea un nodo Webhook con método POST. n8n te da una URL de prueba y otra de producción; la de producción solo funciona cuando el flujo está activo.",
+        "Paso 2: conecta un nodo Google Sheets con la operación para agregar una fila y asigna cada campo del formulario a una columna.",
+        "Paso 3: en las opciones del Webhook, permite el origen de tu sitio web (CORS) para que el navegador pueda enviar los datos.",
+        "Desde ahí puedes seguir el flujo: enviar un correo de confirmación, avisar por WhatsApp o pasar el mensaje a un agente de IA."
+      ]
+    }
+  ],
+  "en": [
+    {
+      "id": "medallion",
+      "date": "2026-10-16",
+      "title": "Medallion architecture in 5 minutes",
+      "summary": "Bronze, Silver and Gold: a simple way to organize a data pipeline.",
+      "tags": [
+        "ETL",
+        "Data"
+      ],
+      "body": [
+        "Medallion architecture organizes data into three layers according to quality. It keeps a pipeline orderly, traceable and easy to reprocess.",
+        "Bronze stores data exactly as it arrives from the source, unmodified. If something fails later, you can always come back here and start over.",
+        "Silver holds clean data: fixed types, duplicates removed and validation rules applied. It is the reliable base for any analysis.",
+        "Gold stores business-ready tables: aggregates, indicators and views designed for dashboards and reports.",
+        "I applied it in the SIVIGILA ETL and in this very portfolio, where bronze keeps the originals, silver the clean source code and gold the published site."
+      ]
+    },
+    {
+      "id": "n8n-form",
+      "date": "2026-10-16",
+      "title": "From a web form to a spreadsheet with n8n",
+      "summary": "A basic workflow to save every contact automatically.",
+      "tags": [
+        "n8n",
+        "Automation"
+      ],
+      "body": [
+        "A very useful first workflow in n8n is receiving data from a web form and saving it to Google Sheets with no manual work.",
+        "Step 1: create a Webhook node using the POST method. n8n gives you a test URL and a production URL; the production one only works while the workflow is active.",
+        "Step 2: connect a Google Sheets node with the append-row operation and map each form field to a column.",
+        "Step 3: in the Webhook options, allow your website's origin (CORS) so the browser can send the data.",
+        "From there you can keep going: send a confirmation email, notify via WhatsApp or hand the message to an AI agent."
+      ]
+    }
+  ]
+}

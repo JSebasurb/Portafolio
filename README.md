@@ -19,7 +19,7 @@ Flujo: `bronze → silver → (build.py) → gold → GitHub Pages`
 | HTML | Estructura del sitio (`silver/src/index.template.html`) |
 | CSS | Estilos, animaciones y modo claro/oscuro (`styles.css`) |
 | JavaScript | Interactividad y herramientas (`app.js`, `tools.js`) |
-| Python | Build silver→gold y optimización de imágenes (`scripts/*.py`) |
+| Python | Build silver→gold, generación del CV en PDF y optimización de imágenes (`scripts/*.py`) |
 | Bash | Servidor de desarrollo (`scripts/dev.sh`) |
 | Make | Atajos: `make build`, `make serve`, `make images` (`Makefile`) |
 | YAML | Despliegue automático (`.github/workflows/pages.yml`) |
@@ -35,6 +35,79 @@ Pestaña con utilidades propias que corren 100 % en el navegador:
 - **Formateador JSON**: formatea, minifica y valida.
 
 Para agregar otra herramienta: añade su bloque HTML en la sección `#tools` del template y su lógica en `silver/src/tools.js`.
+
+## ✨ Funciones del sitio
+
+- **Perfil / CV** generado desde `silver/data/profile.json` (una sola fuente para la web y el PDF).
+- **Pestaña Proyectos**: tarjetas con miniatura, enlace, etiquetas y filtro por categoría (`silver/data/projects.json`).
+- **Enlaces por pestaña**: `/#perfil`, `/#proyectos`, `/#tienda`, `/#auto`, `/#ia`, `/#ing`, `/#tools`.
+- **Vista previa al compartir** (Open Graph + imagen 1200×630) para WhatsApp y LinkedIn.
+- **SEO**: `sitemap.xml`, `robots.txt`, `404.html` y datos estructurados (JSON-LD).
+- **Modo claro/oscuro** manual, botón flotante de WhatsApp, enlace "saltar al contenido" y navegación por teclado.
+- **Herramientas**: lector HTML, generador de enlaces WhatsApp y formateador JSON.
+
+## 📬 Formulario de contacto y 🤖 chatbot
+
+**Formulario** (pestaña Contacto): nombre, correo, teléfono, mensaje y casilla de autorización de datos (obligatoria).
+- Sin configurar nada, al enviar abre WhatsApp con los datos ya escritos.
+- Para guardar los datos, crea un **webhook en n8n** y pega su URL en `silver/data/site.json` → `"form_endpoint"`.
+  - Nodo *Webhook* (método POST, Respond: Immediately). En Options → *Allowed Origins (CORS)* pon `https://jsebasurb.github.io`.
+  - Campos que llegan en el body: `nombre`, `correo`, `telefono`, `mensaje`, `consentimiento`, `fecha`, `origen`.
+  - Siguiente nodo: *Google Sheets → Append row* (y luego tu flujo de IA con Gmail/WhatsApp).
+- También sirve un Google Apps Script o Formspree: pega su URL en `form_endpoint`.
+
+**Chatbot** (botón 🤖 abajo a la derecha):
+- Por defecto responde con reglas locales editables en `silver/data/chatbot.json` (servicios, precios, proyectos, contacto).
+- Para respuestas con IA, crea otro webhook en n8n y pega la URL en `"chat_endpoint"`.
+  - Recibe (form-urlencoded): `message`, `session`, `history` (JSON con los últimos mensajes).
+  - Flujo: *Webhook (Respond: Using 'Respond to Webhook' node)* → *AI Agent* con tu prompt → *Respond to Webhook* que devuelve JSON `{"reply": "texto"}`.
+  - Si el webhook falla o tarda más de 25 s, el chatbot vuelve a las respuestas locales.
+- Nunca pegues claves de API en el código del sitio: la clave de la IA vive solo dentro de n8n.
+
+**Datos personales:** revisa el texto del aviso de privacidad (en el template, sección `#contacto`) y envía mensajes de WhatsApp solo a quienes aceptaron.
+
+## 🧊 Pestaña Impresión 3D
+
+- Contenido en `silver/data/print3d.json` (ES y EN): ficha de la Dremel DigiLab 3D20, qué se puede imprimir, proceso, material (PLA) y consejos de diseño.
+- **Visor 3D** (`silver/src/stl.js`): abre un STL (binario o ASCII), lo gira en 3D, muestra medidas y volumen, indica si cabe en 230 × 150 × 140 mm y estima el PLA según el relleno. Funciona en el navegador; el archivo no se sube a ningún servidor.
+- **Piezas especiales** (brillan en la oscuridad, tricolor, ajedrez, esqueletos articulados): se editan en `print3d.json` → `special`. Para agregar foto a una tarjeta, guarda la imagen en `silver/assets/catalog/` y escribe su nombre al final del bloque.
+- La estimación de material es aproximada (densidad del PLA 1,24 g/cm³, 25 % de cascarón + relleno). Ajusta los números en `stl.js` si lo calibras con tus impresiones reales.
+- Si cambias de impresora, edita las especificaciones en `print3d.json` y el volumen `BED` en `stl.js`.
+
+## 🛍️ Tienda: catálogo con fotos reales
+
+- `silver/data/catalog.json` define los productos del catálogo (nombre, descripción, foto, categoría y su traducción al inglés). Cada tarjeta tiene botón "Pedir este diseño" que abre WhatsApp con el nombre del diseño, y la foto se amplía al tocarla.
+- Fotos nuevas: guárdalas en `silver/assets/catalog/` (WebP, 450×600 para llaveros) y copia un bloque en `catalog.json`.
+- El diseñador permite subir tu propia imagen (se procesa en el navegador, no se sube a ningún servidor), elegir cantidad e indicar el modelo del celular.
+- **Derechos de autor:** no publiques diseños con personajes de marcas registradas (anime, videojuegos, películas) sin licencia. Puede causar reportes y retiro de tus publicaciones. Usa diseños propios, fotos de clientes, mascotas, logos de negocios (con permiso) e ilustraciones originales.
+- **Repositorio público:** todo lo que esté en `bronze/` y `silver/` también se ve en GitHub. No subas ahí fotos o datos que no quieras mostrar.
+
+## 🌎 Idiomas, FAQ, blog y app instalable
+
+- Español en `/` e inglés en `/en/` (botón EN/ES arriba). Los textos del inglés están en `silver/data/*.en.json`, `faq.json`, `blog.json` y `silver/data/i18n/en.json`.
+- Preguntas frecuentes (al final de Contacto) que el chatbot también usa: `silver/data/faq.json`.
+- Blog en `silver/data/blog.json`. Los dos artículos son borradores: revísalos y ajústalos a tu experiencia.
+- Casos de estudio: agrega `"case": {"problem","solution","result"}` a un proyecto en `projects.json` y en su bloque `"en"`.
+- Chatbot con flujo de cotización: pregunta qué necesita el cliente, para cuándo, su nombre y contacto, y lo envía a WhatsApp o prellena el formulario (donde debe aceptar la autorización de datos).
+- App instalable (PWA): `manifest.webmanifest` y `sw.js`. En el celular aparece "Agregar a pantalla de inicio".
+- Revisión de enlaces: `scripts/check_links.py` corre en cada despliegue. Un enlace interno roto detiene la publicación; los externos solo avisan.
+- CV en PDF (ES y EN): `python scripts/build_cv.py`.
+
+## 🗂️ Agregar un proyecto (miniatura + enlace)
+
+1. Guarda la imagen original en `bronze/assets-originales/proyectos/` (ej. `mi-proyecto.png`).
+2. Ejecuta `python scripts/optimize_images.py`: crea la miniatura 800×500 en `silver/assets/projects/mi-proyecto.webp`.
+3. En `silver/data/projects.json` agrega o edita el proyecto:
+   `"thumbnail": "mi-proyecto.webp"` y `"link": "https://..."` (repo, demo o video).
+4. Sube los cambios a GitHub: el sitio se actualiza solo.
+
+Ya hay espacios listos (proyectos 8 a 11) con `"visible": false`: cámbialo a `true` cuando los llenes. Sin miniatura se muestra un ícono con color; sin enlace, la tarjeta no lleva botón. El filtro por categoría se arma solo con los valores de `category`.
+
+## 📄 Actualizar tu CV
+
+1. Edita `silver/data/profile.json`.
+2. `pip install reportlab` y luego `python scripts/build_cv.py` (regenera el PDF).
+3. Sube los cambios: el sitio se republica solo.
 
 ## 🚀 Publicar con GitHub Pages
 

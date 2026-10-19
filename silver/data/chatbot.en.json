@@ -1,0 +1,441 @@
+{
+  "name": "Sebas' assistant",
+  "start": "Hi! I'm Sebas' virtual assistant. I can tell you about his data and automation services, the keychain and case shop, his projects and how to contact him. What are you interested in?",
+  "fallback": {
+    "a": "I'm not sure I understood. I can help with services, prices, projects or contact. If you prefer, message Sebas directly and he'll reply.",
+    "b": [
+      {
+        "l": "Message on WhatsApp",
+        "wa": "Hi, I have a question"
+      },
+      {
+        "l": "Open the form",
+        "go": "contacto"
+      }
+    ]
+  },
+  "quick": [
+    {
+      "l": "Get a quote",
+      "id": "qualify"
+    },
+    {
+      "l": "Services",
+      "id": "servicios"
+    },
+    {
+      "l": "Prices",
+      "id": "precios"
+    },
+    {
+      "l": "Projects",
+      "id": "proyectos"
+    }
+  ],
+  "entries": [
+    {
+      "id": "qualify",
+      "k": [
+        "quote",
+        "estimate",
+        "hire",
+        "get a quote",
+        "i need a service",
+        "order"
+      ],
+      "a": "",
+      "b": []
+    },
+    {
+      "id": "especiales",
+      "k": [
+        "dark",
+        "glow",
+        "glows",
+        "phosphorescent",
+        "three-color",
+        "tricolor",
+        "chess",
+        "skeleton",
+        "skeletons",
+        "articulated",
+        "special pieces"
+      ],
+      "a": "Besides regular 3D parts, there are glow-in-the-dark pieces, three-color pieces, chess pieces and articulated skeleton keychains. Tell Sebas which one you like.",
+      "b": [
+        {
+          "l": "See special pieces",
+          "go": "imp3d"
+        },
+        {
+          "l": "Order a special piece",
+          "wa": "Hi, I'd like a special 3D piece"
+        }
+      ]
+    },
+    {
+      "id": "saludo",
+      "k": [
+        "hello",
+        "hi",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening"
+      ],
+      "a": "Hi! How can I help? Ask me about services, prices, projects or contact.",
+      "b": []
+    },
+    {
+      "id": "servicios",
+      "k": [
+        "service",
+        "services",
+        "offer",
+        "what do you do",
+        "help",
+        "work"
+      ],
+      "a": "Sebas offers:\n• Data engineering and ETL\n• Automation with n8n and AI chatbots\n• AI content for social media\n• PLC programming and industrial automation\n• Custom products (printed keychains and cases) and 3D printing",
+      "b": [
+        {
+          "l": "View projects",
+          "go": "proyectos"
+        },
+        {
+          "l": "Get a quote",
+          "wa": "Hi, I'd like a quote for a service"
+        }
+      ]
+    },
+    {
+      "id": "precios",
+      "k": [
+        "price",
+        "prices",
+        "cost",
+        "how much",
+        "rate",
+        "pricing"
+      ],
+      "a": "Reference prices in COP: keychains from 8,000, aluminum cases from 35,000 and glass cases from 40,000. 3D printing and data or automation services are quoted per project. Confirm your quote on WhatsApp.",
+      "b": [
+        {
+          "l": "Ask for a quote",
+          "wa": "Hi, I'd like a quote"
+        }
+      ]
+    },
+    {
+      "id": "llavero",
+      "k": [
+        "keychain",
+        "keychains",
+        "key chain"
+      ],
+      "a": "Keychains are printed with your photo, name or logo on an aluminum sheet. Vivid colors and very durable. From COP 8,000.",
+      "b": [
+        {
+          "l": "Design mine",
+          "go": "tienda"
+        }
+      ]
+    },
+    {
+      "id": "estuche",
+      "k": [
+        "case",
+        "cases",
+        "phone case",
+        "glass",
+        "aluminum",
+        "mirror",
+        "phone"
+      ],
+      "a": "There are phone cases printed in full color on aluminum (from COP 35,000, glossy finish) and on glass (from COP 40,000, mirror effect and deep color).",
+      "b": [
+        {
+          "l": "Design mine",
+          "go": "tienda"
+        },
+        {
+          "l": "Order on WhatsApp",
+          "wa": "Hi, I'd like a custom phone case"
+        }
+      ]
+    },
+    {
+      "id": "3d",
+      "k": [
+        "3d",
+        "printing",
+        "print",
+        "prototype",
+        "spare part",
+        "figure",
+        "pla",
+        "petg",
+        "dremel",
+        "impresora",
+        "printer",
+        "stl"
+      ],
+      "a": "Prototypes, spare parts, figures and functional parts are 3D printed in 1.75 mm PLA with a Dremel DigiLab 3D20. Maximum size: 230 × 150 × 140 mm. Tell Sebas your idea to get a quote.",
+      "b": [
+        {
+          "l": "See 3D printing",
+          "go": "imp3d"
+        },
+        {
+          "l": "Quote a 3D part",
+          "wa": "Hi, I'd like a quote for a 3D part"
+        }
+      ]
+    },
+    {
+      "id": "n8n",
+      "k": [
+        "n8n",
+        "automation",
+        "automate",
+        "workflow",
+        "integration",
+        "integrate",
+        "api",
+        "webhook"
+      ],
+      "a": "Sebas connects WhatsApp, Google Sheets, CRM, email and stores in automated n8n workflows, plus API integrations, automatic reports and data synchronization.",
+      "b": [
+        {
+          "l": "Talk about my process",
+          "go": "contacto"
+        }
+      ]
+    },
+    {
+      "id": "chatbot",
+      "k": [
+        "chatbot",
+        "bot",
+        "assistant",
+        "agent"
+      ],
+      "a": "Sebas builds AI chatbots for support, scheduling and customer follow-up 24/7, connected to n8n workflows. At Proeléctricos he implemented one that extracts, validates and routes reports to the responsible areas.",
+      "b": [
+        {
+          "l": "I want a chatbot",
+          "wa": "Hi, I'd like a chatbot for my business"
+        }
+      ]
+    },
+    {
+      "id": "contenido",
+      "k": [
+        "content",
+        "video",
+        "videos",
+        "reels",
+        "image",
+        "images",
+        "social",
+        "marketing",
+        "copy",
+        "instagram",
+        "tiktok"
+      ],
+      "a": "Images, short videos, copy and content calendars are created with AI for social media, including automated posting with n8n.",
+      "b": [
+        {
+          "l": "See more",
+          "go": "ia"
+        }
+      ]
+    },
+    {
+      "id": "industrial",
+      "k": [
+        "plc",
+        "industrial",
+        "hmi",
+        "cnc",
+        "robot",
+        "robotics",
+        "scada",
+        "ladder"
+      ],
+      "a": "In industrial engineering Sebas develops, modifies and debugs PLC and HMI programs and supports the automation and upgrade of processes and lines.",
+      "b": [
+        {
+          "l": "View engineering",
+          "go": "ing"
+        }
+      ]
+    },
+    {
+      "id": "datos",
+      "k": [
+        "etl",
+        "data",
+        "sql",
+        "python",
+        "aws",
+        "machine learning",
+        "dashboard",
+        "power bi",
+        "analytics",
+        "pipeline",
+        "mysql"
+      ],
+      "a": "Sebas is a junior data engineer: he designs ETL pipelines with medallion architecture and works with SQL, Python and R, AWS, Machine Learning and dashboards.",
+      "b": [
+        {
+          "l": "View data projects",
+          "go": "proyectos"
+        },
+        {
+          "l": "Download CV",
+          "href": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf"
+        }
+      ]
+    },
+    {
+      "id": "perfil",
+      "k": [
+        "cv",
+        "resume",
+        "profile",
+        "experience",
+        "studies",
+        "who are you",
+        "who is",
+        "about you",
+        "about sebas",
+        "education"
+      ],
+      "a": "Juan Sebastián Sánchez Urbano (Sebas) is an Industrial Automation Engineer and a Master's student in Data Science and AI. He works as a technical and data automation advisor at Proeléctricos and lives in Cali, Colombia.",
+      "b": [
+        {
+          "l": "View profile",
+          "go": "perfil"
+        },
+        {
+          "l": "Download CV",
+          "href": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf"
+        }
+      ]
+    },
+    {
+      "id": "proyectos",
+      "k": [
+        "project",
+        "projects",
+        "portfolio",
+        "work samples",
+        "examples",
+        "cases"
+      ],
+      "a": "The Projects tab has data, automation, web and engineering work, each with a link to see it.",
+      "b": [
+        {
+          "l": "View projects",
+          "go": "proyectos"
+        }
+      ]
+    },
+    {
+      "id": "contacto",
+      "k": [
+        "contact",
+        "reach",
+        "write",
+        "whatsapp",
+        "email",
+        "phone",
+        "call",
+        "talk"
+      ],
+      "a": "You can message Sebas on WhatsApp or leave your details and message in the form. He replies with information and a quote.",
+      "b": [
+        {
+          "l": "WhatsApp",
+          "wa": "Hi, I'd like a quote for a service"
+        },
+        {
+          "l": "Form",
+          "go": "contacto"
+        }
+      ]
+    },
+    {
+      "id": "ubicacion",
+      "k": [
+        "where",
+        "location",
+        "city",
+        "cali",
+        "shipping",
+        "delivery",
+        "ship"
+      ],
+      "a": "Sebas is based in Cali, Colombia. To arrange deliveries or shipping of products, message him on WhatsApp.",
+      "b": [
+        {
+          "l": "Message on WhatsApp",
+          "wa": "Hi, I'd like to arrange a delivery"
+        }
+      ]
+    },
+    {
+      "id": "gracias",
+      "k": [
+        "thanks",
+        "thank you",
+        "bye",
+        "goodbye",
+        "done"
+      ],
+      "a": "You're welcome! If you need anything else, I'm here.",
+      "b": []
+    }
+  ],
+  "qualifier": {
+    "intro": "Great! I'll ask 4 quick questions to prepare your quote (type “cancel” to exit).",
+    "need": {
+      "q": "What do you need?",
+      "opts": [
+        "Data / ETL",
+        "n8n automation or chatbot",
+        "AI content",
+        "PLC / Industrial engineering",
+        "Keychains, cases or 3D printing",
+        "Other"
+      ]
+    },
+    "when": {
+      "q": "When do you need it?",
+      "opts": [
+        "This week",
+        "This month",
+        "No rush"
+      ]
+    },
+    "name": {
+      "q": "What's your name?",
+      "bad": "Please type your name."
+    },
+    "contact": {
+      "q": "What's your email or WhatsApp number?",
+      "bad": "I didn't get that. Type a valid email or a number with 7 to 15 digits."
+    },
+    "done": "Thanks, {name}! With this Sebas can prepare your quote. How would you like to send it?",
+    "summary": "Hi, I'm {name}. I need: {need}. When: {when}. Contact: {contact}.",
+    "btnWa": "Send via WhatsApp",
+    "btnForm": "Complete in the form",
+    "formNote": "Done, I filled in the form with your details. Review it, accept the authorization and send it.",
+    "cancelled": "Okay, I cancelled the quote. What else can I help with?",
+    "cancelWords": [
+      "cancel",
+      "exit"
+    ]
+  }
+}
