@@ -1,0 +1,114 @@
+{
+  "_ayuda": "Videos destacados: agrega bloques en 'videos' con el ID del video de YouTube (lo que va después de v= en el enlace), title_es, title_en y visible:true. Los 'Últimos videos' se actualizan solos desde el canal.",
+  "channel": {
+    "name": "Akazu IA",
+    "handle": "@akazuia",
+    "url": "https://www.youtube.com/@akazuia",
+    "id": "UCrcJGQmmy17jj7SM_jy85MQ",
+    "playlist": "UUrcJGQmmy17jj7SM_jy85MQ"
+  },
+  "videos": [
+    {
+      "id": "",
+      "title_es": "Título del video",
+      "title_en": "Video title",
+      "visible": false
+    }
+  ],
+  "es": {
+    "title": "Contenido audiovisual.",
+    "sub": "Videos cortos, avatares con IA y animación para redes sociales. Mi canal: Akazu IA.",
+    "ch_eyebrow": "Mi canal de YouTube",
+    "ch_text": "Un creador de contenido virtual: un avatar de inteligencia artificial que toma tendencias, bailes, audios virales y memes y les da un giro propio.",
+    "tags": [
+      "Avatar IA",
+      "Shorts virales",
+      "Humor con IA",
+      "Retos IA",
+      "Animación con IA"
+    ],
+    "btn_channel": "Ver el canal en YouTube",
+    "btn_sub": "Suscribirme",
+    "h_latest": "Últimos videos",
+    "latest_sub": "Se actualiza solo con lo que subo al canal.",
+    "load": "Ver los últimos videos",
+    "privacy": "Al reproducir se carga YouTube en modo de privacidad mejorada.",
+    "play": "Reproducir",
+    "h_featured": "Videos destacados",
+    "h_services": "Contenido para tu marca",
+    "services": [
+      [
+        "🧑‍🎤",
+        "Avatares con IA",
+        "Un presentador virtual para tu marca o tu canal."
+      ],
+      [
+        "📱",
+        "Shorts y reels",
+        "Videos verticales listos para YouTube, Instagram y TikTok."
+      ],
+      [
+        "🎬",
+        "Animación con IA",
+        "Animaciones y efectos a partir de ideas, imágenes o audio."
+      ],
+      [
+        "🗓️",
+        "Calendario de contenido",
+        "Ideas y guiones para publicar con constancia."
+      ]
+    ],
+    "cta_title": "¿Quieres contenido así para tu marca?",
+    "cta_sub": "Cuéntame tu idea y te cotizo.",
+    "cta_btn": "Cotizar contenido",
+    "cta_msg": "Hola, quiero contenido con IA para mi marca"
+  },
+  "en": {
+    "title": "Audiovisual content.",
+    "sub": "Short videos, AI avatars and animation for social media. My channel: Akazu IA.",
+    "ch_eyebrow": "My YouTube channel",
+    "ch_text": "A virtual content creator: an artificial intelligence avatar that takes trends, dances, viral audios and memes and gives them its own twist.",
+    "tags": [
+      "AI avatar",
+      "Viral shorts",
+      "AI humor",
+      "AI challenges",
+      "AI animation"
+    ],
+    "btn_channel": "Watch the channel on YouTube",
+    "btn_sub": "Subscribe",
+    "h_latest": "Latest videos",
+    "latest_sub": "Updates automatically with what I upload to the channel.",
+    "load": "Watch the latest videos",
+    "privacy": "When you play, YouTube loads in enhanced privacy mode.",
+    "play": "Play",
+    "h_featured": "Featured videos",
+    "h_services": "Content for your brand",
+    "services": [
+      [
+        "🧑‍🎤",
+        "AI avatars",
+        "A virtual presenter for your brand or channel."
+      ],
+      [
+        "📱",
+        "Shorts and reels",
+        "Vertical videos ready for YouTube, Instagram and TikTok."
+      ],
+      [
+        "🎬",
+        "AI animation",
+        "Animations and effects from ideas, images or audio."
+      ],
+      [
+        "🗓️",
+        "Content calendar",
+        "Ideas and scripts to post consistently."
+      ]
+    ],
+    "cta_title": "Want content like this for your brand?",
+    "cta_sub": "Tell me your idea and I'll quote it.",
+    "cta_btn": "Quote content",
+    "cta_msg": "Hi, I'd like AI content for my brand"
+  }
+}

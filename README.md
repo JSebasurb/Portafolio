@@ -66,6 +66,12 @@ Para agregar otra herramienta: añade su bloque HTML en la sección `#tools` del
 
 **Datos personales:** revisa el texto del aviso de privacidad (en el template, sección `#contacto`) y envía mensajes de WhatsApp solo a quienes aceptaron.
 
+## 🎬 Pestaña Audiovisual
+
+- Tarjeta del canal de YouTube **Akazu IA**, botón para suscribirse y los **últimos videos** (lista de subidas del canal, se actualiza sola). El video solo se carga al pulsar, en modo de privacidad mejorada.
+- **Videos destacados:** en `silver/data/video.json`, agrega bloques en `videos` con el ID del video (lo que va después de `v=`), `title_es`, `title_en` y `visible: true`.
+- Datos de contacto (correo, LinkedIn, YouTube): `silver/data/profile.json` y `profile.en.json`. Luego `python scripts/build_cv.py` regenera los CV en PDF.
+
 ## 🧊 Pestaña Impresión 3D
 
 - Contenido en `silver/data/print3d.json` (ES y EN): ficha de la Dremel DigiLab 3D20, qué se puede imprimir, proceso, material (PLA) y consejos de diseño.

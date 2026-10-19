@@ -47,6 +47,31 @@
       "b": []
     },
     {
+      "id": "video",
+      "k": [
+        "video",
+        "videos",
+        "youtube",
+        "akazu",
+        "avatar",
+        "canal",
+        "shorts",
+        "audiovisual",
+        "reels"
+      ],
+      "a": "Sebas tiene un canal de YouTube, Akazu IA: un avatar de inteligencia artificial que convierte tendencias, bailes, audios virales y memes en videos cortos. También puede crear contenido con IA para tu marca.",
+      "b": [
+        {
+          "l": "Ver contenido audiovisual",
+          "go": "video"
+        },
+        {
+          "l": "Ver el canal",
+          "href": "https://www.youtube.com/@akazuia"
+        }
+      ]
+    },
+    {
       "id": "especiales",
       "k": [
         "oscuridad",

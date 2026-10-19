@@ -2,9 +2,9 @@
   "name": "Juan Sebastián Sánchez Urbano",
   "headline": "Junior Data Engineer · ETL Automation, Cloud (AWS), Machine Learning & AI",
   "location": "Cali, Colombia",
-  "email": "sebasurb01mx@gmail.com",
+  "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
-  "linkedin": "https://linkedin.com/in/sebasurb01",
+  "linkedin": "https://linkedin.com/in/jsebasurb",
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
@@ -200,5 +200,6 @@
       "meta": "Graduate engineer",
       "text": ""
     }
-  ]
+  ],
+  "youtube": "https://www.youtube.com/@akazuia"
 }

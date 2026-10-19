@@ -175,6 +175,29 @@
       }
     },
     {
+      "id": "akazu",
+      "title": "Canal de YouTube Akazu IA",
+      "category": "Contenido IA",
+      "year": "2026",
+      "emoji": "🎬",
+      "thumbnail": "",
+      "link": "https://www.youtube.com/@akazuia",
+      "link_label": "Ver canal en YouTube",
+      "description": "Avatar de inteligencia artificial que convierte tendencias, bailes, audios virales y memes en videos cortos para redes.",
+      "tags": [
+        "Avatar IA",
+        "Shorts",
+        "Animación IA"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Akazu IA YouTube channel",
+        "category": "AI content",
+        "link_label": "View channel on YouTube",
+        "description": "An artificial intelligence avatar that turns trends, dances, viral audios and memes into short videos for social media."
+      }
+    },
+    {
       "title": "Proyecto 8 (editar)",
       "category": "Datos",
       "year": "",

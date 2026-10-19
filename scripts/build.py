@@ -81,7 +81,7 @@ def render_case(c, u):
     return f'<details class="case"><summary>{e(u["case"])}</summary><dl>{rows}</dl></details>'
 
 
-TAGS_EN = {"Medallón": "Medallion", "Impresión 3D": "3D printing", "Estampado": "Printing", "Dashboard": "Dashboard", "Sensores": "Sensors",
+TAGS_EN = {"Avatar IA": "AI avatar", "Animación IA": "AI animation", "Medallón": "Medallion", "Impresión 3D": "3D printing", "Estampado": "Printing", "Dashboard": "Dashboard", "Sensores": "Sensors",
            "Alertas": "Alerts", "Tiempo real": "Real time", "APIs REST": "REST APIs", "IA": "AI"}
 
 
@@ -113,6 +113,7 @@ def render_profile(p, num, u, root):
     <a class="pill" href="{root}{e(p["cv_file"])}" download>{e(u["cv"])}</a>
     <a class="link" href="{e(p["linkedin"])}" target="_blank" rel="noopener">LinkedIn ›</a>
     <a class="link" href="{e(p["github"])}" target="_blank" rel="noopener">GitHub ›</a>
+    <a class="link" href="{e(p["youtube"])}" target="_blank" rel="noopener">YouTube ›</a>
   </div>
   <div class="cv-sum rv"><p class="eyebrow">{e(u["s_profile"])}</p><p>{e(p["summary"])}</p></div>
   <h3 class="sec">{e(u["s_skills"])}</h3><div class="bento">{skills}</div>
@@ -233,6 +234,30 @@ def render_print3d(d, num, root=""):
 </section>'''
 
 
+def render_video(vd, L, num, root=""):
+    d, ch = vd[L], vd["channel"]
+    tags = "".join(f"<span>{e(t)}</span>" for t in d["tags"])
+    vids = [x for x in vd["videos"] if x.get("visible") and x.get("id")]
+    cards = "".join(
+        f'<div class="vcard rv"><div class="ytbox"><button class="yt" type="button" data-id="{e(x["id"])}" data-title="{e(x["title_" + L])}" aria-label="{e(d["play"])}: {e(x["title_" + L])}" style="background-image:url(https://i.ytimg.com/vi/{e(x["id"])}/hqdefault.jpg)"><span class="play">▶</span></button></div><h3>{e(x["title_" + L])}</h3></div>'
+        for x in vids)
+    featured = f'<h3 class="sec">{e(d["h_featured"])}</h3><div class="vgrid">{cards}</div>' if cards else ""
+    svc = "".join(f'<div class="tile rv"><div><div class="ico">{i}</div><h3>{e(t)}</h3><p>{e(x)}</p></div></div>' for i, t, x in d["services"])
+    return f'''<section class="tab" id="video">
+  <h2>{e(d["title"])}</h2>
+  <p class="sub">{e(d["sub"])}</p>
+  <div class="chan rv"><div class="chan-av">🎬</div><div><p class="eyebrow">{e(d["ch_eyebrow"])}</p><h3>{e(ch["name"])} <small>{e(ch["handle"])}</small></h3><p>{e(d["ch_text"])}</p><div class="chips left">{tags}</div>
+    <div class="ctas" style="justify-content:flex-start;margin-top:18px"><a class="pill" href="{e(ch["url"])}" target="_blank" rel="noopener">{e(d["btn_channel"])}</a><a class="link" href="{e(ch["url"])}?sub_confirmation=1" target="_blank" rel="noopener">{e(d["btn_sub"])} ›</a></div></div></div>
+  <h3 class="sec">{e(d["h_latest"])}</h3>
+  <p class="sub" style="text-align:left;margin:0 0 14px;max-width:none">{e(d["latest_sub"])}</p>
+  <div class="ytbox big rv"><button class="yt" type="button" data-list="{e(ch["playlist"])}" data-title="{e(ch["name"])}"><span class="play">▶</span><b>{e(d["load"])}</b></button></div>
+  <small class="hint" style="margin-top:8px">{e(d["privacy"])}</small>
+  {featured}
+  <h3 class="sec">{e(d["h_services"])}</h3><div class="bento ideas">{svc}</div>
+  <div class="cta rv" style="margin-top:50px"><h2>{e(d["cta_title"])}</h2><p class="sub">{e(d["cta_sub"])}</p><a class="pill" href="{wa_link(num, d["cta_msg"])}" target="_blank" rel="noopener">{e(d["cta_btn"])}</a></div>
+</section>'''
+
+
 def render_blog(posts, u):
     arts = []
     for x in posts:
@@ -249,7 +274,7 @@ def render_faq(faq, u):
 def json_ld(p, cfg, u, url, L):
     data = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "jobTitle": u["job"], "url": url, "inLanguage": L,
             "email": "mailto:" + p["email"], "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"},
-            "sameAs": [p["linkedin"], p["github"]], "knowsAbout": ["ETL", "Python", "SQL", "AWS", "Machine Learning", "n8n", "Industrial automation"]}
+            "sameAs": [p["linkedin"], p["github"], p["youtube"]], "knowsAbout": ["ETL", "Python", "SQL", "AWS", "Machine Learning", "n8n", "Industrial automation"]}
     return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
 
@@ -262,6 +287,7 @@ def main():
     site = cfg["site_url"]
     en_dict = json.loads((DATA / "i18n" / "en.json").read_text(encoding="utf-8"))
     pj, cat, faq, blog, p3d = jl("projects.json"), jl("catalog.json"), jl("faq.json"), jl("blog.json"), jl("print3d.json")
+    vid = jl("video.json")
     template = (SILVER / "src" / "index.template.html").read_text(encoding="utf-8")
     build_id = str(int(time.time()))
 
@@ -306,6 +332,7 @@ def main():
             "{{PROJECTS_SECTION}}": render_projects(pj, L, u, root),
             "{{CATALOG_SECTION}}": render_catalog(cat, L, u, root, num),
             "{{BLOG_SECTION}}": render_blog(blog[L], u),
+            "{{VIDEO_SECTION}}": render_video(vid, L, num, root),
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
             "{{SITE_TITLE}}": e(site_i["site_title"]), "{{SITE_DESC}}": e(site_i["site_description"], quote=True),
@@ -357,7 +384,7 @@ def main():
     need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png",
             "sitemap.xml", "robots.txt", "404.html", "sw.js", "manifest.webmanifest", "en/index.html",
             jl("profile.json")["cv_file"], jl("profile.en.json")["cv_file"]]
-    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "i18n.es", "i18n.en")]
+    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "i18n.es", "i18n.en")]
     for ref in need:
         assert (GOLD / ref).exists(), f"Falta {ref}"
     print(f"OK -> gold/ listo (ES {(GOLD / 'index.html').stat().st_size // 1024} KB · EN {(GOLD / 'en/index.html').stat().st_size // 1024} KB). WhatsApp: {num}")

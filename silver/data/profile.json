@@ -2,35 +2,204 @@
   "name": "Juan Sebastián Sánchez Urbano",
   "headline": "Ingeniero de Datos Junior · Automatización ETL, Cloud (AWS), Machine Learning e IA",
   "location": "Cali, Colombia",
-  "email": "sebasurb01mx@gmail.com",
+  "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
-  "linkedin": "https://linkedin.com/in/sebasurb01",
+  "linkedin": "https://linkedin.com/in/jsebasurb",
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez.pdf",
   "summary": "Ingeniero en Automática Industrial y maestrante en Ciencia de Datos e Inteligencia Artificial, con perfil de Ingeniero de Datos Junior. Diseño e implemento pipelines ETL con arquitectura medallón (Bronze/Silver/Gold), trabajo con bases de datos relacionales (SQL, MySQL), programo en Python y R, y desarrollo flujos de automatización con n8n, APIs REST y agentes de IA. Combino la ingeniería industrial con la analítica de datos para garantizar la integridad, disponibilidad y calidad de la información, bajo metodologías de mejora continua (PHVA). Mantengo un portafolio público con proyectos, herramientas propias y servicios de automatización, datos e impresión 3D.",
   "skills": [
-    {"icon": "🗄️", "title": "Ingeniería de Datos & Cloud", "items": ["Pipelines ETL", "Arquitectura medallón", "AWS", "APIs REST", "SQL avanzado", "MySQL", "Modelado y consolidación de datos", "Calidad y limpieza de datos"]},
-    {"icon": "🐍", "title": "Lenguajes & Ciencia de Datos", "items": ["Python", "R", "SQL", "Machine Learning", "Modelado predictivo", "Clasificación", "Análisis estadístico", "EDA", "Git y GitHub"]},
-    {"icon": "⚙️", "title": "Automatización, BI & IoT", "items": ["n8n y agentes de IA", "Chatbots con IA", "Power BI", "Excel avanzado", "Dashboards HTML", "Sensores e instrumentación IoT en tiempo real"]},
-    {"icon": "🌐", "title": "Desarrollo web & Despliegue", "items": ["HTML", "CSS", "JavaScript", "Bash", "YAML", "GitHub Actions", "GitHub Pages"]},
-    {"icon": "🏭", "title": "Ingeniería Industrial", "items": ["Automatización industrial", "Programación de PLC", "CNC y robótica"]},
-    {"icon": "🧭", "title": "Metodologías & Gestión", "items": ["PHVA (mejora continua)", "Validación e integridad de información", "Resolución analítica de problemas", "Orientación a resultados", "Comunicación efectiva"]}
+    {
+      "icon": "🗄️",
+      "title": "Ingeniería de Datos & Cloud",
+      "items": [
+        "Pipelines ETL",
+        "Arquitectura medallón",
+        "AWS",
+        "APIs REST",
+        "SQL avanzado",
+        "MySQL",
+        "Modelado y consolidación de datos",
+        "Calidad y limpieza de datos"
+      ]
+    },
+    {
+      "icon": "🐍",
+      "title": "Lenguajes & Ciencia de Datos",
+      "items": [
+        "Python",
+        "R",
+        "SQL",
+        "Machine Learning",
+        "Modelado predictivo",
+        "Clasificación",
+        "Análisis estadístico",
+        "EDA",
+        "Git y GitHub"
+      ]
+    },
+    {
+      "icon": "⚙️",
+      "title": "Automatización, BI & IoT",
+      "items": [
+        "n8n y agentes de IA",
+        "Chatbots con IA",
+        "Power BI",
+        "Excel avanzado",
+        "Dashboards HTML",
+        "Sensores e instrumentación IoT en tiempo real"
+      ]
+    },
+    {
+      "icon": "🌐",
+      "title": "Desarrollo web & Despliegue",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Bash",
+        "YAML",
+        "GitHub Actions",
+        "GitHub Pages"
+      ]
+    },
+    {
+      "icon": "🏭",
+      "title": "Ingeniería Industrial",
+      "items": [
+        "Automatización industrial",
+        "Programación de PLC",
+        "CNC y robótica"
+      ]
+    },
+    {
+      "icon": "🧭",
+      "title": "Metodologías & Gestión",
+      "items": [
+        "PHVA (mejora continua)",
+        "Validación e integridad de información",
+        "Resolución analítica de problemas",
+        "Orientación a resultados",
+        "Comunicación efectiva"
+      ]
+    }
   ],
   "experience": [
-    {"period": "2019 – Nov 2025 · Mar 2026 – Actualidad", "role": "Asesor Técnico, Comercial y de Automatización de Datos", "company": "Proeléctricos", "text": "Analizo y valido información técnica y operativa de clientes para estructurar soluciones integrales, asegurando la calidad y trazabilidad de los registros comerciales.", "achievement": "Diseñé e implementé un chatbot con IA para el canal web, integrado a un pipeline de automatización en n8n que extrae, valida y enruta automáticamente reportes e información hacia las áreas responsables."},
-    {"period": "Oct 2025 – Ene 2026", "role": "Líder de Área CNC y Robótica (Análisis de Datos de Producción)", "company": "Metálicas Mundial", "text": "Lideré la captura y el análisis de variables críticas de producción y control de calidad, garantizando la confiabilidad de los datos del proceso de manufactura.", "achievement": "Identifiqué cuellos de botella y optimicé los tiempos de ciclo mediante el análisis de datos operativos de maquinaria bajo metodologías ágiles de mejora continua, incrementando la productividad del área."}
+    {
+      "period": "2019 – Nov 2025 · Mar 2026 – Actualidad",
+      "role": "Asesor Técnico, Comercial y de Automatización de Datos",
+      "company": "Proeléctricos",
+      "text": "Analizo y valido información técnica y operativa de clientes para estructurar soluciones integrales, asegurando la calidad y trazabilidad de los registros comerciales.",
+      "achievement": "Diseñé e implementé un chatbot con IA para el canal web, integrado a un pipeline de automatización en n8n que extrae, valida y enruta automáticamente reportes e información hacia las áreas responsables."
+    },
+    {
+      "period": "Oct 2025 – Ene 2026",
+      "role": "Líder de Área CNC y Robótica (Análisis de Datos de Producción)",
+      "company": "Metálicas Mundial",
+      "text": "Lideré la captura y el análisis de variables críticas de producción y control de calidad, garantizando la confiabilidad de los datos del proceso de manufactura.",
+      "achievement": "Identifiqué cuellos de botella y optimicé los tiempos de ciclo mediante el análisis de datos operativos de maquinaria bajo metodologías ágiles de mejora continua, incrementando la productividad del área."
+    }
   ],
   "projects": [
-    {"icon": "🔄", "title": "Pipeline ETL automatizado end-to-end", "meta": "MinTIC / Talento Tech · 2026", "text": "Arquitectura de extracción, transformación y carga con Python, n8n y consumo de APIs REST para consolidar bases de datos centralizadas.", "impact": "Eliminación del 100% de la digitación manual, con datos íntegros, estandarizados y confiables para el análisis ejecutivo.", "tags": ["Python", "n8n", "APIs REST", "ETL"], "link": ""},
-    {"icon": "🦟", "title": "ETL epidemiológico SIVIGILA 2018–2022", "meta": "Dengue · IRAG · Tuberculosis", "text": "Proceso ETL sobre cinco archivos Excel del Instituto Nacional de Salud, con scripts de extracción, transformación y carga, arquitectura medallón y un dashboard HTML para visualizar los resultados.", "impact": "", "tags": ["Python", "Excel", "Medallón", "Dashboard HTML"], "link": ""},
-    {"icon": "📦", "title": "Laboratorio ETL Kaismart Solutions", "meta": "Universidad Autónoma de Occidente", "text": "Integración de una tabla de ventas en MySQL (5.000 registros) con 50.000 eventos logísticos en Excel, unidos por identificador de pedido. Incluye análisis exploratorio, arquitectura medallón, 10 preguntas de negocio y ejecución automatizada con schedule.", "impact": "", "tags": ["MySQL", "Python", "Excel", "Medallón", "Schedule"], "link": ""},
-    {"icon": "🌐", "title": "Portafolio web con arquitectura medallón", "meta": "2026", "text": "Sitio publicado en GitHub Pages con repositorio en capas Bronze/Silver/Gold, build automatizado en Python y despliegue continuo con GitHub Actions. Incluye herramientas propias: lector de HTML con vista previa segura, generador de enlaces de WhatsApp y formateador de JSON.", "impact": "", "tags": ["HTML", "CSS", "JavaScript", "Python", "GitHub Actions"], "link": "https://github.com/JSebasurb/Portafolio"},
-    {"icon": "📡", "title": "Captura de datos en tiempo real y alertas (IoT industrial)", "meta": "Proyectos de Ingeniería · 2022 – 2024", "text": "Integración de sensores e instrumentación industrial para ingesta de datos en tiempo real, validación automática de variables operativas críticas y generación oportuna de alertas de control.", "impact": "", "tags": ["IoT", "Sensores", "Alertas", "Tiempo real"], "link": ""},
-    {"icon": "🧊", "title": "Taller 3D y servicios de automatización", "meta": "Emprendimiento", "text": "Productos personalizados (llaveros y estuches estampados, impresión 3D) y servicios de automatización con n8n, contenido con IA e ingeniería industrial, con diseñador de productos conectado a WhatsApp.", "impact": "", "tags": ["Impresión 3D", "n8n", "IA", "WhatsApp"], "link": ""}
+    {
+      "icon": "🔄",
+      "title": "Pipeline ETL automatizado end-to-end",
+      "meta": "MinTIC / Talento Tech · 2026",
+      "text": "Arquitectura de extracción, transformación y carga con Python, n8n y consumo de APIs REST para consolidar bases de datos centralizadas.",
+      "impact": "Eliminación del 100% de la digitación manual, con datos íntegros, estandarizados y confiables para el análisis ejecutivo.",
+      "tags": [
+        "Python",
+        "n8n",
+        "APIs REST",
+        "ETL"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🦟",
+      "title": "ETL epidemiológico SIVIGILA 2018–2022",
+      "meta": "Dengue · IRAG · Tuberculosis",
+      "text": "Proceso ETL sobre cinco archivos Excel del Instituto Nacional de Salud, con scripts de extracción, transformación y carga, arquitectura medallón y un dashboard HTML para visualizar los resultados.",
+      "impact": "",
+      "tags": [
+        "Python",
+        "Excel",
+        "Medallón",
+        "Dashboard HTML"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "📦",
+      "title": "Laboratorio ETL Kaismart Solutions",
+      "meta": "Universidad Autónoma de Occidente",
+      "text": "Integración de una tabla de ventas en MySQL (5.000 registros) con 50.000 eventos logísticos en Excel, unidos por identificador de pedido. Incluye análisis exploratorio, arquitectura medallón, 10 preguntas de negocio y ejecución automatizada con schedule.",
+      "impact": "",
+      "tags": [
+        "MySQL",
+        "Python",
+        "Excel",
+        "Medallón",
+        "Schedule"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🌐",
+      "title": "Portafolio web con arquitectura medallón",
+      "meta": "2026",
+      "text": "Sitio publicado en GitHub Pages con repositorio en capas Bronze/Silver/Gold, build automatizado en Python y despliegue continuo con GitHub Actions. Incluye herramientas propias: lector de HTML con vista previa segura, generador de enlaces de WhatsApp y formateador de JSON.",
+      "impact": "",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python",
+        "GitHub Actions"
+      ],
+      "link": "https://github.com/JSebasurb/Portafolio"
+    },
+    {
+      "icon": "📡",
+      "title": "Captura de datos en tiempo real y alertas (IoT industrial)",
+      "meta": "Proyectos de Ingeniería · 2022 – 2024",
+      "text": "Integración de sensores e instrumentación industrial para ingesta de datos en tiempo real, validación automática de variables operativas críticas y generación oportuna de alertas de control.",
+      "impact": "",
+      "tags": [
+        "IoT",
+        "Sensores",
+        "Alertas",
+        "Tiempo real"
+      ],
+      "link": ""
+    },
+    {
+      "icon": "🧊",
+      "title": "Taller 3D y servicios de automatización",
+      "meta": "Emprendimiento",
+      "text": "Productos personalizados (llaveros y estuches estampados, impresión 3D) y servicios de automatización con n8n, contenido con IA e ingeniería industrial, con diseñador de productos conectado a WhatsApp.",
+      "impact": "",
+      "tags": [
+        "Impresión 3D",
+        "n8n",
+        "IA",
+        "WhatsApp"
+      ],
+      "link": ""
+    }
   ],
   "education": [
-    {"title": "Maestría en Ciencia de Datos e Inteligencia Artificial · Universidad Autónoma de Occidente", "meta": "En curso", "text": "Arquitectura y servicios Cloud (AWS), modelos de Machine Learning, diseño de procesos ETL, programación estadística en R y Python y analítica avanzada."},
-    {"title": "Ingeniería en Automática Industrial", "meta": "Ingeniero titulado", "text": ""}
-  ]
+    {
+      "title": "Maestría en Ciencia de Datos e Inteligencia Artificial · Universidad Autónoma de Occidente",
+      "meta": "En curso",
+      "text": "Arquitectura y servicios Cloud (AWS), modelos de Machine Learning, diseño de procesos ETL, programación estadística en R y Python y analítica avanzada."
+    },
+    {
+      "title": "Ingeniería en Automática Industrial",
+      "meta": "Ingeniero titulado",
+      "text": ""
+    }
+  ],
+  "youtube": "https://www.youtube.com/@akazuia"
 }
