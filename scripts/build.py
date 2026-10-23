@@ -258,6 +258,19 @@ def render_video(vd, L, num, root=""):
 </section>'''
 
 
+def render_games(d):
+    cards = "".join(
+        f'<div class="gcard rv" style="--g1:{c["g1"]};--g2:{c["g2"]}"><div class="gart"><span>{c["emoji"]}</span></div><div class="gbody"><h3>{e(c["title"])}</h3><p>{e(c["desc"])}</p>'
+        f'<small class="hint">{e(c["hint"])}</small><div class="gfoot"><button class="pill sm" type="button" data-game="{e(c["id"])}" data-title="{e(c["title"])}" data-hint="{e(c["hint"])}">{e(d["play"])}</button><span class="gbest"></span></div></div></div>'
+        for c in d["cards"])
+    return f'''<section class="tab" id="juegos">
+  <h2>{e(d["title"])}</h2>
+  <p class="sub">{e(d["sub"])}</p>
+  <div class="ggrid">{cards}</div>
+  <p class="sub" style="font-size:.95rem;margin-top:22px">{e(d["note"])}</p>
+</section>'''
+
+
 def render_blog(posts, u):
     arts = []
     for x in posts:
@@ -287,7 +300,7 @@ def main():
     site = cfg["site_url"]
     en_dict = json.loads((DATA / "i18n" / "en.json").read_text(encoding="utf-8"))
     pj, cat, faq, blog, p3d = jl("projects.json"), jl("catalog.json"), jl("faq.json"), jl("blog.json"), jl("print3d.json")
-    vid = jl("video.json")
+    vid, gms = jl("video.json"), jl("games.json")
     template = (SILVER / "src" / "index.template.html").read_text(encoding="utf-8")
     build_id = str(int(time.time()))
 
@@ -332,6 +345,7 @@ def main():
             "{{PROJECTS_SECTION}}": render_projects(pj, L, u, root),
             "{{CATALOG_SECTION}}": render_catalog(cat, L, u, root, num),
             "{{BLOG_SECTION}}": render_blog(blog[L], u),
+            "{{GAMES_SECTION}}": render_games(gms[L]),
             "{{VIDEO_SECTION}}": render_video(vid, L, num, root),
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
@@ -347,7 +361,12 @@ def main():
         out = GOLD / "index.html" if L == "es" else GOLD / "en" / "index.html"
         out.write_text(html, encoding="utf-8")
 
-        cfg_js = {"form": cfg.get("form_endpoint", ""), "chat": cfg.get("chat_endpoint", ""), "wa": num, "email": prof["email"], "root": root}
+        akazu = ""
+        for ext in ("png", "webp", "jpg", "jpeg"):
+            if (SILVER / "assets" / f"akazu.{ext}").exists():
+                akazu = f"assets/img/akazu.{ext}"
+                break
+        cfg_js = {"form": cfg.get("form_endpoint", ""), "chat": cfg.get("chat_endpoint", ""), "wa": num, "email": prof["email"], "root": root, "akazu": akazu}
         i18n_js = (f'window.LANG={json.dumps(L)};window.CFG={json.dumps(cfg_js, ensure_ascii=False)};'
                    f'window.KB={json.dumps(kb, ensure_ascii=False).replace("</", "<\\/")};window.TR={json.dumps(tr, ensure_ascii=False)};'
                    'window.T=function(s){return window.TR[s]||s};\n')
@@ -384,7 +403,7 @@ def main():
     need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png",
             "sitemap.xml", "robots.txt", "404.html", "sw.js", "manifest.webmanifest", "en/index.html",
             jl("profile.json")["cv_file"], jl("profile.en.json")["cv_file"]]
-    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "i18n.es", "i18n.en")]
+    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "i18n.es", "i18n.en")]
     for ref in need:
         assert (GOLD / ref).exists(), f"Falta {ref}"
     print(f"OK -> gold/ listo (ES {(GOLD / 'index.html').stat().st_size // 1024} KB · EN {(GOLD / 'en/index.html').stat().st_size // 1024} KB). WhatsApp: {num}")

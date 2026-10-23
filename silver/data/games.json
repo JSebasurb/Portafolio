@@ -1,0 +1,144 @@
+{
+  "es": {
+    "title": "Juegos.",
+    "sub": "Siete minijuegos hechos por mí, pensados para jugar desde el celular. Tus récords se guardan en este dispositivo.",
+    "play": "Jugar",
+    "note": "Tip: en el computador también se juega con el teclado. Pulsa P para pausar y Esc para salir.",
+    "cards": [
+      {
+        "id": "runner",
+        "emoji": "🤖",
+        "g1": "#5e5ce6",
+        "g2": "#ff375f",
+        "title": "Bolt Runner",
+        "desc": "Un robot corre por una fábrica. Salta los tornillos y los engranajes, y agáchate ante los drones. Cada 300 puntos sube de nivel y la velocidad aumenta.",
+        "hint": "Toca para saltar y mantén para saltar más alto. Toca el piso (parte baja) para agacharte. En teclado: espacio salta, flecha abajo agacha."
+      },
+      {
+        "id": "stack",
+        "emoji": "🧱",
+        "g1": "#0a84ff",
+        "g2": "#30d158",
+        "title": "Capas 3D",
+        "desc": "Apila capas como lo haría una impresora 3D. Lo que sobresale se corta, y los aciertos perfectos recuperan ancho. ¿Cuántas capas logras?",
+        "hint": "Toca para soltar la capa justo encima de la anterior. En teclado: espacio."
+      },
+      {
+        "id": "orbit",
+        "emoji": "🪐",
+        "g1": "#bf5af2",
+        "g2": "#0a84ff",
+        "title": "Órbita",
+        "desc": "Gira sin parar entre dos órbitas. Cambia de carril para esquivar los obstáculos rojos y recoge la energía dorada para sumar más puntos.",
+        "hint": "Toca para cambiar de órbita. En teclado: espacio."
+      },
+      {
+        "id": "snake",
+        "emoji": "🐍",
+        "g1": "#30d158",
+        "g2": "#0a9d8f",
+        "title": "Serpiente de datos",
+        "desc": "Recoge paquetes de datos y crece sin chocar contigo misma. Los bordes te llevan al otro lado y los paquetes dorados valen triple.",
+        "hint": "Desliza el dedo para girar. En teclado: flechas o WASD."
+      },
+      {
+        "id": "balance",
+        "emoji": "🔩",
+        "g1": "#ff9f0a",
+        "g2": "#ff375f",
+        "title": "Rodamiento",
+        "desc": "Inclina tu celular para rodar un balín de acero por el laberinto. Usa el acelerómetro: evita los agujeros, recoge tornillos de oro y llega a la meta antes de que se acabe el tiempo.",
+        "hint": "Inclina el celular para mover el balín. Se calibra con la posición en la que empiezas; pulsa ↺ para recalibrar. En iPhone, acepta el permiso de movimiento. En computador: flechas o arrastra."
+      },
+      {
+        "id": "akazu",
+        "emoji": "🎧",
+        "g1": "#ff375f",
+        "g2": "#bf5af2",
+        "title": "Akazu Dance",
+        "desc": "Baila con Akazu, el avatar de IA de mi canal. Toca cada carril cuando la nota llegue a la línea, encadena combos y trata de llegar a 500 seguidores. La música y el ritmo suben poco a poco.",
+        "hint": "Toca el carril (izquierda, centro o derecha) cuando la nota llegue a la línea brillante. Con sonido se disfruta más. En teclado: A, S, D o las flechas."
+      },
+      {
+        "id": "screws",
+        "emoji": "🔩",
+        "g1": "#0a9d8f",
+        "g2": "#0a84ff",
+        "title": "Control de Tornillos",
+        "desc": "Eres el inspector de una fábrica de tornillos: el jefe da una orden y solo debes aprobar los tornillos perfectos que la cumplen. ¡Cuidado con los doblados, rajados y sin rosca! La orden cambia cada 8 tornillos.",
+        "hint": "Toca la mitad derecha para aprobar y la izquierda para rechazar. Tienes 3 vidas. En teclado: flecha derecha aprueba, izquierda rechaza."
+      }
+    ]
+  },
+  "en": {
+    "title": "Games.",
+    "sub": "Seven mini-games I made, designed to play on your phone. Your high scores are saved on this device.",
+    "play": "Play",
+    "note": "Tip: on a computer you can also play with the keyboard. Press P to pause and Esc to exit.",
+    "cards": [
+      {
+        "id": "runner",
+        "emoji": "🤖",
+        "g1": "#5e5ce6",
+        "g2": "#ff375f",
+        "title": "Bolt Runner",
+        "desc": "A robot runs through a factory. Jump over bolts and gears, and duck under drones. Every 300 points you level up and the speed increases.",
+        "hint": "Tap to jump and hold to jump higher. Tap the floor (bottom area) to duck. Keyboard: space jumps, down arrow ducks."
+      },
+      {
+        "id": "stack",
+        "emoji": "🧱",
+        "g1": "#0a84ff",
+        "g2": "#30d158",
+        "title": "3D Layers",
+        "desc": "Stack layers the way a 3D printer would. Anything that overhangs gets cut off, and perfect hits win back width. How many layers can you make?",
+        "hint": "Tap to drop the layer right on top of the previous one. Keyboard: space."
+      },
+      {
+        "id": "orbit",
+        "emoji": "🪐",
+        "g1": "#bf5af2",
+        "g2": "#0a84ff",
+        "title": "Orbit",
+        "desc": "Spin non-stop between two orbits. Switch lanes to dodge the red obstacles and grab the golden energy for extra points.",
+        "hint": "Tap to switch orbit. Keyboard: space."
+      },
+      {
+        "id": "snake",
+        "emoji": "🐍",
+        "g1": "#30d158",
+        "g2": "#0a9d8f",
+        "title": "Data Snake",
+        "desc": "Collect data packets and grow without hitting yourself. The edges wrap around and golden packets are worth triple.",
+        "hint": "Swipe to turn. Keyboard: arrow keys or WASD."
+      },
+      {
+        "id": "balance",
+        "emoji": "🔩",
+        "g1": "#ff9f0a",
+        "g2": "#ff375f",
+        "title": "Ball Bearing",
+        "desc": "Tilt your phone to roll a steel ball bearing through the maze. It uses the accelerometer: avoid the holes, collect golden bolts and reach the goal before time runs out.",
+        "hint": "Tilt your phone to move the ball. It calibrates to the position you start in; press ↺ to recalibrate. On iPhone, accept the motion permission. On a computer: arrow keys or drag."
+      },
+      {
+        "id": "akazu",
+        "emoji": "🎧",
+        "g1": "#ff375f",
+        "g2": "#bf5af2",
+        "title": "Akazu Dance",
+        "desc": "Dance with Akazu, the AI avatar of my channel. Tap each lane when the note reaches the line, chain combos and try to reach 500 followers. The music and rhythm get faster little by little.",
+        "hint": "Tap the lane (left, center or right) when the note reaches the glowing line. It's more fun with sound on. Keyboard: A, S, D or the arrow keys."
+      },
+      {
+        "id": "screws",
+        "emoji": "🔩",
+        "g1": "#0a9d8f",
+        "g2": "#0a84ff",
+        "title": "Screw Inspector",
+        "desc": "You're the inspector at a screw factory: the boss gives an order and you must approve only the perfect screws that meet it. Watch out for bent, cracked and thread-less ones! The order changes every 8 screws.",
+        "hint": "Tap the right half to approve and the left half to reject. You have 3 lives. Keyboard: right arrow approves, left arrow rejects."
+      }
+    ]
+  }
+}

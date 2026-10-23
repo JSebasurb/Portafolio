@@ -47,6 +47,37 @@
       "b": []
     },
     {
+      "id": "juegos",
+      "k": [
+        "juego",
+        "juegos",
+        "jugar",
+        "videojuego",
+        "videojuegos",
+        "runner",
+        "minijuegos",
+        "snake",
+        "serpiente",
+        "sensor",
+        "sensores",
+        "acelerometro",
+        "inclinar",
+        "balin",
+        "akazu",
+        "ritmo",
+        "baile",
+        "tornillo",
+        "tornillos"
+      ],
+      "a": "En la pestaña Juegos hay 7 minijuegos hechos por Sebas para jugar desde el celular: Bolt Runner (saltar y esquivar), Capas 3D, Órbita, Serpiente de datos, Rodamiento (usa los sensores del celular), Akazu Dance (juego de ritmo con su mascota) y Control de Tornillos.",
+      "b": [
+        {
+          "l": "Ir a Juegos",
+          "go": "juegos"
+        }
+      ]
+    },
+    {
       "id": "video",
       "k": [
         "video",

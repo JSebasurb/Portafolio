@@ -66,6 +66,20 @@ Para agregar otra herramienta: añade su bloque HTML en la sección `#tools` del
 
 **Datos personales:** revisa el texto del aviso de privacidad (en el template, sección `#contacto`) y envía mensajes de WhatsApp solo a quienes aceptaron.
 
+## 🎮 Pestaña Juegos
+
+Siete minijuegos hechos con JavaScript y canvas (sin librerías), pensados para el celular y también jugables con teclado. Código en `silver/src/games.js`; textos de las tarjetas en `silver/data/games.json` (ES y EN).
+
+- **Bolt Runner:** corredor que salta tornillos y engranajes y se agacha ante drones. Toca para saltar (mantén para más altura) y toca el piso para agacharte. Sube de nivel cada 300 puntos.
+- **Capas 3D:** apila capas como una impresora 3D; lo que sobresale se corta y los aciertos perfectos recuperan ancho.
+- **Órbita:** un toque cambia de órbita para esquivar obstáculos y recoger energía.
+- **Serpiente de datos:** desliza para girar; los bordes dan la vuelta y los paquetes dorados valen triple.
+- **Rodamiento (usa sensores):** inclinas el celular y el acelerómetro (evento `deviceorientation`) mueve un balín por un laberinto nuevo en cada nivel. Evita agujeros, recoge tornillos y llega a la meta antes de que acabe el tiempo. En iPhone pide permiso de movimiento (requiere HTTPS, que GitHub Pages ya da). Se calibra con la posición inicial y tiene botón ↺. Sin sensores (computador) se juega con flechas o arrastrando. Vibra al chocar o caer.
+- **Akazu Dance:** juego de ritmo con música generada en el navegador y el avatar de Akazu bailando. Tres carriles, combos, energía y meta de 500 seguidores. **Para usar la imagen real de Akazu:** guarda un PNG (fondo transparente) como `silver/assets/akazu.png` y vuelve a publicar; si no existe, se dibuja un avatar propio.
+- **Control de Tornillos:** inspector de calidad en una fábrica de tornillos. El jefe da una orden (tipo de cabeza y largo) y hay que aprobar solo los tornillos perfectos que la cumplen; aparecen tornillos doblados, rajados o sin rosca. 3 vidas, la orden cambia cada 8 tornillos y la banda acelera.
+- Los récords se guardan en el navegador (`localStorage`). Para probar con bots automáticos agrega `?gmdebug` a la URL.
+- Para agregar otro juego: crea una función en `games.js` (`GAMES.miJuego = function (E) {...}` con `reset`, `update`, `draw` y los controles) y una tarjeta en `games.json`.
+
 ## 🎬 Pestaña Audiovisual
 
 - Tarjeta del canal de YouTube **Akazu IA**, botón para suscribirse y los **últimos videos** (lista de subidas del canal, se actualiza sola). El video solo se carga al pulsar, en modo de privacidad mejorada.

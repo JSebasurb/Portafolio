@@ -47,6 +47,36 @@
       "b": []
     },
     {
+      "id": "juegos",
+      "k": [
+        "game",
+        "games",
+        "play",
+        "videogame",
+        "videogames",
+        "runner",
+        "minigames",
+        "snake",
+        "sensor",
+        "sensors",
+        "accelerometer",
+        "tilt",
+        "ball",
+        "akazu",
+        "rhythm",
+        "dance",
+        "screw",
+        "screws"
+      ],
+      "a": "The Games tab has 7 mini-games made by Sebas to play on your phone: Bolt Runner (jump and dodge), 3D Layers, Orbit, Data Snake, Ball Bearing (uses your phone's sensors), Akazu Dance (a rhythm game with his mascot) and Screw Inspector.",
+      "b": [
+        {
+          "l": "Go to Games",
+          "go": "juegos"
+        }
+      ]
+    },
+    {
       "id": "video",
       "k": [
         "video",
