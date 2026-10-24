@@ -86,3 +86,40 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     window.addEventListener('load',function(){navigator.serviceWorker.register(window.CFG.root+'sw.js').catch(function(){})});
   }
 })();
+
+/* ---------- Barra de pestañas: rueda del mouse, arrastre, flechas, teclado y centrado ---------- */
+(function(){
+  var tabs=document.getElementById('tabs'),prev=document.querySelector('.tnav.prev'),next=document.querySelector('.tnav.next');
+  if(!tabs||!prev||!next)return;
+  var raf=0;
+  function state(){raf=0;var max=tabs.scrollWidth-tabs.clientWidth,x=tabs.scrollLeft,l=x>2,r=x<max-2;tabs.classList.toggle('fl',l);tabs.classList.toggle('fr',r);prev.hidden=!l;next.hidden=!r}
+  function queue(){if(!raf)raf=requestAnimationFrame(state)}
+  function center(smooth){var b=tabs.querySelector('button.on');if(!b)return;var left=b.offsetLeft-(tabs.clientWidth-b.offsetWidth)/2;tabs.scrollTo({left:Math.max(0,left),behavior:smooth===false?'auto':'smooth'})}
+  function reveal(b){var pad=48,l=b.offsetLeft,r=l+b.offsetWidth;if(l<tabs.scrollLeft+pad)tabs.scrollTo({left:Math.max(0,l-pad),behavior:'smooth'});else if(r>tabs.scrollLeft+tabs.clientWidth-pad)tabs.scrollTo({left:r-tabs.clientWidth+pad,behavior:'smooth'})}
+  tabs.addEventListener('scroll',queue,{passive:true});window.addEventListener('resize',function(){queue();center(false)});
+  if(window.ResizeObserver)new ResizeObserver(queue).observe(tabs);
+  /* flechas */
+  [prev,next].forEach(function(b,i){b.addEventListener('click',function(){tabs.scrollBy({left:(i?1:-1)*tabs.clientWidth*0.65,behavior:'smooth'})})});
+  /* rueda del mouse: el giro vertical mueve la barra */
+  var wt=0;
+  tabs.parentNode.addEventListener('wheel',function(e){
+    if(tabs.scrollWidth<=tabs.clientWidth)return;var d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;if(!d)return;if(e.deltaMode===1)d*=16;
+    var max=tabs.scrollWidth-tabs.clientWidth;if((d<0&&tabs.scrollLeft<=0)||(d>0&&tabs.scrollLeft>=max))return;
+    e.preventDefault();tabs.style.scrollBehavior='auto';tabs.scrollLeft+=d;clearTimeout(wt);wt=setTimeout(function(){tabs.style.scrollBehavior=''},140)
+  },{passive:false});
+  /* arrastrar con el mouse */
+  var down=null,moved=false;
+  tabs.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;down={x:e.clientX,s:tabs.scrollLeft};moved=false});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-down.x;if(!moved&&Math.abs(dx)>5){moved=true;tabs.classList.add('drag');tabs.style.scrollBehavior='auto'}if(moved)tabs.scrollLeft=down.s-dx});
+  window.addEventListener('pointerup',function(){if(!down)return;down=null;if(moved){tabs.classList.remove('drag');tabs.style.scrollBehavior='';var stop=function(ev){ev.stopPropagation();ev.preventDefault()};tabs.addEventListener('click',stop,{capture:true,once:true});setTimeout(function(){tabs.removeEventListener('click',stop,true)},60)}});
+  /* teclado: flechas, Inicio y Fin */
+  tabs.addEventListener('keydown',function(e){
+    var list=[].slice.call(tabs.querySelectorAll('button')),i=list.indexOf(document.activeElement);if(i<0)return;var n=null;
+    if(e.key==='ArrowRight')n=list[(i+1)%list.length];else if(e.key==='ArrowLeft')n=list[(i-1+list.length)%list.length];else if(e.key==='Home')n=list[0];else if(e.key==='End')n=list[list.length-1];
+    if(n){e.preventDefault();n.focus({preventScroll:true});reveal(n)}
+  });
+  tabs.addEventListener('focusin',function(e){if(e.target.tagName==='BUTTON')reveal(e.target)});
+  /* al elegir una pestaña, centrarla en la barra */
+  var base=show;show=function(t){base(t);center(true);queue()};
+  window.addEventListener('load',function(){center(false);queue()});queue();center(false);
+})();

@@ -66,6 +66,10 @@ Para agregar otra herramienta: añade su bloque HTML en la sección `#tools` del
 
 **Datos personales:** revisa el texto del aviso de privacidad (en el template, sección `#contacto`) y envía mensajes de WhatsApp solo a quienes aceptaron.
 
+## 🧭 Barra de pestañas (escritorio)
+
+Con tantas pestañas, la barra se desplaza de forma natural: flechas ‹ › en los bordes, rueda del mouse (el giro vertical la mueve), arrastre con el mouse, desvanecido en los bordes, flechas/Inicio/Fin del teclado y centrado automático de la pestaña elegida. En el celular se desliza con el dedo. Código al final de `silver/src/app.js` y estilos en `styles.css`.
+
 ## 🎮 Pestaña Juegos
 
 Siete minijuegos hechos con JavaScript y canvas (sin librerías), pensados para el celular y también jugables con teclado. Código en `silver/src/games.js`; textos de las tarjetas en `silver/data/games.json` (ES y EN).

@@ -5,9 +5,9 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,Arial,sans-serif;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:var(--glass);border-bottom:1px solid var(--line)}
-.top>div{max-width:1024px;margin:0 auto;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px}
+.top>div{max-width:1440px;margin:0 auto;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px}
 .brand{font-weight:600;font-size:1rem;white-space:nowrap}
-.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;position:relative;max-width:100%;scroll-behavior:smooth;overscroll-behavior-x:contain}.tabs::-webkit-scrollbar{display:none}
 .tabs button{background:none;border:0;color:var(--muted);font:inherit;font-size:.85rem;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.25s}
 .tabs button:hover{color:var(--text)}
 .tabs button.on{background:var(--soft);color:var(--text);font-weight:600}
@@ -332,3 +332,14 @@ body.noscroll{overflow:hidden}
 .gm-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:#05060fb8;padding:24px;backdrop-filter:blur(3px)}
 .gm-msg[hidden]{display:none}
 .gm-msg b{font-size:1.9rem;letter-spacing:-.02em}.gm-msg p{margin:0 0 8px;max-width:340px;color:#c7cde8;line-height:1.4}
+
+/* ---------- Barra de pestañas: navegación nativa en escritorio ---------- */
+.tabsw{position:relative;flex:1;min-width:0;display:flex;align-items:center;justify-content:center}
+.tabs.fl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px);mask-image:linear-gradient(90deg,transparent 0,#000 44px)}
+.tabs.fr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 44px),transparent)}
+.tabs.fl.fr{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent)}
+.tnav{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:28px;height:28px;border-radius:50%;border:0;background:var(--surface);color:var(--text);box-shadow:0 2px 8px #0003;place-items:center;font-size:1.15rem;line-height:1;padding:0 0 2px;cursor:pointer;transition:.2s}
+.tnav:hover{background:var(--blue);color:#fff}
+.tnav.prev{left:0}.tnav.next{right:0}
+@media (hover:hover) and (pointer:fine){.tnav{display:grid}.tabs{cursor:grab}.tabs.drag{cursor:grabbing;user-select:none}.tabs.drag button{pointer-events:none}}
+.tnav[hidden]{display:none!important}
