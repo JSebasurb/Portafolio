@@ -258,9 +258,21 @@ def render_video(vd, L, num, root=""):
 </section>'''
 
 
-def render_games(d):
+def render_games(d, root=""):
+    def gimg(c, rt):
+        if c.get("image"):
+            assert (SILVER / "assets" / "catalog" / c["image"]).exists(), f"Falta {c['image']}"
+            return f'<img class="gimg" loading="lazy" src="{rt}assets/catalog/{e(c["image"])}" alt="{e(c["title"])}"><span class="gtag">♪ {e(c.get("music", ""))}</span>'
+        return f'<span>{c["emoji"]}</span>'
+
+    def head(c):
+        if not c.get("section"):
+            return ""
+        sub = f'<p class="gsub">{e(c["section_sub"])}</p>' if c.get("section_sub") else ""
+        return f'<div class="gsec"><h3 class="sec">{e(c["section"])}</h3>{sub}</div>'
+
     cards = "".join(
-        f'<div class="gcard rv" style="--g1:{c["g1"]};--g2:{c["g2"]}"><div class="gart"><span>{c["emoji"]}</span></div><div class="gbody"><h3>{e(c["title"])}</h3><p>{e(c["desc"])}</p>'
+        head(c) + f'<div class="gcard rv" style="--g1:{c["g1"]};--g2:{c["g2"]}"><div class="gart">{gimg(c, root)}</div><div class="gbody"><h3>{e(c["title"])}</h3><p>{e(c["desc"])}</p>'
         f'<small class="hint">{e(c["hint"])}</small><div class="gfoot"><button class="pill sm" type="button" data-game="{e(c["id"])}" data-title="{e(c["title"])}" data-hint="{e(c["hint"])}">{e(d["play"])}</button><span class="gbest"></span></div></div></div>'
         for c in d["cards"])
     return f'''<section class="tab" id="juegos">
@@ -307,7 +319,7 @@ def main():
     if GOLD.exists():
         for f in GOLD.iterdir():
             shutil.rmtree(f) if f.is_dir() else f.unlink()
-    for d in ("css", "js", "img", "docs", "projects", "catalog"):
+    for d in ("css", "js", "img", "docs", "projects", "catalog", "audio"):
         (GOLD / "assets" / d).mkdir(parents=True)
     (GOLD / "en").mkdir()
     (GOLD / ".nojekyll").touch()
@@ -321,7 +333,7 @@ def main():
     for f in assets.iterdir():
         if f.is_file() and f.name != ".gitkeep":
             shutil.copy(f, GOLD / "assets/img" / f.name)
-    for sub in ("projects", "catalog", "docs"):
+    for sub in ("projects", "catalog", "docs", "audio"):
         if (assets / sub).exists():
             for f in (assets / sub).iterdir():
                 if f.is_file() and f.name != ".gitkeep":
@@ -345,7 +357,7 @@ def main():
             "{{PROJECTS_SECTION}}": render_projects(pj, L, u, root),
             "{{CATALOG_SECTION}}": render_catalog(cat, L, u, root, num),
             "{{BLOG_SECTION}}": render_blog(blog[L], u),
-            "{{GAMES_SECTION}}": render_games(gms[L]),
+            "{{GAMES_SECTION}}": render_games(gms[L], root),
             "{{VIDEO_SECTION}}": render_video(vid, L, num, root),
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
@@ -374,7 +386,7 @@ def main():
 
     # --- PWA
     shutil.copy(SILVER / "src" / "sw.js", GOLD / "sw.js")
-    pre = ["./", "index.html", "en/index.html"] + sorted(str(p.relative_to(GOLD)) for p in (GOLD / "assets").rglob("*") if p.is_file() and p.suffix != ".pdf")
+    pre = ["./", "index.html", "en/index.html"] + sorted(str(p.relative_to(GOLD)) for p in (GOLD / "assets").rglob("*") if p.is_file() and p.suffix not in (".pdf", ".mp3"))
     sw = (GOLD / "sw.js").read_text(encoding="utf-8").replace("{{BUILD_ID}}", build_id).replace("{{PRECACHE}}", json.dumps(pre))
     (GOLD / "sw.js").write_text(sw, encoding="utf-8")
     (GOLD / "manifest.webmanifest").write_text(json.dumps({
@@ -400,7 +412,7 @@ def main():
     # --- validación
     for f in [GOLD / "index.html", GOLD / "en" / "index.html", *(GOLD / "assets/js").glob("*.js"), GOLD / "sw.js"]:
         assert "{{" not in f.read_text(encoding="utf-8"), f"Placeholders sin reemplazar en {f.name}"
-    need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png",
+    need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png", "assets/audio/final_boss_pursuit.mp3",
             "sitemap.xml", "robots.txt", "404.html", "sw.js", "manifest.webmanifest", "en/index.html",
             jl("profile.json")["cv_file"], jl("profile.en.json")["cv_file"]]
     need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "i18n.es", "i18n.en")]
