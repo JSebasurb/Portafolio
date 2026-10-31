@@ -162,7 +162,8 @@
   "Ver más ›": "Learn more ›",
   "Juegos": "Games",
   "Pestañas anteriores": "Previous tabs",
-  "Más pestañas": "More tabs"
+  "Más pestañas": "More tabs",
+  "Apps creadas": "Apps I built"
  },
  "js": {
   "Hola, quiero cotizar un servicio": "Hi, I'd like a quote for a service",
@@ -425,6 +426,34 @@
   "¡Torre resuelta!": "Tower solved!",
   "¿Cuál es la MISMA figura girada? (no su espejo)": "Which one is the SAME shape, rotated? (not its mirror)",
   "Desliza ← → para cambiar de carril": "Swipe ← → to change lanes",
-  "Toca o desliza ↑ para saltar": "Tap or swipe ↑ to jump"
+  "Toca o desliza ↑ para saltar": "Tap or swipe ↑ to jump",
+  "¡Se enoja!": "He's getting mad!",
+  "¡Furioso!": "Furious!",
+  "¡LISTOS!": "READY!",
+  "¡K.O.!": "K.O.!",
+  "Arrastra para moverte · disparas solo": "Drag to move · you shoot on your own",
+  "Toca para esquivar rápido": "Tap to dodge",
+  "¡Victoria!": "Victory!",
+  "¡Victoria y nuevo récord!": "Victory and new record!",
+  "completadas": "completed",
+  "Nivel": "Level",
+  "preguntas": "questions",
+  "listas": "done",
+  "Siguiente ›": "Next ›",
+  "Ver resultado": "See result",
+  "Correcto. ": "Correct. ",
+  "Incorrecto. ": "Incorrect. ",
+  "¡Excelente!": "Excellent!",
+  "Buen trabajo": "Good job",
+  "Sigue practicando": "Keep practicing",
+  "Acertaste": "You got",
+  "de": "of",
+  "Mejor resultado": "Best result",
+  "Referencias": "References",
+  "Abreviaturas": "Abbreviations",
+  "Decodificar": "Decode",
+  "¿Borrar tu progreso de la academia?": "Delete your academy progress?",
+  "No se pudo cargar el contenido. Intenta de nuevo.": "Could not load the content. Please try again.",
+  "Repaso mixto": "Mixed review"
  }
 }

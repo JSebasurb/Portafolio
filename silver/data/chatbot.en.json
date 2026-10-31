@@ -85,9 +85,14 @@
         "cubehead",
         "cube",
         "music",
-        "final boss"
+        "final boss",
+        "boss",
+        "duel",
+        "cuphead",
+        "cartoon",
+        "retro"
       ],
-      "a": "The Games tab has 19 games made by Sebas: mobile arcade games (Cubehead —a 3D runner with the music “Final Boss Pursuit”—, Bolt Runner, 3D Layers, Orbit, Data Snake, sensor-based Ball Bearing, Akazu Dance, Screw Inspector) and interview-style mental agility exercises (math, ink vs. word, logic series, memory, N-back, Tower of Hanoi, sliding puzzle, 1-A-2-B trail, impulse control and mental rotation). The Interview Challenge ends with your profile: a radar chart, analysis and practice plan, and you can copy or download it.",
+      "a": "The Games tab has 20 games made by Sebas: mobile arcade games (the Boss Duel, a 1930s cartoon-style boss fight; Cubehead —a 3D runner with the music “Final Boss Pursuit”—, Bolt Runner, 3D Layers, Orbit, Data Snake, sensor-based Ball Bearing, Akazu Dance, Screw Inspector) and interview-style mental agility exercises (math, ink vs. word, logic series, memory, N-back, Tower of Hanoi, sliding puzzle, 1-A-2-B trail, impulse control and mental rotation). The Interview Challenge ends with your profile: a radar chart, analysis and practice plan, and you can copy or download it.",
       "b": [
         {
           "l": "Go to Games",

@@ -1,0 +1,55 @@
+/* ---------- Academia CATO (apps creadas) ---------- */
+.cstats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 18px}
+.cstats span{background:var(--soft);padding:8px 16px;border-radius:999px;font-size:.9rem;color:var(--muted)}
+.cstats b{color:var(--blue)}
+.cv[hidden]{display:none}
+.cgrid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:760px){.cgrid{grid-template-columns:1fr 1fr}.cgrid.three{grid-template-columns:repeat(3,1fr)}}
+.cgrid.three{margin-top:14px}
+.ccard2{background:var(--soft);border-radius:26px;padding:24px}
+.ccard2 h3{margin:0 0 4px;font-size:1.35rem;letter-spacing:-.01em}
+.ccard2 p{margin:0 0 14px;color:var(--muted)}
+.cbtns{display:grid;gap:8px}
+.clvl{display:block;width:100%;text-align:left;background:var(--surface);border:0;border-radius:16px;padding:12px 16px;cursor:pointer;color:var(--text);font:inherit;transition:.2s}
+.clvl:hover{background:var(--blue);color:#fff}
+.clvl b{display:block}.clvl small{display:block;color:var(--muted);margin:2px 0 6px;font-size:.8rem}
+.clvl:hover small{color:#e6f0ff}
+.cbar{display:block;height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.cbar i{display:block;height:100%;background:#30d158;border-radius:6px}
+.cats{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface);color:var(--text);border:0;border-radius:999px;padding:7px 13px;font:inherit;font-size:.82rem;cursor:pointer;transition:.2s}
+.chip:hover{background:var(--blue);color:#fff}
+.cbtn-big{cursor:pointer;text-align:left;border:0;font:inherit;color:var(--text);width:100%}
+.cbtn-big h3{margin:0 0 6px}.cbtn-big p{margin:0;color:var(--muted);font-size:.95rem}
+.cfoot{text-align:center;margin-top:18px}
+.cqtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 12px;flex-wrap:wrap}
+.cqtop b{flex:1;text-align:center;font-size:1rem}
+.cqtop span{color:var(--muted);font-size:.9rem}
+.cprog{height:8px;border-radius:8px;background:var(--soft);overflow:hidden;margin-bottom:16px}
+.cprog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0a84ff,#30d158);transition:width .4s;border-radius:8px}
+.qcard{transition:box-shadow .3s}
+.qcard small{color:var(--blue);font-weight:600;letter-spacing:.03em;font-size:.82rem}
+.qcard h3{font-size:1.25rem;line-height:1.35;margin:8px 0 16px}
+.copts{display:grid;gap:10px}
+.copt{text-align:left;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font:inherit;cursor:pointer;transition:.2s}
+.copt:hover:not(:disabled){border-color:var(--blue);transform:translateX(3px)}
+.copt.ok{background:#16a34a22;border-color:#30d158;color:var(--text)}
+.copt.no{background:#dc262622;border-color:#ff453a;color:var(--text)}
+.copt:disabled{cursor:default}
+.cexp{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--surface);color:var(--text)!important;line-height:1.5;font-size:.95rem}
+.qcard.gl{box-shadow:0 0 0 3px #30d15866}
+.qcard.bd{box-shadow:0 0 0 3px #ff453a66}
+.cres{text-align:center;padding:34px 24px}
+.cres h3{font-size:1.8rem}
+.cur small{color:var(--blue);font-weight:600}
+.cur h3{font-size:1.5rem;margin:8px 0 12px}
+.cur .cq{margin-top:12px;color:var(--text)}
+.rtab{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.rtab button{background:var(--soft);color:var(--text);border:0;border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer}
+.rtab button.on{background:var(--blue);color:#fff}
+.rlist{display:grid;gap:8px;max-height:460px;overflow:auto;padding-right:4px}
+.ritem{background:var(--soft);border-radius:14px;padding:12px 16px;display:grid;gap:2px}
+.ritem b{font-size:.95rem}.ritem span{color:var(--muted);font-size:.88rem;line-height:1.4}
+/* Dejar espacio para el botón flotante de WhatsApp y el asistente */
+#cato{padding-bottom:110px}
+#cato .cv .link,#cato .pill{position:relative;z-index:2}

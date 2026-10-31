@@ -1,7 +1,7 @@
 {
   "es": {
     "title": "Juegos.",
-    "sub": "Diecinueve juegos hechos por mí: arcade para el celular, ejercicios de agilidad mental y un reto de entrevista que termina con tu perfil. Tus récords se guardan en este dispositivo.",
+    "sub": "Veinte juegos hechos por mí: arcade para el celular, ejercicios de agilidad mental y un reto de entrevista que termina con tu perfil. Tus récords se guardan en este dispositivo.",
     "play": "Jugar",
     "note": "Tip: en el computador también se juega con el teclado. Pulsa P para pausar y Esc para salir.",
     "cards": [
@@ -79,6 +79,16 @@
         "title": "Cubehead",
         "desc": "Corre en 3D por una pista de neón al ritmo de «Final Boss Pursuit». Cambia de carril, salta los bloques bajos, esquiva los muros y recoge energía mientras el vórtice del jefe late con la música. Tienes 3 vidas y recuperas una si aguantas 20 segundos sin chocar.",
         "hint": "Desliza a izquierda o derecha para cambiar de carril, y toca o desliza hacia arriba para saltar (hacia abajo caes rápido). También puedes tocar los costados para cambiar de carril. En teclado: flechas o A/D, y espacio para saltar. Con sonido se disfruta más."
+      },
+      {
+        "id": "boss",
+        "emoji": "🥊",
+        "g1": "#f0b765",
+        "g2": "#d6402f",
+        "title": "Duelo con el Gran Jefe",
+        "desc": "Un pequeño héroe de guantes blancos y ojos de pastel se enfrenta a Sir Torque, un tornillo gigante, malvado y muy exagerado. Dibujo animado de los años 30 con acuarela, grano de película vieja y música de swing. Esquiva tuercas y arandelas, y cuidado con el martillazo: tiene tres fases.",
+        "hint": "Arrastra el dedo para moverte: disparas solo. Toca rápido para esquivar con un salto de invencibilidad. En teclado: flechas o WASD, y espacio para esquivar. Funciona mejor con sonido.",
+        "image": "duelo-gran-jefe.webp"
       },
       {
         "id": "interview",
@@ -185,7 +195,7 @@
   },
   "en": {
     "title": "Games.",
-    "sub": "Nineteen games I made: mobile arcade games, mental agility exercises and an interview challenge that ends with your profile. Your high scores are saved on this device.",
+    "sub": "Twenty games I made: mobile arcade games, mental agility exercises and an interview challenge that ends with your profile. Your high scores are saved on this device.",
     "play": "Play",
     "note": "Tip: on a computer you can also play with the keyboard. Press P to pause and Esc to exit.",
     "cards": [
@@ -263,6 +273,16 @@
         "title": "Cubehead",
         "desc": "Run in 3D along a neon track to the beat of “Final Boss Pursuit”. Switch lanes, jump the low blocks, dodge the walls and collect energy while the boss's vortex pulses with the music. You have 3 lives and regain one if you last 20 seconds without crashing.",
         "hint": "Swipe left or right to change lanes, and tap or swipe up to jump (swipe down to drop fast). You can also tap the sides to change lanes. Keyboard: arrows or A/D, and space to jump. It's better with sound on."
+      },
+      {
+        "id": "boss",
+        "emoji": "🥊",
+        "g1": "#f0b765",
+        "g2": "#d6402f",
+        "title": "Boss Duel",
+        "desc": "A little hero with white gloves and pie-cut eyes takes on Sir Torque, a giant, wicked and very over-the-top screw. 1930s cartoon style with watercolor, old-film grain and swing music. Dodge nuts and washers, and watch out for the hammer slam: there are three phases.",
+        "hint": "Drag your finger to move: you shoot automatically. Tap quickly to dodge with an invincible dash. Keyboard: arrows or WASD, and space to dodge. Works best with sound on.",
+        "image": "duelo-gran-jefe.webp"
       },
       {
         "id": "interview",

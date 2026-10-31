@@ -262,7 +262,7 @@ def render_games(d, root=""):
     def gimg(c, rt):
         if c.get("image"):
             assert (SILVER / "assets" / "catalog" / c["image"]).exists(), f"Falta {c['image']}"
-            return f'<img class="gimg" loading="lazy" src="{rt}assets/catalog/{e(c["image"])}" alt="{e(c["title"])}"><span class="gtag">♪ {e(c.get("music", ""))}</span>'
+            return f'<img class="gimg" loading="lazy" src="{rt}assets/catalog/{e(c["image"])}" alt="{e(c["title"])}">' + (f'<span class="gtag">♪ {e(c["music"])}</span>' if c.get("music") else "")
         return f'<span>{c["emoji"]}</span>'
 
     def head(c):
@@ -281,6 +281,26 @@ def render_games(d, root=""):
   <div class="ggrid">{cards}</div>
   <p class="sub" style="font-size:.95rem;margin-top:22px">{e(d["note"])}</p>
 </section>'''
+
+
+
+CATO_UI = {
+    "es": dict(CATO_TITLE="Apps creadas · Academia CATO", CATO_SUB="Una academia de tornillería: aprende roscas, medidas, cabezas y puntas con preguntas por niveles, curiosidades y referencias para consultar. Tu progreso se guarda en este dispositivo.",
+               CATO_LVL_T="Por niveles", CATO_LVL_S="Del 1 al 15, de lo básico a lo experto. Cada nivel tiene 10 preguntas al azar.", CATO_CAT_T="Por tema", CATO_CAT_S="Elige un tema y practica solo ese.",
+               CATO_MIX_T="Repaso mixto", CATO_MIX_S="10 preguntas de todos los niveles.", CATO_CURI_T="Curiosidades", CATO_CURI_S="Datos y mitos de la tornillería.", CATO_REF_T="Referencias",
+               CATO_REF_S="Consulta códigos, abreviaturas y decodifica referencias.", CATO_RESET="Borrar mi progreso", CATO_BACK="Volver", CATO_NEXT="Siguiente ›", CATO_NEXT_TIP="Otra curiosidad ›", CATO_HOME="Volver a la academia", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Abrir la academia en su propio sitio"),
+    "en": dict(CATO_TITLE="Apps I built · CATO Academy", CATO_SUB="A fastener academy: learn threads, sizes, heads and points with leveled questions, curiosities and reference lookups. Your progress is saved on this device.",
+               CATO_LVL_T="By level", CATO_LVL_S="From 1 to 15, from basics to expert. Each level gives 10 random questions.", CATO_CAT_T="By topic", CATO_CAT_S="Pick a topic and practice only that.",
+               CATO_MIX_T="Mixed review", CATO_MIX_S="10 questions from all levels.", CATO_CURI_T="Curiosities", CATO_CURI_S="Facts and myths about fasteners.", CATO_REF_T="References",
+               CATO_REF_S="Look up codes and abbreviations, and decode references.", CATO_RESET="Reset my progress", CATO_BACK="Back", CATO_NEXT="Next ›", CATO_NEXT_TIP="Another curiosity ›", CATO_HOME="Back to the academy", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Open the academy on its own site"),
+}
+
+
+def render_cato(L, root=""):
+    html = (SILVER / "apps" / "cato" / "app.html").read_text(encoding="utf-8")
+    for k, v in CATO_UI[L].items():
+        html = html.replace("{{" + k + "}}", e(v))
+    return html
 
 
 def render_blog(posts, u):
@@ -319,7 +339,7 @@ def main():
     if GOLD.exists():
         for f in GOLD.iterdir():
             shutil.rmtree(f) if f.is_dir() else f.unlink()
-    for d in ("css", "js", "img", "docs", "projects", "catalog", "audio"):
+    for d in ("css", "js", "img", "docs", "projects", "catalog", "audio", "apps"):
         (GOLD / "assets" / d).mkdir(parents=True)
     (GOLD / "en").mkdir()
     (GOLD / ".nojekyll").touch()
@@ -338,6 +358,10 @@ def main():
             for f in (assets / sub).iterdir():
                 if f.is_file() and f.name != ".gitkeep":
                     shutil.copy(f, GOLD / "assets" / sub / f.name)
+
+    # --- datos de la academia CATO (apps creadas)
+    (GOLD / "assets/apps/cato").mkdir(parents=True, exist_ok=True)
+    shutil.copy(SILVER / "apps" / "cato" / "bank.json", GOLD / "assets/apps/cato/bank.json")
 
     # --- una página por idioma
     for L in LANGS:
@@ -358,6 +382,7 @@ def main():
             "{{CATALOG_SECTION}}": render_catalog(cat, L, u, root, num),
             "{{BLOG_SECTION}}": render_blog(blog[L], u),
             "{{GAMES_SECTION}}": render_games(gms[L], root),
+            "{{CATO_SECTION}}": render_cato(L, root),
             "{{VIDEO_SECTION}}": render_video(vid, L, num, root),
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
@@ -415,7 +440,7 @@ def main():
     need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png", "assets/audio/final_boss_pursuit.mp3",
             "sitemap.xml", "robots.txt", "404.html", "sw.js", "manifest.webmanifest", "en/index.html",
             jl("profile.json")["cv_file"], jl("profile.en.json")["cv_file"]]
-    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "i18n.es", "i18n.en")]
+    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "cato", "i18n.es", "i18n.en")]
     for ref in need:
         assert (GOLD / ref).exists(), f"Falta {ref}"
     print(f"OK -> gold/ listo (ES {(GOLD / 'index.html').stat().st_size // 1024} KB · EN {(GOLD / 'en/index.html').stat().st_size // 1024} KB). WhatsApp: {num}")
