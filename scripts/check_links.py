@@ -48,7 +48,7 @@ def main():
             if u.path.endswith("/") or target.is_dir(): target = target / "index.html"
             if not target.exists(): errors.append(f"{rel}: enlace roto -> {link}")
         for g in p.go + p.tabs:
-            if g not in p.ids: errors.append(f"{rel}: pestaña/destino '{g}' no existe")
+            if g not in p.ids and g != "hub": errors.append(f"{rel}: pestaña/destino '{g}' no existe")   # "hub" agrupa Proyectos, Apps y Herramientas
     if not OFFLINE:
         for url in sorted(external):
             ok = False

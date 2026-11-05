@@ -123,3 +123,31 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   var base=show;show=function(t){base(t);center(true);queue()};
   window.addEventListener('load',function(){center(false);queue()});queue();center(false);
 })();
+
+/* ---------- Pestaña "Proyectos" agrupa Portafolio, Apps creadas y Herramientas (subpestañas) ---------- */
+(function(){
+  var HUB={proyectos:'Portafolio',cato:'Apps creadas',tools:'Herramientas'};
+  var base=show, sub=null;
+  function ensureSub(){
+    if(sub) return sub;
+    sub=document.createElement('div'); sub.className='hubnav'; sub.setAttribute('role','tablist');
+    Object.keys(HUB).forEach(function(k){
+      var b=document.createElement('button'); b.type='button'; b.dataset.hub=k; b.textContent=T(HUB[k]);
+      b.addEventListener('click',function(){show(k);window.scrollTo({top:0,behavior:'smooth'})});
+      sub.appendChild(b);
+    });
+    return sub;
+  }
+  show=function(t){
+    var h=(t==='hub')?'proyectos':(HUB[t]?t:null);
+    base(h||t);
+    if(!h) return;
+    document.querySelectorAll('.tabs button').forEach(function(x){var on=x.dataset.t==='hub';x.classList.toggle('on',on);x.setAttribute('aria-selected',on?'true':'false')});
+    var s=ensureSub(), sec=document.getElementById(h);
+    s.querySelectorAll('button').forEach(function(b){var on=b.dataset.hub===h;b.classList.toggle('on',on);b.setAttribute('aria-selected',on?'true':'false')});
+    if(sec && s.parentNode!==sec) sec.insertBefore(s,sec.firstChild);
+  };
+  /* enlace directo (#cato, #tools, #proyectos): aplicar la vista ahora que la capa ya existe */
+  var k=location.hash.slice(1);
+  if(HUB[k]) show(k);
+})();

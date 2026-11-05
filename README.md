@@ -72,7 +72,7 @@ Con tantas pestañas, la barra se desplaza de forma natural: flechas ‹ › en 
 
 ## 🎮 Pestaña Juegos
 
-Veinte juegos hechos con JavaScript y canvas (sin librerías), pensados para el celular y también jugables con teclado. Código en `silver/src/games.js`; textos de las tarjetas en `silver/data/games.json` (ES y EN).
+Veintiún juegos hechos con JavaScript y canvas (sin librerías), pensados para el celular y también jugables con teclado. Código en `silver/src/games.js`; textos de las tarjetas en `silver/data/games.json` (ES y EN).
 
 - **Bolt Runner:** corredor que salta tornillos y engranajes y se agacha ante drones. Toca para saltar (mantén para más altura) y toca el piso para agacharte. Sube de nivel cada 300 puntos.
 - **Capas 3D:** apila capas como una impresora 3D; lo que sobresale se corta y los aciertos perfectos recuperan ancho.
@@ -86,6 +86,7 @@ Veinte juegos hechos con JavaScript y canvas (sin librerías), pensados para el 
 - **Agilidad mental (tipo entrevista):** `calc` (cálculo relámpago), `stroop` (tinta vs. palabra, con cambio de regla), `series` (series lógicas), `memory` (bloques de Corsi) y `nback` (memoria de trabajo). Son rondas cronometradas con aciertos, errores y racha.
 - **Planificación y razonamiento:** `hanoi` (Torre de Hanoi: la torre crece al resolverla y se mide la eficiencia frente al mínimo de 2ⁿ−1 movimientos), `slide` (puzzle deslizante 3×3 con solución óptima calculada con IDA*), `trail` (sendero 1‑A‑2‑B), `gonogo` (control de impulsos) y `rotation` (rotación mental con piezas quirales: el espejo no es la misma figura).
 - **Reto de entrevista:** hay dos modos, rápido (6 pruebas, ~5 min) y completo (10 pruebas, ~9 min). Termina con un informe de 5 páginas (Resumen con gráfica radar · Detalle · Análisis · Plan · Exportar): índice de 0 a 100, 6 competencias (numérico, lógica, atención, memoria, planificación, visuoespacial), tipo de perfil, fortalezas, puntos a mejorar, consejos concretos y progreso frente al intento anterior. Desde *Exportar* se puede copiar el texto, descargar una imagen PNG con la gráfica, descargar un .txt o compartir (si el navegador lo permite). Guarda los últimos intentos en el navegador (`localStorage`). Los umbrales son heurísticos y no constituyen una prueba psicométrica validada.
+- **Línea de producción:** cuatro estaciones (corte, torneado, roscado y control de calidad) con buffers limitados. Asignas operarios para acelerar una estación (×1,8); si una estación se bloquea y acumula 3 segundos de espera, cuenta un atasco, y tres atascos terminan la partida. Las llegadas se aceleran con el tiempo y el 10 % de las piezas sale defectuosa. Verificado: sin jugar, la línea se detiene por atascos a los 56 s; un bot que asigna operarios a la cola más larga aguanta los 90 s con 39 piezas buenas.
 - Los récords se guardan en el navegador (`localStorage`). Para probar con bots automáticos agrega `?gmdebug` a la URL.
 - Para agregar otro juego: crea una función en `games.js` (`GAMES.miJuego = function (E) {...}` con `reset`, `update`, `draw` y los controles) y una tarjeta en `games.json`.
 
@@ -121,6 +122,41 @@ Veinte juegos hechos con JavaScript y canvas (sin librerías), pensados para el 
 - App instalable (PWA): `manifest.webmanifest` y `sw.js`. En el celular aparece "Agregar a pantalla de inicio".
 - Revisión de enlaces: `scripts/check_links.py` corre en cada despliegue. Un enlace interno roto detiene la publicación; los externos solo avisan.
 - CV en PDF (ES y EN): `python scripts/build_cv.py`.
+
+## 🤖 Mantenimiento predictivo (demo con ML)
+
+- **Entrenamiento:** `python scripts/ml/predictive_maintenance.py` (requiere `numpy` y `scikit-learn`). Simula vibraciones de un rodamiento sano y con falla en pista interior, pista exterior o bola, con tres severidades, extrae 8 características (RMS, pico, factor de cresta, curtosis y amplitudes de la envolvente en 1x y en las frecuencias de falla) y entrena una regresión logística.
+- **Resultados** (datos simulados, 720 señales): exactitud de prueba 70 %, validación cruzada de 5 pliegues 74 ± 3 %. Por severidad: alta 100 %, media 85 %, baja 24 %. Las fallas leves son las más difíciles, como ocurre en la práctica.
+- **Navegador:** `silver/src/maint.js` calcula las mismas características y aplica el mismo modelo (parámetros en `silver/data/pm_model.json`). Se verificó que coincide con Python: error relativo de 6e-7 en las características y exactitud equivalente con señales generadas en JavaScript.
+- **Limitaciones:** los datos son simulados y las frecuencias de falla son típicas de un rodamiento genérico. Para usarlo en un equipo real hay que entrenar con mediciones reales del equipo.
+
+## 🔍 Inspección visual de tornillos (demo con ML)
+
+- **Entrenamiento:** `python scripts/ml/vision_screws.py` (requiere `numpy` y `scikit-learn`). Genera 900 imágenes simuladas de cabezas de tornillo (sanas, con grieta o golpeadas), calcula 6 características físicas (forma de la cabeza, radio mínimo, área relativa, oscuridad junto al borde, oscuridad total y brillo) y entrena una regresión logística.
+- **Resultados** (imágenes simuladas): exactitud de prueba 74 %, validación cruzada de 5 pliegues 74 ± 2 %. Por clase: golpeado 94 %, rajado 66 %, sano 63 %. Las grietas finas son lo más difícil.
+- **Navegador:** `silver/src/vision.js` genera las imágenes, calcula el mismo descriptor y aplica el mismo modelo (`silver/data/vision_model.json`). Verificado contra Python: diferencia de 2e-9 en el descriptor y exactitud equivalente con imágenes generadas en JavaScript.
+- **Limitaciones:** las imágenes son simuladas. Para usarlo en tu fábrica hay que entrenar con fotos reales de tus tornillos, tomadas con la misma iluminación y distancia.
+
+## 📈 Dashboard de producción y calidad
+
+- Pestaña **📈 Producción** (Herramientas). Calcula **OEE** (disponibilidad × rendimiento × calidad) por máquina y en total, un **Pareto de defectos** y la **tendencia diaria** de defectos, a partir de un CSV con las columnas `fecha, turno, maquina, piezas, rosca, cabeza, longitud, rebaba, ciclo_s, paro_min`.
+- Incluye 30 días de datos de ejemplo (3 turnos, 3 máquinas). El tiempo de ciclo ideal de cada máquina es el menor observado en los datos, así que funciona con cualquier CSV con esas columnas.
+- Verificado: los indicadores de la página coinciden exactamente con un cálculo independiente en Python (OEE total 70,8 %).
+- Los datos de ejemplo son simulados. Para tu fábrica, sube un CSV con tus registros reales.
+
+## 🧠 Asistente de fichas técnicas (búsqueda)
+
+- Pestaña **🧠 Fichas** (Herramientas). Responde preguntas sobre roscas, cabezas, materiales, apriete y defectos buscando la ficha más relevante con **TF-IDF y similitud coseno**. No genera texto nuevo: cada respuesta es un fragmento de una ficha escrita.
+- Las fichas están en `silver/data/fichas.json` (edítalas o agrega las tuyas). Las preguntas de prueba están en `silver/data/fichas_eval.json`.
+- Evaluación (`python scripts/ml/rag_fichas.py`): recall@1 = 94 % (17 de 18) y recall@3 = 100 %. La pregunta que falla es "cuánto torque aplicar", que sale primero en la ficha de cabeza hexagonal. La búsqueda por palabras no entiende sinónimos ni contexto.
+- Verificado: el navegador da el mismo resultado que Python. Las preguntas fuera de tema no reciben respuesta.
+- Limitación: las preguntas de prueba las escribí yo después de las fichas, así que la cifra es optimista. Con fichas y preguntas reales de tu trabajo hay que volver a medir.
+
+## 🧭 Navegación
+
+La barra superior tiene 11 pestañas. **Proyectos** agrupa tres subpestañas: **Portafolio**, **Apps creadas** (academia de tornillería) y **Herramientas** (roscas, cotizador, ETL, CSV, mantenimiento, visión, producción, fichas). Los enlaces directos `#proyectos`, `#cato` y `#tools` siguen funcionando.
+
+- Cada tarjeta de **Portafolio** puede tener un botón "Abrir la herramienta" que lleva a su herramienta en Proyectos › Herramientas (campo `"tool"` en `silver/data/projects.json`, con el id de la pestaña, por ejemplo `t8`). Un campo `"go"` lleva a otra pestaña, como `juegos` o `cato`.
 
 ## 🗂️ Agregar un proyecto (miniatura + enlace)
 

@@ -468,3 +468,128 @@ body.noscroll{overflow:hidden}
 #cato .qcard{margin-bottom:96px}
 #cato #cNext{position:relative;z-index:3}
 @media(min-width:760px){#cato .qcard{margin-bottom:24px}}
+
+/* ---------- Calculadora de roscas ---------- */
+.thsel{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:0}
+.thsel:focus{border-color:var(--blue);box-shadow:0 0 0 4px #0071e333}
+.thname{font-size:1.6rem;letter-spacing:-.02em;color:var(--blue)}
+.thsep{border:0;border-top:1px solid var(--line);margin:20px 0}
+.thout{margin:10px 0 0;color:var(--muted);font-size:.95rem;min-height:1.2em}
+#t4 .specs{margin-top:6px}
+#t4 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t4 .mini-card{margin-bottom:24px}}
+
+/* ---------- Cotizador ---------- */
+#t5 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t5 .mini-card{margin-bottom:24px}}
+#qRushRow[hidden]{display:none}
+.qout{margin-top:18px;border-radius:18px;background:var(--surface);padding:6px 16px}
+.qline{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.qline span{color:var(--muted)}
+.qtotal{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0 10px}
+.qtotal span{font-weight:600}.qtotal b{font-size:1.7rem;color:var(--blue);letter-spacing:-.02em}
+.qnote{margin:0 0 12px;color:var(--muted);font-size:.85rem;line-height:1.4}
+.qout b.qtot{font-size:1.1rem}
+.qout p{margin:8px 0 14px;color:var(--muted);line-height:1.45}
+
+/* ---------- Pipeline ETL medallón ---------- */
+#t6 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t6 .mini-card{margin-bottom:24px}}
+.etlcard{max-width:none}
+.etlhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.etlhead b{font-size:1.25rem}
+.etlmuted{color:var(--muted);font-size:.88rem}
+.etlin{width:100%;min-height:150px;font:500 .82rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:12px;resize:vertical;outline:0}
+.etlin:focus{border-color:var(--blue)}
+.etlpos{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 8px}
+.etlpos span{background:var(--surface);color:var(--muted);font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:999px}
+.etlpos span.on{background:var(--blue);color:#fff}
+.etlsec{background:var(--surface);border-radius:18px;padding:16px;margin-top:12px;border-left:4px solid #8e8e93}
+.etlsec.bz{border-left-color:#b86b2b}.etlsec.sv{border-left-color:#8e9aaf}.etlsec.gd{border-left-color:#e0b020}
+.etlsec h3{margin:0 0 4px;font-size:1.1rem}
+.etlsec p{margin:0 0 10px;color:var(--muted);font-size:.92rem}
+.etltbl{overflow-x:auto;margin:6px 0 10px;border-radius:12px;background:var(--soft)}
+.etltbl table{border-collapse:collapse;width:100%;font-size:.8rem}
+.etltbl th,.etltbl td{padding:6px 8px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.etltbl th{color:var(--muted);font-weight:600}
+.etlrej{font-size:.85rem;color:#ff453a;margin:8px 0;line-height:1.4}
+.etlkpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.etlkpi div{background:var(--soft);border-radius:12px;padding:10px}
+.etlkpi span{display:block;font-size:.75rem;color:var(--muted)}
+.etlkpi b{font-size:1rem;color:var(--blue)}
+@media(max-width:480px){.etlkpi{grid-template-columns:1fr}}
+
+/* ---------- Visor de CSV ---------- */
+#t7 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t7 .mini-card{margin-bottom:24px}}
+.cvkpi{margin:14px 0}
+.cvh{margin:22px 0 6px;font-size:1.1rem}
+.cvsel{width:auto;min-width:130px;padding:8px 10px;font-size:.9rem;margin-left:6px}
+.cvchart{background:var(--surface);border-radius:16px;padding:14px;overflow-x:auto}
+.cvtitle{margin:0 0 8px;font-size:.9rem;color:var(--muted)}
+.cvsvg{width:100%;height:auto;display:block;min-width:300px}
+.cvlab{font-size:12px;fill:var(--text)}
+.cvval{font-size:12px;fill:var(--muted)}
+.cvbar{fill:var(--blue)}
+
+/* Vistas de la academia: que los controles no queden bajo WhatsApp ni el asistente */
+#cato .cres,#cato .cur{margin-bottom:96px}
+@media(min-width:760px){#cato .cres,#cato .cur{margin-bottom:24px}}
+
+/* ---------- Mantenimiento predictivo ---------- */
+#t8 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t8 .mini-card{margin-bottom:24px}}
+.pmcanvas{width:100%;height:150px;display:block;background:var(--surface);border-radius:16px}
+.pmgrid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.pmgrid{grid-template-columns:1fr 1fr}}
+.pmrow{display:grid;grid-template-columns:1fr 1.4fr auto;gap:10px;align-items:center;font-size:.9rem;padding:6px 0}
+.pmbar{display:block;height:10px;background:var(--surface);border-radius:8px;overflow:hidden}
+.pmbar i{display:block;height:100%;background:linear-gradient(90deg,#0a84ff,#30d158);border-radius:8px;transition:width .4s}
+.pmres{margin:16px 0;background:var(--surface);border-radius:16px;padding:14px 16px}
+.pmres b{font-size:1.05rem}.pmres p{margin:6px 0 0;color:var(--muted);font-size:.92rem;line-height:1.4}
+.pmok{color:#30d158!important;font-weight:600}.pmmiss{color:#ff9f0a!important;font-weight:600}
+.pmsev{color:var(--muted);font-size:.88rem;margin:10px 0}
+.pmdiag{background:#30d15833;font-weight:700}
+
+/* ---------- Visión por computador ---------- */
+#t9 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t9 .mini-card{margin-bottom:24px}}
+.vsimg{display:flex;justify-content:center;background:var(--surface);border-radius:16px;padding:14px}
+#vsCanvas{image-rendering:pixelated;border-radius:10px;display:block}
+
+/* ---------- Selector de herramientas: ordenado en una cuadrícula ---------- */
+.tsel{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:6px;max-width:100%;padding:6px;border-radius:16px;margin:0 auto 22px}
+.tsel button{white-space:nowrap;font-size:.84rem;padding:9px 8px;border-radius:12px;min-width:0}
+@media(min-width:900px){.tsel{grid-template-columns:repeat(5,1fr)}}
+
+/* ---------- Dashboard de producción ---------- */
+#t10 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t10 .mini-card{margin-bottom:24px}}
+#pdOut .etltbl{margin-bottom:4px}
+.cvchart{background:var(--surface);border-radius:16px;padding:14px;overflow-x:auto}
+
+/* ---------- Asistente de fichas técnicas ---------- */
+#t11 .mini-card{margin-bottom:96px}
+@media(min-width:760px){#t11 .mini-card{margin-bottom:24px}}
+.faIn{width:100%;font:inherit;font-size:1.05rem;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);outline:0}
+.faIn:focus{border-color:var(--blue);box-shadow:0 0 0 4px #0071e333}
+.faOut{margin-top:14px;display:grid;gap:10px}
+.fares{background:var(--surface);border-radius:16px;padding:14px 16px;border-left:4px solid var(--line)}
+.fares.top{border-left-color:var(--blue)}
+.farel{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.fares p{margin:0;line-height:1.5}
+
+.fares{text-align:left}
+.ftitle{display:block;font-size:1.02rem;margin-bottom:2px}
+.frel{display:block;color:var(--muted);font-size:.8rem;margin-bottom:8px}
+
+/* ---------- Subpestañas de Proyectos ---------- */
+.hubnav{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;max-width:100%;margin:0 auto 22px;background:var(--soft);border-radius:999px;padding:5px}
+.hubnav button{background:none;border:0;color:var(--muted);font:inherit;font-size:.92rem;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.2s}
+.hubnav button:hover{color:var(--text)}
+.hubnav button.on{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 2px 8px #0001}
+@media(max-width:480px){.hubnav{gap:2px;padding:4px}.hubnav button{font-size:.8rem;padding:8px 10px}}
+/* Botones de herramienta dentro de las tarjetas: mismo aspecto que los enlaces */
+button.repo{background:none;border:0;padding:0;font:inherit;font-size:.95rem;color:var(--blue);text-align:left;cursor:pointer;margin-top:14px;display:block;font-weight:600}
+button.repo:hover{text-decoration:underline}
+.pbody .repo+.repo{margin-top:6px}

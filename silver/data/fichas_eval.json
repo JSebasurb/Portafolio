@@ -1,0 +1,76 @@
+{
+ "preguntas": [
+  {
+   "q": "¿Cómo se designa una rosca métrica M8?",
+   "ficha": "rosca-metrica"
+  },
+  {
+   "q": "¿Qué significa 1/4-20 UNC?",
+   "ficha": "unc-unf"
+  },
+  {
+   "q": "Cuántos hilos por pulgada tiene una rosca UNF",
+   "ficha": "unc-unf"
+  },
+  {
+   "q": "¿Cuándo conviene una rosca fina?",
+   "ficha": "gruesa-vs-fina"
+  },
+  {
+   "q": "cabeza hexagonal con llave de boca",
+   "ficha": "cabeza-hex"
+  },
+  {
+   "q": "tornillo con hueco hexagonal para llave allen",
+   "ficha": "cabeza-allen"
+  },
+  {
+   "q": "cabeza que queda al ras de la superficie",
+   "ficha": "cabeza-avellanada"
+  },
+  {
+   "q": "resistencia del grado 10.9 en MPa",
+   "ficha": "grados-acero"
+  },
+  {
+   "q": "acero inoxidable para ambiente marino con sal",
+   "ficha": "inox-304-316"
+  },
+  {
+   "q": "diferencia entre zincado y galvanizado",
+   "ficha": "zincado-galvanizado"
+  },
+  {
+   "q": "aluminio con acero inoxidable se corroe",
+   "ficha": "corrosion-galvanica"
+  },
+  {
+   "q": "qué broca usar para hacer rosca interna",
+   "ficha": "broca-roscar"
+  },
+  {
+   "q": "cuánto torque aplicar al apretar",
+   "ficha": "torque-apriete"
+  },
+  {
+   "q": "clase 6H de la tuerca",
+   "ficha": "clase-rosca"
+  },
+  {
+   "q": "evitar que el tornillo se afloje por vibración",
+   "ficha": "anti-aflojamiento"
+  },
+  {
+   "q": "rosca con hilos cruzados por mala alineación",
+   "ficha": "defectos-rosca"
+  },
+  {
+   "q": "el tornillo tiene una grieta en la cabeza",
+   "ficha": "grieta-rajado"
+  },
+  {
+   "q": "fragilización por hidrógeno",
+   "ficha": "grieta-rajado"
+  }
+ ]
+}

@@ -6,7 +6,7 @@
       "category": "Datos",
       "year": "2026",
       "emoji": "🔄",
-      "thumbnail": "",
+      "thumbnail": "etl-pipeline.webp",
       "link": "",
       "link_label": "Ver proyecto",
       "description": "Extracción, transformación y carga con Python, n8n y APIs REST. Eliminó el 100% de la digitación manual y dejó datos estandarizados para análisis ejecutivo.",
@@ -33,14 +33,15 @@
           "solution": "An ETL architecture using Python, n8n and REST API calls that consolidates centralized databases.",
           "result": "100% of manual data entry was eliminated, with complete and standardized data for executive analysis."
         }
-      }
+      },
+      "tool": "t6"
     },
     {
       "title": "ETL epidemiológico SIVIGILA 2018–2022",
       "category": "Datos",
       "year": "2026",
       "emoji": "🦟",
-      "thumbnail": "",
+      "thumbnail": "etl-pipeline.webp",
       "link": "",
       "link_label": "Ver proyecto",
       "description": "Proceso ETL sobre reportes del Instituto Nacional de Salud (dengue, IRAG, tuberculosis) con arquitectura medallón y dashboard HTML.",
@@ -57,7 +58,8 @@
         "description": "ETL over National Institute of Health reports (dengue, SARI, tuberculosis) with medallion architecture and an HTML dashboard.",
         "link_label": "View project",
         "category": "Data"
-      }
+      },
+      "tool": "t6"
     },
     {
       "title": "Laboratorio ETL Kaismart Solutions",
@@ -80,7 +82,8 @@
         "description": "Integration of 5,000 MySQL sales with 50,000 logistics events in Excel: EDA, medallion, 10 business questions and scheduled runs.",
         "link_label": "View project",
         "category": "Data"
-      }
+      },
+      "tool": "t6"
     },
     {
       "title": "Chatbot con IA y flujo en n8n",
@@ -150,14 +153,15 @@
         "description": "Industrial sensors and instrumentation with real-time ingestion, automatic validation of critical variables and control alerts.",
         "link_label": "View project",
         "category": "Industrial"
-      }
+      },
+      "tool": "t10"
     },
     {
       "title": "Taller 3D: llaveros y estuches personalizados",
       "category": "Taller 3D",
       "year": "2026",
       "emoji": "🧊",
-      "thumbnail": "",
+      "thumbnail": "taller-3d-cotizador.webp",
       "link": "",
       "link_label": "Ver proyecto",
       "description": "Estampados en aluminio y vidrio, impresión 3D y diseñador de productos conectado a WhatsApp.",
@@ -172,12 +176,13 @@
         "description": "Prints on aluminum and glass, 3D printing and a product designer connected to WhatsApp.",
         "link_label": "View project",
         "category": "3D Workshop"
-      }
+      },
+      "tool": "t5"
     },
     {
       "id": "akazu",
       "title": "Canal de YouTube Akazu IA",
-      "category": "Contenido IA",
+      "category": "IA",
       "year": "2026",
       "emoji": "🎬",
       "thumbnail": "",
@@ -192,10 +197,203 @@
       "visible": true,
       "en": {
         "title": "Akazu IA YouTube channel",
-        "category": "AI content",
+        "category": "AI",
         "link_label": "View channel on YouTube",
         "description": "An artificial intelligence avatar that turns trends, dances, viral audios and memes into short videos for social media."
       }
+    },
+    {
+      "id": "calc-roscas",
+      "title": "Calculadora de roscas",
+      "category": "Industrial",
+      "year": "2026",
+      "emoji": "📐",
+      "thumbnail": "calc-roscas.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Ficha técnica de roscas métricas, UNC y UNF: diámetro, paso, diámetro menor y broca aproximada, con conversiones de paso y longitud.",
+      "tags": [
+        "Python",
+        "Ingeniería",
+        "Conversiones"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Thread calculator",
+        "category": "Industrial",
+        "description": "Technical spec sheet for metric, UNC and UNF threads: diameter, pitch, minor diameter and approximate drill size, with pitch and length conversions.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t4"
+    },
+    {
+      "id": "csv-viewer",
+      "title": "Visor de CSV",
+      "category": "Datos",
+      "year": "2026",
+      "emoji": "📊",
+      "thumbnail": "csv-viewer.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Carga un CSV y obtén estadísticas por columna y una gráfica por categoría. Todo se procesa en el navegador.",
+      "tags": [
+        "CSV",
+        "Estadística",
+        "Gráficas"
+      ],
+      "visible": true,
+      "en": {
+        "title": "CSV viewer",
+        "category": "Data",
+        "description": "Load a CSV and get per-column statistics and a chart by category. Everything runs in the browser.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t7"
+    },
+    {
+      "id": "mantenimiento",
+      "title": "Mantenimiento predictivo",
+      "category": "Datos",
+      "year": "2026",
+      "emoji": "🛠️",
+      "thumbnail": "mantenimiento.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Modelo que detecta fallas en rodamientos a partir de la vibración: características, regresión logística y demo con señales simuladas. Exactitud de 70 % en prueba.",
+      "tags": [
+        "Python",
+        "scikit-learn",
+        "Señales",
+        "ML"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Predictive maintenance",
+        "category": "Data",
+        "description": "Model that detects bearing faults from vibration: features, logistic regression and a demo with simulated signals. 70% test accuracy.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t8"
+    },
+    {
+      "id": "vision-tornillos",
+      "title": "Inspección visual de tornillos",
+      "category": "Visión",
+      "year": "2026",
+      "emoji": "🔍",
+      "thumbnail": "vision-tornillos.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Clasifica cabezas de tornillo sanas, rajadas o golpeadas con un descriptor físico y regresión logística. Demo con imágenes simuladas: 74 % de exactitud.",
+      "tags": [
+        "Visión por computador",
+        "Python",
+        "Clasificación"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Visual screw inspection",
+        "category": "Vision",
+        "description": "Classifies healthy, cracked or chipped screw heads with a physical descriptor and logistic regression. Demo with simulated images: 74% accuracy.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t9"
+    },
+    {
+      "id": "dashboard-produccion",
+      "title": "Dashboard de producción y calidad",
+      "category": "Industrial",
+      "year": "2026",
+      "emoji": "📈",
+      "thumbnail": "dashboard-produccion.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "OEE por máquina, Pareto de defectos y tendencia diaria a partir de un CSV de producción. Verificado contra un cálculo independiente.",
+      "tags": [
+        "OEE",
+        "Pareto",
+        "Dashboards"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Production and quality dashboard",
+        "category": "Industrial",
+        "description": "OEE by machine, defect Pareto and daily trend from a production CSV. Checked against an independent calculation.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t10"
+    },
+    {
+      "id": "fichas-tecnicas",
+      "title": "Asistente de fichas técnicas",
+      "category": "IA",
+      "year": "2026",
+      "emoji": "🧠",
+      "thumbnail": "fichas-tecnicas.webp",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Busca la respuesta en fichas técnicas de roscas y tornillos con TF-IDF. Muestra fragmentos de las fichas; no inventa texto. Recall@1 de 94 %.",
+      "tags": [
+        "TF-IDF",
+        "Búsqueda",
+        "NLP"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Technical sheet assistant",
+        "category": "AI",
+        "description": "Finds answers in thread and screw technical sheets with TF-IDF. Shows sheet excerpts; it does not invent text. Recall@1 of 94%.",
+        "link_label": "Open the tool"
+      },
+      "tool": "t11"
+    },
+    {
+      "id": "linea-produccion",
+      "title": "Línea de producción (juego)",
+      "category": "Juegos",
+      "year": "2026",
+      "emoji": "🏭",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Abrir la herramienta",
+      "description": "Simulación de una línea de cuatro estaciones: asigna operarios para evitar atascos. Un juego de planificación con reglas de derrota reales.",
+      "tags": [
+        "Simulación",
+        "Juego",
+        "Planificación"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Production line (game)",
+        "category": "Games",
+        "description": "Simulation of a four-station line: assign operators to avoid jams. A planning game with real loss rules.",
+        "link_label": "Play"
+      },
+      "go": "juegos"
+    },
+    {
+      "id": "academia-tornillos",
+      "title": "Academia de tornillería",
+      "category": "Educación",
+      "year": "2026",
+      "emoji": "🎓",
+      "thumbnail": "",
+      "link": "https://jsebasurb.github.io/Academy-tornillos/",
+      "link_label": "Abrir la academia en su sitio",
+      "description": "Preguntas por niveles, curiosidades y referencias de roscas, cabezas y puntas. Incluye la academia publicada en su propio sitio.",
+      "tags": [
+        "Educación",
+        "Quiz",
+        "Referencias"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Screw academy",
+        "category": "Education",
+        "description": "Leveled questions, curiosities and references on threads, heads and points. Includes the academy published on its own site.",
+        "link_label": "Open the academy site"
+      },
+      "go": "cato"
     },
     {
       "title": "Proyecto 8 (editar)",

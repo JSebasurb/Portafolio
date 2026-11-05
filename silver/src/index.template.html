@@ -34,16 +34,14 @@
   <span class="brand">Sebas · Datos &amp; 3D</span>
   <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs">
     <button class="on" data-t="perfil">Perfil</button>
-    <button data-t="proyectos">Proyectos</button>
+    <button data-t="hub">Proyectos</button>
     <button data-t="tienda">Tienda</button>
     <button data-t="imp3d">Impresión 3D</button>
     <button data-t="video">Audiovisual</button>
     <button data-t="juegos">Juegos</button>
-    <button data-t="cato">Apps creadas</button>
     <button data-t="auto">Automatización</button>
     <button data-t="ia">Contenido IA</button>
     <button data-t="ing">Ingeniería</button>
-    <button data-t="tools">Herramientas</button>
     <button data-t="blog">Blog</button>
     <button data-t="contacto">Contacto</button>
   </div><button class="tnav next" type="button" aria-label="Más pestañas" hidden>›</button></div>
@@ -185,7 +183,7 @@
 <section class="tab" id="tools">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
-  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button></div>
+  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button></div>
 
   <div class="tool on" id="t1">
     <div class="rd">
@@ -226,6 +224,126 @@
       <div class="f"><label>JSON DE ENTRADA</label><textarea id="jIn" spellcheck="false" placeholder='{"nombre":"Sebas","servicios":["3D","n8n","PLC"]}'></textarea></div>
       <div class="rd-bar"><button class="pill sm" id="jFmt">Formatear</button><button class="mini" id="jMin">Minificar</button><button class="mini" id="jCopy">Copiar resultado</button><b id="jErr"></b></div>
       <div class="f" style="margin-top:14px"><label>RESULTADO</label><textarea id="jOut" readonly spellcheck="false"></textarea></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t4">
+    <div class="mini-card">
+      <div class="seg tsel" style="margin:0 0 16px"><button class="on" data-th="metric">Métrico</button><button data-th="unc">UNC</button><button data-th="unf">UNF</button></div>
+      <div class="f"><label for="thSize">ROSCA</label><select id="thSize" class="thsel"></select></div>
+      <div class="rd-bar" style="margin:12px 0 4px"><b id="thName" class="thname"></b></div>
+      <dl class="specs" id="thInfo"></dl>
+      <small class="hint" style="margin-top:10px">Broca aproximada: úsala como guía. Para trabajo de precisión confirma con una tabla de brocas para roscar.</small>
+      <hr class="thsep">
+      <div class="f two"><div><label for="thMM">PASO (mm)</label><input id="thMM" inputmode="decimal" placeholder="1.25"></div><div><label for="thTPI">PASO (hilos por pulgada)</label><input id="thTPI" inputmode="decimal" placeholder="20"></div></div>
+      <p class="thout" id="thPitchOut"></p>
+      <div class="f"><label for="thLen">LONGITUD (mm)</label><input id="thLen" inputmode="decimal" value="25.4"></div>
+      <p class="thout" id="thLenOut"></p>
+    </div>
+  </div>
+
+  <div class="tool" id="t5">
+    <div class="mini-card">
+      <div class="f"><label for="qProd">PRODUCTO</label><select id="qProd" class="thsel"></select></div>
+      <div class="f two"><div><label for="qQty">CANTIDAD</label><input id="qQty" type="number" min="1" max="999" value="1" inputmode="numeric"></div>
+        <div id="qRushRow"><label class="chk" style="margin-top:26px"><input type="checkbox" id="qRush"><span>Entrega urgente</span></label></div></div>
+      <div class="qout" id="qOut"></div>
+      <div class="rd-bar" style="margin-top:18px"><button class="pill sm" id="qWa" type="button">Pedir cotización por WhatsApp</button></div>
+      <small class="hint" style="margin-top:12px">Precios de referencia de la tienda. El precio final se confirma por WhatsApp.</small>
+    </div>
+  </div>
+
+  <div class="tool" id="t6">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Pipeline ETL medallón</b><span class="etlmuted">Bronze → Silver → Gold</span></div>
+      <p class="etlmuted" style="margin:0 0 12px">Pega tu CSV o usa el ejemplo: incluye errores a propósito (duplicados, cantidades negativas, fechas inválidas, precios con punto de miles). Cada capa muestra qué limpió.</p>
+      <label class="etlmuted" for="etlIn" style="display:block;margin-bottom:6px;font-weight:600;letter-spacing:.02em;font-size:.8rem">CSV DE ENTRADA</label>
+      <textarea id="etlIn" class="etlin" spellcheck="false" aria-label="CSV de entrada"></textarea>
+      <div class="rd-bar" style="margin-top:10px"><button class="pill sm" id="etlRun" type="button">Ejecutar pipeline</button><button class="mini" id="etlReset" type="button">Usar ejemplo</button></div>
+      <div class="etlpos" id="etlPos"></div>
+      <div id="etlOut"></div>
+      <div class="rd-bar" style="margin-top:12px"><button class="pill sm" id="etlNext" type="button" hidden></button><small class="etlmuted" id="etlStep"></small></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t7">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Visor de CSV</b><span class="etlmuted">estadísticas y gráfica</span></div>
+      <p class="etlmuted" style="margin:0 0 12px">Carga un archivo o pega tu CSV. Todo se procesa en tu navegador: el archivo no sale de tu equipo.</p>
+      <textarea id="cvIn" class="etlin" spellcheck="false" aria-label="CSV de entrada"></textarea>
+      <div class="rd-bar" style="margin-top:10px"><button class="pill sm" id="cvRun" type="button">Analizar</button><label class="mini" for="cvFile">📂 Abrir CSV<input type="file" id="cvFile" accept=".csv,text/csv" hidden></label><button class="mini" id="cvSample" type="button">Usar ejemplo</button></div>
+      <div class="etlkpi cvkpi" id="cvKpi"></div>
+      <div id="cvStats"></div>
+      <div id="cvPrev"></div>
+      <h3 class="cvh">Gráfica</h3>
+      <div class="rd-bar" style="margin:8px 0 6px">
+        <label class="etlmuted">Categoría <select id="cvCat" class="thsel cvsel"></select></label>
+        <label class="etlmuted">Valor <select id="cvVal" class="thsel cvsel"></select></label>
+        <label class="etlmuted">Cálculo <select id="cvAgg" class="thsel cvsel"><option value="sum">Suma</option><option value="avg">Promedio</option><option value="count">Conteo</option></select></label>
+      </div>
+      <div id="cvChart" class="cvchart"></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t8">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Mantenimiento predictivo</b><span class="etlmuted">demo con señales simuladas</span></div>
+      <p class="etlmuted" style="margin:0 0 14px">Simula la vibración de un rodamiento, calcula sus características y un modelo de regresión logística diagnostica la condición. Los datos son simulados: sirve para mostrar el método, no para diagnosticar equipos reales.</p>
+      <div class="f two">
+        <div><label for="pmCond">CONDICIÓN REAL</label><select id="pmCond" class="thsel"><option value="sano">Sano</option><option value="interior">Pista interior</option><option value="exterior">Pista exterior</option><option value="bola">Bola</option></select></div>
+        <div><label for="pmSev">SEVERIDAD</label><select id="pmSev" class="thsel"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option></select></div>
+      </div>
+      <div class="rd-bar" style="margin:12px 0"><button class="pill sm" id="pmGen" type="button">Generar medición</button></div>
+      <canvas id="pmCanvas" class="pmcanvas" aria-label="Señal de vibración simulada"></canvas>
+      <div class="pmgrid">
+        <div><h3 class="cvh">Características</h3><dl class="specs" id="pmFeat"></dl></div>
+        <div><h3 class="cvh">Probabilidad por condición</h3><div id="pmProb"></div></div>
+      </div>
+      <div class="pmres" id="pmRes"></div>
+      <h3 class="cvh">Desempeño del modelo</h3>
+      <div id="pmMet"></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t9">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Inspección visual de tornillos</b><span class="etlmuted">demo con imágenes simuladas</span></div>
+      <p class="etlmuted" style="margin:0 0 14px">Genera la vista superior de una cabeza de tornillo, extrae su forma y su oscuridad junto al borde, y un modelo clasifica si está sana, rajada o golpeada. Las imágenes son simuladas: el método es real, pero el modelo necesita fotos de tus propios tornillos para usarse en producción.</p>
+      <div class="f"><label for="vsCond">CONDICIÓN REAL</label><select id="vsCond" class="thsel"><option value="sano">Sano</option><option value="rajado">Rajado</option><option value="golpeado">Cabeza golpeada</option></select></div>
+      <div class="rd-bar" style="margin:12px 0"><button class="pill sm" id="vsGen" type="button">Generar imagen</button></div>
+      <div class="vsimg"><canvas id="vsCanvas" aria-label="Imagen simulada de cabeza de tornillo" role="img"></canvas></div>
+      <div class="pmgrid">
+        <div><h3 class="cvh">Descriptor</h3><dl class="specs" id="vsFeat"></dl></div>
+        <div><h3 class="cvh">Probabilidad por condición</h3><div id="vsProb"></div></div>
+      </div>
+      <div class="pmres" id="vsRes"></div>
+      <h3 class="cvh">Desempeño del modelo</h3>
+      <div id="vsMet"></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t10">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Producción y calidad</b><span class="etlmuted">OEE, defectos y tendencia</span></div>
+      <p class="etlmuted" style="margin:0 0 12px">Datos de ejemplo de 30 días, 3 turnos y 3 máquinas. Puedes pegar o subir tu propio CSV con las columnas: <b>fecha, turno, maquina, piezas, rosca, cabeza, longitud, rebaba, ciclo_s, paro_min</b>.</p>
+      <textarea id="pdIn" class="etlin" spellcheck="false" aria-label="CSV de producción"></textarea>
+      <div class="rd-bar" style="margin-top:10px"><button class="pill sm" id="pdRun" type="button">Analizar</button><label class="mini" for="pdFile">📂 Subir CSV<input type="file" id="pdFile" accept=".csv,text/csv" hidden></label><button class="mini" id="pdSample" type="button">Datos de ejemplo</button></div>
+      <div id="pdOut" style="margin-top:16px"></div>
+    </div>
+  </div>
+
+  <div class="tool" id="t11">
+    <div class="mini-card etlcard">
+      <div class="etlhead"><b>Asistente de fichas técnicas</b><span class="etlmuted">búsqueda sobre fichas, sin inventar respuestas</span></div>
+      <p class="etlmuted" style="margin:0 0 12px">Escribe una pregunta sobre roscas, cabezas, materiales o apriete. La respuesta es el fragmento de la ficha más relevante; no se genera texto nuevo.</p>
+      <input id="faIn" type="text" class="faIn" placeholder="Ej. ¿qué significa M8 × 1,25?" aria-label="Pregunta sobre fichas técnicas" autocomplete="off">
+      <div class="rd-bar" style="margin:10px 0 4px">
+        <button class="chip" data-fa="¿Cómo se designa una rosca M8?" type="button">Rosca M8</button>
+        <button class="chip" data-fa="acero inoxidable para ambiente marino" type="button">Inox en el mar</button>
+        <button class="chip" data-fa="cómo evitar que se afloje por vibración" type="button">Anti-aflojamiento</button>
+        <button class="chip" data-fa="qué broca usar para hacer rosca interna" type="button">Broca</button>
+      </div>
+      <div id="faOut" class="faOut"></div>
     </div>
   </div>
 
@@ -278,6 +396,18 @@
 <script src="{{ROOT}}assets/js/games.js" defer></script>
 <script src="{{ROOT}}assets/js/cato.js" defer></script>
 <script src="{{ROOT}}assets/js/tools.js" defer></script>
+<script src="{{ROOT}}assets/js/threads.js" defer></script>
+<script>window.QUOTE={{QUOTE_JSON}};</script>
+<script src="{{ROOT}}assets/js/quote.js" defer></script>
+<script src="{{ROOT}}assets/js/etl.js" defer></script>
+<script src="{{ROOT}}assets/js/csvview.js" defer></script>
+<script>window.PMMODEL={{PM_JSON}};</script>
+<script src="{{ROOT}}assets/js/maint.js" defer></script>
+<script>window.VMODEL={{VM_JSON}};</script>
+<script src="{{ROOT}}assets/js/vision.js" defer></script>
+<script src="{{ROOT}}assets/js/prod.js" defer></script>
+<script>window.FICHAS={{FI_JSON}};</script>
+<script src="{{ROOT}}assets/js/fichas.js" defer></script>
 <script src="{{ROOT}}assets/js/projects.js" defer></script>
 <script src="{{ROOT}}assets/js/contact.js" defer></script>
 <script src="{{ROOT}}assets/js/chat.js" defer></script>

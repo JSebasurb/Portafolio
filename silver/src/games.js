@@ -1643,6 +1643,78 @@
     return G;
   };
 
+
+  /* ================= LÍNEA DE PRODUCCIÓN: asigna operarios para que la línea no se atasque ================= */
+  GAMES.line = function (E) {
+    var G = {}, ST = [{ n: 'Corte', t: 2.0 }, { n: 'Torneado', t: 3.2 }, { n: 'Roscado', t: 2.6 }, { n: 'Control', t: 1.6 }], CAP = 3, BOOST = 1.8;
+    var dur, left, el, inBuf, cur, prog, blockT, assign, strikes, good, bad, missed, arrT, queue, st = { flash: 0, fcol: '#fff' }, R, portrait, over;
+    G.resize = function () {
+      var W = E.w, H = E.h; portrait = H > W * 1.05;
+      R = ST.map(function (s, i) {
+        if (portrait) { var bh = Math.min(92, (H - 170) / 4 - 12); return { x: 16, y: 96 + i * (bh + 12), w: W - 32, h: bh }; }
+        var bw = (W - 32 - 12 * 3) / 4; return { x: 16 + i * (bw + 12), y: H * 0.34, w: bw, h: Math.min(190, H * 0.42) };
+      });
+    };
+    function ops() { return Math.min(4, 2 + Math.floor(el / 25)); }
+    function used() { return assign.filter(function (a) { return a; }).length; }
+    G.reset = function () {
+      G.resize(); dur = E.dur || 90; left = dur; el = 0; inBuf = [0, 0, 0, 0]; cur = [false, false, false, false]; prog = [0, 0, 0, 0];
+      blockT = [0, 0, 0, 0]; assign = [false, false, false, false]; strikes = 0; good = 0; bad = 0; missed = 0; arrT = 0; queue = [0, 0, 0, 0]; over = false; st.flash = 0; E.setScore(0);
+    };
+    function toggle(i) {
+      if (over) return;
+      if (assign[i]) { assign[i] = false; return; }
+      if (used() < ops()) { assign[i] = true; try { if (navigator.vibrate) navigator.vibrate(8); } catch (e) { } }
+    }
+    G.pointerDown = function (x, y) { for (var i = 0; i < 4; i++) if (inR(x, y, R[i])) { toggle(i); return; } };
+    G.keyDown = function (k) { var i = '1234'.indexOf(k); if (i > -1) toggle(i); };
+    G.update = function (dt) {
+      if (over) return;
+      el += dt; left -= dt; if (st.flash > 0) st.flash -= dt;
+      if (left <= 0) { left = 0; E.die(); return; }
+      /* llegadas a la primera estación: más frecuentes con el tiempo */
+      arrT -= dt;
+      if (arrT <= 0) { arrT = Math.max(1.4, 2.6 - el / 60); if (inBuf[0] < CAP) inBuf[0]++; else missed++; }
+      for (var i = 0; i < 4; i++) {
+        queue[i] += inBuf[i] * dt;
+        if (!cur[i] && inBuf[i] > 0) { inBuf[i]--; cur[i] = true; prog[i] = 0; }
+        if (!cur[i]) continue;
+        if (prog[i] < ST[i].t) { prog[i] += dt * (assign[i] ? BOOST : 1); if (prog[i] > ST[i].t) prog[i] = ST[i].t; continue; }
+        /* pieza terminada: pasa a la siguiente estación o sale a control de calidad */
+        if (i === 3) { cur[i] = false; if (Math.random() < 0.1) { bad++; } else { good++; E.setScore(good * 10); st.flash = 0.12; st.fcol = '#30d158'; } }
+        else if (inBuf[i + 1] < CAP) { inBuf[i + 1]++; cur[i] = false; }   /* el tiempo bloqueado acumulado se conserva */
+        else { blockT[i] += dt; if (blockT[i] >= 3) { strikes++; blockT[i] = 0; st.flash = 0.25; st.fcol = '#ff453a'; try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) { } if (strikes >= 3) { over = true; E.die(); return; } } }
+      }
+    };
+    G.draw = function () {
+      var c = E.ctx, w = E.w, h = E.h; mindBg(c, w, h, st.flash, st.fcol); timeBar(c, w, left, dur);
+      txt(c, T('Piezas buenas') + ': ' + good, 16, 46, 15, '#fff', 'left');
+      txt(c, T('Operarios') + ': ' + used() + '/' + ops(), 16, 68, 13, '#7de2ff', 'left', 0.95);
+      txt(c, T('Atascos') + ': ' + strikes + '/3', w - 16, 68, 13, strikes ? '#ff9f0a' : '#fff', 'right');
+      /* cinta y estaciones */
+      for (var i = 0; i < 4; i++) {
+        var r = R[i], blocked = blockT[i] > 0, busy = cur[i], on = assign[i];
+        c.save(); c.fillStyle = on ? 'rgba(48,209,88,.18)' : 'rgba(255,255,255,.08)'; c.strokeStyle = blocked ? '#ff453a' : on ? '#30d158' : 'rgba(255,255,255,.22)'; c.lineWidth = blocked ? 3 : 2;
+        rr(c, r.x, r.y, r.w, r.h, 18); c.fill(); c.stroke(); c.restore();
+        txt(c, T(ST[i].n), r.x + r.w / 2, r.y + 26, Math.min(18, r.w / 7), '#fff', 'center');
+        txt(c, ST[i].t.toFixed(1) + ' s' + (on ? ' · ×' + BOOST : ''), r.x + r.w / 2, r.y + 46, 12, on ? '#30d158' : '#c7cde8', 'center', 0.95);
+        /* cola de entrada: fichas */
+        for (var k = 0; k < CAP; k++) { var cx = r.x + 16 + k * 22, cy = r.y + r.h - 24; c.fillStyle = k < inBuf[i] ? '#ffcf6b' : 'rgba(255,255,255,.15)'; rr(c, cx, cy - 8, 16, 16, 4); c.fill(); }
+        /* pieza en proceso */
+        if (busy) { var p = prog[i] / ST[i].t, bw = r.w - 32, py = r.y + r.h - 44; c.fillStyle = 'rgba(255,255,255,.15)'; rr(c, r.x + 16, py, bw, 10, 5); c.fill(); c.fillStyle = blocked ? '#ff453a' : '#7de2ff'; rr(c, r.x + 16, py, Math.max(6, bw * p), 10, 5); c.fill(); }
+        if (on) txt(c, '👷', r.x + r.w - 22, r.y + 28, 18, '#fff', 'center');
+        if (blocked) txt(c, T('¡bloqueada!'), r.x + r.w - 16, r.y + 26, 12, '#ff9f9f', 'right');
+      }
+      /* conexiones entre estaciones */
+      c.strokeStyle = 'rgba(255,255,255,.25)'; c.lineWidth = 3;
+      for (var j = 0; j < 3; j++) { var a = R[j], b = R[j + 1]; c.beginPath(); if (portrait) { c.moveTo(a.x + a.w / 2, a.y + a.h); c.lineTo(b.x + b.w / 2, b.y); } else { c.moveTo(a.x + a.w, a.y + a.h / 2); c.lineTo(b.x, b.y + b.h / 2); } c.stroke(); }
+      txt(c, T('Toca una estación para asignar o quitar un operario.'), w / 2, h - 34, 13, '#fff', 'center', 0.75);
+      txt(c, T('3 atascos y se acaba la línea.'), w / 2, h - 16, 13, '#fff', 'center', 0.75);
+    };
+    G._dbg = function () { return { inBuf: inBuf.slice(), cur: cur.slice(), assign: assign.slice(), ops: ops(), strikes: strikes, good: good, bad: bad, missed: missed, left: left, blockT: blockT.slice(), queue: queue.slice() }; };
+    return G;
+  };
+
   /* ================= marco común: ventana de juego ================= */
   var ov = document.createElement('div'); ov.className = 'gm'; ov.hidden = true; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
   ov.innerHTML = '<div class="gm-in"><div class="gm-top"><button type="button" class="gm-b" data-a="x"></button><b class="gm-t"></b><span class="gm-s"></span><button type="button" class="gm-b" data-a="p"></button><button type="button" class="gm-b" data-a="m"></button></div><div class="gm-cv"><canvas></canvas><div class="gm-msg" hidden><b></b><p></p><button type="button" class="pill sm"></button></div></div></div>';

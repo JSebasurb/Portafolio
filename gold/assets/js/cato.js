@@ -9,7 +9,7 @@
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function $(s){return root.querySelector(s)}
   function $$(s){return [...root.querySelectorAll(s)]}
-  function view(id){$$('.cv').forEach(function(v){v.hidden=v.id!==id});var top=root.getBoundingClientRect().top+scrollY-64;window.scrollTo({top:Math.max(0,top),behavior:'auto'})}
+  function view(id){$$('.cv').forEach(function(v){v.hidden=v.id!==id});var top=Math.max(0,root.getBoundingClientRect().top+scrollY-64);var de=document.documentElement,prev=de.style.scrollBehavior;de.style.scrollBehavior='auto';window.scrollTo(0,top);de.style.scrollBehavior=prev}
   function renderStats(){
     $('#cStats').innerHTML='<span><b>'+state.xp+'</b> XP</span><span>'+esc(rank())+'</span><span>'+Object.keys(state.done).length+'/'+(BANK?BANK.q.length:0)+' '+T('completadas')+'</span>';
   }
@@ -81,7 +81,7 @@
     if(t.classList.contains('copt')){answer(+t.dataset.i);return}
     if(t.id==='cNext'){cur.i++;next();return}
     if(t.dataset.r){renderRef(t.dataset.r);return}
-    if(t.id==='cReset'){if(confirm(T('¿Borrar tu progreso de la academia?'))){state={xp:0,done:{},best:{},streak:0,lastDay:''};save();renderHome()}return}
+    if(t.id==='cReset'){if(confirm(T('¿Borrar tu progreso en Academia Tornillos?'))){state={xp:0,done:{},best:{},streak:0,lastDay:''};save();renderHome()}return}
   });
   function init(){
     fetch(window.CFG.root+'assets/apps/cato/bank.json').then(function(r){return r.json()}).then(function(b){

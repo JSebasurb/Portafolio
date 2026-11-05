@@ -1,7 +1,7 @@
 {
   "es": {
     "title": "Juegos.",
-    "sub": "Veinte juegos hechos por mí: arcade para el celular, ejercicios de agilidad mental y un reto de entrevista que termina con tu perfil. Tus récords se guardan en este dispositivo.",
+    "sub": "Veintiún juegos hechos por mí: arcade para el celular, ejercicios de agilidad mental y un reto de entrevista que termina con tu perfil. Tus récords se guardan en este dispositivo.",
     "play": "Jugar",
     "note": "Tip: en el computador también se juega con el teclado. Pulsa P para pausar y Esc para salir.",
     "cards": [
@@ -89,6 +89,15 @@
         "desc": "Un pequeño héroe de guantes blancos y ojos de pastel se enfrenta a Sir Torque, un tornillo gigante, malvado y muy exagerado. Dibujo animado de los años 30 con acuarela, grano de película vieja y música de swing. Esquiva tuercas y arandelas, y cuidado con el martillazo: tiene tres fases.",
         "hint": "Arrastra el dedo para moverte: disparas solo. Toca rápido para esquivar con un salto de invencibilidad. En teclado: flechas o WASD, y espacio para esquivar. Funciona mejor con sonido.",
         "image": "duelo-gran-jefe.webp"
+      },
+      {
+        "id": "line",
+        "emoji": "🏭",
+        "g1": "#5e5ce6",
+        "g2": "#30d158",
+        "title": "Línea de producción",
+        "desc": "Tu planta tiene cuatro estaciones: corte, torneado, roscado y control de calidad. Asigna operarios a las estaciones para que las piezas fluyan. Si una estación se bloquea 3 veces, se acaba la línea. Cada pieza buena suma 10 puntos.",
+        "hint": "Toca una estación para asignarle un operario o quitárselo. Al inicio tienes 2 operarios y llegan más con el tiempo. En teclado: teclas 1 a 4."
       },
       {
         "id": "interview",
@@ -195,7 +204,7 @@
   },
   "en": {
     "title": "Games.",
-    "sub": "Twenty games I made: mobile arcade games, mental agility exercises and an interview challenge that ends with your profile. Your high scores are saved on this device.",
+    "sub": "Twenty-one games I made: mobile arcade games, mental agility exercises and an interview challenge that ends with your profile. Your high scores are saved on this device.",
     "play": "Play",
     "note": "Tip: on a computer you can also play with the keyboard. Press P to pause and Esc to exit.",
     "cards": [
@@ -283,6 +292,15 @@
         "desc": "A little hero with white gloves and pie-cut eyes takes on Sir Torque, a giant, wicked and very over-the-top screw. 1930s cartoon style with watercolor, old-film grain and swing music. Dodge nuts and washers, and watch out for the hammer slam: there are three phases.",
         "hint": "Drag your finger to move: you shoot automatically. Tap quickly to dodge with an invincible dash. Keyboard: arrows or WASD, and space to dodge. Works best with sound on.",
         "image": "duelo-gran-jefe.webp"
+      },
+      {
+        "id": "line",
+        "emoji": "🏭",
+        "g1": "#5e5ce6",
+        "g2": "#30d158",
+        "title": "Production Line",
+        "desc": "Your plant has four stations: cutting, turning, threading and quality control. Assign operators to stations so parts keep flowing. If a station gets blocked 3 times, the line shuts down. Each good part is worth 10 points.",
+        "hint": "Tap a station to assign or remove an operator. You start with 2 operators and more arrive over time. Keyboard: keys 1 to 4."
       },
       {
         "id": "interview",

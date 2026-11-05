@@ -16,3 +16,18 @@
   });
   apply('all');
 })();
+
+/* Tarjetas de Portafolio → herramienta: abre Proyectos > Herramientas en la herramienta indicada */
+(function () {
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-tool]'); if (!b) return;
+    e.preventDefault();
+    show('tools');
+    setTimeout(function () {
+      var t = document.querySelector('#toolSel button[data-v="' + b.dataset.tool + '"]');
+      if (t) t.click();
+      var sec = document.getElementById('tools');
+      if (sec) window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - 60, behavior: 'smooth' });
+    }, 30);
+  });
+})();

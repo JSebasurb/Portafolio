@@ -11,7 +11,7 @@ LANGS = ("es", "en")
 GRADS = [("#ff9f0a", "#ff375f"), ("#5e5ce6", "#0a84ff"), ("#30d158", "#0a9d8f"), ("#bf5af2", "#ff2d92"), ("#48484a", "#1c1c1e"), ("#ff375f", "#bf5af2")]
 
 UI = {
-    "es": dict(cv="Descargar CV (PDF)", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
+    "es": dict(cv="Descargar CV (PDF)", try_tool="Abrir la herramienta ›", try_go="Ver ›", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
                s_proj="Proyectos destacados", s_edu="Educación", win="Logro:", impact="Impacto:", all_proj="Ver todos mis proyectos",
                work="Trabajemos juntos", wa="Escribir por WhatsApp", use_form="Usar el formulario ›",
                p_title="Mis proyectos.", p_sub="Datos, automatización, web e ingeniería. Toca una miniatura para abrir el proyecto.",
@@ -22,7 +22,7 @@ UI = {
                b_title="Blog.", b_sub="Notas cortas sobre datos y automatización.", faq="Preguntas frecuentes", faq_btn="Ver preguntas frecuentes",
                fab="Hola, quiero cotizar un servicio", job="Ingeniero de Datos Junior", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
                locale="es_CO", root=""),
-    "en": dict(cv="Download CV (PDF)", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
+    "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
                s_proj="Featured projects", s_edu="Education", win="Achievement:", impact="Impact:", all_proj="See all my projects",
                work="Let's work together", wa="Message on WhatsApp", use_form="Use the form ›",
                p_title="My projects.", p_sub="Data, automation, web and engineering. Tap a thumbnail to open the project.",
@@ -151,9 +151,14 @@ def render_projects(pj, L, u, root):
             btn = f'<a class="repo" href="{e(link)}" target="_blank" rel="noopener">{e(x.get("link_label") or u["view"])} ›</a>'
         else:
             th, btn = f'<div class="pthumb">{media}</div>', ""
+        extra = ""
+        if x.get("tool"):
+            extra += f'<button class="repo" type="button" data-tool="{e(x["tool"])}">{e(u["try_tool"])}</button>'
+        if x.get("go"):
+            extra += f'<button class="repo" type="button" data-go="{e(x["go"])}">{e(u["try_go"])}</button>'
         meta = " · ".join(v for v in (x["category"], x.get("year", "")) if v)
         tags = "".join(f"<span>{e(t)}</span>" for t in x.get("tags", []))
-        cards.append(f'<article class="pcard rv" data-cat="{e(x["category"])}">{th}<div class="pbody"><div class="meta">{e(meta)}</div><h3>{e(x["title"])}</h3><p>{e(x["description"])}</p><div class="tag-row">{tags}</div>{render_case(x.get("case"), u)}{btn}</div></article>')
+        cards.append(f'<article class="pcard rv" data-cat="{e(x["category"])}">{th}<div class="pbody"><div class="meta">{e(meta)}</div><h3>{e(x["title"])}</h3><p>{e(x["description"])}</p><div class="tag-row">{tags}</div>{render_case(x.get("case"), u)}{btn}{extra}</div></article>')
     return f'''<section class="tab" id="proyectos">
   <h2>{e(u["p_title"])}</h2>
   <p class="sub">{e(u["p_sub"])}</p>
@@ -285,14 +290,14 @@ def render_games(d, root=""):
 
 
 CATO_UI = {
-    "es": dict(CATO_TITLE="Apps creadas · Academia CATO", CATO_SUB="Una academia de tornillería: aprende roscas, medidas, cabezas y puntas con preguntas por niveles, curiosidades y referencias para consultar. Tu progreso se guarda en este dispositivo.",
+    "es": dict(CATO_TITLE="Apps creadas · Academia Tornillos", CATO_SUB="Una academia de tornillería: aprende roscas, medidas, cabezas y puntas con preguntas por niveles, curiosidades y referencias para consultar. Tu progreso se guarda en este dispositivo.",
                CATO_LVL_T="Por niveles", CATO_LVL_S="Del 1 al 15, de lo básico a lo experto. Cada nivel tiene 10 preguntas al azar.", CATO_CAT_T="Por tema", CATO_CAT_S="Elige un tema y practica solo ese.",
                CATO_MIX_T="Repaso mixto", CATO_MIX_S="10 preguntas de todos los niveles.", CATO_CURI_T="Curiosidades", CATO_CURI_S="Datos y mitos de la tornillería.", CATO_REF_T="Referencias",
-               CATO_REF_S="Consulta códigos, abreviaturas y decodifica referencias.", CATO_RESET="Borrar mi progreso", CATO_BACK="Volver", CATO_NEXT="Siguiente ›", CATO_NEXT_TIP="Otra curiosidad ›", CATO_HOME="Volver a la academia", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Abrir la academia en su propio sitio"),
-    "en": dict(CATO_TITLE="Apps I built · CATO Academy", CATO_SUB="A fastener academy: learn threads, sizes, heads and points with leveled questions, curiosities and reference lookups. Your progress is saved on this device.",
+               CATO_REF_S="Consulta códigos, abreviaturas y decodifica referencias.", CATO_RESET="Borrar mi progreso", CATO_BACK="Volver", CATO_NEXT="Siguiente ›", CATO_NEXT_TIP="Otra curiosidad ›", CATO_HOME="Volver a la Academia Tornillos", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Abrir Academia Tornillos en su propio sitio"),
+    "en": dict(CATO_TITLE="Apps I built · Tornillos Academy", CATO_SUB="A fastener training hub: learn threads, sizes, heads and points with leveled questions, curiosities and reference lookups. Your progress is saved on this device.",
                CATO_LVL_T="By level", CATO_LVL_S="From 1 to 15, from basics to expert. Each level gives 10 random questions.", CATO_CAT_T="By topic", CATO_CAT_S="Pick a topic and practice only that.",
                CATO_MIX_T="Mixed review", CATO_MIX_S="10 questions from all levels.", CATO_CURI_T="Curiosities", CATO_CURI_S="Facts and myths about fasteners.", CATO_REF_T="References",
-               CATO_REF_S="Look up codes and abbreviations, and decode references.", CATO_RESET="Reset my progress", CATO_BACK="Back", CATO_NEXT="Next ›", CATO_NEXT_TIP="Another curiosity ›", CATO_HOME="Back to the academy", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Open the academy on its own site"),
+               CATO_REF_S="Look up codes and abbreviations, and decode references.", CATO_RESET="Reset my progress", CATO_BACK="Back", CATO_NEXT="Next ›", CATO_NEXT_TIP="Another curiosity ›", CATO_HOME="Back to Tornillos Academy", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Open Tornillos Academy on its own site"),
 }
 
 
@@ -333,6 +338,14 @@ def main():
     en_dict = json.loads((DATA / "i18n" / "en.json").read_text(encoding="utf-8"))
     pj, cat, faq, blog, p3d = jl("projects.json"), jl("catalog.json"), jl("faq.json"), jl("blog.json"), jl("print3d.json")
     vid, gms = jl("video.json"), jl("games.json")
+    quote_json = json.dumps(jl("quote.json"), ensure_ascii=False).replace("</", "<\\/")
+    pm_full = jl("pm_model.json")
+    pm_full.pop("parity", None)
+    pm_json = json.dumps(pm_full, ensure_ascii=False).replace("</", "<\\/")
+    vm_full = jl("vision_model.json")
+    vm_full.pop("parity", None)
+    vm_json = json.dumps(vm_full, ensure_ascii=False).replace("</", "<\\/")
+    fi_json = json.dumps(jl("fichas.json")["fichas"], ensure_ascii=False).replace("</", "<\\/")
     template = (SILVER / "src" / "index.template.html").read_text(encoding="utf-8")
     build_id = str(int(time.time()))
 
@@ -391,7 +404,7 @@ def main():
             "{{CONTACT_EMAIL}}": e(prof["email"]), "{{SITE_URL}}": site, "{{CANONICAL}}": page_url,
             "{{ROOT}}": root, "{{LANG}}": L, "{{OG_LOCALE}}": u["locale"],
             "{{ALT_URL}}": u["alt_url"], "{{ALT_CODE}}": u["alt_code"], "{{ALT_LABEL}}": u["alt_label"], "{{ALT_ARIA}}": e(u["alt_aria"], quote=True),
-            "{{FAB_MSG}}": quote(u["fab"]), "{{WA_NUMBER}}": num, "{{YEAR}}": str(datetime.date.today().year),
+            "{{FAB_MSG}}": quote(u["fab"]), "{{WA_NUMBER}}": num, "{{QUOTE_JSON}}": quote_json, "{{PM_JSON}}": pm_json, "{{VM_JSON}}": vm_json, "{{FI_JSON}}": fi_json, "{{YEAR}}": str(datetime.date.today().year),
         }
         for k, v in rep.items():
             html = html.replace(k, v)

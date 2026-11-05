@@ -1,0 +1,84 @@
+{
+ "fichas": [
+  {
+   "id": "rosca-metrica",
+   "titulo": "Rosca métrica",
+   "texto": "La rosca métrica (ISO) se designa con la letra M seguida del diámetro nominal en milímetros y el paso en milímetros, por ejemplo M8 × 1,25. El paso es la distancia entre dos crestas consecutivas. Cada diámetro tiene un paso estándar, que es el paso grueso; la rosca fina tiene un paso menor para el mismo diámetro."
+  },
+  {
+   "id": "unc-unf",
+   "titulo": "Roscas UNC y UNF",
+   "texto": "Las roscas UNC (gruesa) y UNF (fina) se designan en pulgadas con el número de hilos por pulgada, llamado TPI. Por ejemplo, 1/4-20 UNC tiene 20 hilos por pulgada. Una UNF del mismo diámetro tiene más hilos por pulgada, como 1/4-28 UNF."
+  },
+  {
+   "id": "gruesa-vs-fina",
+   "titulo": "Rosca gruesa o fina: cuál elegir",
+   "texto": "Más hilos no siempre significa mejor. La rosca fina da un ajuste más preciso y resiste mejor el aflojamiento por vibración, pero es más sensible a la suciedad, a los golpes y al cruce de hilos. La rosca gruesa monta más rápido y tolera mejor la suciedad y los montajes rápidos."
+  },
+  {
+   "id": "cabeza-hex",
+   "titulo": "Cabeza hexagonal",
+   "texto": "La cabeza hexagonal se aprieta con llave de boca o de vaso. Es la más común en pernos estructurales y de maquinaria, porque permite aplicar buen torque de apriete."
+  },
+  {
+   "id": "cabeza-allen",
+   "titulo": "Cabeza Allen (hueco hexagonal)",
+   "texto": "La cabeza de cilindro con hueco hexagonal, conocida como Allen, se aprieta con llave hexagonal y ocupa poco espacio. El hueco se puede dañar con torques altos si la llave no encaja bien."
+  },
+  {
+   "id": "cabeza-avellanada",
+   "titulo": "Cabeza avellanada o plana",
+   "texto": "La cabeza avellanada queda al ras de la superficie cuando se coloca en un avellanado, sin sobresalir. Se usa cuando la superficie debe quedar lisa."
+  },
+  {
+   "id": "grados-acero",
+   "titulo": "Grados de resistencia del acero",
+   "texto": "En el sistema métrico, el grado 8.8 tiene una resistencia a la tracción de unos 800 MPa y un límite elástico de 640 MPa. El grado 10.9 llega a unos 1000 MPa y 900 MPa, y el 12.9 a unos 1200 MPa y 1080 MPa. En pulgadas, el ASTM A307 es de baja resistencia, y el A325 y el A490 son de alta resistencia."
+  },
+  {
+   "id": "inox-304-316",
+   "titulo": "Acero inoxidable 304 y 316",
+   "texto": "El acero inoxidable 304 es el más común para uso general y resiste bien la corrosión en ambientes normales. El 316 incorpora molibdeno y resiste mejor los cloruros, por eso se usa en ambientes marinos, con sal o con productos químicos."
+  },
+  {
+   "id": "zincado-galvanizado",
+   "titulo": "Zincado y galvanizado",
+   "texto": "El zincado electrolítico da una capa delgada y brillante, para uso en interiores o con protección moderada. El galvanizado por inmersión en caliente da una capa más gruesa y mejor protección en exteriores."
+  },
+  {
+   "id": "corrosion-galvanica",
+   "titulo": "Corrosión galvánica",
+   "texto": "Al unir metales diferentes con humedad puede darse corrosión galvánica, por ejemplo acero inoxidable con aluminio. Conviene usar arandelas aislantes o un recubrimiento compatible con ambos metales."
+  },
+  {
+   "id": "broca-roscar",
+   "titulo": "Broca para roscar",
+   "texto": "Para hacer una rosca interna con machuelo, la broca debe ser un poco más pequeña que el diámetro mayor de la rosca. En métrico, una aproximación práctica es restar el paso al diámetro mayor. Para trabajo de precisión usa una tabla de brocas para roscar."
+  },
+  {
+   "id": "torque-apriete",
+   "titulo": "Torque de apriete",
+   "texto": "El torque de apriete depende del diámetro, del grado del tornillo, de la lubricación y del material. Un tornillo apretado en exceso puede estirarse o fallar, y uno flojo puede aflojarse con la vibración. Consulta la tabla del fabricante para el valor correcto."
+  },
+  {
+   "id": "clase-rosca",
+   "titulo": "Clases de tolerancia de rosca",
+   "texto": "En rosca métrica, la clase 6g para el tornillo externo y 6H para la tuerca interna son las de uso general. Indican la tolerancia del ajuste entre las dos piezas."
+  },
+  {
+   "id": "anti-aflojamiento",
+   "titulo": "Evitar que un tornillo se afloje",
+   "texto": "Para evitar que un tornillo se afloje con la vibración se pueden usar arandelas de seguridad, tuercas de nylon que generan torque de retención, adhesivo para roscas de resistencia media o una contratuerca."
+  },
+  {
+   "id": "defectos-rosca",
+   "titulo": "Defectos comunes en roscas",
+   "texto": "Defectos frecuentes en roscas: hilos dañados o cruzados por mala alineación al roscar, rebabas en la rosca, roscas incompletas o cónicas, y ajuste demasiado apretado por usar una clase de rosca equivocada."
+  },
+  {
+   "id": "grieta-rajado",
+   "titulo": "Grieta o rajadura en el tornillo",
+   "texto": "Una grieta en la cabeza o en el vástago suele deberse a sobrecarga, fatiga, fragilización por hidrógeno en aceros de alta resistencia o a un tratamiento térmico inadecuado. Un tornillo con grieta debe descartarse y no reutilizarse."
+  }
+ ]
+}

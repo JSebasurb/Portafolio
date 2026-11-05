@@ -1,0 +1,17 @@
+{
+  "_ayuda": "Precios de la tienda en COP. 'unit' = precio por unidad publicado en la página. 'tiers' = descuentos por cantidad (ejemplo, edítalos). 'urgent' = recargo por entrega urgente (ejemplo). Los productos con 'quote': true no tienen precio fijo y se cotizan por WhatsApp.",
+  "currency": "COP",
+  "urgent": 0.2,
+  "tiers": [
+    {"min": 1, "off": 0},
+    {"min": 5, "off": 0.05},
+    {"min": 10, "off": 0.10},
+    {"min": 20, "off": 0.15}
+  ],
+  "products": [
+    {"id": "key", "unit": 8000, "name": "Llavero estampado", "name_en": "Printed keychain"},
+    {"id": "alu", "unit": 35000, "name": "Estuche en aluminio", "name_en": "Aluminum case"},
+    {"id": "glass", "unit": 40000, "name": "Estuche en vidrio", "name_en": "Glass case"},
+    {"id": "3d", "unit": 0, "quote": true, "name": "Impresión 3D (a cotizar)", "name_en": "3D printing (quote)"}
+  ]
+}
