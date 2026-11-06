@@ -56,7 +56,7 @@ document.getElementById('goCv').addEventListener('click',function(){show('perfil
     document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('role','tab');b.setAttribute('aria-selected',b.dataset.t===t?'true':'false')});
     try{history.replaceState(null,'','#'+t)}catch(e){}
     var names={perfil:'Perfil',proyectos:'Proyectos',tienda:'Tienda',imp3d:'Impresión 3D',video:'Audiovisual',juegos:'Juegos',auto:'Automatización',ia:'Contenido IA',ing:'Ingeniería',tools:'Herramientas',blog:'Blog',contacto:'Contacto'};
-    document.title=(names[t]?T(names[t])+' · ':'')+'Juan Sebastián Sánchez';
+    document.title=(names[t]?T(names[t])+' · ':'')+'JSebasurb';
     var lb=document.getElementById('langBtn');if(lb)lb.href=lb.getAttribute('data-base')+'#'+t;
   };
   function fromHash(){var id=location.hash.slice(1),el=id&&document.getElementById(id);if(el&&el.classList.contains('tab'))show(id)}
@@ -151,4 +151,51 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   /* enlace directo (#cato, #tools, #proyectos): aplicar la vista ahora que la capa ya existe */
   var k=location.hash.slice(1);
   if(HUB[k]) show(k);
+})();
+
+/* ---------- Mensaje introductorio por área (titular, etiqueta y descripción del inicio) ---------- */
+(function(){
+  var MSG={
+    perfil:{es:['Ingeniería de datos · Automatización','Hola, soy ','Sebas.','Ingeniero automático y de datos. Aquí encuentras mi perfil, mi experiencia y mi CV.'],
+            en:['Data engineering · Automation','Hi, I’m ','Sebas.','Automation and data engineer. Here you’ll find my profile, my experience and my CV.']},
+    proyectos:{es:['Portafolio','Lo que he ','construido.','Proyectos de datos, automatización y producción, con sus herramientas listas para probar.'],
+            en:['Portfolio','What I have ','built.','Data, automation and production projects, with their tools ready to try.']},
+    cato:{es:['Academia','Aprende ','tornillería.','Preguntas por niveles, curiosidades y referencias de roscas, cabezas y puntas.'],
+            en:['Academy','Learn ','about fasteners.','Leveled questions, curiosities and references on threads, heads and points.']},
+    tools:{es:['Herramientas','Pruébalas ','aquí.','Calculadoras, ETL, mantenimiento predictivo, visión y producción. Todo corre en tu navegador.'],
+            en:['Tools','Try them ','here.','Calculators, ETL, predictive maintenance, vision and production. Everything runs in your browser.']},
+    tienda:{es:['Estampados · Taller 3D','Hazlo ','tuyo.','Llaveros y estuches personalizados. Diseña el tuyo y pídelo por WhatsApp.'],
+            en:['Prints · 3D workshop','Make it ','yours.','Custom keychains and cases. Design yours and order it on WhatsApp.']},
+    imp3d:{es:['Impresión 3D','Piezas ','en 3D.','Prototipos, repuestos y piezas funcionales en PLA, PETG y más.'],
+            en:['3D printing','Parts ','in 3D.','Prototypes, spare parts and functional pieces in PLA, PETG and more.']},
+    video:{es:['Audiovisual · IA','Mira mi ','contenido.','Videos, shorts y avatares con IA. Conoce mi canal Akazu IA.'],
+            en:['Audiovisual · AI','Watch my ','content.','AI videos, shorts and avatars. Check out my Akazu AI channel.']},
+    juegos:{es:['Arcade · Agilidad mental','Juega ','y mejora.','Juegos para el celular y ejercicios de agilidad mental tipo entrevista.'],
+            en:['Arcade · Mental agility','Play ','and improve.','Mobile games and interview-style mental agility exercises.']},
+    auto:{es:['Automatización · n8n','Tu negocio, ','en piloto automático.','Conecta tus herramientas con flujos, APIs y chatbots 24/7.'],
+            en:['Automation · n8n','Your business, ','on autopilot.','Connect your tools with workflows, APIs and 24/7 chatbots.']},
+    ia:{es:['Contenido IA','Contenido que ','vende.','Imágenes, videos y textos con inteligencia artificial para tu marca.'],
+            en:['AI content','Content that ','sells.','Images, videos and texts made with artificial intelligence for your brand.']},
+    ing:{es:['Ingeniería','Ingeniería ','que funciona.','Automatización industrial, PLC, programación y asesoría técnica.'],
+            en:['Engineering','Engineering ','that works.','Industrial automation, PLC, programming and technical consulting.']},
+    blog:{es:['Blog técnico','Notas ','de ingeniería.','Ideas cortas sobre datos, automatización y producción.'],
+            en:['Technical blog','Engineering ','notes.','Short ideas on data, automation and production.']},
+    contacto:{es:['Contacto','Hablemos de ','tu proyecto.','Cuéntame tu idea y te respondo con una cotización.'],
+            en:['Contact','Let’s talk about ','your project.','Tell me your idea and I’ll reply with a quote.']}
+  };
+  function setHero(key){
+    var m=MSG[key]; if(!m) return;
+    var l=(window.LANG==='en')?'en':'es', v=m[l], hero=document.querySelector('.hero'); if(!hero) return;
+    var eb=hero.querySelector('.eyebrow'), h1=hero.querySelector('h1'), lead=hero.querySelector('.lead');
+    if(eb) eb.textContent=v[0];
+    if(h1) h1.innerHTML=v[1].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'<span>'+v[2].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>';
+    if(lead) lead.textContent=v[3];
+  }
+  var base=show;
+  show=function(t){
+    base(t);
+    setHero(t==='hub'?'proyectos':t);
+  };
+  var k=location.hash.slice(1);
+  setHero(k?(k==='hub'?'proyectos':k):'perfil');
 })();

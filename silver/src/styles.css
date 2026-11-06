@@ -595,3 +595,9 @@ button.repo:hover{text-decoration:underline}
 .pbody .repo+.repo{margin-top:6px}
 /* Diagrama de flujo en celular: los nodos se acomodan en filas en lugar de desplazarse */
 @media(max-width:480px){.flow{flex-wrap:wrap;gap:8px;overflow:visible}.flow .wire{display:none}.node{min-width:96px;padding:12px 10px}}
+
+/* Marca: logo + nombre */
+.brand{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);font-weight:700;font-size:1rem;white-space:nowrap}
+.brand img{border-radius:8px;display:block}
+/* Barra superior en celular: marca arriba, pestañas en una segunda fila a todo el ancho */
+@media(max-width:640px){.top>div{flex-wrap:wrap;height:auto;padding:8px 12px;row-gap:6px}.top .tabsw{order:3;flex:0 0 100%;width:100%;min-width:0}.top .tabs{width:100%;overflow-x:auto;scrollbar-width:none}.top .tabs::-webkit-scrollbar{display:none}.top .brand{order:0;margin-right:auto}.top>div>.lang,.top>div>.tbtn{order:1}.top .tnav{display:none}}

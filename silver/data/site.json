@@ -1,5 +1,5 @@
 {
-  "site_title": "Juan Sebastián Sánchez | Ingeniero de Datos, Automatización y Taller 3D",
+  "site_title": "JSebasurb | Ingeniero de Datos, Automatización y Taller 3D",
   "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: ingeniería de datos (ETL, AWS, ML), automatización con n8n, contenido con IA, impresión 3D y productos personalizados.",
   "whatsapp_number": "573013892534",
   "nota": "Número tomado de tu CV. Formato: código de país + número, sin + ni espacios.",
@@ -9,11 +9,11 @@
   "nota_endpoints": "form_endpoint: URL del webhook (n8n, Google Apps Script o Formspree) que recibe el formulario. Vacío = el formulario abre WhatsApp con los datos. chat_endpoint: URL del webhook de n8n que responde con IA. Vacío = el asistente usa respuestas locales.",
   "i18n": {
     "es": {
-      "site_title": "Juan Sebastián Sánchez | Ingeniero de Datos, Automatización y Taller 3D",
+      "site_title": "JSebasurb | Ingeniero de Datos, Automatización y Taller 3D",
       "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: ingeniería de datos (ETL, AWS, ML), automatización con n8n, contenido con IA, impresión 3D y productos personalizados."
     },
     "en": {
-      "site_title": "Juan Sebastián Sánchez | Data Engineer, Automation and 3D Workshop",
+      "site_title": "JSebasurb | Data Engineer, Automation and 3D Workshop",
       "site_description": "Portfolio of Juan Sebastián Sánchez Urbano: data engineering (ETL, AWS, ML), n8n automation, AI content, 3D printing and custom products."
     }
   }
