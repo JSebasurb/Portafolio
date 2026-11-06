@@ -222,9 +222,19 @@
         "title": "Thread calculator",
         "category": "Industrial",
         "description": "Technical spec sheet for metric, UNC and UNF threads: diameter, pitch, minor diameter and approximate drill size, with pitch and length conversions.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Look up thread diameter, pitch and drill size without searching tables.",
+          "solution": "Spec sheet for metric, UNC and UNF threads, with pitch and length conversions.",
+          "result": "Values checked against known references: M8 = 1.25 mm; 1/4-20 = 20 TPI. The drill size is approximate."
+        }
       },
-      "tool": "t4"
+      "tool": "t4",
+      "case": {
+        "problem": "Consultar diámetro, paso y broca de una rosca sin buscar tablas.",
+        "solution": "Ficha técnica para roscas métricas, UNC y UNF, con conversiones de paso y longitud.",
+        "result": "Valores verificados con referencias conocidas: M8 = 1,25 mm; 1/4-20 = 20 TPI. La broca es aproximada."
+      }
     },
     {
       "id": "csv-viewer",
@@ -246,9 +256,19 @@
         "title": "CSV viewer",
         "category": "Data",
         "description": "Load a CSV and get per-column statistics and a chart by category. Everything runs in the browser.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Quickly review a data file without installing software.",
+          "solution": "Per-column statistics and a chart by category, processed in the browser.",
+          "result": "Tested with sample data and CSVs with empty cells and mixed columns. No file leaves the device."
+        }
       },
-      "tool": "t7"
+      "tool": "t7",
+      "case": {
+        "problem": "Revisar rápido un archivo de datos sin instalar software.",
+        "solution": "Estadísticas por columna y gráfica por categoría, procesadas en el navegador.",
+        "result": "Probado con datos de ejemplo y con CSV con vacíos y columnas mixtas. Ningún archivo sale del equipo."
+      }
     },
     {
       "id": "mantenimiento",
@@ -271,9 +291,19 @@
         "title": "Predictive maintenance",
         "category": "Data",
         "description": "Model that detects bearing faults from vibration: features, logistic regression and a demo with simulated signals. 70% test accuracy.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Detect bearing faults before they stop the machine, without relying on manual inspection.",
+          "solution": "Vibration features (RMS, kurtosis and envelope at the fault frequencies) with logistic regression and 5-fold cross-validation.",
+          "result": "74 ± 3% cross-validation with simulated signals: 100% on severe faults and 24% on mild ones. Still needs validation on real equipment data."
+        }
       },
-      "tool": "t8"
+      "tool": "t8",
+      "case": {
+        "problem": "Detectar fallas de rodamientos antes de que detengan la máquina, sin depender de la inspección manual.",
+        "solution": "Características de vibración (RMS, curtosis y envolvente en las frecuencias de falla) con regresión logística y validación cruzada de 5 pliegues.",
+        "result": "74 ± 3 % de validación cruzada con señales simuladas: 100 % en fallas severas y 24 % en leves. Falta validarlo con datos de un equipo real."
+      }
     },
     {
       "id": "vision-tornillos",
@@ -295,9 +325,19 @@
         "title": "Visual screw inspection",
         "category": "Vision",
         "description": "Classifies healthy, cracked or chipped screw heads with a physical descriptor and logistic regression. Demo with simulated images: 74% accuracy.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Separate healthy, cracked and chipped screw heads during inspection.",
+          "solution": "Physical descriptor (edge shape, minimum radius and darkness next to the edge) with logistic regression.",
+          "result": "74% accuracy with simulated images: chipped heads 94%, thin cracks 66%. Real screw photos are still needed."
+        }
       },
-      "tool": "t9"
+      "tool": "t9",
+      "case": {
+        "problem": "Separar cabezas de tornillo sanas, rajadas o golpeadas durante la inspección.",
+        "solution": "Descriptor físico (forma del borde, radio mínimo y oscuridad junto al borde) con regresión logística.",
+        "result": "74 % de exactitud con imágenes simuladas: cabezas golpeadas 94 %, grietas finas 66 %. Hacen falta fotos reales de tornillos."
+      }
     },
     {
       "id": "dashboard-produccion",
@@ -319,9 +359,19 @@
         "title": "Production and quality dashboard",
         "category": "Industrial",
         "description": "OEE by machine, defect Pareto and daily trend from a production CSV. Checked against an independent calculation.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Find where the line loses capacity: availability, performance and quality.",
+          "solution": "OEE by machine, defect Pareto and daily trend from a production CSV.",
+          "result": "Indicators checked against an independent calculation (total OEE of 70.8% on the sample data)."
+        }
       },
-      "tool": "t10"
+      "tool": "t10",
+      "case": {
+        "problem": "Saber dónde se pierde capacidad en la línea: disponibilidad, rendimiento y calidad.",
+        "solution": "OEE por máquina, Pareto de defectos y tendencia diaria a partir de un CSV de producción.",
+        "result": "Indicadores verificados contra un cálculo independiente (OEE total de 70,8 % en los datos de ejemplo)."
+      }
     },
     {
       "id": "fichas-tecnicas",
@@ -343,9 +393,19 @@
         "title": "Technical sheet assistant",
         "category": "AI",
         "description": "Finds answers in thread and screw technical sheets with TF-IDF. Shows sheet excerpts; it does not invent text. Recall@1 of 94%.",
-        "link_label": "Open the tool"
+        "link_label": "Open the tool",
+        "case": {
+          "problem": "Find answers in technical sheets without searching by hand.",
+          "solution": "TF-IDF search with cosine similarity that shows sheet excerpts; it does not generate new text.",
+          "result": "Ranks the correct sheet first for 94% of 18 test questions. An optimistic figure: the same author wrote the questions."
+        }
       },
-      "tool": "t11"
+      "tool": "t11",
+      "case": {
+        "problem": "Encontrar respuestas en fichas técnicas sin buscarlas a mano.",
+        "solution": "Búsqueda TF-IDF con similitud coseno que muestra fragmentos de las fichas; no genera texto nuevo.",
+        "result": "Acierta la ficha correcta en primer lugar en 94 % de 18 preguntas de prueba. Cifra optimista: las preguntas las escribió el mismo autor."
+      }
     },
     {
       "id": "linea-produccion",

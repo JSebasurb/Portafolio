@@ -81,7 +81,7 @@ def render_case(c, u):
     return f'<details class="case"><summary>{e(u["case"])}</summary><dl>{rows}</dl></details>'
 
 
-TAGS_EN = {"Avatar IA": "AI avatar", "Animación IA": "AI animation", "Medallón": "Medallion", "Impresión 3D": "3D printing", "Estampado": "Printing", "Dashboard": "Dashboard", "Sensores": "Sensors",
+TAGS_EN = {"Avatar IA": "AI avatar", "Educación": "Education", "Planificación": "Planning", "Simulación": "Simulation", "Búsqueda": "Search", "Clasificación": "Classification", "Visión por computador": "Computer vision", "Señales": "Signals", "Gráficas": "Charts", "Estadística": "Statistics", "Ingeniería": "Engineering", "Animación IA": "AI animation", "Medallón": "Medallion", "Impresión 3D": "3D printing", "Estampado": "Printing", "Dashboard": "Dashboard", "Sensores": "Sensors",
            "Alertas": "Alerts", "Tiempo real": "Real time", "APIs REST": "REST APIs", "IA": "AI"}
 
 
@@ -141,7 +141,7 @@ def render_projects(pj, L, u, root):
         thumb = x.get("thumbnail", "").strip()
         if thumb:
             assert (SILVER / "assets" / "projects" / thumb).exists(), f"Falta la miniatura silver/assets/projects/{thumb}"
-            media = f'<img loading="lazy" src="{root}assets/projects/{e(thumb)}" alt="{e(u["thumb"])} {e(x["title"])}">'
+            media = f'<img loading="lazy" decoding="async" src="{root}assets/projects/{e(thumb)}" alt="{e(u["thumb"])} {e(x["title"])}">'
         else:
             g1, g2 = GRADS[i % len(GRADS)]
             media = f'<div class="pfb" style="background:linear-gradient(135deg,{g1},{g2})"><span>{x.get("emoji", "📁")}</span></div>'
@@ -181,7 +181,7 @@ def render_catalog(cat, L, u, root, num):
         href = wa_link(num, u["k_msg"].format(name=x["name"]))
         cards.append(
             f'<article class="ccard{kind}" data-cat="{e(x["category"])}"><button class="cthumb" type="button" aria-label="{e(u["k_zoom"].format(name=x["name"]))}">'
-            f'<img loading="lazy" src="{root}assets/catalog/{e(x["image"])}" alt="{e(x["name"])}"></button>'
+            f'<img loading="lazy" decoding="async" src="{root}assets/catalog/{e(x["image"])}" alt="{e(x["name"])}"></button>'
             f'<div class="cbody"><h3>{e(x["name"])}</h3><p>{e(x["desc"])}</p><a class="repo" href="{e(href)}" target="_blank" rel="noopener">{e(u["k_order"])}</a></div></article>')
     return f'''<div class="kbar"><h3>{e(u["k_title"])}</h3><div class="seg wrap" id="kFilter">{filt}</div></div>
   <p class="sub" style="text-align:left;margin:0 0 16px;max-width:none">{e(u["k_sub"])}</p>
@@ -198,7 +198,7 @@ def render_print3d(d, num, root=""):
     li = lambda xs, c: "".join(f'<li class="{c}">{e(x)}</li>' for x in xs)
     demos = "".join(f'<button class="mini" type="button" data-demo="{k}" data-name="{e(v[k])}">{e(v[k])}</button>' for k in ("gear", "key", "vase", "pawn"))
     sp = "".join(
-        f'<div class="tile sp rv">' + (f'<img class="sp-img" loading="lazy" src="{root}assets/catalog/{e(im)}" alt="{e(t)}">' if im else "")
+        f'<div class="tile sp rv">' + (f'<img class="sp-img" loading="lazy" decoding="async" src="{root}assets/catalog/{e(im)}" alt="{e(t)}">' if im else "")
         + f'<div><div class="ico">{i}</div><h3>{e(t)}</h3><p>{e(x)}</p></div>'
         + f'<a class="link" href="{wa_link(num, msg)}" target="_blank" rel="noopener" style="padding:10px 0 0">{e(d["special_cta"])}</a></div>'
         for i, t, x, msg, im in d["special"])
@@ -267,7 +267,7 @@ def render_games(d, root=""):
     def gimg(c, rt):
         if c.get("image"):
             assert (SILVER / "assets" / "catalog" / c["image"]).exists(), f"Falta {c['image']}"
-            return f'<img class="gimg" loading="lazy" src="{rt}assets/catalog/{e(c["image"])}" alt="{e(c["title"])}">' + (f'<span class="gtag">♪ {e(c["music"])}</span>' if c.get("music") else "")
+            return f'<img class="gimg" loading="lazy" decoding="async" src="{rt}assets/catalog/{e(c["image"])}" alt="{e(c["title"])}">' + (f'<span class="gtag">♪ {e(c["music"])}</span>' if c.get("music") else "")
         return f'<span>{c["emoji"]}</span>'
 
     def head(c):

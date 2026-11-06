@@ -154,7 +154,7 @@ Veintiún juegos hechos con JavaScript y canvas (sin librerías), pensados para 
 
 ## 🧭 Navegación
 
-La barra superior tiene 11 pestañas. **Proyectos** agrupa tres subpestañas: **Portafolio**, **Apps creadas** (academia de tornillería) y **Herramientas** (roscas, cotizador, ETL, CSV, mantenimiento, visión, producción, fichas). Los enlaces directos `#proyectos`, `#cato` y `#tools` siguen funcionando.
+La barra superior tiene 6 pestañas: Perfil, Proyectos, Automatización, Ingeniería, Blog y Contacto. **Proyectos** agrupa ocho subpestañas: **Portafolio**, **Apps creadas** (academia de tornillería), **Herramientas** (roscas, cotizador, ETL, CSV, mantenimiento, visión, producción, fichas), **Tienda**, **Impresión 3D**, **Audiovisual**, **Juegos** y **Contenido IA**. Los enlaces directos `#proyectos`, `#cato` y `#tools` siguen funcionando.
 
 - Cada tarjeta de **Portafolio** puede tener un botón "Abrir la herramienta" que lleva a su herramienta en Proyectos › Herramientas (campo `"tool"` en `silver/data/projects.json`, con el id de la pestaña, por ejemplo `t8`). Un campo `"go"` lleva a otra pestaña, como `juegos` o `cato`.
 

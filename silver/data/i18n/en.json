@@ -206,7 +206,24 @@
   "🧠 Fichas": "🧠 Sheets",
   "Asistente de fichas técnicas": "Technical sheet assistant",
   "búsqueda sobre fichas, sin inventar respuestas": "search over sheets, no invented answers",
-  "Pregunta sobre fichas técnicas": "Question about technical sheets"
+  "Pregunta sobre fichas técnicas": "Question about technical sheets",
+  "Color naranja": "Orange color",
+  "Color azul": "Blue color",
+  "Color verde": "Green color",
+  "Color morado": "Purple color",
+  "Color gris": "Grey color",
+  "Métrico": "Metric",
+  "Broca aproximada: úsala como guía. Para trabajo de precisión confirma con una tabla de brocas para roscar.": "Approximate drill: use it as a guide. For precision work, confirm with a tap drill chart.",
+  "PASO (hilos por pulgada)": "PITCH (threads per inch)",
+  "Pedir cotización por WhatsApp": "Request a quote on WhatsApp",
+  "Precios de referencia de la tienda. El precio final se confirma por WhatsApp.": "Reference prices from the shop. The final price is confirmed on WhatsApp.",
+  "Pega tu CSV o usa el ejemplo: incluye errores a propósito (duplicados, cantidades negativas, fechas inválidas, precios con punto de miles). Cada capa muestra qué limpió.": "Paste your CSV or use the example: it includes deliberate errors (duplicates, negative quantities, invalid dates, prices with thousands dots). Each layer shows what it cleaned.",
+  "Carga un archivo o pega tu CSV. Todo se procesa en tu navegador: el archivo no sale de tu equipo.": "Load a file or paste your CSV. Everything is processed in your browser: the file never leaves your device.",
+  "Simula la vibración de un rodamiento, calcula sus características y un modelo de regresión logística diagnostica la condición. Los datos son simulados: sirve para mostrar el método, no para diagnosticar equipos reales.": "Simulates a bearing's vibration, computes its features and a logistic regression model diagnoses the condition. The data is simulated: it shows the method, not how to diagnose real equipment.",
+  "Genera la vista superior de una cabeza de tornillo, extrae su forma y su oscuridad junto al borde, y un modelo clasifica si está sana, rajada o golpeada. Las imágenes son simuladas: el método es real, pero el modelo necesita fotos de tus propios tornillos para usarse en producción.": "Generates the top view of a screw head, extracts its shape and its darkness next to the edge, and a model classifies it as healthy, cracked or chipped. The images are simulated: the method is real, but the model needs photos of your own screws before production use.",
+  "Datos de ejemplo de 30 días, 3 turnos y 3 máquinas. Puedes pegar o subir tu propio CSV con las columnas:": "30-day sample data, 3 shifts and 3 machines. You can paste or upload your own CSV with the columns:",
+  "Escribe una pregunta sobre roscas, cabezas, materiales o apriete. La respuesta es el fragmento de la ficha más relevante; no se genera texto nuevo.": "Ask a question about threads, heads, materials or tightening. The answer is the most relevant excerpt from the sheets; no new text is generated.",
+  "Inox en el mar": "Stainless at sea"
  },
  "js": {
   "Hola, quiero cotizar un servicio": "Hi, I'd like a quote for a service",
@@ -631,6 +648,20 @@
   "Toca una estación para asignar o quitar un operario.": "Tap a station to assign or remove an operator.",
   "3 atascos y se acaba la línea.": "3 jams and the line shuts down.",
   "Portafolio": "Portfolio",
-  "Apps creadas": "Apps I built"
+  "Apps creadas": "Apps I built",
+  "Color naranja": "Orange color",
+  "Color azul": "Blue color",
+  "Color verde": "Green color",
+  "Color morado": "Purple color",
+  "Color gris": "Grey color",
+  "Estadística": "Statistics",
+  "Gráficas": "Charts",
+  "Visión por computador": "Computer vision",
+  "Clasificación": "Classification",
+  "Búsqueda": "Search",
+  "Simulación": "Simulation",
+  "Educación": "Education",
+  "Métrico": "Metric",
+  "Audiovisual": "Audiovisual"
  }
 }

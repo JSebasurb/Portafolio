@@ -35,12 +35,7 @@
   <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs">
     <button class="on" data-t="perfil">Perfil</button>
     <button data-t="hub">Proyectos</button>
-    <button data-t="tienda">Tienda</button>
-    <button data-t="imp3d">Impresión 3D</button>
-    <button data-t="video">Audiovisual</button>
-    <button data-t="juegos">Juegos</button>
     <button data-t="auto">Automatización</button>
-    <button data-t="ia">Contenido IA</button>
     <button data-t="ing">Ingeniería</button>
     <button data-t="blog">Blog</button>
     <button data-t="contacto">Contacto</button>
@@ -84,11 +79,11 @@
       <div class="f"><label>TU IMAGEN (OPCIONAL)</label><div class="rd-bar" style="margin-bottom:6px"><label class="mini" for="imgIn">Elegir imagen<input type="file" id="imgIn" accept="image/*" hidden></label><button class="mini" type="button" id="imgClr" hidden>Quitar</button></div><small class="hint">Tu imagen se queda en tu dispositivo. Adjúntala en WhatsApp al hacer el pedido.</small></div>
       <div class="f two"><div><label>CANTIDAD</label><input type="number" id="qty" min="1" max="999" value="1" inputmode="numeric"></div><div id="modelF" hidden><label>MODELO DE CELULAR</label><input id="model" maxlength="40" placeholder="Ej. iPhone 15 Pro" autocomplete="off"></div></div>
       <div class="f"><label>COLOR</label><div class="dots" id="colC">
-        <button class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
-        <button style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
-        <button style="background:linear-gradient(135deg,#30d158,#0a9d8f)" data-v="linear-gradient(135deg,#30d158,#0a9d8f)"></button>
-        <button style="background:linear-gradient(135deg,#bf5af2,#ff2d92)" data-v="linear-gradient(135deg,#bf5af2,#ff2d92)"></button>
-        <button style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>
+        <button aria-label="Color naranja" class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
+        <button aria-label="Color azul" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
+        <button aria-label="Color verde" style="background:linear-gradient(135deg,#30d158,#0a9d8f)" data-v="linear-gradient(135deg,#30d158,#0a9d8f)"></button>
+        <button aria-label="Color morado" style="background:linear-gradient(135deg,#bf5af2,#ff2d92)" data-v="linear-gradient(135deg,#bf5af2,#ff2d92)"></button>
+        <button aria-label="Color gris" style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>
       <button class="pill" id="order">Pedir por WhatsApp</button>
     </div>
     <div class="stage"><div class="dwrap" id="wrap"><div class="ring" id="ring"></div><div class="prod key" id="prod"><div class="em" id="pem">⭐</div><div class="tx" id="ptx">Tu nombre</div></div></div></div>

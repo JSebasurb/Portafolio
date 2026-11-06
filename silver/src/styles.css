@@ -588,8 +588,10 @@ body.noscroll{overflow:hidden}
 .hubnav button{background:none;border:0;color:var(--muted);font:inherit;font-size:.92rem;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.2s}
 .hubnav button:hover{color:var(--text)}
 .hubnav button.on{background:var(--surface);color:var(--text);font-weight:600;box-shadow:0 2px 8px #0001}
-@media(max-width:480px){.hubnav{gap:2px;padding:4px}.hubnav button{font-size:.8rem;padding:8px 10px}}
+@media(max-width:480px){.hubnav{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;gap:2px;padding:4px;border-radius:16px}.hubnav::-webkit-scrollbar{display:none}.hubnav button{font-size:.8rem;padding:8px 10px;white-space:nowrap;flex:none}}
 /* Botones de herramienta dentro de las tarjetas: mismo aspecto que los enlaces */
 button.repo{background:none;border:0;padding:0;font:inherit;font-size:.95rem;color:var(--blue);text-align:left;cursor:pointer;margin-top:14px;display:block;font-weight:600}
 button.repo:hover{text-decoration:underline}
 .pbody .repo+.repo{margin-top:6px}
+/* Diagrama de flujo en celular: los nodos se acomodan en filas en lugar de desplazarse */
+@media(max-width:480px){.flow{flex-wrap:wrap;gap:8px;overflow:visible}.flow .wire{display:none}.node{min-width:96px;padding:12px 10px}}

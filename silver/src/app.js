@@ -126,7 +126,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
 
 /* ---------- Pestaña "Proyectos" agrupa Portafolio, Apps creadas y Herramientas (subpestañas) ---------- */
 (function(){
-  var HUB={proyectos:'Portafolio',cato:'Apps creadas',tools:'Herramientas'};
+  var HUB={proyectos:'Portafolio',cato:'Apps creadas',tools:'Herramientas',tienda:'Tienda',imp3d:'Impresión 3D',video:'Audiovisual',juegos:'Juegos',ia:'Contenido IA'};
   var base=show, sub=null;
   function ensureSub(){
     if(sub) return sub;
@@ -146,6 +146,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     var s=ensureSub(), sec=document.getElementById(h);
     s.querySelectorAll('button').forEach(function(b){var on=b.dataset.hub===h;b.classList.toggle('on',on);b.setAttribute('aria-selected',on?'true':'false')});
     if(sec && s.parentNode!==sec) sec.insertBefore(s,sec.firstChild);
+    var act=s.querySelector('button.on'); if(act && act.scrollIntoView && s.scrollWidth>s.clientWidth) act.scrollIntoView({inline:'center',block:'nearest'});
   };
   /* enlace directo (#cato, #tools, #proyectos): aplicar la vista ahora que la capa ya existe */
   var k=location.hash.slice(1);

@@ -33,6 +33,37 @@
         "Paso 3: en las opciones del Webhook, permite el origen de tu sitio web (CORS) para que el navegador pueda enviar los datos.",
         "Desde ahí puedes seguir el flujo: enviar un correo de confirmación, avisar por WhatsApp o pasar el mensaje a un agente de IA."
       ]
+    },
+    {
+      "id": "envolvente",
+      "date": "2026-11-05",
+      "title": "Por qué la envolvente mejoró mi clasificador de fallas",
+      "summary": "Con la señal cruda el modelo acertaba 61 %; con la envolvente, 74 %. Lo que aprendí con datos simulados.",
+      "tags": [
+        "ML",
+        "Señales"
+      ],
+      "body": [
+        "Entrené un modelo para detectar fallas en rodamientos a partir de vibraciones. Con las características de la señal cruda, la validación cruzada dio 61 %: mejor que adivinar (25 % con cuatro clases), pero lejos de lo útil.",
+        "El problema estaba en la señal. Una falla en la pista aparece como impulsos repetidos a una frecuencia conocida, y en la señal cruda esos impulsos quedan mezclados con la vibración normal del eje. Al tomar la envolvente, es decir, el valor absoluto de la señal sin su media, la energía de los impulsos se concentra en la frecuencia de falla y se puede medir.",
+        "Con esa sola decisión, la validación cruzada subió a 74 %. Las fallas severas se detectan casi siempre; las leves siguen siendo difíciles. Lo importante es que el resultado se midió con datos separados del entrenamiento y que la página muestra el mismo cálculo que Python.",
+        "La lección: antes de cambiar de modelo, revisa qué información le estás dando. Muchas veces el cuello de botella está en la forma en que se describen los datos."
+      ]
+    },
+    {
+      "id": "oee",
+      "date": "2026-11-05",
+      "title": "OEE: el indicador que más se malinterpreta",
+      "summary": "Disponibilidad × rendimiento × calidad, y el error más común al definir el tiempo de ciclo ideal.",
+      "tags": [
+        "Producción",
+        "Indicadores"
+      ],
+      "body": [
+        "El OEE multiplica tres factores: disponibilidad (el tiempo que la máquina realmente opera), rendimiento (qué tan cerca va de su tiempo de ciclo ideal) y calidad (la proporción de piezas buenas). Un OEE de 100 % sería producir sin paros, a la velocidad ideal y sin defectos.",
+        "El error más común es definir mal el tiempo de ciclo ideal. Si se toma un valor teórico demasiado optimista, el rendimiento sale bajo aunque la máquina trabaje bien. En el dashboard que armé usé el menor ciclo observado en los datos; es una aproximación razonable, pero el valor teórico del fabricante es mejor si lo tienes.",
+        "Con los datos de ejemplo, el OEE total sale en 70,8 %: disponibilidad de 92 %, calidad de 94 % y rendimiento de 81,6 %. El cuello de botella es la máquina con el ciclo promedio más alto, no necesariamente la que más para."
+      ]
     }
   ],
   "en": [
@@ -68,6 +99,37 @@
         "Step 2: connect a Google Sheets node with the append-row operation and map each form field to a column.",
         "Step 3: in the Webhook options, allow your website's origin (CORS) so the browser can send the data.",
         "From there you can keep going: send a confirmation email, notify via WhatsApp or hand the message to an AI agent."
+      ]
+    },
+    {
+      "id": "envelope",
+      "date": "2026-11-05",
+      "title": "Why the envelope improved my fault classifier",
+      "summary": "With the raw signal the model scored 61%; with the envelope, 74%. What I learned with simulated data.",
+      "tags": [
+        "ML",
+        "Signals"
+      ],
+      "body": [
+        "I trained a model to detect bearing faults from vibration. With features from the raw signal, 5-fold cross-validation scored 61%: better than guessing (25% with four classes), but far from useful.",
+        "The problem was the signal. A raceway fault shows up as repeated impulses at a known frequency, but in the raw signal those impulses are mixed with the normal vibration of the shaft. Taking the envelope, that is, the absolute value of the signal without its mean, concentrates the impulse energy at the fault frequency, where it can be measured.",
+        "That single decision raised cross-validation to 74%. Severe faults are almost always detected; mild ones are still hard. What matters is that the result was measured on data kept apart from training, and that the page runs the same calculation as Python.",
+        "The lesson: before changing models, check what information you are giving them. The bottleneck is often how the data is described."
+      ]
+    },
+    {
+      "id": "oee-en",
+      "date": "2026-11-05",
+      "title": "OEE: the indicator people most often misread",
+      "summary": "Availability × performance × quality, and the most common mistake when defining the ideal cycle time.",
+      "tags": [
+        "Production",
+        "Indicators"
+      ],
+      "body": [
+        "OEE multiplies three factors: availability (the time the machine actually runs), performance (how close it runs to its ideal cycle time) and quality (the share of good parts). An OEE of 100% would mean producing with no stops, at ideal speed and with no defects.",
+        "The most common mistake is defining the ideal cycle time badly. If you take an overly optimistic theoretical value, performance looks low even when the machine runs well. In the dashboard I built I used the lowest cycle observed in the data; that is a reasonable approximation, but the manufacturer's theoretical value is better if you have it.",
+        "With the sample data, total OEE comes out at 70.8%: availability of 92%, quality of 94% and performance of 81.6%. The bottleneck is the machine with the highest average cycle time, not necessarily the one that stops most."
       ]
     }
   ]
