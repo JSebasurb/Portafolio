@@ -298,7 +298,7 @@
         "assistant",
         "agent"
       ],
-      "a": "Sebas builds AI chatbots for support, scheduling and customer follow-up 24/7, connected to n8n workflows. At Proeléctricos he implemented one that extracts, validates and routes reports to the responsible areas.",
+      "a": "Sebas builds AI chatbots for support, scheduling and customer follow-up 24/7, connected to n8n workflows. As a technical advisor he implemented one that extracts, validates and routes reports to the responsible areas.",
       "b": [
         {
           "l": "I want a chatbot",
@@ -362,9 +362,12 @@
         "power bi",
         "analytics",
         "pipeline",
-        "mysql"
+        "mysql",
+        "ml",
+        "sales",
+        "ai"
       ],
-      "a": "Sebas is a junior data engineer: he designs ETL pipelines with medallion architecture and works with SQL, Python and R, AWS, Machine Learning and dashboards.",
+      "a": "Sebas combines machine learning, technical sales, Power BI and AI. He designs medallion-architecture ETL pipelines, works with SQL, Python and R, and builds predictive models and dashboards.",
       "b": [
         {
           "l": "View data projects",
@@ -388,9 +391,14 @@
         "who is",
         "about you",
         "about sebas",
-        "education"
+        "education",
+        "machine learning",
+        "ml",
+        "sales",
+        "power bi",
+        "ai"
       ],
-      "a": "Juan Sebastián Sánchez Urbano (Sebas) is an Industrial Automation Engineer and a Master's student in Data Science and AI. He works as a technical and data automation advisor at Proeléctricos and lives in Cali, Colombia.",
+      "a": "Juan Sebastián Sánchez Urbano (Sebas) is an Industrial Automation Engineer focused on Machine Learning, technical sales, Power BI and AI. Since October 2026 he has been a technical advisor at Industrias CATO, and previously worked as a technical and sales advisor at a technical-solutions company. He lives in Cali, Colombia.",
       "b": [
         {
           "l": "View profile",

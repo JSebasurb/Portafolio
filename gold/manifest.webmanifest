@@ -1,7 +1,7 @@
 {
   "name": "Juan Sebastián Sánchez · Portafolio",
   "short_name": "Sebas",
-  "description": "Portafolio de Juan Sebastián Sánchez Urbano: ingeniería de datos (ETL, AWS, ML), automatización con n8n, contenido con IA, impresión 3D y productos personalizados.",
+  "description": "Portafolio de Juan Sebastián Sánchez Urbano: machine learning, ventas técnicas, Power BI, IA y automatización, con herramientas propias e impresión 3D.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

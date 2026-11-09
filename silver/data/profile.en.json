@@ -1,6 +1,6 @@
 {
   "name": "Juan Sebastián Sánchez Urbano",
-  "headline": "Junior Data Engineer · ETL Automation, Cloud (AWS), Machine Learning & AI",
+  "headline": "Industrial Automation Engineer · Machine Learning, Technical Sales, Power BI and AI",
   "location": "Cali, Colombia",
   "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
@@ -8,88 +8,92 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
-  "summary": "Industrial Automation Engineer and Master's student in Data Science and Artificial Intelligence, with a Junior Data Engineer profile. I design and build ETL pipelines with medallion architecture (Bronze/Silver/Gold), work with relational databases (SQL, MySQL), program in Python and R, and develop automation workflows with n8n, REST APIs and AI agents. I combine industrial engineering with data analytics to ensure the integrity, availability and quality of information, under continuous improvement methodologies (PDCA). I maintain a public portfolio with projects, my own tools and data, automation and 3D printing services.",
+  "summary": "Industrial Automation Engineer focused on Machine Learning, technical sales and data analysis. Since October 2026 I have been a technical advisor at Industrias CATO, where I advise customers on fastener selection and technical solutions. Previously I worked as a technical and sales advisor at a technical-solutions company, where I analyzed customer information and automated data processes, and as CNC and Robotics area leader I analyzed production and quality-control variables. I build predictive models, Power BI dashboards and AI workflows with Python, R and n8n, and design medallion-architecture (Bronze/Silver/Gold) ETL pipelines. I combine industrial engineering with analytics to turn data into sales and production decisions. I maintain a public portfolio with projects, my own tools and automation, data and 3D printing services.",
   "skills": [
     {
-      "icon": "🗄️",
-      "title": "Data Engineering & Cloud",
+      "title": "Machine Learning & AI",
       "items": [
-        "ETL pipelines",
-        "Medallion architecture",
-        "AWS",
-        "REST APIs",
-        "Advanced SQL",
-        "MySQL",
-        "Data modeling and consolidation",
-        "Data quality and cleaning"
-      ]
-    },
-    {
-      "icon": "🐍",
-      "title": "Languages & Data Science",
-      "items": [
-        "Python",
-        "R",
-        "SQL",
         "Machine Learning",
         "Predictive modeling",
         "Classification",
         "Statistical analysis",
         "EDA",
-        "Git and GitHub"
-      ]
+        "AI agents",
+        "AI chatbots",
+        "Python",
+        "R"
+      ],
+      "icon": "🤖"
     },
     {
-      "icon": "⚙️",
-      "title": "Automation, BI & IoT",
+      "title": "Sales & Business Intelligence",
       "items": [
-        "n8n and AI agents",
-        "AI chatbots",
+        "Technical and commercial advisory",
+        "Sales analysis",
         "Power BI",
         "Advanced Excel",
-        "HTML dashboards",
-        "Real-time IoT sensors and instrumentation"
-      ]
+        "Dashboards",
+        "Data consolidation"
+      ],
+      "icon": "📈"
     },
     {
-      "icon": "🌐",
-      "title": "Web Development & Deployment",
+      "title": "Data engineering & Cloud",
       "items": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Bash",
-        "YAML",
-        "GitHub Actions",
-        "GitHub Pages"
-      ]
+        "ETL pipelines",
+        "Medallion architecture",
+        "Advanced SQL",
+        "MySQL",
+        "AWS",
+        "REST APIs",
+        "Data quality and cleaning"
+      ],
+      "icon": "🗄️"
     },
     {
-      "icon": "🏭",
-      "title": "Industrial Engineering",
+      "title": "Automation & Industrial engineering",
       "items": [
+        "n8n",
         "Industrial automation",
         "PLC programming",
-        "CNC and robotics"
-      ]
+        "CNC and robotics",
+        "Real-time IoT sensors"
+      ],
+      "icon": "⚙️"
     },
     {
-      "icon": "🧭",
-      "title": "Methodologies & Management",
+      "title": "Web development & deployment",
+      "items": [
+        "HTML, CSS, JavaScript, Bash, YAML",
+        "Git and GitHub",
+        "GitHub Actions",
+        "GitHub Pages"
+      ],
+      "icon": "🌐"
+    },
+    {
+      "title": "Methodology & Management",
       "items": [
         "PDCA (continuous improvement)",
-        "Information validation and integrity",
         "Analytical problem solving",
         "Results orientation",
         "Effective communication"
-      ]
+      ],
+      "icon": "🧭"
     }
   ],
   "experience": [
     {
-      "period": "2019 – Nov 2025 · Mar 2026 – Present",
+      "period": "Oct 2026 – Present",
+      "role": "Technical Advisor",
+      "company": "Industrias CATO",
+      "text": "I advise customers on fastener selection: threads, heads, materials, finishes and applications, and support the technical validation of their requirements.",
+      "achievement": "I built technical reference tools available in this portfolio: a fastener academy and a thread calculator."
+    },
+    {
+      "period": "2019 – Nov 2025 · Mar 2026 – Sep 2026",
       "role": "Technical, Sales and Data Automation Advisor",
-      "company": "Proeléctricos",
+      "company": "Technical solutions company",
       "text": "I analyze and validate customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
       "achievement": "I designed and implemented an AI chatbot for the web channel, integrated into an n8n automation pipeline that automatically extracts, validates and routes reports and information to the responsible areas."
     },
@@ -190,11 +194,6 @@
     }
   ],
   "education": [
-    {
-      "title": "Master's in Data Science and Artificial Intelligence · Universidad Autónoma de Occidente",
-      "meta": "In progress",
-      "text": "Cloud architecture and services (AWS), Machine Learning models, ETL process design, statistical programming in R and Python, and advanced analytics."
-    },
     {
       "title": "Industrial Automation Engineering",
       "meta": "Graduate engineer",

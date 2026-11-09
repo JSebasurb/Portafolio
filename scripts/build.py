@@ -20,7 +20,7 @@ UI = {
                k_title="Hechos en el taller", k_sub="Toca una foto para verla más grande y pídela por WhatsApp.", k_order="Pedir este diseño ›",
                k_msg="Hola, quiero pedir el diseño «{name}». ¿Me cotizas?", k_zoom="Ampliar {name}",
                b_title="Blog.", b_sub="Notas cortas sobre datos y automatización.", faq="Preguntas frecuentes", faq_btn="Ver preguntas frecuentes",
-               fab="Hola, quiero cotizar un servicio", job="Ingeniero de Datos Junior", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
+               fab="Hola, quiero cotizar un servicio", job="Ingeniero en Automática Industrial · ML y Ventas", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
                locale="es_CO", root=""),
     "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
                s_proj="Featured projects", s_edu="Education", win="Achievement:", impact="Impact:", all_proj="See all my projects",
@@ -31,7 +31,7 @@ UI = {
                k_title="Made in the workshop", k_sub="Tap a photo to see it larger and order it via WhatsApp.", k_order="Order this design ›",
                k_msg="Hi, I'd like to order the design “{name}”. Could you quote it?", k_zoom="Enlarge {name}",
                b_title="Blog.", b_sub="Short notes on data and automation.", faq="Frequently asked questions", faq_btn="See FAQ",
-               fab="Hi, I'd like a quote for a service", job="Junior Data Engineer", alt_label="ES", alt_aria="Cambiar a español", alt_code="es", alt_url="../",
+               fab="Hi, I'd like a quote for a service", job="Industrial Automation Engineer · ML and Sales", alt_label="ES", alt_aria="Cambiar a español", alt_code="es", alt_url="../",
                locale="en_US", root="../"),
 }
 

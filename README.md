@@ -158,6 +158,11 @@ La barra superior tiene 6 pestañas: Perfil, Proyectos, Automatización, Ingenie
 
 - Cada tarjeta de **Portafolio** puede tener un botón "Abrir la herramienta" que lleva a su herramienta en Proyectos › Herramientas (campo `"tool"` en `silver/data/projects.json`, con el id de la pestaña, por ejemplo `t8`). Un campo `"go"` lleva a otra pestaña, como `juegos` o `cato`.
 
+## ⚡ Rendimiento
+
+- La página carga solo el código necesario al abrir. Los módulos pesados (juegos, herramientas, academia y visor 3D) se descargan la primera vez que se abre su sección; después de 4 segundos, el sitio los precarga en segundo plano.
+- Las vistas previas (`vista-previa-*.html`) incluyen todo en un solo archivo.
+
 ## 🗂️ Agregar un proyecto (miniatura + enlace)
 
 1. Guarda la imagen original en `bronze/assets-originales/proyectos/` (ej. `mi-proyecto.png`).

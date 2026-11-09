@@ -156,8 +156,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
 /* ---------- Mensaje introductorio por área (titular, etiqueta y descripción del inicio) ---------- */
 (function(){
   var MSG={
-    perfil:{es:['Ingeniería de datos · Automatización','Hola, soy ','Sebas.','Ingeniero automático y de datos. Aquí encuentras mi perfil, mi experiencia y mi CV.'],
-            en:['Data engineering · Automation','Hi, I’m ','Sebas.','Automation and data engineer. Here you’ll find my profile, my experience and my CV.']},
+    perfil:{es:['Machine Learning · Ventas · Power BI · IA','Hola, soy ','Sebas.','Ingeniero en automática industrial enfocado en ML, ventas técnicas e IA. Aquí están mi perfil, mis proyectos y mi taller 3D.'],
+            en:['Machine Learning · Sales · Power BI · AI','Hi, I’m ','Sebas.','Industrial automation engineer focused on ML, technical sales and AI. Here are my profile, my projects and my 3D workshop.']},
     proyectos:{es:['Portafolio','Lo que he ','construido.','Proyectos de datos, automatización y producción, con sus herramientas listas para probar.'],
             en:['Portfolio','What I have ','built.','Data, automation and production projects, with their tools ready to try.']},
     cato:{es:['Academia','Aprende ','tornillería.','Preguntas por niveles, curiosidades y referencias de roscas, cabezas y puntas.'],
@@ -186,6 +186,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   function setHero(key){
     var m=MSG[key]; if(!m) return;
     var l=(window.LANG==='en')?'en':'es', v=m[l], hero=document.querySelector('.hero'); if(!hero) return;
+    hero.classList.toggle('is-card', key==='perfil');
     var eb=hero.querySelector('.eyebrow'), h1=hero.querySelector('h1'), lead=hero.querySelector('.lead');
     if(eb) eb.textContent=v[0];
     if(h1) h1.innerHTML=v[1].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'<span>'+v[2].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>';
@@ -198,4 +199,56 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   };
   var k=location.hash.slice(1);
   setHero(k?(k==='hub'?'proyectos':k):'perfil');
+})();
+
+/* ---------- Carga diferida de módulos: cada sección descarga su código al abrirse por primera vez ---------- */
+(function(){
+  var LAZY={juegos:['games'],cato:['cato'],imp3d:['stl'],
+            tools:['tools','threads','quote','etl','csvview','maint','vision','prod','fichas']};
+  var loaded={};
+  function loadMod(n){
+    return new Promise(function(res,rej){
+      if(loaded[n]||window.LAZY_READY){loaded[n]=1;return res();}
+      var s=document.createElement('script');
+      s.src=((window.CFG&&window.CFG.root)||'')+'assets/js/'+n+'.js';
+      s.onload=function(){loaded[n]=1;res();};
+      s.onerror=function(){rej(new Error('No se pudo cargar '+n));};
+      document.body.appendChild(s);
+    });
+  }
+  function loadGroup(list){
+    return list.reduce(function(p,n){return p.then(function(){return loadMod(n);});},Promise.resolve());
+  }
+  window.LAZY_LOAD=loadGroup;
+  var base=show;
+  show=function(t){
+    base(t);
+    if(LAZY[t]) loadGroup(LAZY[t]).catch(function(e){console.warn(e);});
+  };
+  /* precarga en segundo plano, sin bloquear la primera carga */
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      Object.keys(LAZY).forEach(function(k){loadGroup(LAZY[k]).catch(function(){});});
+    },4000);
+  });
+  var k=location.hash.slice(1);
+  if(LAZY[k]) loadGroup(LAZY[k]).catch(function(){});
+})();
+
+/* Tarjeta 3D: gira al tocarla e inclina siguiendo el puntero */
+(function(){
+  var el=document.getElementById('bc3d'), card=document.getElementById('bc3dCard'); if(!el||!card) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var flipped=false, base={x:0,y:0};
+  function apply(x,y){ card.style.transform=(flipped?'rotateY(180deg) ':'')+'rotateX('+x+'deg) rotateY('+y+'deg)'; }
+  function flip(){ flipped=!flipped; el.classList.toggle('flipped',flipped); apply(0,0); }
+  el.addEventListener('click',flip);
+  el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); } });
+  if(!reduce){
+    el.addEventListener('pointermove',function(e){
+      var r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      apply(-py*12, px*14);
+    });
+    el.addEventListener('pointerleave',function(){ apply(0,0); });
+  }
 })();

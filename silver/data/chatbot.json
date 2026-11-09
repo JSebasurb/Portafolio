@@ -308,7 +308,7 @@
         "asistente",
         "agente"
       ],
-      "a": "Sebas diseña chatbots con IA para atención, agendamiento y seguimiento de clientes 24/7, conectados a flujos en n8n. En Proeléctricos implementó uno que extrae, valida y enruta reportes a las áreas responsables.",
+      "a": "Sebas diseña chatbots con IA para atención, agendamiento y seguimiento de clientes 24/7, conectados a flujos en n8n. En su trabajo como asesor técnico implementó uno que extrae, valida y enruta reportes a las áreas responsables.",
       "b": [
         {
           "l": "Quiero un chatbot",
@@ -372,9 +372,12 @@
         "power bi",
         "analitica",
         "pipeline",
-        "mysql"
+        "mysql",
+        "ml",
+        "ventas",
+        "ia"
       ],
-      "a": "Sebas es ingeniero de datos junior: diseña pipelines ETL con arquitectura medallón, trabaja con SQL, Python y R, AWS, Machine Learning y dashboards.",
+      "a": "Sebas combina machine learning, ventas técnicas, Power BI e IA. Diseña pipelines ETL con arquitectura medallón, trabaja con SQL, Python y R, y desarrolla modelos predictivos y dashboards.",
       "b": [
         {
           "l": "Ver proyectos de datos",
@@ -398,9 +401,14 @@
         "quien es",
         "sobre ti",
         "sobre sebas",
-        "formacion"
+        "formacion",
+        "machine learning",
+        "ml",
+        "ventas",
+        "power bi",
+        "ia"
       ],
-      "a": "Juan Sebastián Sánchez Urbano (Sebas) es ingeniero en Automática Industrial y maestrante en Ciencia de Datos e IA. Trabaja como asesor técnico y de automatización de datos en Proeléctricos y vive en Cali, Colombia.",
+      "a": "Juan Sebastián Sánchez Urbano (Sebas) es ingeniero en Automática Industrial con enfoque en Machine Learning, ventas técnicas, Power BI e IA. Desde octubre de 2026 es asesor técnico en Industrias CATO y antes trabajó como asesor técnico y comercial en una empresa de soluciones técnicas. Vive en Cali, Colombia.",
       "b": [
         {
           "l": "Ver perfil",

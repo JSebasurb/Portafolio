@@ -1,6 +1,6 @@
 {
-  "site_title": "JSebasurb | Ingeniero de Datos, Automatización y Taller 3D",
-  "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: ingeniería de datos (ETL, AWS, ML), automatización con n8n, contenido con IA, impresión 3D y productos personalizados.",
+  "site_title": "JSebasurb | Ingeniero en Automática Industrial · ML, Ventas e IA",
+  "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: machine learning, ventas técnicas, Power BI, IA y automatización, con herramientas propias e impresión 3D.",
   "whatsapp_number": "573013892534",
   "nota": "Número tomado de tu CV. Formato: código de país + número, sin + ni espacios.",
   "site_url": "https://jsebasurb.github.io/Portafolio/",
@@ -9,12 +9,12 @@
   "nota_endpoints": "form_endpoint: URL del webhook (n8n, Google Apps Script o Formspree) que recibe el formulario. Vacío = el formulario abre WhatsApp con los datos. chat_endpoint: URL del webhook de n8n que responde con IA. Vacío = el asistente usa respuestas locales.",
   "i18n": {
     "es": {
-      "site_title": "JSebasurb | Ingeniero de Datos, Automatización y Taller 3D",
-      "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: ingeniería de datos (ETL, AWS, ML), automatización con n8n, contenido con IA, impresión 3D y productos personalizados."
+      "site_title": "JSebasurb | Ingeniero en Automática Industrial · ML, Ventas e IA",
+      "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: machine learning, ventas técnicas, Power BI, IA y automatización, con herramientas propias e impresión 3D."
     },
     "en": {
-      "site_title": "JSebasurb | Data Engineer, Automation and 3D Workshop",
-      "site_description": "Portfolio of Juan Sebastián Sánchez Urbano: data engineering (ETL, AWS, ML), n8n automation, AI content, 3D printing and custom products."
+      "site_title": "JSebasurb | Industrial Automation Engineer · ML, Sales and AI",
+      "site_description": "Portfolio of Juan Sebastián Sánchez Urbano: machine learning, technical sales, Power BI, AI and automation, with his own tools and 3D printing."
     }
   }
 }
