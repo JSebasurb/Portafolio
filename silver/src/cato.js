@@ -74,6 +74,8 @@
   /* ----- eventos ----- */
   root.addEventListener('click',function(e){
     var t=e.target.closest('button');if(!t)return;
+    if(t.dataset.app==='academia'){ $('#appGrid').hidden=true; $('#academyView').hidden=false; renderHome(); return; }
+    if(t.id==='appBack'){ $('#academyView').hidden=true; $('#appGrid').hidden=false; window.scrollTo({top:Math.max(0,root.getBoundingClientRect().top+window.scrollY-64),behavior:'auto'}); return; }
     if(t.classList.contains('clvl')){var l=+t.dataset.l;startQuiz(BANK.q.filter(function(q){return q.l===l}).sort(function(){return Math.random()-.5}).slice(0,10),T('Nivel')+' '+l);return}
     if(t.classList.contains('chip')){var c=t.dataset.c;startQuiz(BANK.q.filter(function(q){return q.c===c}).sort(function(){return Math.random()-.5}).slice(0,10),c);return}
     if(t.id==='cMixBtn'){startQuiz(BANK.q.slice().sort(function(){return Math.random()-.5}).slice(0,10),T('Repaso mixto'));return}

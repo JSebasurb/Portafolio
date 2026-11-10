@@ -741,3 +741,14 @@ html[lang="en"] .t-es{display:none!important}
 .rutaapp p{color:var(--text);line-height:1.5}
 .rutaapp-kicker{margin:0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
 .rutaapp .pill{margin-top:8px}
+
+/* Apps creadas: tarjetas ordenadas (una por aplicación) */
+.appgrid{display:grid;gap:14px;grid-template-columns:1fr;margin:0 0 8px}
+@media(min-width:760px){.appgrid{grid-template-columns:1fr 1fr}}
+.appcard{background:var(--soft);border-radius:26px;padding:26px 24px;display:flex;flex-direction:column;text-align:left;border:1px solid var(--line)}
+.appcard h3{margin:4px 0 10px;font-size:1.45rem;letter-spacing:-.01em;line-height:1.15}
+.appkick{margin:0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.appdesc{margin:0 0 16px;color:var(--text);line-height:1.5;font-size:.98rem}
+.appbtns{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.appbtns .link{padding:0}
+#academyView{margin-top:6px}
