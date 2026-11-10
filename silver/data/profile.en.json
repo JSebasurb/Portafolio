@@ -8,7 +8,7 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
-  "summary": "Industrial Automation Engineer focused on Machine Learning, technical sales and data analysis. Since October 2026 I have been a technical advisor at Industrias CATO, where I advise customers on fastener selection and technical solutions. Previously I worked as a technical and sales advisor at a technical-solutions company, where I analyzed customer information and automated data processes, and as CNC and Robotics area leader I analyzed production and quality-control variables. I build predictive models, Power BI dashboards and AI workflows with Python, R and n8n, and design medallion-architecture (Bronze/Silver/Gold) ETL pipelines. I combine industrial engineering with analytics to turn data into sales and production decisions. I maintain a public portfolio with projects, my own tools and automation, data and 3D printing services.",
+  "summary": "Industrial Automation Engineer focused on Machine Learning, technical sales and data analysis. Since October 2026 I have been a technical advisor in the fastener sector, where I advise customers on product selection and technical solutions. Previously I worked as a technical and sales advisor at a technical-solutions company, where I analyzed customer information and automated data processes, and as CNC and Robotics area leader I analyzed production and quality-control variables. I build predictive models, Power BI dashboards and AI workflows with Python, R and n8n, and design medallion-architecture (Bronze/Silver/Gold) ETL pipelines. I combine industrial engineering with analytics to turn data into sales and production decisions.",
   "skills": [
     {
       "title": "Machine Learning & AI",
@@ -93,7 +93,7 @@
     {
       "period": "2019 – Nov 2025 · Mar 2026 – Sep 2026",
       "role": "Technical, Sales and Data Automation Advisor",
-      "company": "Technical solutions company",
+      "company": "Proeléctricos",
       "text": "I analyze and validate customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
       "achievement": "I designed and implemented an AI chatbot for the web channel, integrated into an n8n automation pipeline that automatically extracts, validates and routes reports and information to the responsible areas."
     },
@@ -106,6 +106,33 @@
     }
   ],
   "projects": [
+    {
+      "icon": "🥽",
+      "title": "Immersive environments for phobia identification",
+      "meta": "Bachelor's thesis · September 2025",
+      "text": "I designed and programmed immersive environments in Unity for Meta Quest 2, focused on identifying phobias such as fear of fire and heights.",
+      "impact": "I proposed a virtual-reality system that analyzes user reactions to controlled stimuli, for fear assessment and mental-health applications.",
+      "tags": [
+        "Unity",
+        "Meta Quest 2",
+        "Realidad virtual"
+      ],
+      "cv": true
+    },
+    {
+      "icon": "🤖",
+      "title": "Mobile robot control through virtual reality",
+      "meta": "CINVESTAV, Mexico City · February 2026",
+      "text": "Development of a mobile-robot control system through virtual reality, using Unity and Meta Quest 2, in the Automatic Control Area of CINVESTAV.",
+      "impact": "Integration of serial communication, IMU and LIDAR sensors, 3D modeling and robot control from the virtual-reality environment.",
+      "tags": [
+        "Unity",
+        "C#",
+        "ROS",
+        "Meta Quest 2"
+      ],
+      "cv": true
+    },
     {
       "icon": "🔄",
       "title": "End-to-end automated ETL pipeline",
@@ -198,6 +225,11 @@
       "title": "Industrial Automation Engineering",
       "meta": "Graduate engineer",
       "text": ""
+    },
+    {
+      "title": "Complementary training",
+      "meta": "",
+      "text": "Artificial Intelligence Bootcamp (MinTIC / Talento Tech) · Data Science, Python and Machine Learning (Platzi)"
     }
   ],
   "youtube": "https://www.youtube.com/@akazuia"

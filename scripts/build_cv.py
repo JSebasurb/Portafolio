@@ -30,11 +30,11 @@ S = {
     "name": ParagraphStyle("name", fontName="Helvetica-Bold", fontSize=20, leading=23, textColor=DARK),
     "head": ParagraphStyle("head", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=BLUE),
     "contact": ParagraphStyle("contact", fontName="Helvetica", fontSize=8.6, leading=11.5, textColor=GRAY),
-    "h2": ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=BLUE, spaceBefore=9, spaceAfter=2),
-    "body": ParagraphStyle("body", fontName="Helvetica", fontSize=9, leading=12.2, textColor=DARK),
-    "role": ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=9.4, leading=12, textColor=DARK, spaceBefore=4),
+    "h2": ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=BLUE, spaceBefore=6, spaceAfter=1),
+    "body": ParagraphStyle("body", fontName="Helvetica", fontSize=8.6, leading=11.2, textColor=DARK),
+    "role": ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=9.2, leading=11.5, textColor=DARK, spaceBefore=2),
     "meta": ParagraphStyle("meta", fontName="Helvetica-Oblique", fontSize=8.4, leading=11, textColor=GRAY),
-    "li": ParagraphStyle("li", fontName="Helvetica", fontSize=9, leading=12, leftIndent=10, bulletIndent=1, textColor=DARK),
+    "li": ParagraphStyle("li", fontName="Helvetica", fontSize=8.6, leading=11.2, leftIndent=10, bulletIndent=1, textColor=DARK),
 }
 
 def link(url, label):
@@ -64,18 +64,19 @@ def build():
             li(e(x["text"])), li(f'<b>{LB["win"]}</b> {e(x["achievement"])}'),
         ]))
     st += h2(LB["proj"])
-    for x in P["projects"]:
+    _feat = [x for x in P["projects"] if x.get("cv")] or P["projects"]
+    for x in _feat:
         items = [Paragraph(f'{e(x["title"])}', S["role"]), Paragraph(e(x["meta"]) + " · " + e(", ".join(x["tags"])), S["meta"]), li(e(x["text"]))]
         if x["impact"]:
             items.append(li(f'<b>{LB["impact"]}</b> {e(x["impact"])}'))
         st.append(KeepTogether(items))
     st += h2(LB["edu"])
     for x in P["education"]:
-        blk = [Paragraph(f'{e(x["title"])}', S["role"]), Paragraph(e(x["meta"]), S["meta"])]
+        blk = [Paragraph(f'{e(x["title"])}', S["role"])] + ([Paragraph(e(x["meta"]), S["meta"])] if x.get("meta") else [])
         if x["text"]:
             blk.append(li(e(x["text"])))
         st.append(KeepTogether(blk))
-    doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=17*mm, rightMargin=17*mm, topMargin=14*mm, bottomMargin=14*mm,
+    doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=14*mm, rightMargin=14*mm, topMargin=10*mm, bottomMargin=10*mm,
                             title=f'CV - {P["name"]}', author=P["name"])
     doc.build(st)
     print("CV generado:", OUT)

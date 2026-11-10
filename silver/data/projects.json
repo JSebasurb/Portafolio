@@ -456,6 +456,56 @@
       "go": "cato"
     },
     {
+      "id": "fobias-trabajo-grado",
+      "title": "Entornos inmersivos para la identificación de fobias",
+      "category": "Realidad virtual",
+      "year": "2025",
+      "emoji": "🥽",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Trabajo de grado: entornos inmersivos en Unity para Meta Quest 2 para identificar fobias como el miedo al fuego y a las alturas, con un sistema que analiza las reacciones del usuario ante estímulos controlados.",
+      "tags": [
+        "Unity",
+        "Meta Quest 2",
+        "Realidad virtual",
+        "Salud mental"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Immersive environments for phobia identification",
+        "category": "Virtual reality",
+        "description": "Bachelor's thesis: immersive Unity environments for Meta Quest 2 to identify phobias such as fear of fire and heights, with a system that analyzes user reactions to controlled stimuli.",
+        "link_label": "View project"
+      }
+    },
+    {
+      "id": "robot-movil-vr",
+      "title": "Control de robot móvil mediante realidad virtual (CINVESTAV)",
+      "category": "Robótica",
+      "year": "2026",
+      "emoji": "🤖",
+      "thumbnail": "",
+      "link": "",
+      "link_label": "Ver proyecto",
+      "description": "Proyecto en el Área de Control Automático del CINVESTAV, Ciudad de México. Sistema de control de un robot móvil desde realidad virtual, con Unity, C#, ROS y Meta Quest 2, con integración de sensores IMU y LIDAR.",
+      "tags": [
+        "Unity",
+        "C#",
+        "ROS",
+        "LIDAR",
+        "IMU",
+        "Meta Quest 2"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Mobile robot control through virtual reality (CINVESTAV)",
+        "category": "Robotics",
+        "description": "Project in the Automatic Control Area of CINVESTAV, Mexico City. Mobile-robot control system driven from virtual reality, using Unity, C#, ROS and Meta Quest 2, with IMU and LIDAR sensor integration.",
+        "link_label": "View project"
+      }
+    },
+    {
       "title": "Proyecto 8 (editar)",
       "category": "Datos",
       "year": "",

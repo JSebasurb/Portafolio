@@ -734,3 +734,10 @@ html[lang="en"] .t-es{display:none!important}
   .bn-grid{grid-template-columns:repeat(2,1fr)}
   .bn-foot span{display:none}
 }
+
+/* App de rutas dentro de Apps creadas */
+.rutaapp{margin:0 0 18px;text-align:left}
+.rutaapp h3{font-size:1.4rem;margin:2px 0 8px}
+.rutaapp p{color:var(--text);line-height:1.5}
+.rutaapp-kicker{margin:0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.rutaapp .pill{margin-top:8px}

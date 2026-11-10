@@ -8,7 +8,7 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez.pdf",
-  "summary": "Ingeniero en Automática Industrial con enfoque en Machine Learning, ventas técnicas y análisis de datos. Desde octubre de 2026 soy asesor técnico en Industrias CATO, donde asesoro a clientes en la selección de tornillería y soluciones técnicas. Antes trabajé como asesor técnico y comercial en una empresa de soluciones técnicas, donde analicé información de clientes y automaticé procesos de datos, y como líder de área CNC y Robótica analicé variables de producción y control de calidad. Desarrollo modelos predictivos, dashboards en Power BI y flujos de IA con Python, R y n8n, y diseño pipelines ETL con arquitectura medallón (Bronze/Silver/Gold). Combino la ingeniería industrial con la analítica para convertir datos en decisiones de venta y de producción. Mantengo un portafolio público con proyectos, herramientas propias y servicios de automatización, datos e impresión 3D.",
+  "summary": "Ingeniero en Automática Industrial con enfoque en Machine Learning, ventas técnicas y análisis de datos. Desde octubre de 2026 soy asesor técnico en el sector de tornillería, donde asesoro a clientes en la selección de productos y soluciones técnicas. Antes trabajé como asesor técnico y comercial en una empresa de soluciones técnicas, donde analicé información de clientes y automaticé procesos de datos, y como líder de área CNC y Robótica analicé variables de producción y control de calidad. Desarrollo modelos predictivos, dashboards en Power BI y flujos de IA con Python, R y n8n, y diseño pipelines ETL con arquitectura medallón (Bronze/Silver/Gold). Combino la ingeniería industrial con la analítica para convertir datos en decisiones de venta y de producción.",
   "skills": [
     {
       "title": "Machine Learning & IA",
@@ -93,7 +93,7 @@
     {
       "period": "2019 – Nov 2025 · Mar 2026 – Sep 2026",
       "role": "Asesor Técnico, Comercial y de Automatización de Datos",
-      "company": "Empresa de soluciones técnicas",
+      "company": "Proeléctricos",
       "text": "Analizo y valido información técnica y operativa de clientes para estructurar soluciones integrales, asegurando la calidad y trazabilidad de los registros comerciales.",
       "achievement": "Diseñé e implementé un chatbot con IA para el canal web, integrado a un pipeline de automatización en n8n que extrae, valida y enruta automáticamente reportes e información hacia las áreas responsables."
     },
@@ -106,6 +106,33 @@
     }
   ],
   "projects": [
+    {
+      "icon": "🥽",
+      "title": "Entornos inmersivos para la identificación de fobias",
+      "meta": "Trabajo de grado · Septiembre 2025",
+      "text": "Diseñé y programé entornos inmersivos en Unity para Meta Quest 2, enfocados en la identificación de fobias como el miedo al fuego y a las alturas.",
+      "impact": "Propuse un sistema de realidad virtual que analiza las reacciones del usuario ante estímulos controlados, para la evaluación de miedos y aplicaciones en salud mental.",
+      "tags": [
+        "Unity",
+        "Meta Quest 2",
+        "Realidad virtual"
+      ],
+      "cv": true
+    },
+    {
+      "icon": "🤖",
+      "title": "Control de robot móvil mediante realidad virtual",
+      "meta": "CINVESTAV, Ciudad de México · Febrero 2026",
+      "text": "Desarrollo de un sistema de control de robot móvil mediante realidad virtual, utilizando Unity y Meta Quest 2, en el Área de Control Automático del CINVESTAV.",
+      "impact": "Integración de comunicación serial, sensores IMU y LIDAR, modelado 3D y control del robot desde el entorno de realidad virtual.",
+      "tags": [
+        "Unity",
+        "C#",
+        "ROS",
+        "Meta Quest 2"
+      ],
+      "cv": true
+    },
     {
       "icon": "🔄",
       "title": "Pipeline ETL automatizado end-to-end",
@@ -198,6 +225,11 @@
       "title": "Ingeniería en Automática Industrial",
       "meta": "Ingeniero titulado",
       "text": ""
+    },
+    {
+      "title": "Formación complementaria",
+      "meta": "",
+      "text": "Bootcamp de Inteligencia Artificial (MinTIC / Talento Tech) · Data Science, Python y Machine Learning (Platzi)"
     }
   ],
   "youtube": "https://www.youtube.com/@akazuia"
