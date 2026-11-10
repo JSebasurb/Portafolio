@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="{{SITE_TITLE}}">
 <meta name="twitter:image" content="{{SITE_URL}}assets/img/og-image.png">
 <meta name="author" content="Juan Sebastián Sánchez Urbano">
-<meta name="theme-color" content="#0071e3">
+<meta name="theme-color" content="#0d9488">
 <link rel="canonical" href="{{CANONICAL}}">
 <link rel="alternate" hreflang="es" href="{{SITE_URL}}">
 <link rel="alternate" hreflang="en" href="{{SITE_URL}}en/">
@@ -25,13 +25,13 @@
 <link rel="manifest" href="{{ROOT}}manifest.webmanifest">
 <link rel="apple-touch-icon" href="{{ROOT}}assets/img/icon-192.png">
 <script type="application/ld+json">{{JSON_LD}}</script>
-<link rel="icon" type="image/svg+xml" href="{{ROOT}}assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ROOT}}assets/img/favicon-32.png">
 <link rel="stylesheet" href="{{ROOT}}assets/css/styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="top"><div>
-  <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="{{ROOT}}assets/img/logo.svg" alt="" width="28" height="28"><span>JSebasurb</span></a>
+  <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="{{ROOT}}assets/img/logo.webp" alt="" width="28" height="28"><span>JSebasurb</span></a>
   <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs">
     <button class="on" data-t="perfil">Perfil</button>
     <button data-t="hub">Proyectos</button>
@@ -52,7 +52,7 @@
           <svg class="bn-art" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity=".45"><path d="M0 150H70l24-24h70l20-20h116"/><path d="M40 220v-30l30-30h60"/><path d="M190 220v-40l24-24h86"/><circle cx="70" cy="150" r="3"/><circle cx="164" cy="106" r="3"/><circle cx="214" cy="172" r="3"/><circle cx="110" cy="126" r="2"/></g><g fill="none" stroke="#2dd4bf" stroke-width="1" opacity=".28" stroke-dasharray="4 6"><circle cx="232" cy="78" r="62"/><circle cx="232" cy="78" r="38"/></g></svg>
           <div class="bn-inner">
             <div class="bn-top">
-              <div class="bn-brand"><img src="{{ROOT}}assets/img/logo.svg" alt="" width="30" height="30"><span>JSebasurb</span></div>
+              <div class="bn-brand"><img src="{{ROOT}}assets/img/logo.webp" alt="" width="30" height="30"><span>JSebasurb</span></div>
             </div>
             <div>
               <p class="bn-name">Juan Sebastián<br><span class="bn-ac">Sánchez Urbano</span></p>
@@ -105,7 +105,7 @@
     <div class="tile rv"><div><div class="ico">🔑</div><h3>Llaveros estampados</h3><p>Tu foto, nombre o logo sobre llaveros con lámina de aluminio. Colores vivos y muy resistentes.</p></div><div class="from">Desde <b>$8.000</b></div></div>
     <div class="tile rv"><div><div class="ico">📱</div><h3>Estuches en aluminio</h3><p>Estampado a todo color sobre lámina de aluminio. Acabado brillante y duradero.</p></div><div class="from">Desde <b>$35.000</b></div></div>
     <div class="tile rv"><div><div class="ico">🔮</div><h3>Estuches en vidrio</h3><p>Estampado sobre vidrio con efecto espejo y una profundidad de color increíble.</p></div><div class="from">Desde <b>$40.000</b></div></div>
-    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b> · <button class="link" data-go="imp3d" style="padding:0;color:#2997ff">Ver más ›</button></div></div>
+    <div class="tile dark rv"><div><div class="ico">🧊</div><h3>Impresión 3D</h3><p>Prototipos, repuestos, figuras y piezas funcionales en PLA.</p></div><div class="from" style="color:#a1a1a6">Cotiza tu <b style="color:#fff">pieza</b> · <button class="link" data-go="imp3d" style="padding:0;color:#2dd4bf">Ver más ›</button></div></div>
   </div>
 
   {{CATALOG_SECTION}}
@@ -122,7 +122,7 @@
       <div class="f two"><div><label>CANTIDAD</label><input type="number" id="qty" min="1" max="999" value="1" inputmode="numeric"></div><div id="modelF" hidden><label>MODELO DE CELULAR</label><input id="model" maxlength="40" placeholder="Ej. iPhone 15 Pro" autocomplete="off"></div></div>
       <div class="f"><label>COLOR</label><div class="dots" id="colC">
         <button aria-label="Color naranja" class="on" style="background:linear-gradient(135deg,#ff9f0a,#ff375f)" data-v="linear-gradient(135deg,#ff9f0a,#ff375f)"></button>
-        <button aria-label="Color azul" style="background:linear-gradient(135deg,#5e5ce6,#0a84ff)" data-v="linear-gradient(135deg,#5e5ce6,#0a84ff)"></button>
+        <button aria-label="Color azul" style="background:linear-gradient(135deg,#5e5ce6,#8a93a6)" data-v="linear-gradient(135deg,#5e5ce6,#8a93a6)"></button>
         <button aria-label="Color verde" style="background:linear-gradient(135deg,#30d158,#0a9d8f)" data-v="linear-gradient(135deg,#30d158,#0a9d8f)"></button>
         <button aria-label="Color morado" style="background:linear-gradient(135deg,#bf5af2,#ff2d92)" data-v="linear-gradient(135deg,#bf5af2,#ff2d92)"></button>
         <button aria-label="Color gris" style="background:linear-gradient(135deg,#48484a,#1c1c1e)" data-v="linear-gradient(135deg,#48484a,#1c1c1e)"></button></div></div>

@@ -74,22 +74,28 @@
   /* ----- eventos ----- */
   root.addEventListener('click',function(e){
     var t=e.target.closest('button');if(!t)return;
-    if(t.dataset.app==='academia'){ $('#appGrid').hidden=true; $('#academyView').hidden=false; renderHome(); return; }
+    if(t.dataset.app==='academia'){ $('#appGrid').hidden=true; $('#academyView').hidden=false; if(BANK) renderHome(); return; }
     if(t.id==='appBack'){ $('#academyView').hidden=true; $('#appGrid').hidden=false; window.scrollTo({top:Math.max(0,root.getBoundingClientRect().top+window.scrollY-64),behavior:'auto'}); return; }
     if(t.classList.contains('clvl')){var l=+t.dataset.l;startQuiz(BANK.q.filter(function(q){return q.l===l}).sort(function(){return Math.random()-.5}).slice(0,10),T('Nivel')+' '+l);return}
     if(t.classList.contains('chip')){var c=t.dataset.c;startQuiz(BANK.q.filter(function(q){return q.c===c}).sort(function(){return Math.random()-.5}).slice(0,10),c);return}
+    if(!BANK) return;
     if(t.id==='cMixBtn'){startQuiz(BANK.q.slice().sort(function(){return Math.random()-.5}).slice(0,10),T('Repaso mixto'));return}
     if(t.dataset.cato){var g=t.dataset.cato;if(g==='cHome')renderHome();else if(g==='cCuri')renderCuriosity();else if(g==='cRef')renderRef('ref');return}
     if(t.classList.contains('copt')){answer(+t.dataset.i);return}
     if(t.id==='cNext'){cur.i++;next();return}
     if(t.dataset.r){renderRef(t.dataset.r);return}
-    if(t.id==='cReset'){if(confirm(T('¿Borrar tu progreso en Academia Tornillos?'))){state={xp:0,done:{},best:{},streak:0,lastDay:''};save();renderHome()}return}
+    if(t.id==='cReset'){if(confirm(T('¿Borrar tu progreso en la academia?'))){state={xp:0,done:{},best:{},streak:0,lastDay:''};save();renderHome()}return}
   });
+  function useBank(b){
+    var en=(window.LANG==='en'&&b.en)?b.en:null;
+    var qs=en?b.q.map(function(q){var x=en[q.t];return x?{c:q.c,l:q.l,t:x.t,o:x.o,a:q.a,e:x.e}:q;}):b.q;
+    BANK={q:qs,cu:b.cu,ref:b.ref,mt:b.mt,dc:b.dc}; renderHome(); renderStats();
+  }
   function init(){
-    fetch(window.CFG.root+'assets/apps/cato/bank.json').then(function(r){return r.json()}).then(function(b){
-      BANK={q:b.q,cu:b.cu,ref:b.ref,mt:b.mt,dc:b.dc};
-      renderHome();renderStats();
-    }).catch(function(){$('#cLevels').innerHTML='<p>'+T('No se pudo cargar el contenido. Intenta de nuevo.')+'</p>'});
+    if(window.CATO_BANK){ useBank(window.CATO_BANK); return; }
+    fetch(window.CFG.root+'assets/apps/cato/bank.json').then(function(r){return r.json()}).then(useBank).catch(function(){
+      $('#cLevels').innerHTML='<p>'+T('No se pudo cargar el contenido. Intenta de nuevo.')+'</p>';
+    });
   }
   init();
 })();

@@ -520,7 +520,6 @@
   "Referencias": "References",
   "Abreviaturas": "Abbreviations",
   "Decodificar": "Decode",
-  "¿Borrar tu progreso de la academia?": "Delete your Tornillos Academy progress?",
   "No se pudo cargar el contenido. Intenta de nuevo.": "Could not load the content. Please try again.",
   "Repaso mixto": "Mixed review",
   "Diámetro mayor": "Major diameter",
@@ -671,6 +670,7 @@
   "Educación": "Education",
   "Métrico": "Metric",
   "Audiovisual": "Audiovisual",
-  "Machine Learning · Ventas · Power BI · IA": "Machine Learning · Sales · Power BI · AI"
+  "Machine Learning · Ventas · Power BI · IA": "Machine Learning · Sales · Power BI · AI",
+  "¿Borrar tu progreso en la academia?": "Delete your academy progress?"
  }
 }

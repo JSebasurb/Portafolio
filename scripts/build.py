@@ -292,12 +292,12 @@ def render_games(d, root=""):
 CATO_UI = {
     "es": dict(CATO_TITLE="Apps creadas", CATO_SUB="Aplicaciones que construí para trabajo y aprendizaje.",
                CATO_LVL_T="Por niveles", CATO_LVL_S="Del 1 al 15, de lo básico a lo experto. Cada nivel tiene 10 preguntas al azar.", CATO_CAT_T="Por tema", CATO_CAT_S="Elige un tema y practica solo ese.",
-               CATO_MIX_T="Repaso mixto", CATO_MIX_S="10 preguntas de todos los niveles.", CATO_CURI_T="Curiosidades", CATO_CURI_S="Datos y mitos de la tornillería.", CATO_REF_T="Referencias",
-               CATO_REF_S="Consulta códigos, abreviaturas y decodifica referencias.", CATO_RESET="Borrar mi progreso", CATO_BACK="Volver", CATO_NEXT="Siguiente ›", CATO_NEXT_TIP="Otra curiosidad ›", CATO_HOME="Volver a la Academia Tornillos", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Abrir Academia Tornillos en su propio sitio"),
+               CATO_MIX_T="Repaso mixto", CATO_MIX_S="10 preguntas de todos los niveles.", CATO_CURI_T="Curiosidades", CATO_CURI_S="Datos y mitos sobre la industria técnica.", CATO_REF_T="Referencias",
+               CATO_REF_S="Consulta códigos, abreviaturas y decodifica referencias.", CATO_RESET="Borrar mi progreso", CATO_BACK="Volver", CATO_NEXT="Siguiente ›", CATO_NEXT_TIP="Otra curiosidad ›", CATO_HOME="Volver a la academia", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Ver sitio propio"),
     "en": dict(CATO_TITLE="Apps I built", CATO_SUB="Applications I built for work and learning.",
                CATO_LVL_T="By level", CATO_LVL_S="From 1 to 15, from basics to expert. Each level gives 10 random questions.", CATO_CAT_T="By topic", CATO_CAT_S="Pick a topic and practice only that.",
-               CATO_MIX_T="Mixed review", CATO_MIX_S="10 questions from all levels.", CATO_CURI_T="Curiosities", CATO_CURI_S="Facts and myths about fasteners.", CATO_REF_T="References",
-               CATO_REF_S="Look up codes and abbreviations, and decode references.", CATO_RESET="Reset my progress", CATO_BACK="Back", CATO_NEXT="Next ›", CATO_NEXT_TIP="Another curiosity ›", CATO_HOME="Back to Tornillos Academy", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="Open Tornillos Academy on its own site"),
+               CATO_MIX_T="Mixed review", CATO_MIX_S="10 questions from all levels.", CATO_CURI_T="Curiosities", CATO_CURI_S="Facts and myths about the technical industry.", CATO_REF_T="References",
+               CATO_REF_S="Look up codes and abbreviations, and decode references.", CATO_RESET="Reset my progress", CATO_BACK="Back", CATO_NEXT="Next ›", CATO_NEXT_TIP="Another curiosity ›", CATO_HOME="Back to the academy", CATO_URL="https://jsebasurb.github.io/Academy-tornillos/", CATO_OPEN="View its own site"),
 }
 
 
