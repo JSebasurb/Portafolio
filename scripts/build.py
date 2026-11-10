@@ -11,7 +11,7 @@ LANGS = ("es", "en")
 GRADS = [("#ff9f0a", "#ff375f"), ("#5e5ce6", "#0a84ff"), ("#30d158", "#0a9d8f"), ("#bf5af2", "#ff2d92"), ("#48484a", "#1c1c1e"), ("#ff375f", "#bf5af2")]
 
 UI = {
-    "es": dict(cv="Descargar CV (PDF)", try_tool="Abrir la herramienta ›", try_go="Ver ›", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
+    "es": dict(cv="Descargar CV (PDF)", try_tool="Abrir la herramienta ›", edu_link="Ver perfil en Platzi ↗", try_go="Ver ›", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
                s_proj="Proyectos destacados", s_edu="Educación", win="Logro:", impact="Impacto:", all_proj="Ver todos mis proyectos",
                work="Trabajemos juntos", wa="Escribir por WhatsApp", use_form="Usar el formulario ›",
                p_title="Mis proyectos.", p_sub="Datos, automatización, web e ingeniería. Toca una miniatura para abrir el proyecto.",
@@ -22,7 +22,7 @@ UI = {
                b_title="Blog.", b_sub="Notas cortas sobre datos y automatización.", faq="Preguntas frecuentes", faq_btn="Ver preguntas frecuentes",
                fab="Hola, quiero cotizar un servicio", job="Ingeniero en Automática Industrial · ML y Ventas", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
                locale="es_CO", root=""),
-    "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
+    "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", edu_link="View Platzi profile ↗", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
                s_proj="Featured projects", s_edu="Education", win="Achievement:", impact="Impact:", all_proj="See all my projects",
                work="Let's work together", wa="Message on WhatsApp", use_form="Use the form ›",
                p_title="My projects.", p_sub="Data, automation, web and engineering. Tap a thumbnail to open the project.",
@@ -105,7 +105,7 @@ def render_profile(p, num, u, root):
         + '<div class="tag-row">' + "".join(f"<span>{e(t)}</span>" for t in x.get("tags", [])) + "</div>"
         + (f'<a class="repo" href="{e(x["link"])}" target="_blank" rel="noopener">{e(u["repo"])} ›</a>' if x.get("link") else "")
         + "</div></div>" for x in p["projects"][:3])
-    edu = "".join(f'<div class="tl-item rv"><div class="tl-per">{e(x["meta"])}</div><h3>{e(x["title"])}</h3>' + (f'<p>{e(x["text"])}</p>' if x["text"] else "") + "</div>" for x in p["education"])
+    edu = "".join(f'<div class="tl-item rv"><div class="tl-per">{e(x["meta"])}</div><h3>{e(x["title"])}</h3>' + (f'<p>{e(x["text"])}</p>' if x["text"] else "") + (f'<p><a href="{e(x["url"])}" target="_blank" rel="noopener">{e(u["edu_link"])}</a></p>' if x.get("url") else "") + "</div>" for x in p["education"])
     return f'''<section class="tab on" id="perfil">
   <h2>{e(p["name"])}</h2>
   <p class="sub">{e(p["headline"])}</p>

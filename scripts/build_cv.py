@@ -74,7 +74,8 @@ def build():
     for x in P["education"]:
         blk = [Paragraph(f'{e(x["title"])}', S["role"])] + ([Paragraph(e(x["meta"]), S["meta"])] if x.get("meta") else [])
         if x["text"]:
-            blk.append(li(e(x["text"])))
+            _lnk = (f' <link href="{x["url"]}" color="#0a84ff">' + ("Platzi profile" if LB["exp"].startswith("Professional") else "perfil en Platzi") + "</link>") if x.get("url") else ""
+            blk.append(li(e(x["text"]) + _lnk))
         st.append(KeepTogether(blk))
     doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=14*mm, rightMargin=14*mm, topMargin=10*mm, bottomMargin=10*mm,
                             title=f'CV - {P["name"]}', author=P["name"])
