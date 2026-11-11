@@ -752,3 +752,26 @@ html[lang="en"] .t-es{display:none!important}
 .appbtns{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .appbtns .link{padding:0}
 #academyView{margin-top:6px}
+
+/* ---------- Tarjeta: colores del sitio y texto legible en celular ---------- */
+.bn-front{border:1px solid rgba(41,151,255,.28)}
+.bn-ac{color:#2997ff}
+.bn-front .bn-ic,.bn-front .bn-ci{stroke:#2997ff}
+.bn-back .bn-ci,.bn-chip .bn-ci{stroke:#0071e3}
+.bn-kicker{color:#0071e3}
+.bn-foot b{color:#0071e3}
+.bn-contacts{font-size:clamp(.7rem,2.6vw,.9rem)}
+.bn-role{font-size:clamp(.8rem,3vw,1.05rem)}
+.bn-tag{font-size:clamp(.7rem,2.5vw,.9rem)}
+.bn-chip{font-size:clamp(.66rem,2.4vw,.82rem)}
+.bn-kicker{font-size:clamp(.66rem,2.2vw,.78rem)}
+.bn-foot{font-size:clamp(.66rem,2.1vw,.8rem)}
+.bn-h{font-size:clamp(1.05rem,4vw,1.5rem)}
+.bn-bd{font-size:clamp(.7rem,2.4vw,.86rem)}
+@media(max-width:560px){
+  .bc3d{aspect-ratio:1/1.12}
+  .bn-tag{display:none}
+  .bn-contacts{gap:8px 12px}
+  .bn-inner{padding:6% 6% 5%}
+  .bn-chip{padding:7px 6px}
+}
