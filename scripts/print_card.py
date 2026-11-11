@@ -18,7 +18,7 @@ NAVY, BLUE, BLUE_LIGHT, INK, PAPER, MUTED = HexColor("#0b1220"), HexColor("#2997
 def logo_png():
     src = ROOT / "silver" / "assets" / "logo.webp"
     out = Path("/tmp/logo_print.png")
-    Image.open(src).convert("RGB").resize((256, 256), Image.LANCZOS).save(out, "PNG")
+    Image.open(src).convert("RGBA").resize((256, 256), Image.LANCZOS).save(out, "PNG")
     return str(out)
 
 def front(c):
@@ -26,7 +26,7 @@ def front(c):
     c.setStrokeColor(BLUE); c.setLineWidth(0.6)
     c.roundRect(BLEED + 2*mm, BLEED + 2*mm, 85*mm - 4*mm, 55*mm - 4*mm, 3*mm, stroke=1, fill=0)
     x0, y0 = BLEED + 7*mm, BLEED
-    c.drawImage(logo_png(), x0, y0 + 40*mm, width=12*mm, height=12*mm, mask=None)
+    c.drawImage(logo_png(), x0, y0 + 40*mm, width=12*mm, height=12*mm, mask="auto")
     c.setFillColor(white); c.setFont("Helvetica-Bold", 7.5)
     c.drawString(x0 + 14*mm, y0 + 45*mm, "JSebasurb")
     c.setFont("Helvetica-Bold", 15); c.drawString(x0, y0 + 33*mm, "Juan Sebastián")

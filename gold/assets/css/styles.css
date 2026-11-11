@@ -798,3 +798,6 @@ html[lang="en"] .t-es{display:none!important}
   .bn-front .bn-qr{right:6%;top:6%;bottom:auto;width:64px;padding:4px}
   .bn-front .bn-contacts{max-width:100%}
 }
+
+/* Logo transparente: sin recuadro ni sombra */
+.brand img,.bn-brand img{border-radius:0;box-shadow:none;background:none}
