@@ -11,7 +11,7 @@
         "g1": "#5e5ce6",
         "g2": "#ff375f",
         "title": "Bolt Runner",
-        "desc": "Un robot corre por una fábrica. Salta los tornillos y los engranajes, y agáchate ante los drones. Cada 300 puntos sube de nivel y la velocidad aumenta.",
+        "desc": "Corre por una fábrica, salta tornillos y engranajes, y agáchate ante los drones. Cada 300 puntos subes de nivel y la velocidad aumenta.",
         "hint": "Toca para saltar y mantén para saltar más alto. Toca el piso (parte baja) para agacharte. En teclado: espacio salta, flecha abajo agacha.",
         "section": "Arcade y reflejos"
       },
@@ -21,7 +21,7 @@
         "g1": "#0a84ff",
         "g2": "#30d158",
         "title": "Capas 3D",
-        "desc": "Apila capas como lo haría una impresora 3D. Lo que sobresale se corta, y los aciertos perfectos recuperan ancho. ¿Cuántas capas logras?",
+        "desc": "Apila capas como una impresora 3D: lo que sobresale se corta. Los aciertos perfectos recuperan ancho. ¿Cuántas capas logras?",
         "hint": "Toca para soltar la capa justo encima de la anterior. En teclado: espacio."
       },
       {
@@ -30,7 +30,7 @@
         "g1": "#bf5af2",
         "g2": "#0a84ff",
         "title": "Órbita",
-        "desc": "Gira sin parar entre dos órbitas. Cambia de carril para esquivar los obstáculos rojos y recoge la energía dorada para sumar más puntos.",
+        "desc": "Gira sin parar entre dos órbitas. Cambia de carril para esquivar los obstáculos rojos y recoge la energía dorada.",
         "hint": "Toca para cambiar de órbita. En teclado: espacio."
       },
       {
@@ -39,7 +39,7 @@
         "g1": "#30d158",
         "g2": "#0a9d8f",
         "title": "Serpiente de datos",
-        "desc": "Recoge paquetes de datos y crece sin chocar contigo misma. Los bordes te llevan al otro lado y los paquetes dorados valen triple.",
+        "desc": "Recoge paquetes de datos sin chocar contigo misma. Los bordes te llevan al otro lado y los dorados valen triple.",
         "hint": "Desliza el dedo para girar. En teclado: flechas o WASD."
       },
       {
@@ -48,7 +48,7 @@
         "g1": "#ff9f0a",
         "g2": "#ff375f",
         "title": "Rodamiento",
-        "desc": "Inclina tu celular para rodar un balín de acero por el laberinto. Usa el acelerómetro: evita los agujeros, recoge tornillos de oro y llega a la meta antes de que se acabe el tiempo.",
+        "desc": "Inclina el celular para rodar una bola de acero por el laberinto. Evita los agujeros, recoge los tornillos de oro y llega a la meta a tiempo.",
         "hint": "Inclina el celular para mover el balín. Se calibra con la posición en la que empiezas; pulsa ↺ para recalibrar. En iPhone, acepta el permiso de movimiento. En computador: flechas o arrastra."
       },
       {
@@ -57,7 +57,7 @@
         "g1": "#ff375f",
         "g2": "#bf5af2",
         "title": "Akazu Dance",
-        "desc": "Baila con Akazu, el avatar de IA de mi canal. Toca cada carril cuando la nota llegue a la línea, encadena combos y trata de llegar a 500 seguidores. La música y el ritmo suben poco a poco.",
+        "desc": "Baila con Akazu, el avatar de IA de mi canal. Toca cada carril cuando la nota llegue a la línea y encadena combos. La música sube de ritmo poco a poco.",
         "hint": "Toca el carril (izquierda, centro o derecha) cuando la nota llegue a la línea brillante. Con sonido se disfruta más. En teclado: A, S, D o las flechas."
       },
       {
@@ -66,7 +66,7 @@
         "g1": "#0a9d8f",
         "g2": "#0a84ff",
         "title": "Control de Tornillos",
-        "desc": "Eres el inspector de una fábrica de tornillos: el jefe da una orden y solo debes aprobar los tornillos perfectos que la cumplen. ¡Cuidado con los doblados, rajados y sin rosca! La orden cambia cada 8 tornillos.",
+        "desc": "Eres inspector de una fábrica de tornillos: aprueba solo los que cumplen la orden del jefe. Cuidado con los doblados, rajados y sin rosca.",
         "hint": "Toca la mitad derecha para aprobar y la izquierda para rechazar. Tienes 3 vidas. En teclado: flecha derecha aprueba, izquierda rechaza."
       },
       {
@@ -77,7 +77,7 @@
         "g1": "#ff2d92",
         "g2": "#5e5ce6",
         "title": "Cubehead",
-        "desc": "Corre en 3D por una pista de neón al ritmo de «Final Boss Pursuit». Cambia de carril, salta los bloques bajos, esquiva los muros y recoge energía mientras el vórtice del jefe late con la música. Tienes 3 vidas y recuperas una si aguantas 20 segundos sin chocar.",
+        "desc": "Corre en 3D por una pista de neón al ritmo de «Final Boss Pursuit». Cambia de carril, salta y esquiva. Tienes 3 vidas y recuperas una si aguantas 20 segundos sin chocar.",
         "hint": "Desliza a izquierda o derecha para cambiar de carril, y toca o desliza hacia arriba para saltar (hacia abajo caes rápido). También puedes tocar los costados para cambiar de carril. En teclado: flechas o A/D, y espacio para saltar. Con sonido se disfruta más."
       },
       {
@@ -86,7 +86,7 @@
         "g1": "#f0b765",
         "g2": "#d6402f",
         "title": "Duelo con el Gran Jefe",
-        "desc": "Un pequeño héroe de guantes blancos y ojos de pastel se enfrenta a Sir Torque, un tornillo gigante, malvado y muy exagerado. Dibujo animado de los años 30 con acuarela, grano de película vieja y música de swing. Esquiva tuercas y arandelas, y cuidado con el martillazo: tiene tres fases.",
+        "desc": "Un pequeño héroe enfrenta a Sir Torque, un tornillo gigante y malvado. Esquiva tuercas y arandelas, y cuidado con el martillazo: tiene tres fases.",
         "hint": "Arrastra el dedo para moverte: disparas solo. Toca rápido para esquivar con un salto de invencibilidad. En teclado: flechas o WASD, y espacio para esquivar. Funciona mejor con sonido.",
         "image": "duelo-gran-jefe.webp"
       },
@@ -96,7 +96,7 @@
         "g1": "#5e5ce6",
         "g2": "#30d158",
         "title": "Línea de producción",
-        "desc": "Tu planta tiene cuatro estaciones: corte, torneado, roscado y control de calidad. Asigna operarios a las estaciones para que las piezas fluyan. Si una estación se bloquea 3 veces, se acaba la línea. Cada pieza buena suma 10 puntos.",
+        "desc": "Gestiona una planta de cuatro estaciones: corte, torneado, roscado y control de calidad. Asigna operarios para que las piezas fluyan. Cada pieza buena suma 10 puntos.",
         "hint": "Toca una estación para asignarle un operario o quitárselo. Al inicio tienes 2 operarios y llegan más con el tiempo. En teclado: teclas 1 a 4."
       },
       {
@@ -107,7 +107,7 @@
         "section": "Agilidad mental · tipo entrevista",
         "section_sub": "Ejercicios cronometrados como los de las pruebas de selección: cálculo, atención, razonamiento y memoria. Es solo práctica, no una prueba psicométrica oficial.",
         "title": "Reto de entrevista",
-        "desc": "Elige el reto rápido (6 pruebas) o el completo (10): cálculo, lógica, atención, control de impulsos, memoria, planificación (Torre de Hanoi, puzzle deslizante), flexibilidad y rotación mental. Al final obtienes tu perfil con gráfica radar, análisis, plan de práctica y progreso, y puedes copiarlo o descargarlo como imagen o texto.",
+        "desc": "Un reto de entrevista con pruebas de cálculo, lógica, memoria, atención, planificación y más. Al final obtienes tu perfil con gráfica radar y plan de práctica.",
         "hint": "Cada prueba te explica qué hacer antes de empezar. El reto rápido dura unos 5 minutos y el completo unos 9. En teclado: números 1 a 4, flechas y espacio."
       },
       {
@@ -125,7 +125,7 @@
         "g1": "#ff375f",
         "g2": "#ffd60a",
         "title": "Tinta vs. palabra",
-        "desc": "La palabra dice un color pero está escrita con otro. Toca el color de la tinta… hasta que la regla cambie y debas tocar lo que dice la palabra.",
+        "desc": "La palabra dice un color, pero está escrita con otro. Toca el color de la tinta… hasta que la regla cambie y debas tocar lo que dice la palabra.",
         "hint": "Toca el color correcto según la regla de arriba. La regla cambia cada 8 respuestas. En teclado: 1 a 4."
       },
       {
@@ -134,7 +134,7 @@
         "g1": "#30d158",
         "g2": "#0a9d8f",
         "title": "Series lógicas",
-        "desc": "Descubre el patrón de cada serie numérica y elige el número que sigue. Hay sumas, multiplicaciones, saltos crecientes, cuadrados y series entrelazadas.",
+        "desc": "Descubre el patrón de cada serie numérica y elige el número que sigue. Hay sumas, multiplicaciones, cuadrados y series entrelazadas.",
         "hint": "Toca el número que continúa la serie. En teclado: 1 a 4."
       },
       {
@@ -152,7 +152,7 @@
         "g1": "#ff9f0a",
         "g2": "#ff453a",
         "title": "N-back",
-        "desc": "Una figura aparece tras otra. Di si es igual a la anterior; luego sube la dificultad: igual a la de hace dos. Entrena la memoria de trabajo.",
+        "desc": "Una figura aparece tras otra. Di si es igual a la anterior; luego sube la dificultad y compara con la de hace dos. Entrena la memoria de trabajo.",
         "hint": "Toca «Igual» o «Diferente». En teclado: flecha derecha = igual, izquierda = diferente."
       },
       {
@@ -161,7 +161,7 @@
         "g1": "#5e5ce6",
         "g2": "#0a84ff",
         "title": "Torre de Hanoi",
-        "desc": "El clásico de planificación: pasa la torre de discos al otro poste sin poner nunca uno grande sobre uno pequeño. Al resolverla, la torre crece. Se mide cuántos movimientos extra haces.",
+        "desc": "El clásico de planificación: pasa la torre de discos al otro poste sin poner nunca uno grande sobre uno pequeño. Se mide cuántos movimientos extra haces.",
         "hint": "Toca un poste para levantar su disco y otro poste para soltarlo. En teclado: 1, 2 y 3."
       },
       {
@@ -179,7 +179,7 @@
         "g1": "#bf5af2",
         "g2": "#ff375f",
         "title": "Sendero 1‑A‑2‑B",
-        "desc": "Toca las fichas en orden alterno entre números y letras: 1, A, 2, B, 3, C… Mide búsqueda visual y flexibilidad mental, igual que las pruebas de atención clásicas.",
+        "desc": "Toca las fichas en orden alterno entre números y letras: 1, A, 2, B, 3, C… Mide búsqueda visual y flexibilidad mental.",
         "hint": "Toca la ficha que sigue en la secuencia. Un error te cuesta 1 segundo."
       },
       {
@@ -188,7 +188,7 @@
         "g1": "#30d158",
         "g2": "#ff453a",
         "title": "Control de impulsos",
-        "desc": "Toca cuando veas el círculo verde y aguanta las ganas de tocar cuando salga el cuadrado rojo. Cada vez aparecen más rápido.",
+        "desc": "Toca cuando veas el círculo verde y aguanta las ganas cuando salga el cuadrado rojo. Cada vez aparecen más rápido.",
         "hint": "Toca en cualquier lugar (o espacio) solo con el círculo verde."
       },
       {
@@ -214,7 +214,7 @@
         "g1": "#5e5ce6",
         "g2": "#ff375f",
         "title": "Bolt Runner",
-        "desc": "A robot runs through a factory. Jump over bolts and gears, and duck under drones. Every 300 points you level up and the speed increases.",
+        "desc": "Run through a factory, jump over bolts and gears, and duck under drones. Every 300 points you level up and the speed increases.",
         "hint": "Tap to jump and hold to jump higher. Tap the floor (bottom area) to duck. Keyboard: space jumps, down arrow ducks.",
         "section": "Arcade and reflexes"
       },
@@ -224,7 +224,7 @@
         "g1": "#0a84ff",
         "g2": "#30d158",
         "title": "3D Layers",
-        "desc": "Stack layers the way a 3D printer would. Anything that overhangs gets cut off, and perfect hits win back width. How many layers can you make?",
+        "desc": "Stack layers like a 3D printer: anything that overhangs gets cut off. Perfect hits win back width. How many layers can you make?",
         "hint": "Tap to drop the layer right on top of the previous one. Keyboard: space."
       },
       {
@@ -233,7 +233,7 @@
         "g1": "#bf5af2",
         "g2": "#0a84ff",
         "title": "Orbit",
-        "desc": "Spin non-stop between two orbits. Switch lanes to dodge the red obstacles and grab the golden energy for extra points.",
+        "desc": "Spin non-stop between two orbits. Switch lanes to dodge the red obstacles and grab the golden energy.",
         "hint": "Tap to switch orbit. Keyboard: space."
       },
       {
@@ -242,7 +242,7 @@
         "g1": "#30d158",
         "g2": "#0a9d8f",
         "title": "Data Snake",
-        "desc": "Collect data packets and grow without hitting yourself. The edges wrap around and golden packets are worth triple.",
+        "desc": "Collect data packets without hitting yourself. The edges wrap around and the golden ones are worth triple.",
         "hint": "Swipe to turn. Keyboard: arrow keys or WASD."
       },
       {
@@ -251,7 +251,7 @@
         "g1": "#ff9f0a",
         "g2": "#ff375f",
         "title": "Ball Bearing",
-        "desc": "Tilt your phone to roll a steel ball bearing through the maze. It uses the accelerometer: avoid the holes, collect golden bolts and reach the goal before time runs out.",
+        "desc": "Tilt your phone to roll a steel ball through the maze. Avoid the holes, collect the golden screws and reach the goal before time runs out.",
         "hint": "Tilt your phone to move the ball. It calibrates to the position you start in; press ↺ to recalibrate. On iPhone, accept the motion permission. On a computer: arrow keys or drag."
       },
       {
@@ -260,7 +260,7 @@
         "g1": "#ff375f",
         "g2": "#bf5af2",
         "title": "Akazu Dance",
-        "desc": "Dance with Akazu, the AI avatar of my channel. Tap each lane when the note reaches the line, chain combos and try to reach 500 followers. The music and rhythm get faster little by little.",
+        "desc": "Dance with Akazu, the AI avatar of my channel. Tap each lane when the note reaches the line and chain combos. The music speeds up little by little.",
         "hint": "Tap the lane (left, center or right) when the note reaches the glowing line. It's more fun with sound on. Keyboard: A, S, D or the arrow keys."
       },
       {
@@ -269,7 +269,7 @@
         "g1": "#0a9d8f",
         "g2": "#0a84ff",
         "title": "Screw Inspector",
-        "desc": "You're the inspector at a screw factory: the boss gives an order and you must approve only the perfect screws that meet it. Watch out for bent, cracked and thread-less ones! The order changes every 8 screws.",
+        "desc": "You are a factory inspector: approve only the screws that match the boss's order. Watch out for bent, cracked and unthreaded ones.",
         "hint": "Tap the right half to approve and the left half to reject. You have 3 lives. Keyboard: right arrow approves, left arrow rejects."
       },
       {
@@ -280,7 +280,7 @@
         "g1": "#ff2d92",
         "g2": "#5e5ce6",
         "title": "Cubehead",
-        "desc": "Run in 3D along a neon track to the beat of “Final Boss Pursuit”. Switch lanes, jump the low blocks, dodge the walls and collect energy while the boss's vortex pulses with the music. You have 3 lives and regain one if you last 20 seconds without crashing.",
+        "desc": "Run in 3D along a neon track to «Final Boss Pursuit». Switch lanes, jump and dodge. You have 3 lives and regain one if you last 20 seconds without crashing.",
         "hint": "Swipe left or right to change lanes, and tap or swipe up to jump (swipe down to drop fast). You can also tap the sides to change lanes. Keyboard: arrows or A/D, and space to jump. It's better with sound on."
       },
       {
@@ -289,7 +289,7 @@
         "g1": "#f0b765",
         "g2": "#d6402f",
         "title": "Boss Duel",
-        "desc": "A little hero with white gloves and pie-cut eyes takes on Sir Torque, a giant, wicked and very over-the-top screw. 1930s cartoon style with watercolor, old-film grain and swing music. Dodge nuts and washers, and watch out for the hammer slam: there are three phases.",
+        "desc": "A little hero faces Sir Torque, a giant, evil screw. Dodge nuts and washers, and beware the hammer strike: he has three phases.",
         "hint": "Drag your finger to move: you shoot automatically. Tap quickly to dodge with an invincible dash. Keyboard: arrows or WASD, and space to dodge. Works best with sound on.",
         "image": "duelo-gran-jefe.webp"
       },
@@ -299,7 +299,7 @@
         "g1": "#5e5ce6",
         "g2": "#30d158",
         "title": "Production Line",
-        "desc": "Your plant has four stations: cutting, turning, threading and quality control. Assign operators to stations so parts keep flowing. If a station gets blocked 3 times, the line shuts down. Each good part is worth 10 points.",
+        "desc": "Run a plant with four stations: cutting, turning, threading and quality control. Assign operators so the parts keep flowing. Every good part scores 10 points.",
         "hint": "Tap a station to assign or remove an operator. You start with 2 operators and more arrive over time. Keyboard: keys 1 to 4."
       },
       {
@@ -310,7 +310,7 @@
         "section": "Mental agility · interview style",
         "section_sub": "Timed exercises like those in selection tests: math, attention, reasoning and memory. It's practice only, not an official psychometric test.",
         "title": "Interview Challenge",
-        "desc": "Choose the quick challenge (6 tests) or the full one (10): math, logic, attention, impulse control, memory, planning (Tower of Hanoi, sliding puzzle), flexibility and mental rotation. At the end you get your profile with a radar chart, analysis, practice plan and progress, and you can copy it or download it as an image or text.",
+        "desc": "An interview challenge with tests on math, logic, memory, attention, planning and more. At the end you get your profile with a radar chart and a practice plan.",
         "hint": "Each test explains what to do before it starts. The quick challenge takes about 5 minutes and the full one about 9. Keyboard: numbers 1 to 4, arrows and space."
       },
       {
@@ -319,7 +319,7 @@
         "g1": "#0a84ff",
         "g2": "#5e5ce6",
         "title": "Lightning Math",
-        "desc": "Add, subtract and multiply in your head against the clock. Each correct answer raises the level; each mistake costs you 3 seconds.",
+        "desc": "Add, subtract and multiply in your head against the clock. Each right answer raises the level; each mistake costs you 3 seconds.",
         "hint": "Tap the correct answer among four options. Keyboard: 1 to 4."
       },
       {
@@ -328,7 +328,7 @@
         "g1": "#ff375f",
         "g2": "#ffd60a",
         "title": "Ink vs. Word",
-        "desc": "The word says one color but is written in another. Tap the ink color… until the rule changes and you must tap what the word says.",
+        "desc": "The word names a color but is written in another. Tap the ink color… until the rule changes and you must tap what the word says.",
         "hint": "Tap the right color according to the rule at the top. The rule changes every 8 answers. Keyboard: 1 to 4."
       },
       {
@@ -337,7 +337,7 @@
         "g1": "#30d158",
         "g2": "#0a9d8f",
         "title": "Logic Series",
-        "desc": "Find the pattern of each number series and choose the number that comes next. There are sums, multiplications, growing steps, squares and interleaved series.",
+        "desc": "Find the pattern in each number sequence and pick the number that comes next. It mixes sums, products, squares and interleaved series.",
         "hint": "Tap the number that continues the series. Keyboard: 1 to 4."
       },
       {
@@ -346,7 +346,7 @@
         "g1": "#bf5af2",
         "g2": "#ff375f",
         "title": "Sequence Memory",
-        "desc": "The blocks light up in a certain order: watch them and repeat them. Each success makes the sequence longer. You have two lives.",
+        "desc": "The blocks light up in a certain order: watch them and repeat. Each right answer lengthens the sequence. You have two lives.",
         "hint": "Tap the blocks in the same order. Keyboard: numbers 1 to 9."
       },
       {
@@ -355,7 +355,7 @@
         "g1": "#ff9f0a",
         "g2": "#ff453a",
         "title": "N-back",
-        "desc": "One shape appears after another. Say whether it matches the previous one; then the difficulty rises: same as two back. It trains working memory.",
+        "desc": "A shape appears after another. Say whether it matches the previous one; then the difficulty rises and you compare with two steps back. Trains working memory.",
         "hint": "Tap “Same” or “Different”. Keyboard: right arrow = same, left arrow = different."
       },
       {
@@ -364,7 +364,7 @@
         "g1": "#5e5ce6",
         "g2": "#0a84ff",
         "title": "Tower of Hanoi",
-        "desc": "The classic planning puzzle: move the tower of discs to the other peg without ever putting a large disc on a small one. When you solve it, the tower grows. It measures how many extra moves you make.",
+        "desc": "The classic planning puzzle: move the stack of disks to the other peg without ever placing a larger disk on a smaller one. It counts your extra moves.",
         "hint": "Tap a peg to lift its disc and another peg to drop it. Keyboard: 1, 2 and 3."
       },
       {
@@ -373,7 +373,7 @@
         "g1": "#30d158",
         "g2": "#0a84ff",
         "title": "Sliding Puzzle",
-        "desc": "Put the tiles in order from 1 to 8 by sliding them into the gap. Each puzzle is longer than the last and the game tells you the minimum possible number of moves.",
+        "desc": "Put tiles 1 to 8 in order by sliding them into the gap. Each puzzle is longer than the last, and the game tells you the minimum number of moves.",
         "hint": "Tap a tile next to the gap to slide it. Keyboard: arrow keys."
       },
       {
@@ -382,7 +382,7 @@
         "g1": "#bf5af2",
         "g2": "#ff375f",
         "title": "1‑A‑2‑B Trail",
-        "desc": "Tap the tiles in alternating order between numbers and letters: 1, A, 2, B, 3, C… It measures visual search and mental flexibility, like the classic attention tests.",
+        "desc": "Tap the tiles in alternating order between numbers and letters: 1, A, 2, B, 3, C… It measures visual search and mental flexibility.",
         "hint": "Tap the next tile in the sequence. A mistake costs you 1 second."
       },
       {
@@ -391,7 +391,7 @@
         "g1": "#30d158",
         "g2": "#ff453a",
         "title": "Impulse Control",
-        "desc": "Tap when you see the green circle and hold back when the red square shows up. They appear faster and faster.",
+        "desc": "Tap when you see the green circle and hold back when the red square appears. They come faster each time.",
         "hint": "Tap anywhere (or press space) only for the green circle."
       },
       {
@@ -400,7 +400,7 @@
         "g1": "#0a9d8f",
         "g2": "#5e5ce6",
         "title": "Mental Rotation",
-        "desc": "Find which of the four options is the same shape, rotated. Watch out for the mirror image: it looks alike, but it's a different shape.",
+        "desc": "Find which of the four options is the same shape rotated. Beware the mirror: it looks alike, but it is a different shape.",
         "hint": "Tap the right shape. Keyboard: 1 to 4."
       }
     ]

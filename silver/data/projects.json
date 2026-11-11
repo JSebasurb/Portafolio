@@ -409,25 +409,25 @@
     },
     {
       "id": "linea-produccion",
-      "title": "Línea de producción (juego)",
+      "title": "Juegos y ejercicios",
       "category": "Juegos",
       "year": "2026",
-      "emoji": "🏭",
-      "thumbnail": "linea-produccion.webp",
+      "emoji": "🎮",
+      "thumbnail": "",
       "link": "",
-      "link_label": "Abrir la herramienta",
-      "description": "Simulación de una línea de cuatro estaciones: asigna operarios para evitar atascos. Un juego de planificación con reglas de derrota reales.",
+      "link_label": "Ver juegos ›",
+      "description": "Aquí encontrarás arcade para el celular, ejercicios de agilidad mental y simulaciones de planta. Todo corre en tu navegador y tus récords se guardan en este dispositivo.",
       "tags": [
-        "Simulación",
-        "Juego",
-        "Planificación"
+        "Arcade",
+        "Agilidad mental",
+        "Simulación"
       ],
       "visible": true,
       "en": {
-        "title": "Production line (game)",
+        "title": "Games and exercises",
         "category": "Games",
-        "description": "Simulation of a four-station line: assign operators to avoid jams. A planning game with real loss rules.",
-        "link_label": "Play"
+        "description": "Here you will find mobile arcade games, mental agility exercises and factory simulations. Everything runs in your browser and your records are saved on this device.",
+        "link_label": "See games ›"
       },
       "go": "juegos"
     },

@@ -242,7 +242,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   var flipped=false, base={x:0,y:0};
   function apply(x,y){ card.style.transform=(flipped?'rotateY(180deg) ':'')+'rotateX('+x+'deg) rotateY('+y+'deg)'; }
   function flip(){ flipped=!flipped; el.classList.toggle('flipped',flipped); apply(0,0); }
-  el.addEventListener('click',flip);
+  el.addEventListener('click',function(e){ if(e.target.closest('a,button')) return; flip(); });
   el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); flip(); } });
   if(!reduce){
     el.addEventListener('pointermove',function(e){
@@ -251,4 +251,31 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     });
     el.addEventListener('pointerleave',function(){ apply(0,0); });
   }
+})();
+
+/* Guardar contacto: genera una vCard (.vcf) en el navegador */
+(function(){
+  var b=document.getElementById('bnVcard'); if(!b) return;
+  b.addEventListener('click',function(){
+    var v=['BEGIN:VCARD','VERSION:3.0','N:Sánchez Urbano;Juan Sebastián;;;','FN:Juan Sebastián Sánchez Urbano',
+      'ORG:JSebasurb','TITLE:Ingeniero en Automática Industrial','TEL;TYPE=CELL:+573013892534',
+      'EMAIL;TYPE=INTERNET:jsebasurb@hotmail.com','URL:https://jsebasurb.github.io/Portafolio/',
+      'ADR;TYPE=WORK:;;Cali;;;;Colombia','END:VCARD'].join('\r\n');
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([v],{type:'text/vcard;charset=utf-8'}));
+    a.download='Juan_Sebastian_Sanchez.vcf';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href);},3000);
+  });
+})();
+
+/* Compartir la tarjeta: usa la función nativa o copia el enlace */
+(function(){
+  var b=document.getElementById('bnShare'); if(!b) return;
+  b.addEventListener('click',function(){
+    var data={title:'JSebasurb',text:'Juan Sebastián Sánchez Urbano · Ingeniero en Automática Industrial',url:'https://jsebasurb.github.io/Portafolio/'};
+    if(navigator.share){ navigator.share(data).catch(function(){}); return; }
+    if(navigator.clipboard){ navigator.clipboard.writeText(data.url).then(function(){
+      b.classList.add('copied'); setTimeout(function(){b.classList.remove('copied');},2200); }).catch(function(){}); }
+  });
 })();
