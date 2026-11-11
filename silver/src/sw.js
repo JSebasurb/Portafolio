@@ -11,10 +11,12 @@ self.addEventListener('fetch', e => {
   const r = e.request;
   const u = new URL(r.url);
   if (r.method !== 'GET' || u.origin !== location.origin || r.headers.has('range') || /\.(mp3|m4a|ogg|mp4)$/i.test(u.pathname)) return;
-  if (r.mode === 'navigate') {           // páginas: red primero, caché si no hay conexión
-    e.respondWith(fetch(r).then(res => { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)); return res; })
-      .catch(() => caches.match(r).then(m => m || caches.match('index.html'))));
-    return;
-  }
-  e.respondWith(caches.match(r).then(m => m || fetch(r).then(res => { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)); return res; })));
+  // Siempre red primero (revalidando con el servidor): así cada publicación llega al navegador
+  // sin borrar datos. La caché solo se usa si no hay conexión.
+  e.respondWith(
+    fetch(r, { cache: 'no-cache' }).then(res => {
+      if (res.ok) { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)); }
+      return res;
+    }).catch(() => caches.match(r).then(m => m || (r.mode === 'navigate' ? caches.match('index.html') : undefined)))
+  );
 });
