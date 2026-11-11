@@ -93,6 +93,7 @@
   }
   function init(){
     if(window.CATO_BANK){ useBank(window.CATO_BANK); return; }
+    if(window.CATO_BANK_PENDING){ window.CATO_BANK_PENDING.then(useBank); return; }
     fetch(window.CFG.root+'assets/apps/cato/bank.json').then(function(r){return r.json()}).then(useBank).catch(function(){
       $('#cLevels').innerHTML='<p>'+T('No se pudo cargar el contenido. Intenta de nuevo.')+'</p>';
     });

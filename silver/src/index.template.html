@@ -32,13 +32,13 @@
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="top"><div>
   <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="{{ROOT}}assets/img/logo.webp" alt="" width="28" height="28"><span>JSebasurb</span></a>
-  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs">
-    <button class="on" data-t="perfil">Perfil</button>
-    <button data-t="hub">Proyectos</button>
-    <button data-t="auto">Automatización</button>
-    <button data-t="ing">Ingeniería</button>
-    <button data-t="blog">Blog</button>
-    <button data-t="contacto">Contacto</button>
+  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs" role="tablist" aria-label="Secciones">
+    <button class="on" role="tab" data-t="perfil">Perfil</button>
+    <button role="tab" data-t="hub">Proyectos</button>
+    <button role="tab" data-t="auto">Automatización</button>
+    <button role="tab" data-t="ing">Ingeniería</button>
+    <button role="tab" data-t="blog">Blog</button>
+    <button role="tab" data-t="contacto">Contacto</button>
   </div><button class="tnav next" type="button" aria-label="Más pestañas" hidden>›</button></div>
   <a class="lang" id="langBtn" href="{{ALT_URL}}" data-base="{{ALT_URL}}" hreflang="{{ALT_CODE}}" lang="{{ALT_CODE}}" aria-label="{{ALT_ARIA}}" title="{{ALT_ARIA}}">{{ALT_LABEL}}</a>
   <button class="tbtn" id="themeBtn" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro/oscuro">🌓</button>
@@ -100,7 +100,7 @@
 </div>
 
 <main id="main">
-<section class="tab" id="tienda">
+<section class="tab" id="tienda" role="tabpanel">
   <h2>Personalización que se siente única.</h2>
   <p class="sub">Estampados de alta definición sobre aluminio y vidrio. Impresión 3D para cualquier idea.</p>
   <div class="bento">
@@ -151,7 +151,7 @@
   <p class="sub" style="margin-top:22px">¿Regalos, eventos o tu empresa? Pregunta por pedidos de varias unidades.</p>
 </section>
 
-<section class="tab" id="auto">
+<section class="tab" id="auto" role="tabpanel">
   <h2>Tu negocio, en piloto automático.</h2>
   <p class="sub">Conecta tus herramientas y deja que los procesos trabajen por ti.</p>
   <div class="flow">
@@ -169,7 +169,7 @@
   <div class="chips"><span>n8n</span><span>APIs</span><span>Webhooks</span><span>Google Workspace</span><span>WhatsApp</span><span>CRM</span><span>IA</span></div>
 </section>
 
-<section class="tab" id="ia">
+<section class="tab" id="ia" role="tabpanel">
   <h2>Contenido con IA que vende.</h2>
   <p class="sub">Imágenes, videos y textos creados con inteligencia artificial para que tu marca destaque en redes.</p>
   <div class="promptbox rv"><span class="pl">Prompt</span><div class="pt" id="pt"></div><span class="cur"></span></div>
@@ -182,7 +182,7 @@
   <div class="chips"><span>Imágenes IA</span><span>Video IA</span><span>Redes sociales</span><span>Branding</span><span>Automatización de publicaciones</span></div>
 </section>
 
-<section class="tab" id="ing">
+<section class="tab" id="ing" role="tabpanel">
   <h2>Ingeniería que funciona.</h2>
   <p class="sub">Automatización industrial, de la idea a la puesta en marcha.</p>
   <div class="plc">
@@ -219,7 +219,7 @@
 
 {{BLOG_SECTION}}
 
-<section class="tab" id="tools">
+<section class="tab" id="tools" role="tabpanel">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
   <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button></div>
@@ -389,7 +389,7 @@
   <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Bash</span><span>YAML</span><span>JSON</span><span>SVG</span><span>Markdown</span></div>
 </section>
 
-<section class="tab" id="contacto">
+<section class="tab" id="contacto" role="tabpanel">
   <h2>Hablemos.</h2>
   <p class="sub">Déjame tus datos y tu mensaje. Te respondo con información y una cotización.</p>
   <div class="mini-card">
@@ -403,7 +403,7 @@
       <small class="err" data-err="acepto"></small>
       <details class="priv"><summary>Aviso de privacidad</summary><p>Responsable: Juan Sebastián Sánchez Urbano ({{CONTACT_EMAIL}}). Finalidad: responder tu solicitud y enviarte información sobre sus productos y servicios. No vende tus datos a terceros; solo se usan las herramientas necesarias para enviarte los mensajes. Puedes conocer, actualizar o pedir la eliminación de tus datos escribiendo a ese correo (Ley 1581 de 2012).</p></details>
       <div class="rd-bar" style="margin-top:16px"><button class="pill" id="cSend" type="submit">Enviar mensaje</button></div>
-      <p class="cout" id="cOut" role="status"></p>
+      <p class="cout" id="cOut" role="status" role="status" aria-live="polite"></p>
     </form>
   </div>
   {{FAQ_SECTION}}

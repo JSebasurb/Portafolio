@@ -5,7 +5,7 @@
   if (!f) return;
   var out = document.getElementById('cOut'), btn = document.getElementById('cSend');
   var v = function (n) { return f.elements[n].value.trim(); };
-  function err(n, t) { var el = f.querySelector('[data-err="' + n + '"]'); if (el) el.textContent = t || ''; }
+  function err(n, t) { if (f.elements[n]) f.elements[n].setAttribute('aria-invalid', t ? 'true' : 'false'); var el = f.querySelector('[data-err="' + n + '"]'); if (el) el.textContent = t || ''; }
 
   function validate() {
     var ok = true, tel = v('telefono').replace(/[^\d]/g, '');

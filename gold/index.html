@@ -24,7 +24,7 @@
 <link rel="alternate" hreflang="x-default" href="https://jsebasurb.github.io/Portafolio/">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/img/icon-192.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Juan Sebastián Sánchez Urbano", "jobTitle": "Ingeniero en Automática Industrial · ML y Ventas", "url": "https://jsebasurb.github.io/Portafolio/", "inLanguage": "es", "email": "mailto:jsebasurb@hotmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"}, "sameAs": ["https://linkedin.com/in/jsebasurb", "https://github.com/JSebasurb", "https://www.youtube.com/@akazuia"], "knowsAbout": ["ETL", "Python", "SQL", "AWS", "Machine Learning", "n8n", "Industrial automation"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Juan Sebastián Sánchez Urbano", "jobTitle": "Ingeniero en Automática Industrial · ML y Ventas", "url": "https://jsebasurb.github.io/Portafolio/", "inLanguage": "es", "email": "mailto:jsebasurb@hotmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"}, "sameAs": ["https://linkedin.com/in/jsebasurb", "https://github.com/JSebasurb", "https://www.youtube.com/@akazuia"], "knowsAbout": ["Machine Learning", "Power BI", "Análisis de ventas", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}</script>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -32,13 +32,13 @@
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="top"><div>
   <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="assets/img/logo.webp" alt="" width="28" height="28"><span>JSebasurb</span></a>
-  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs">
-    <button class="on" data-t="perfil">Perfil</button>
-    <button data-t="hub">Proyectos</button>
-    <button data-t="auto">Automatización</button>
-    <button data-t="ing">Ingeniería</button>
-    <button data-t="blog">Blog</button>
-    <button data-t="contacto">Contacto</button>
+  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs" role="tablist" aria-label="Secciones">
+    <button class="on" role="tab" data-t="perfil">Perfil</button>
+    <button role="tab" data-t="hub">Proyectos</button>
+    <button role="tab" data-t="auto">Automatización</button>
+    <button role="tab" data-t="ing">Ingeniería</button>
+    <button role="tab" data-t="blog">Blog</button>
+    <button role="tab" data-t="contacto">Contacto</button>
   </div><button class="tnav next" type="button" aria-label="Más pestañas" hidden>›</button></div>
   <a class="lang" id="langBtn" href="en/" data-base="en/" hreflang="en" lang="en" aria-label="Switch to English" title="Switch to English">EN</a>
   <button class="tbtn" id="themeBtn" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Modo claro/oscuro">🌓</button>
@@ -100,7 +100,7 @@
 </div>
 
 <main id="main">
-<section class="tab" id="tienda">
+<section class="tab" id="tienda" role="tabpanel">
   <h2>Personalización que se siente única.</h2>
   <p class="sub">Estampados de alta definición sobre aluminio y vidrio. Impresión 3D para cualquier idea.</p>
   <div class="bento">
@@ -153,7 +153,7 @@
   <p class="sub" style="margin-top:22px">¿Regalos, eventos o tu empresa? Pregunta por pedidos de varias unidades.</p>
 </section>
 
-<section class="tab" id="auto">
+<section class="tab" id="auto" role="tabpanel">
   <h2>Tu negocio, en piloto automático.</h2>
   <p class="sub">Conecta tus herramientas y deja que los procesos trabajen por ti.</p>
   <div class="flow">
@@ -171,7 +171,7 @@
   <div class="chips"><span>n8n</span><span>APIs</span><span>Webhooks</span><span>Google Workspace</span><span>WhatsApp</span><span>CRM</span><span>IA</span></div>
 </section>
 
-<section class="tab" id="ia">
+<section class="tab" id="ia" role="tabpanel">
   <h2>Contenido con IA que vende.</h2>
   <p class="sub">Imágenes, videos y textos creados con inteligencia artificial para que tu marca destaque en redes.</p>
   <div class="promptbox rv"><span class="pl">Prompt</span><div class="pt" id="pt"></div><span class="cur"></span></div>
@@ -184,7 +184,7 @@
   <div class="chips"><span>Imágenes IA</span><span>Video IA</span><span>Redes sociales</span><span>Branding</span><span>Automatización de publicaciones</span></div>
 </section>
 
-<section class="tab" id="ing">
+<section class="tab" id="ing" role="tabpanel">
   <h2>Ingeniería que funciona.</h2>
   <p class="sub">Automatización industrial, de la idea a la puesta en marcha.</p>
   <div class="plc">
@@ -371,7 +371,7 @@
   <div class="posts"><article class="post rv"><details><summary><div class="meta">2026-10-16 · ETL · Datos</div><h3>Arquitectura medallón en 5 minutos</h3><p class="psum">Bronze, Silver y Gold: una forma simple de ordenar un pipeline de datos.</p></summary><div class="pbody2"><p>La arquitectura medallón organiza los datos en tres capas según su nivel de calidad. Sirve para que un pipeline sea ordenado, trazable y fácil de reprocesar.</p><p>Bronze guarda los datos tal como llegan de la fuente, sin modificarlos. Si algo falla más adelante, siempre puedes volver aquí y empezar de nuevo.</p><p>Silver contiene los datos limpios: tipos corregidos, duplicados eliminados y reglas de validación aplicadas. Es la base confiable para cualquier análisis.</p><p>Gold guarda tablas listas para el negocio: agregados, indicadores y vistas pensadas para dashboards y reportes.</p><p>Lo apliqué en el ETL de SIVIGILA y en este mismo portafolio, donde bronze guarda los originales, silver el código limpio y gold el sitio que se publica.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-10-16 · n8n · Automatización</div><h3>De un formulario a una hoja de cálculo con n8n</h3><p class="psum">Un flujo básico para guardar cada contacto automáticamente.</p></summary><div class="pbody2"><p>Un flujo muy útil para empezar con n8n es recibir los datos de un formulario web y guardarlos en Google Sheets sin tocar nada a mano.</p><p>Paso 1: crea un nodo Webhook con método POST. n8n te da una URL de prueba y otra de producción; la de producción solo funciona cuando el flujo está activo.</p><p>Paso 2: conecta un nodo Google Sheets con la operación para agregar una fila y asigna cada campo del formulario a una columna.</p><p>Paso 3: en las opciones del Webhook, permite el origen de tu sitio web (CORS) para que el navegador pueda enviar los datos.</p><p>Desde ahí puedes seguir el flujo: enviar un correo de confirmación, avisar por WhatsApp o pasar el mensaje a un agente de IA.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-11-05 · ML · Señales</div><h3>Por qué la envolvente mejoró mi clasificador de fallas</h3><p class="psum">Con la señal cruda el modelo acertaba 61 %; con la envolvente, 74 %. Lo que aprendí con datos simulados.</p></summary><div class="pbody2"><p>Entrené un modelo para detectar fallas en rodamientos a partir de vibraciones. Con las características de la señal cruda, la validación cruzada dio 61 %: mejor que adivinar (25 % con cuatro clases), pero lejos de lo útil.</p><p>El problema estaba en la señal. Una falla en la pista aparece como impulsos repetidos a una frecuencia conocida, y en la señal cruda esos impulsos quedan mezclados con la vibración normal del eje. Al tomar la envolvente, es decir, el valor absoluto de la señal sin su media, la energía de los impulsos se concentra en la frecuencia de falla y se puede medir.</p><p>Con esa sola decisión, la validación cruzada subió a 74 %. Las fallas severas se detectan casi siempre; las leves siguen siendo difíciles. Lo importante es que el resultado se midió con datos separados del entrenamiento y que la página muestra el mismo cálculo que Python.</p><p>La lección: antes de cambiar de modelo, revisa qué información le estás dando. Muchas veces el cuello de botella está en la forma en que se describen los datos.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-11-05 · Producción · Indicadores</div><h3>OEE: el indicador que más se malinterpreta</h3><p class="psum">Disponibilidad × rendimiento × calidad, y el error más común al definir el tiempo de ciclo ideal.</p></summary><div class="pbody2"><p>El OEE multiplica tres factores: disponibilidad (el tiempo que la máquina realmente opera), rendimiento (qué tan cerca va de su tiempo de ciclo ideal) y calidad (la proporción de piezas buenas). Un OEE de 100 % sería producir sin paros, a la velocidad ideal y sin defectos.</p><p>El error más común es definir mal el tiempo de ciclo ideal. Si se toma un valor teórico demasiado optimista, el rendimiento sale bajo aunque la máquina trabaje bien. En el dashboard que armé usé el menor ciclo observado en los datos; es una aproximación razonable, pero el valor teórico del fabricante es mejor si lo tienes.</p><p>Con los datos de ejemplo, el OEE total sale en 70,8 %: disponibilidad de 92 %, calidad de 94 % y rendimiento de 81,6 %. El cuello de botella es la máquina con el ciclo promedio más alto, no necesariamente la que más para.</p></div></details></article></div>
 </section>
 
-<section class="tab" id="tools">
+<section class="tab" id="tools" role="tabpanel">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
   <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button></div>
@@ -541,7 +541,7 @@
   <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Bash</span><span>YAML</span><span>JSON</span><span>SVG</span><span>Markdown</span></div>
 </section>
 
-<section class="tab" id="contacto">
+<section class="tab" id="contacto" role="tabpanel">
   <h2>Hablemos.</h2>
   <p class="sub">Déjame tus datos y tu mensaje. Te respondo con información y una cotización.</p>
   <div class="mini-card">
@@ -555,7 +555,7 @@
       <small class="err" data-err="acepto"></small>
       <details class="priv"><summary>Aviso de privacidad</summary><p>Responsable: Juan Sebastián Sánchez Urbano (jsebasurb@hotmail.com). Finalidad: responder tu solicitud y enviarte información sobre sus productos y servicios. No vende tus datos a terceros; solo se usan las herramientas necesarias para enviarte los mensajes. Puedes conocer, actualizar o pedir la eliminación de tus datos escribiendo a ese correo (Ley 1581 de 2012).</p></details>
       <div class="rd-bar" style="margin-top:16px"><button class="pill" id="cSend" type="submit">Enviar mensaje</button></div>
-      <p class="cout" id="cOut" role="status"></p>
+      <p class="cout" id="cOut" role="status" role="status" aria-live="polite"></p>
     </form>
   </div>
   <h3 class="sec">Preguntas frecuentes</h3><div class="faq"><details class="qa"><summary>¿Cómo pido un llavero o estuche personalizado?</summary><p>Elige un diseño del catálogo o crea el tuyo en el diseñador y pulsa «Pedir por WhatsApp». Allí envías tu imagen o logo y Sebas confirma los detalles y la cotización.</p></details><details class="qa"><summary>¿Qué necesito para personalizar mi llavero?</summary><p>Tu foto, nombre o logo. Mientras mejor calidad tenga la imagen, mejor se ve el resultado.</p></details><details class="qa"><summary>¿Para qué celulares hacen los estuches?</summary><p>Dime la marca y el modelo de tu celular al pedir. Sebas confirma si puede hacer el estuche para ese modelo.</p></details><details class="qa"><summary>¿Con qué materiales y tamaño imprimen en 3D?</summary><p>Imprimo en PLA de 1,75 mm con una Dremel DigiLab 3D20. El tamaño máximo es 230 × 150 × 140 mm. Si tu pieza necesita otro material, cuéntame tu caso.</p></details><details class="qa"><summary>¿Hacen piezas que brillan en la oscuridad, tricolor o de ajedrez?</summary><p>Sí: hago piezas que brillan en la oscuridad, piezas tricolor, piezas de ajedrez y esqueletos articulados tipo llavero. Escríbeme con tu idea y te cotizo.</p></details><details class="qa"><summary>¿Cuánto se demora?</summary><p>El tiempo depende del producto y de la cantidad. Sebas te lo confirma al cotizar.</p></details><details class="qa"><summary>¿Cómo se paga?</summary><p>Los medios de pago se acuerdan al cotizar, por WhatsApp.</p></details><details class="qa"><summary>¿Hacen pedidos de varias unidades?</summary><p>Pregunta por pedidos de varias unidades para regalos, eventos o tu empresa. Sebas te cotiza según la cantidad.</p></details><details class="qa"><summary>¿Qué hacen con mis datos?</summary><p>Se usan solo para responder tu solicitud y enviarte información sobre productos y servicios. No se venden a terceros, y puedes pedir que los actualicen o eliminen escribiendo al correo del aviso de privacidad.</p></details><details class="qa"><summary>¿Trabajan con empresas en datos o automatización?</summary><p>Sebas ofrece ingeniería de datos y automatización con n8n. Cuéntale tu caso en el formulario o por WhatsApp.</p></details></div>

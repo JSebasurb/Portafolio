@@ -24,7 +24,7 @@
 <link rel="alternate" hreflang="x-default" href="https://jsebasurb.github.io/Portafolio/">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../assets/img/icon-192.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Juan Sebastián Sánchez Urbano", "jobTitle": "Industrial Automation Engineer · ML and Sales", "url": "https://jsebasurb.github.io/Portafolio/en/", "inLanguage": "en", "email": "mailto:jsebasurb@hotmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"}, "sameAs": ["https://linkedin.com/in/jsebasurb", "https://github.com/JSebasurb", "https://www.youtube.com/@akazuia"], "knowsAbout": ["ETL", "Python", "SQL", "AWS", "Machine Learning", "n8n", "Industrial automation"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Juan Sebastián Sánchez Urbano", "jobTitle": "Industrial Automation Engineer · ML and Sales", "url": "https://jsebasurb.github.io/Portafolio/en/", "inLanguage": "en", "email": "mailto:jsebasurb@hotmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"}, "sameAs": ["https://linkedin.com/in/jsebasurb", "https://github.com/JSebasurb", "https://www.youtube.com/@akazuia"], "knowsAbout": ["Machine Learning", "Power BI", "Análisis de ventas", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}</script>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
 <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
@@ -32,13 +32,13 @@
 <a class="skip" href="#main">Skip to content</a>
 <div class="top"><div>
   <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="../assets/img/logo.webp" alt="" width="28" height="28"><span>JSebasurb</span></a>
-  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Previous tabs" hidden>‹</button><div class="tabs" id="tabs">
-    <button class="on" data-t="perfil">Profile</button>
-    <button data-t="hub">Projects</button>
-    <button data-t="auto">Automation</button>
-    <button data-t="ing">Engineering</button>
-    <button data-t="blog">Blog</button>
-    <button data-t="contacto">Contact</button>
+  <div class="tabsw"><button class="tnav prev" type="button" aria-label="Previous tabs" hidden>‹</button><div class="tabs" id="tabs" role="tablist" aria-label="Secciones">
+    <button class="on" role="tab" data-t="perfil">Profile</button>
+    <button role="tab" data-t="hub">Projects</button>
+    <button role="tab" data-t="auto">Automation</button>
+    <button role="tab" data-t="ing">Engineering</button>
+    <button role="tab" data-t="blog">Blog</button>
+    <button role="tab" data-t="contacto">Contact</button>
   </div><button class="tnav next" type="button" aria-label="More tabs" hidden>›</button></div>
   <a class="lang" id="langBtn" href="../" data-base="../" hreflang="es" lang="es" aria-label="Cambiar a español" title="Cambiar a español">ES</a>
   <button class="tbtn" id="themeBtn" type="button" aria-label="Switch between light and dark mode" title="Light/dark mode">🌓</button>
@@ -100,7 +100,7 @@
 </div>
 
 <main id="main">
-<section class="tab" id="tienda">
+<section class="tab" id="tienda" role="tabpanel">
   <h2>Personalization that feels unique.</h2>
   <p class="sub">High-definition prints on aluminum and glass. 3D printing for any idea.</p>
   <div class="bento">
@@ -153,7 +153,7 @@
   <p class="sub" style="margin-top:22px">Gifts, events or your company? Ask about multi-unit orders.</p>
 </section>
 
-<section class="tab" id="auto">
+<section class="tab" id="auto" role="tabpanel">
   <h2>Your business, on autopilot.</h2>
   <p class="sub">Connect your tools and let processes work for you.</p>
   <div class="flow">
@@ -171,7 +171,7 @@
   <div class="chips"><span>n8n</span><span>APIs</span><span>Webhooks</span><span>Google Workspace</span><span>WhatsApp</span><span>CRM</span><span>IA</span></div>
 </section>
 
-<section class="tab" id="ia">
+<section class="tab" id="ia" role="tabpanel">
   <h2>AI content that sells.</h2>
   <p class="sub">Images, videos and copy created with artificial intelligence so your brand stands out on social media.</p>
   <div class="promptbox rv"><span class="pl">Prompt</span><div class="pt" id="pt"></div><span class="cur"></span></div>
@@ -184,7 +184,7 @@
   <div class="chips"><span>AI images</span><span>AI video</span><span>Social media</span><span>Branding</span><span>Post automation</span></div>
 </section>
 
-<section class="tab" id="ing">
+<section class="tab" id="ing" role="tabpanel">
   <h2>Engineering that works.</h2>
   <p class="sub">Industrial automation, from idea to commissioning.</p>
   <div class="plc">
@@ -371,7 +371,7 @@
   <div class="posts"><article class="post rv"><details><summary><div class="meta">2026-10-16 · ETL · Data</div><h3>Medallion architecture in 5 minutes</h3><p class="psum">Bronze, Silver and Gold: a simple way to organize a data pipeline.</p></summary><div class="pbody2"><p>Medallion architecture organizes data into three layers according to quality. It keeps a pipeline orderly, traceable and easy to reprocess.</p><p>Bronze stores data exactly as it arrives from the source, unmodified. If something fails later, you can always come back here and start over.</p><p>Silver holds clean data: fixed types, duplicates removed and validation rules applied. It is the reliable base for any analysis.</p><p>Gold stores business-ready tables: aggregates, indicators and views designed for dashboards and reports.</p><p>I applied it in the SIVIGILA ETL and in this very portfolio, where bronze keeps the originals, silver the clean source code and gold the published site.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-10-16 · n8n · Automation</div><h3>From a web form to a spreadsheet with n8n</h3><p class="psum">A basic workflow to save every contact automatically.</p></summary><div class="pbody2"><p>A very useful first workflow in n8n is receiving data from a web form and saving it to Google Sheets with no manual work.</p><p>Step 1: create a Webhook node using the POST method. n8n gives you a test URL and a production URL; the production one only works while the workflow is active.</p><p>Step 2: connect a Google Sheets node with the append-row operation and map each form field to a column.</p><p>Step 3: in the Webhook options, allow your website&#x27;s origin (CORS) so the browser can send the data.</p><p>From there you can keep going: send a confirmation email, notify via WhatsApp or hand the message to an AI agent.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-11-05 · ML · Signals</div><h3>Why the envelope improved my fault classifier</h3><p class="psum">With the raw signal the model scored 61%; with the envelope, 74%. What I learned with simulated data.</p></summary><div class="pbody2"><p>I trained a model to detect bearing faults from vibration. With features from the raw signal, 5-fold cross-validation scored 61%: better than guessing (25% with four classes), but far from useful.</p><p>The problem was the signal. A raceway fault shows up as repeated impulses at a known frequency, but in the raw signal those impulses are mixed with the normal vibration of the shaft. Taking the envelope, that is, the absolute value of the signal without its mean, concentrates the impulse energy at the fault frequency, where it can be measured.</p><p>That single decision raised cross-validation to 74%. Severe faults are almost always detected; mild ones are still hard. What matters is that the result was measured on data kept apart from training, and that the page runs the same calculation as Python.</p><p>The lesson: before changing models, check what information you are giving them. The bottleneck is often how the data is described.</p></div></details></article><article class="post rv"><details><summary><div class="meta">2026-11-05 · Production · Indicators</div><h3>OEE: the indicator people most often misread</h3><p class="psum">Availability × performance × quality, and the most common mistake when defining the ideal cycle time.</p></summary><div class="pbody2"><p>OEE multiplies three factors: availability (the time the machine actually runs), performance (how close it runs to its ideal cycle time) and quality (the share of good parts). An OEE of 100% would mean producing with no stops, at ideal speed and with no defects.</p><p>The most common mistake is defining the ideal cycle time badly. If you take an overly optimistic theoretical value, performance looks low even when the machine runs well. In the dashboard I built I used the lowest cycle observed in the data; that is a reasonable approximation, but the manufacturer&#x27;s theoretical value is better if you have it.</p><p>With the sample data, total OEE comes out at 70.8%: availability of 92%, quality of 94% and performance of 81.6%. The bottleneck is the machine with the highest average cycle time, not necessarily the one that stops most.</p></div></details></article></div>
 </section>
 
-<section class="tab" id="tools">
+<section class="tab" id="tools" role="tabpanel">
   <h2>Tools I built.</h2>
   <p class="sub">Utilities I developed that you can use right here. Everything runs in your browser: nothing is uploaded to any server.</p>
   <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 HTML reader</button><button data-v="t2">💬 WhatsApp link</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Threads</button><button data-v="t5">💰 Quote</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Maintenance</button><button data-v="t9">🔍 Vision</button><button data-v="t10">📈 Production</button><button data-v="t11">🧠 Sheets</button></div>
@@ -541,7 +541,7 @@
   <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>Bash</span><span>YAML</span><span>JSON</span><span>SVG</span><span>Markdown</span></div>
 </section>
 
-<section class="tab" id="contacto">
+<section class="tab" id="contacto" role="tabpanel">
   <h2>Let's talk.</h2>
   <p class="sub">Leave me your details and a message. I'll reply with information and a quote.</p>
   <div class="mini-card">
@@ -555,7 +555,7 @@
       <small class="err" data-err="acepto"></small>
       <details class="priv"><summary>Privacy notice</summary><p>Data controller: Juan Sebastián Sánchez Urbano (jsebasurb@hotmail.com). Purpose: to answer your request and send you information about his products and services. He does not sell your data to third parties; only the tools needed to send you messages are used. You may access, update or request deletion of your data by writing to that email (Colombian Law 1581 of 2012).</p></details>
       <div class="rd-bar" style="margin-top:16px"><button class="pill" id="cSend" type="submit">Send message</button></div>
-      <p class="cout" id="cOut" role="status"></p>
+      <p class="cout" id="cOut" role="status" role="status" aria-live="polite"></p>
     </form>
   </div>
   <h3 class="sec">Frequently asked questions</h3><div class="faq"><details class="qa"><summary>How do I order a custom keychain or case?</summary><p>Pick a design from the catalog or create yours in the designer and press “Order via WhatsApp”. There you send your image or logo and Sebas confirms the details and the quote.</p></details><details class="qa"><summary>What do I need to customize my keychain?</summary><p>Your photo, name or logo. The better the image quality, the better the result.</p></details><details class="qa"><summary>Which phones do you make cases for?</summary><p>Tell me your phone brand and model when you order. Sebas will confirm whether he can make the case for that model.</p></details><details class="qa"><summary>What materials and sizes do you 3D print?</summary><p>I print in 1.75 mm PLA with a Dremel DigiLab 3D20. The maximum size is 230 × 150 × 140 mm. If your part needs another material, tell me about your case.</p></details><details class="qa"><summary>Do you make glow-in-the-dark, three-color or chess pieces?</summary><p>Yes: I make glow-in-the-dark pieces, three-color pieces, chess pieces and articulated skeleton keychains. Write to me with your idea and I&#x27;ll quote it.</p></details><details class="qa"><summary>How long does it take?</summary><p>It depends on the product and the quantity. Sebas confirms it when quoting.</p></details><details class="qa"><summary>How do I pay?</summary><p>Payment methods are agreed on when quoting, via WhatsApp.</p></details><details class="qa"><summary>Do you take multi-unit orders?</summary><p>Ask about multi-unit orders for gifts, events or your company. Sebas quotes according to quantity.</p></details><details class="qa"><summary>What do you do with my data?</summary><p>It is used only to answer your request and send you information about products and services. It is not sold to third parties, and you can ask for it to be updated or deleted by writing to the email in the privacy notice.</p></details><details class="qa"><summary>Do you work with companies on data or automation?</summary><p>Sebas offers data engineering and automation with n8n. Tell him about your case in the form or on WhatsApp.</p></details></div>

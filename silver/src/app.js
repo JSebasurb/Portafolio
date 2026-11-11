@@ -83,7 +83,22 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   var lb=document.getElementById('langBtn');
   if(lb&&location.hash)lb.href=lb.getAttribute('data-base')+location.hash;
   if('serviceWorker' in navigator&&window.isSecureContext){
-    window.addEventListener('load',function(){navigator.serviceWorker.register(window.CFG.root+'sw.js').catch(function(){})});
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register(window.CFG.root+'sw.js').then(function(reg){
+        reg.addEventListener('updatefound',function(){
+          var nw=reg.installing; if(!nw) return;
+          nw.addEventListener('statechange',function(){ if(nw.state==='installed'&&navigator.serviceWorker.controller) showUpdateBanner(); });
+        });
+      }).catch(function(){});
+    });
+    function showUpdateBanner(){
+      if(document.getElementById('updBanner')) return;
+      var d=document.createElement('div'); d.id='updBanner'; d.setAttribute('role','status');
+      var es=window.LANG!=='en';
+      d.innerHTML='<span>'+(es?'Hay una nueva versión del portafolio.':'A new version of the portfolio is available.')+'</span> <button type="button" class="pill sm" id="updBtn">'+(es?'Actualizar':'Update')+'</button>';
+      document.body.appendChild(d);
+      document.getElementById('updBtn').addEventListener('click',function(){ location.reload(); });
+    }
   }
 })();
 
@@ -278,4 +293,14 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     if(navigator.clipboard){ navigator.clipboard.writeText(data.url).then(function(){
       b.classList.add('copied'); setTimeout(function(){b.classList.remove('copied');},2200); }).catch(function(){}); }
   });
+})();
+
+/* Pestañas accesibles: mantiene aria-selected y tabindex (el teclado ya lo maneja el módulo de pestañas) */
+(function tablistKeys(){
+  var list=document.getElementById('tabs'); if(!list) return;
+  var tabs=[].slice.call(list.querySelectorAll('[role="tab"]'));
+  function sync(){ tabs.forEach(function(b){ var on=b.classList.contains('on');
+    b.setAttribute('aria-selected',on?'true':'false'); b.tabIndex=on?0:-1; }); }
+  new MutationObserver(sync).observe(list,{subtree:true,attributes:true,attributeFilter:['class']});
+  sync();
 })();
