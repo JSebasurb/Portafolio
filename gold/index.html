@@ -27,11 +27,12 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Juan Sebastián Sánchez Urbano", "jobTitle": "Ingeniero en Automática Industrial · ML y Ventas", "url": "https://jsebasurb.github.io/Portafolio/", "inLanguage": "es", "email": "mailto:jsebasurb@hotmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"}, "sameAs": ["https://linkedin.com/in/jsebasurb", "https://github.com/JSebasurb", "https://www.youtube.com/@akazuia"], "knowsAbout": ["Machine Learning", "Power BI", "Análisis de ventas", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}</script>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="stylesheet" href="assets/css/styles.css">
+
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 <div class="top"><div>
-  <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="assets/img/logo.webp" alt="" width="28" height="28"><span>JSebasurb</span></a>
+  <a class="brand" href="#perfil" data-go="perfil" aria-label="JSebasurb · Inicio"><img src="assets/img/logo.webp" alt="" width="28" height="28" fetchpriority="high" decoding="async"><span>JSebasurb</span></a>
   <div class="tabsw"><button class="tnav prev" type="button" aria-label="Pestañas anteriores" hidden>‹</button><div class="tabs" id="tabs" role="tablist" aria-label="Secciones">
     <button class="on" role="tab" data-t="perfil">Perfil</button>
     <button role="tab" data-t="hub">Proyectos</button>
@@ -50,10 +51,10 @@
       <div class="bc3d-card" id="bc3dCard">
         <div class="bc3d-face bc3d-front bn-front">
           <svg class="bn-art" viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#2997ff" stroke-width="1.2" opacity=".45"><path d="M0 150H70l24-24h70l20-20h116"/><path d="M40 220v-30l30-30h60"/><path d="M190 220v-40l24-24h86"/><circle cx="70" cy="150" r="3"/><circle cx="164" cy="106" r="3"/><circle cx="214" cy="172" r="3"/><circle cx="110" cy="126" r="2"/></g><g fill="none" stroke="#2997ff" stroke-width="1" opacity=".28" stroke-dasharray="4 6"><circle cx="232" cy="78" r="62"/><circle cx="232" cy="78" r="38"/></g></svg>
-          <img class="bn-qr" src="assets/img/qr.png" alt="Código QR del portafolio" width="96" height="96">
+          <img class="bn-qr" src="assets/img/qr.png" alt="Código QR del portafolio" width="96" height="96" loading="lazy" decoding="async">
           <div class="bn-inner">
             <div class="bn-top">
-              <div class="bn-brand"><img src="assets/img/logo.webp" alt="" width="30" height="30"><span>JSebasurb</span></div>
+              <div class="bn-brand"><img src="assets/img/logo.webp" alt="" width="30" height="30" fetchpriority="high" decoding="async"><span>JSebasurb</span></div>
             </div>
             <div>
               <p class="bn-name">Juan Sebastián<br><span class="bn-ac">Sánchez Urbano</span></p>
@@ -545,6 +546,7 @@
   <h2>Hablemos.</h2>
   <p class="sub">Déjame tus datos y tu mensaje. Te respondo con información y una cotización.</p>
   <div class="mini-card">
+    
     <form id="cForm" novalidate>
       <div class="f"><label for="cNombre">NOMBRE</label><input id="cNombre" name="nombre" autocomplete="name" maxlength="80" required><small class="err" data-err="nombre"></small></div>
       <div class="f"><label for="cCorreo">CORREO</label><input id="cCorreo" name="correo" type="email" autocomplete="email" maxlength="120" required><small class="err" data-err="correo"></small></div>

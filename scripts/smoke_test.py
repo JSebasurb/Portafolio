@@ -33,6 +33,32 @@ def check(name, ok, fails):
         fails.append(name)
 
 
+def extra_checks(browser, base, check_fn, fails, errors):
+    """Formulario, descarga de contacto y una herramienta."""
+    ctx = browser.new_context(accept_downloads=True, viewport={"width": 390, "height": 844})
+    page = ctx.new_page()
+    page.on("pageerror", lambda e: errors.append(str(e)))
+    page.goto(f"{base}/index.html#contacto")
+    page.wait_for_timeout(700)
+    page.click("#cSend")
+    page.wait_for_timeout(300)
+    check_fn("formulario vacío marca el nombre como inválido",
+             page.get_attribute("#cNombre", "aria-invalid") == "true", fails)
+    page.goto(f"{base}/index.html#perfil")
+    page.wait_for_timeout(700)
+    with page.expect_download() as d:
+        page.click("#bnVcard")
+    check_fn("el botón guardar contacto descarga la vCard",
+             d.value.suggested_filename == "Juan_Sebastian_Sanchez.vcf", fails)
+    page.goto(f"{base}/index.html#tools")
+    page.wait_for_timeout(600)
+    page.click("#toolSel button[data-v=t4]")
+    page.wait_for_timeout(400)
+    check_fn("la calculadora de roscas responde",
+             len(page.inner_text("#thInfo").strip()) > 0, fails)
+    ctx.close()
+
+
 def main():
     srv, base = serve()
     fails, errors = [], []
@@ -66,6 +92,10 @@ def main():
             check(f"[{lang}] la sección de juegos muestra tarjetas ({games})", games >= 10, fails)
             page.close()
         browser.close()
+    with sync_playwright() as p2:
+        b2 = p2.chromium.launch()
+        extra_checks(b2, base, check, fails, errors)
+        b2.close()
     srv.shutdown()
     check("sin errores de JavaScript en la página", not errors, fails)
     for e in errors[:5]:

@@ -93,11 +93,19 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     });
     function showUpdateBanner(){
       if(document.getElementById('updBanner')) return;
-      var d=document.createElement('div'); d.id='updBanner'; d.setAttribute('role','status');
       var es=window.LANG!=='en';
-      d.innerHTML='<span>'+(es?'Hay una nueva versión del portafolio.':'A new version of the portfolio is available.')+'</span> <button type="button" class="pill sm" id="updBtn">'+(es?'Actualizar':'Update')+'</button>';
-      document.body.appendChild(d);
-      document.getElementById('updBtn').addEventListener('click',function(){ location.reload(); });
+      var d=document.createElement('div'); d.id='updBanner'; d.setAttribute('role','status');
+      var msg=document.createElement('span');
+      msg.textContent=es?'Hay una nueva versión del portafolio.':'A new version of the portfolio is available.';
+      var btn=document.createElement('button'); btn.type='button'; btn.className='pill sm'; btn.id='updBtn';
+      btn.textContent=es?'Actualizar':'Update';
+      btn.addEventListener('click',function(){ location.reload(); });
+      d.appendChild(msg); d.appendChild(btn); document.body.appendChild(d);
+      fetch(window.CFG.root+'assets/changelog.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(cl){
+        var last=cl&&cl.entries&&cl.entries[0]; if(!last) return;
+        var note=document.createElement('small'); note.className='updNote';
+        note.textContent=es?last.es:last.en; d.insertBefore(note,btn);
+      }).catch(function(){});
     }
   }
 })();

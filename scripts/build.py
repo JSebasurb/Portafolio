@@ -328,6 +328,28 @@ def json_ld(p, cfg, u, url, L):
     return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
 
+def analytics_html(cfg):
+    """GoatCounter: se activa al poner el código en site.json (campo goatcounter)."""
+    code = (cfg.get("goatcounter") or "").strip()
+    if not code:
+        return ""
+    if not re.fullmatch(r"[a-z0-9-]{2,40}", code):
+        sys.exit("ERROR: goatcounter debe ser solo el código de la cuenta (letras, números y guiones)")
+    return f'<script data-goatcounter="https://{code}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+
+
+def calendly_html(cfg, L):
+    """Botón para agendar: se activa al poner el enlace en site.json (campo calendly_url)."""
+    url = (cfg.get("calendly_url") or "").strip()
+    if not url:
+        return ""
+    if not url.startswith("https://"):
+        sys.exit("ERROR: calendly_url debe empezar con https://")
+    label = "Book a call" if L == "en" else "Agendar una llamada"
+    return ('<div class="bn-save" style="margin:0 0 18px"><a class="pill" href="' + e(url, quote=True) +
+            '" target="_blank" rel="noopener">' + label + ' ›</a></div>\n    ')
+
+
 # ---------------------------------------------------------------- build
 def main():
     cfg = jl("site.json")
@@ -400,7 +422,7 @@ def main():
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
             "{{SITE_TITLE}}": e(site_i["site_title"]), "{{SITE_DESC}}": e(site_i["site_description"], quote=True),
-            "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L),
+            "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L), "{{ANALYTICS}}": analytics_html(cfg), "{{CALENDLY}}": calendly_html(cfg, L),
             "{{CONTACT_EMAIL}}": e(prof["email"]), "{{SITE_URL}}": site, "{{CANONICAL}}": page_url,
             "{{ROOT}}": root, "{{LANG}}": L, "{{OG_LOCALE}}": u["locale"],
             "{{ALT_URL}}": u["alt_url"], "{{ALT_CODE}}": u["alt_code"], "{{ALT_LABEL}}": u["alt_label"], "{{ALT_ARIA}}": e(u["alt_aria"], quote=True),
@@ -416,6 +438,9 @@ def main():
             if (SILVER / "assets" / f"akazu.{ext}").exists():
                 akazu = f"assets/img/akazu.{ext}"
                 break
+        _fe = (cfg.get("form_endpoint") or "").strip()
+        if _fe and not _fe.startswith("https://"):
+            sys.exit("ERROR: form_endpoint debe empezar con https:// (copia la Production URL de n8n)")
         cfg_js = {"form": cfg.get("form_endpoint", ""), "chat": cfg.get("chat_endpoint", ""), "wa": num, "email": prof["email"], "root": root, "akazu": akazu}
         i18n_js = (f'window.LANG={json.dumps(L)};window.CFG={json.dumps(cfg_js, ensure_ascii=False)};'
                    f'window.KB={json.dumps(kb, ensure_ascii=False).replace("</", "<\\/")};window.TR={json.dumps(tr, ensure_ascii=False)};'
@@ -424,6 +449,7 @@ def main():
 
     # --- PWA
     shutil.copy(SILVER / "src" / "sw.js", GOLD / "sw.js")
+    (GOLD / "assets" / "changelog.json").write_text(json.dumps(jl("changelog.json"), ensure_ascii=False), encoding="utf-8")
     pre = ["./", "index.html", "en/index.html"] + sorted(str(p.relative_to(GOLD)) for p in (GOLD / "assets").rglob("*") if p.is_file() and p.suffix not in (".pdf", ".mp3"))
     sw = (GOLD / "sw.js").read_text(encoding="utf-8").replace("{{BUILD_ID}}", build_id).replace("{{PRECACHE}}", json.dumps(pre))
     (GOLD / "sw.js").write_text(sw, encoding="utf-8")

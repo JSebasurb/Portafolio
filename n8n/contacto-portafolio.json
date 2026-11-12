@@ -1,0 +1,28 @@
+{
+  "name": "Contacto del portafolio",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contacto-portafolio",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "6f1c2a10-0000-4000-8000-000000000001",
+      "name": "Recibir contacto",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "6f1c2a10-0000-4000-8000-000000000002"
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": []
+}

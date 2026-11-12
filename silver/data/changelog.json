@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "date": "2026-11-11",
+      "es": "Logo transparente, nuevo código QR, botón para guardar contacto y versión para imprimir.",
+      "en": "Transparent logo, new QR code, save-contact button and a print version."
+    },
+    {
+      "date": "2026-11-10",
+      "es": "Actualizaciones sin borrar datos del navegador y aviso de nueva versión.",
+      "en": "Updates no longer need browser data cleared, plus a new-version notice."
+    }
+  ]
+}
