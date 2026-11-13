@@ -8,7 +8,7 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
-  "summary": "Industrial Automation Engineer focused on Machine Learning, technical sales and data analysis. Since October 2026 I have been a technical advisor in the fastener sector, where I advise customers on product selection and technical solutions. Previously I worked as a technical and sales advisor at a technical-solutions company, where I analyzed customer information and automated data processes, and as CNC and Robotics area leader I analyzed production and quality-control variables. I build predictive models, Power BI dashboards and AI workflows with Python, R and n8n, and design medallion-architecture (Bronze/Silver/Gold) ETL pipelines. I combine industrial engineering with analytics to turn data into sales and production decisions.",
+  "summary": "Industrial Automation Engineer focused on the intersection of Machine Learning, Data Engineering and Consultative Sales. I connect plant operations and commercial strategy with Artificial Intelligence solutions and advanced analytics, to turn complex data into profitable sales and production decisions.",
   "skills": [
     {
       "title": "Machine Learning & AI",
@@ -86,21 +86,21 @@
     {
       "period": "Oct 2026 – Present",
       "role": "Technical Advisor",
-      "company": "Industrias CATO",
+      "company": "Industrias CATO · Cali, Valle del Cauca",
       "text": "I advise customers on fastener selection: threads, heads, materials, finishes and applications, and support the technical validation of their requirements.",
       "achievement": "I built technical reference tools available in this portfolio: a fastener academy and a thread calculator."
     },
     {
       "period": "2019 – Nov 2025 · Mar 2026 – Sep 2026",
       "role": "Technical, Sales and Data Automation Advisor",
-      "company": "Proeléctricos",
+      "company": "Proeléctricos · Popayán, Cauca",
       "text": "I analyze and validate customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
       "achievement": "I designed and implemented an AI chatbot for the web channel, integrated into an n8n automation pipeline that automatically extracts, validates and routes reports and information to the responsible areas."
     },
     {
       "period": "Oct 2025 – Jan 2026",
       "role": "CNC and Robotics Area Lead (Production Data Analysis)",
-      "company": "Metálicas Mundial",
+      "company": "Metálicas Mundial · Candelaria, Valle del Cauca",
       "text": "I led the capture and analysis of critical production and quality-control variables, ensuring the reliability of manufacturing process data.",
       "achievement": "I identified bottlenecks and optimized cycle times by analyzing machinery operating data under agile continuous-improvement methodologies, increasing the area's productivity."
     }
