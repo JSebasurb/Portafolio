@@ -3,9 +3,9 @@
    --line bordes · --blue / --blue-h acento base y hover · --accent / --accent-hover alias semánticos
    --on-accent texto sobre acento · --glass barra translúcida · --shadow sombra */
 :root{--accent:var(--blue);--accent-hover:var(--blue-h)}
-:root{--bg:#fbfbfd;--surface:#ffffff;--soft:#f5f5f7;--text:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--blue:#0071e3;--blue-h:#0077ed;--glass:#fbfbfdcc;--shadow:0 20px 50px #0000001a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#a1a1a6;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}}
-:root[data-theme="dark"]{--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#a1a1a6;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}
+:root{--bg:#fbfbfd;--surface:#ffffff;--soft:#f5f5f7;--text:#1d1d1f;--muted:#55596a;--line:#d2d2d7;--blue:#0071e3;--blue-h:#0077ed;--glass:#fbfbfdcc;--shadow:0 20px 50px #0000001a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#bcbcc2;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}}
+:root[data-theme="dark"]{--bg:#000;--surface:#1c1c1e;--soft:#161617;--text:#f5f5f7;--muted:#bcbcc2;--line:#38383a;--blue:#2997ff;--blue-h:#40a3ff;--glass:#000000b3;--shadow:0 20px 50px #0008}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Inter,Arial,sans-serif;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -28,7 +28,7 @@ h1 span{background:linear-gradient(90deg,#ff9f0a,#ff375f,#bf5af2,#0a84ff);-webki
 .link{color:var(--blue);text-decoration:none;font-size:1.05rem;padding:12px 6px;cursor:pointer;background:none;border:0;font-family:inherit}
 .link:hover{text-decoration:underline}
 main{max-width:1024px;margin:0 auto;padding:0 16px 40px}
-section.tab{display:none}section.tab.on{display:block;animation:fade .6s ease}
+section.tab{display:none}section.tab.on{display:block;animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(16px)}}
 h2{font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:-.025em;line-height:1.1;margin:50px 0 8px;font-weight:700;text-align:center}
 .sub{color:var(--muted);font-size:1.2rem;text-align:center;margin:0 auto 32px;max-width:560px;line-height:1.35}
@@ -42,8 +42,8 @@ h2{font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:-.025em;line-height:1.1;mar
 .tile h3{font-size:1.6rem;letter-spacing:-.02em;margin:0 0 6px;line-height:1.15}
 .tile p{margin:0;color:var(--muted);font-size:1.05rem;line-height:1.4}
 .from{margin-top:16px;font-size:.95rem;color:var(--muted)}.from b{color:var(--text);font-size:1.1rem}
-.dark{background:#000;color:#f5f5f7}.dark p{color:#a1a1a6}.dark .ico{background:#1c1c1e}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+.dark{background:#111418;color:#f5f5f7}.dark p{color:#bcbcc2}.dark .ico{background:#1f2330}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
 .lab{display:grid;grid-template-columns:1fr;background:var(--soft);border-radius:34px;overflow:hidden;margin-top:14px}
 @media(min-width:760px){.lab{grid-template-columns:1fr 1fr}}
 .ctrl{padding:36px 30px}
@@ -825,3 +825,13 @@ html[lang="en"] .t-es{display:none!important}
 .brand span{background:linear-gradient(90deg,var(--logo-lo),var(--logo-hi),var(--logo-mid));-webkit-background-clip:text;background-clip:text;color:transparent}
 .bn-brand span{background:linear-gradient(90deg,#8a93a6,#d9dde6,#b9bec9);-webkit-background-clip:text;background-clip:text;color:transparent}
 .bn-foot b{background:linear-gradient(90deg,#3a4150,#8a93a6,#4a5366);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- Ajustes visuales: títulos, aire, acento y contraste ---------- */
+h1 span{animation:none}
+h2,h3{color:var(--text)}
+h2{margin:72px 0 10px;letter-spacing:-.025em}
+h3{letter-spacing:-.015em}
+.cta,.about{margin-top:80px}
+@media(max-width:640px){h2{margin-top:56px}.cta,.about{margin-top:64px}}
+.eyebrow,.appkick,.rutaapp-kicker,.bn-kicker-ui{color:var(--muted)}
+.pill,.tabs button.on{letter-spacing:.005em}
