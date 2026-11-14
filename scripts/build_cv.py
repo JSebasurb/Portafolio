@@ -53,7 +53,7 @@ def build():
         f'{link(P["linkedin"], "LinkedIn")} · {link(P["github"], "GitHub")} · {link(P["portfolio"], LB["portfolio"])}', S["contact"]))
     st += h2(LB["profile"]) + [Paragraph(e(P["summary"]), S["body"])]
     st += h2(LB["skills"])
-    for s in P["skills"]:
+    for s in [x for x in P["skills"] if x.get("cv", True)]:
         st.append(Paragraph(f'<b>{e(s["title"])}:</b> {e(", ".join(s["items"]))}.', S["body"]))
         st.append(Spacer(1, 1.5))
     st += h2(LB["exp"])
@@ -77,7 +77,7 @@ def build():
             _lnk = (f' <link href="{x["url"]}" color="#0a84ff">' + ("Platzi profile" if LB["exp"].startswith("Professional") else "perfil en Platzi") + "</link>") if x.get("url") else ""
             blk.append(li(e(x["text"]) + _lnk))
         st.append(KeepTogether(blk))
-    doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=14*mm, rightMargin=14*mm, topMargin=10*mm, bottomMargin=10*mm,
+    doc = SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=14*mm, rightMargin=14*mm, topMargin=8*mm, bottomMargin=8*mm,
                             title=f'CV - {P["name"]}', author=P["name"])
     doc.build(st)
     print("CV generado:", OUT)

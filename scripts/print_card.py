@@ -46,9 +46,9 @@ def back(c):
     c.setFillColor(BLUE_LIGHT); c.setFont("Helvetica-Bold", 5.6)
     c.drawString(x0, y0 + 47*mm, "LO QUE CONSTRUYO")
     c.setFillColor(INK); c.setFont("Helvetica-Bold", 9.5)
-    c.drawString(x0, y0 + 41*mm, "Soluciones de ingeniería, datos e IA")
-    items = ["Machine Learning", "Inteligencia artificial", "Power BI y dashboards",
-             "Análisis de ventas", "Automatización industrial", "Asesoría técnica"]
+    c.drawString(x0, y0 + 41*mm, "Soluciones digitales, datos e IA")
+    items = ["Machine Learning", "Inteligencia artificial", "Cloud y AWS",
+             "Apps y dashboards", "Automatización con n8n", "Ventas consultivas"]
     cw, ch, gap = 36*mm, 8.2*mm, 2.4*mm
     for i, label in enumerate(items):
         col, row = i % 2, i // 2
@@ -59,7 +59,7 @@ def back(c):
         c.setFillColor(INK); c.setFont("Helvetica-Bold", 6.2)
         c.drawString(x + 2.2*mm, y + 2.8*mm, label)
     c.setFillColor(MUTED); c.setFont("Helvetica", 5.8)
-    c.drawString(x0, y0 + 3*mm, "Ventas técnicas e ingeniería para soluciones de alto valor.")
+    c.drawString(x0, y0 + 3*mm, "Soluciones digitales y datos para negocios.")
     c.setFillColor(BLUE_LIGHT); c.setFont("Helvetica-Bold", 6.4)
     c.drawRightString(BLEED + 78*mm, y0 + 3*mm, "JSebasurb")
 

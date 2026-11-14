@@ -1,6 +1,6 @@
 {
   "name": "Juan Sebastián Sánchez Urbano",
-  "headline": "Data Analyst · Python, SQL and Power BI · Industrial Automation Engineer",
+  "headline": "Digital Solutions Developer, Machine Learning & Cloud (AWS) · Industrial Automation Engineer",
   "location": "Cali, Colombia",
   "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
@@ -8,103 +8,111 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez_EN.pdf",
-  "summary": "Data analyst with an industrial automation engineering background. I turn plant, sales and operations data into indicators and dashboards that support production and commercial decisions. I work with SQL, Python, R and Power BI, and design medallion-architecture (Bronze/Silver/Gold) ETL pipelines.",
+  "summary": "Industrial Automation Engineer focused on designing, developing and deploying end-to-end digital solutions, Machine Learning models, AWS Cloud architectures and web applications. I combine a solid technical base in data engineering (Python, SQL, medallion-architecture ETL) and process automation (n8n, REST APIs, AI chatbots) with a consultative sales vision (Sales Engineering) to turn operational and business needs into scalable digital products, executive dashboards and automated services.",
   "skills": [
-    {
-      "title": "Data analysis",
-      "icon": "📊",
-      "items": [
-        "Advanced SQL",
-        "MySQL",
-        "Python",
-        "R",
-        "Advanced Excel",
-        "Power BI",
-        "Dashboards",
-        "Statistical analysis",
-        "EDA",
-        "Data consolidation"
-      ]
-    },
     {
       "title": "Machine Learning & AI",
       "icon": "🤖",
       "items": [
-        "Machine Learning",
+        "Python (Scikit-Learn, XGBoost)",
         "Predictive modeling",
         "Classification",
         "AI agents",
-        "AI chatbots"
+        "Conversational chatbots",
+        "NLP (TF-IDF, PCA)",
+        "Cross-validation"
       ]
     },
     {
-      "title": "Data engineering",
-      "icon": "🗄️",
+      "title": "Cloud, Data & Automation",
+      "icon": "☁️",
       "items": [
+        "AWS (Serverless architecture)",
+        "n8n (workflow automation)",
         "ETL pipelines",
-        "Medallion architecture",
-        "Data quality and cleaning",
+        "Medallion architecture (Bronze/Silver/Gold)",
         "REST APIs",
-        "AWS"
+        "Advanced SQL",
+        "MySQL"
       ]
     },
     {
-      "title": "Sales & industrial automation",
-      "icon": "📈",
-      "items": [
-        "Technical and commercial advisory",
-        "Sales analysis",
-        "n8n",
-        "Industrial automation",
-        "PLC programming",
-        "CNC and robotics",
-        "Real-time IoT sensors"
-      ]
-    },
-    {
-      "title": "Web development & deployment",
+      "title": "Web, Apps & BI",
       "icon": "🌐",
       "items": [
-        "HTML, CSS, JavaScript, Bash, YAML",
-        "Git and GitHub",
-        "GitHub Actions",
-        "GitHub Pages"
+        "HTML5, CSS3, JavaScript",
+        "Interactive dashboards",
+        "Power BI",
+        "R",
+        "Advanced Excel",
+        "Git",
+        "GitHub Actions (CI/CD)",
+        "GitHub Pages",
+        "Bash, YAML"
       ]
     },
     {
-      "title": "Methodology & Management",
-      "icon": "🧭",
+      "title": "Engineering & B2B consulting",
+      "icon": "⚙️",
       "items": [
-        "PDCA (continuous improvement)",
-        "Analytical problem solving",
-        "Results orientation",
-        "Effective communication"
+        "Consultative sales (Sales Engineering)",
+        "Industrial automation (PLC, CNC, Robotics, IoT)",
+        "CAD/CAM prototyping and 3D printing",
+        "PDCA methodology"
       ]
     }
   ],
   "experience": [
     {
-      "period": "2019 – Nov 2025 · Mar 2026 – Sep 2026",
-      "role": "Technical, Sales and Data Automation Advisor",
+      "period": "Sep 2026 – Present",
+      "role": "Founder & Digital Solutions Consultant",
+      "company": "JS Soluciones · Cali, Colombia",
+      "text": "Design and deployment of custom digital solutions for businesses: web pages and applications, process automation with n8n, AI chatbot integration and cloud services (AWS).",
+      "achievement": "Achievement: end-to-end management of the commercial and technical cycle, from requirements diagnosis to delivery in production."
+    },
+    {
+      "period": "2019 – Nov 2025 · Mar – Sep 2026",
+      "role": "Technical, Commercial and Data Automation Advisor",
       "company": "Proeléctricos · Popayán, Cauca",
-      "text": "I analyze and validate customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
-      "achievement": "Achievement: Designed an n8n pipeline that automatically extracts, validates and routes customer reports and information to the responsible teams, with a web chatbot."
+      "text": "I analyzed and validated customers' technical and operational information to structure comprehensive solutions, ensuring the quality and traceability of commercial records.",
+      "achievement": "Achievement: Designed an automated n8n pipeline connected to a web-channel chatbot that extracts, validates and routes customer reports and requests in real time to the responsible teams."
     },
     {
       "period": "Oct 2025 – Jan 2026",
-      "role": "CNC and Robotics Area Lead (Production Data Analysis)",
+      "role": "CNC and Robotics Area Leader (Production Analytics)",
       "company": "Metálicas Mundial · Candelaria, Valle del Cauca",
-      "text": "I led the capture and analysis of critical production and quality-control variables, ensuring the reliability of manufacturing process data.",
-      "achievement": "I identified bottlenecks and optimized cycle times by analyzing machinery operating data under agile continuous-improvement methodologies, increasing the area's productivity."
+      "text": "I led the capture and analysis of critical manufacturing and quality-control variables, ensuring the reliability of process data.",
+      "achievement": "Achievement: I identified bottlenecks and optimized cycle times through operational analytics and continuous improvement (PDCA), increasing the area's productivity."
+    },
+    {
+      "period": "2025 – Present",
+      "role": "Founder & Digital Manufacturing Designer",
+      "company": "JS Taller · Cali, Colombia",
+      "text": "Parallel rapid-prototyping venture: design, 3D printing and small-scale CNC router machining (acrylic cutting and technical materials) for custom solutions.",
+      "achievement": "Achievement: custom 3D-printed products, shown in this portfolio's store and 3D-printing section."
     }
   ],
   "projects": [
+    {
+      "icon": "☁️",
+      "title": "Serverless engine on AWS and generative AI",
+      "meta": "AWS · Python · APIs · ETL",
+      "text": "End-to-end automation to generate, process and publish digital content, optimizing cloud resources.",
+      "impact": "Cloud resource optimization with serverless architecture.",
+      "tags": [
+        "AWS",
+        "Python",
+        "APIs",
+        "ETL"
+      ],
+      "cv": true
+    },
     {
       "icon": "🔧",
       "title": "Predictive maintenance with Machine Learning",
       "meta": "Simulated data",
       "text": "Fault-severity classification model built from machine signals, with cross-validation.",
-      "impact": "Cross-validation accuracy of 74% on 720 simulated signals, performing best on high-severity faults.",
+      "impact": "Predictive model of fault severity for industrial machinery with 74% accuracy on 720 simulated signals, prioritizing critical faults.",
       "tags": [
         "Machine Learning",
         "Classification",
@@ -123,8 +131,7 @@
         "Dashboards",
         "OEE",
         "Pareto"
-      ],
-      "cv": true
+      ]
     },
     {
       "icon": "🥽",
@@ -169,7 +176,7 @@
       "icon": "🦟",
       "title": "SIVIGILA epidemiological ETL 2018–2022",
       "meta": "Dengue · SARI · Tuberculosis",
-      "text": "An ETL process over five National Institute of Health Excel files, with extraction, transformation and loading scripts, medallion architecture and an HTML dashboard to visualize results.",
+      "text": "Multi-page data extraction, transformation and loading (2018–2022) deployed as an interactive web dashboard.",
       "impact": "",
       "tags": [
         "Python",
@@ -243,7 +250,7 @@
     {
       "title": "Complementary training",
       "meta": "",
-      "text": "Artificial Intelligence Bootcamp (MinTIC / Talento Tech) · Data Science, Python and Machine Learning (Platzi)",
+      "text": "Artificial Intelligence Bootcamp (MinTIC / Talento Tech) · Data Science, Python and Machine Learning path (Platzi) · AWS Cloud preparation",
       "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/"
     },
     {

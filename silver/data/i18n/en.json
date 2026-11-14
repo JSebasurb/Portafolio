@@ -228,11 +228,11 @@
   "Tarjeta de presentación": "Business card",
   "CV (PDF)": "CV (PDF)",
   "Soy Juan Sebastián Sánchez: ingeniero en automática industrial enfocado en Machine Learning, ventas técnicas e IA. Aquí encuentras mi perfil, mis proyectos, mis herramientas y mi taller 3D.": "I'm Juan Sebastián Sánchez: an industrial automation engineer focused on Machine Learning, technical sales and AI. Here you'll find my profile, my projects, my tools and my 3D workshop.",
-  "Ingeniero en Automática Industrial con enfoque en Machine Learning, ventas técnicas e IA. Analizo datos para tomar decisiones de venta y producción, creo dashboards en Power BI y automatizo procesos con Python, n8n y agentes de IA. Desde mi taller creo productos personalizados en 3D. Vivo en Cali, Colombia.": "Industrial automation engineer focused on Machine Learning, technical sales and AI. I analyze data to make sales and production decisions, build Power BI dashboards and automate processes with Python, n8n and AI agents. From my workshop I create custom 3D products. I live in Cali, Colombia.",
   "App de rutas de visitas": "Visit route app",
   "planifica y organiza tus visitas": "plan and organize your visits",
   "Abrir la app ↗": "Open the app ↗",
-  "Guardar contacto": "Save contact"
+  "Guardar contacto": "Save contact",
+  "Desarrollador de soluciones digitales e ingeniero en automática industrial. Diseño y despliego modelos de Machine Learning, arquitecturas en AWS y aplicaciones web, y automatizo procesos con n8n y chatbots con IA. Desde mi taller creo productos personalizados en 3D. Vivo en Cali, Colombia.": "Digital solutions developer and industrial automation engineer. I design and deploy Machine Learning models, AWS architectures and web applications, and automate processes with n8n and AI chatbots. From my workshop I create custom 3D products. I live in Cali, Colombia."
  },
  "js": {
   "Hola, quiero cotizar un servicio": "Hi, I'd like a quote for a service",

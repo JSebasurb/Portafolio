@@ -324,7 +324,7 @@ def render_faq(faq, u):
 def json_ld(p, cfg, u, url, L):
     data = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "jobTitle": u["job"], "url": url, "inLanguage": L,
             "email": "mailto:" + p["email"], "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"},
-            "sameAs": [p["linkedin"], p["github"], p["youtube"]], "knowsAbout": ["Machine Learning", "Power BI", "Análisis de ventas", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}
+            "sameAs": [p["linkedin"], p["github"], p["youtube"]], "knowsAbout": ["Machine Learning", "AWS", "Desarrollo web", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}
     return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
 
