@@ -835,3 +835,18 @@ h3{letter-spacing:-.015em}
 @media(max-width:640px){h2{margin-top:56px}.cta,.about{margin-top:64px}}
 .eyebrow,.appkick,.rutaapp-kicker,.bn-kicker-ui{color:var(--muted)}
 .pill,.tabs button.on{letter-spacing:.005em}
+
+/* ---------- Gestión de CV ---------- */
+.cvsec{margin:14px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.cvsec h3{margin:0 0 10px;font-size:1.05rem}
+.cvchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.cvchip{border:1px solid var(--line);background:var(--surface);color:var(--text);font:inherit;font-size:.88rem;padding:6px 12px;border-radius:999px;cursor:pointer}
+.cvchip.on{background:var(--blue);color:var(--on-accent);border-color:var(--blue)}
+.cvrow,.cvform,.cvact{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.cvform input,.cvform select,.cvrow input,.cvrow select,.cvcard select{font:inherit;font-size:.9rem;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);min-width:0;flex:1 1 180px}
+.cvlist{display:grid;gap:10px;margin:8px 0}
+.cvcard{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px 14px}
+.cvhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.cvcard p{margin:4px 0}
+.cvmsg:empty{display:none}
+.cvcard .pill{text-decoration:none}

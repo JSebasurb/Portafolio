@@ -227,7 +227,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
 /* ---------- Carga diferida de módulos: cada sección descarga su código al abrirse por primera vez ---------- */
 (function(){
   var LAZY={juegos:['games'],cato:['cato'],imp3d:['stl'],
-            tools:['tools','threads','quote','etl','csvview','maint','vision','prod','fichas']};
+            tools:['tools','threads','quote','etl','csvview','maint','vision','prod','fichas','cvmanager']};
   var loaded={};
   function loadMod(n){
     return new Promise(function(res,rej){
