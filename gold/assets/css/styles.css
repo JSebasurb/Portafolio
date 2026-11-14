@@ -850,3 +850,9 @@ h3{letter-spacing:-.015em}
 .cvcard p{margin:4px 0}
 .cvmsg:empty{display:none}
 .cvcard .pill{text-decoration:none}
+
+.cvhidden{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.cvdue{border-color:#e0a100;background:rgba(224,161,0,.08)}
+.cvresumen{margin:6px 0 10px}
+.cvcard label{display:flex;align-items:center;gap:6px}
+.cvcard label select,.cvcard label input{font:inherit;font-size:.88rem;padding:6px 8px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
