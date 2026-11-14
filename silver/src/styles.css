@@ -817,3 +817,11 @@ html[lang="en"] .t-es{display:none!important}
 /* Cuatro contactos caben en la cara frontal */
 .bn-front .bn-contacts{gap:3px 12px;line-height:1.25}
 @media(min-width:561px){.bn-front .bn-contacts{margin-top:-2px}}
+
+/* "Soluciones" con el color del logo (plateado en oscuro, acero en claro) */
+:root{--logo-hi:#3a4150;--logo-mid:#6b7080;--logo-lo:#4a5366}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--logo-hi:#d9dde6;--logo-mid:#b9bec9;--logo-lo:#8a93a6}}
+:root[data-theme="dark"]{--logo-hi:#d9dde6;--logo-mid:#b9bec9;--logo-lo:#8a93a6}
+.brand span{background:linear-gradient(90deg,var(--logo-lo),var(--logo-hi),var(--logo-mid));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bn-brand span{background:linear-gradient(90deg,#8a93a6,#d9dde6,#b9bec9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bn-foot b{background:linear-gradient(90deg,#3a4150,#8a93a6,#4a5366);-webkit-background-clip:text;background-clip:text;color:transparent}

@@ -28,7 +28,7 @@ def front(c):
     x0, y0 = BLEED + 7*mm, BLEED
     c.drawImage(logo_png(), x0, y0 + 40*mm, width=12*mm, height=12*mm, mask="auto")
     c.setFillColor(white); c.setFont("Helvetica-Bold", 7.5)
-    c.drawString(x0 + 14*mm, y0 + 45*mm, "JSebasurb")
+    c.drawString(x0 + 14*mm, y0 + 45*mm, "Soluciones")
     c.setFont("Helvetica-Bold", 15); c.drawString(x0, y0 + 33*mm, "Juan Sebastián")
     c.setFillColor(BLUE); c.drawString(x0, y0 + 26*mm, "Sánchez Urbano")
     c.setFillColor(white); c.setFont("Helvetica-Bold", 7.6)
@@ -61,7 +61,7 @@ def back(c):
     c.setFillColor(MUTED); c.setFont("Helvetica", 5.8)
     c.drawString(x0, y0 + 3*mm, "Soluciones digitales y datos para negocios.")
     c.setFillColor(BLUE_LIGHT); c.setFont("Helvetica-Bold", 6.4)
-    c.drawRightString(BLEED + 78*mm, y0 + 3*mm, "JSebasurb")
+    c.drawRightString(BLEED + 78*mm, y0 + 3*mm, "Soluciones")
 
 def main():
     out = ROOT / "silver" / "assets" / "docs" / "Tarjeta_Imprimir.pdf"
