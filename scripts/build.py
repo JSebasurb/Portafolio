@@ -395,8 +395,6 @@ def main():
                     shutil.copy(f, GOLD / "assets" / sub / f.name)
 
     # --- datos de la academia CATO (apps creadas)
-    (GOLD / "assets/apps/cato").mkdir(parents=True, exist_ok=True)
-    shutil.copy(SILVER / "apps" / "cato" / "bank.json", GOLD / "assets/apps/cato/bank.json")
 
     # --- una página por idioma
     for L in LANGS:
@@ -479,7 +477,7 @@ def main():
     need = ["assets/css/styles.css", "assets/img/favicon.svg", "assets/img/og-image.png", "assets/img/icon-192.png", "assets/img/icon-512.png", "assets/audio/final_boss_pursuit.mp3",
             "sitemap.xml", "robots.txt", "404.html", "sw.js", "manifest.webmanifest", "en/index.html",
             jl("profile.json")["cv_file"], jl("profile.en.json")["cv_file"]]
-    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "cato", "i18n.es", "i18n.en")]
+    need += [f"assets/js/{n}.js" for n in ("app", "tools", "projects", "contact", "chat", "catalog", "stl", "video", "games", "i18n.es", "i18n.en")]
     for ref in need:
         assert (GOLD / ref).exists(), f"Falta {ref}"
     print(f"OK -> gold/ listo (ES {(GOLD / 'index.html').stat().st_size // 1024} KB · EN {(GOLD / 'en/index.html').stat().st_size // 1024} KB). WhatsApp: {num}")
