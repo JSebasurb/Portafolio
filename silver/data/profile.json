@@ -1,6 +1,6 @@
 {
   "name": "Juan Sebastián Sánchez Urbano",
-  "headline": "Ingeniero en Automática Industrial · Machine Learning, Ventas técnicas, Power BI e IA",
+  "headline": "Analista de Datos · Python, SQL y Power BI · Ingeniero en Automática Industrial",
   "location": "Cali, Colombia",
   "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
@@ -8,78 +8,78 @@
   "github": "https://github.com/JSebasurb",
   "portfolio": "https://jsebasurb.github.io/Portafolio/",
   "cv_file": "assets/docs/CV_Juan_Sebastian_Sanchez.pdf",
-  "summary": "Ingeniero en Automática Industrial enfocado en la intersección entre Machine Learning, Ingeniería de Datos y Ventas Consultivas. Conecto la operación de planta y la estrategia comercial con soluciones de Inteligencia Artificial y analítica avanzada, para convertir datos complejos en decisiones rentables de venta y producción.",
+  "summary": "Analista de datos con formación en ingeniería de automatización. Transformo datos de planta, ventas y operación en indicadores y tableros que apoyan decisiones de producción y comerciales. Trabajo con SQL, Python, R y Power BI, y diseño pipelines ETL con arquitectura medallón (Bronze/Silver/Gold).",
   "skills": [
     {
+      "title": "Análisis de datos",
+      "icon": "📊",
+      "items": [
+        "SQL avanzado",
+        "MySQL",
+        "Python",
+        "R",
+        "Excel avanzado",
+        "Power BI",
+        "Dashboards",
+        "Análisis estadístico",
+        "EDA",
+        "Consolidación de datos"
+      ]
+    },
+    {
       "title": "Machine Learning & IA",
+      "icon": "🤖",
       "items": [
         "Machine Learning",
         "Modelado predictivo",
         "Clasificación",
-        "Análisis estadístico",
-        "EDA",
         "Agentes de IA",
-        "Chatbots con IA",
-        "Python",
-        "R"
-      ],
-      "icon": "🤖"
+        "Chatbots con IA"
+      ]
     },
     {
-      "title": "Ventas & Business Intelligence",
-      "items": [
-        "Asesoría técnica y comercial",
-        "Análisis de ventas",
-        "Power BI",
-        "Excel avanzado",
-        "Dashboards",
-        "Consolidación de datos"
-      ],
-      "icon": "📈"
-    },
-    {
-      "title": "Ingeniería de datos & Cloud",
+      "title": "Ingeniería de datos",
+      "icon": "🗄️",
       "items": [
         "Pipelines ETL",
         "Arquitectura medallón",
-        "SQL avanzado",
-        "MySQL",
-        "AWS",
+        "Calidad y limpieza de datos",
         "APIs REST",
-        "Calidad y limpieza de datos"
-      ],
-      "icon": "🗄️"
+        "AWS"
+      ]
     },
     {
-      "title": "Automatización & Ingeniería industrial",
+      "title": "Ventas & automatización industrial",
+      "icon": "📈",
       "items": [
+        "Asesoría técnica y comercial",
+        "Análisis de ventas",
         "n8n",
         "Automatización industrial",
         "Programación de PLC",
         "CNC y robótica",
         "Sensores e IoT en tiempo real"
-      ],
-      "icon": "⚙️"
+      ]
     },
     {
       "title": "Desarrollo web & despliegue",
+      "icon": "🌐",
       "items": [
         "HTML, CSS, JavaScript, Bash, YAML",
         "Git y GitHub",
         "GitHub Actions",
         "GitHub Pages"
-      ],
-      "icon": "🌐"
+      ]
     },
     {
       "title": "Metodologías & Gestión",
+      "icon": "🧭",
       "items": [
         "PHVA (mejora continua)",
         "Resolución analítica de problemas",
         "Orientación a resultados",
         "Comunicación efectiva"
-      ],
-      "icon": "🧭"
+      ]
     }
   ],
   "experience": [
@@ -88,7 +88,7 @@
       "role": "Asesor Técnico, Comercial y de Automatización de Datos",
       "company": "Proeléctricos · Popayán, Cauca",
       "text": "Analizo y valido información técnica y operativa de clientes para estructurar soluciones integrales, asegurando la calidad y trazabilidad de los registros comerciales.",
-      "achievement": "Diseñé e implementé un chatbot con IA para el canal web, integrado a un pipeline de automatización en n8n que extrae, valida y enruta automáticamente reportes e información hacia las áreas responsables."
+      "achievement": "Logro: Diseñé un pipeline en n8n que extrae, valida y enruta automáticamente reportes e información de clientes hacia las áreas responsables, con un chatbot para el canal web."
     },
     {
       "period": "Oct 2025 – Ene 2026",
@@ -100,6 +100,33 @@
   ],
   "projects": [
     {
+      "icon": "🔧",
+      "title": "Mantenimiento predictivo con Machine Learning",
+      "meta": "Datos simulados",
+      "text": "Modelo de clasificación de severidad de fallas a partir de señales de maquinaria, con validación cruzada.",
+      "impact": "Precisión de validación cruzada de 74 % sobre 720 señales simuladas, con mejor desempeño en fallas de severidad alta.",
+      "tags": [
+        "Machine Learning",
+        "Clasificación",
+        "Python"
+      ],
+      "cv": true
+    },
+    {
+      "icon": "📊",
+      "title": "Dashboard de producción: OEE y Pareto",
+      "meta": "Datos simulados",
+      "text": "Tablero de OEE (disponibilidad, rendimiento y calidad) y análisis Pareto de paros para priorizar mejoras en la línea de producción.",
+      "impact": "Ejemplo con datos simulados: OEE de referencia de 70,8 %, con disponibilidad de 92,3 % y calidad de 94,0 %.",
+      "tags": [
+        "Python",
+        "Dashboards",
+        "OEE",
+        "Pareto"
+      ],
+      "cv": true
+    },
+    {
       "icon": "🥽",
       "title": "Entornos inmersivos para la identificación de fobias",
       "meta": "Trabajo de grado · Septiembre 2025",
@@ -109,8 +136,7 @@
         "Unity",
         "Meta Quest 2",
         "Realidad virtual"
-      ],
-      "cv": true
+      ]
     },
     {
       "icon": "🤖",
@@ -123,8 +149,7 @@
         "C#",
         "ROS",
         "Meta Quest 2"
-      ],
-      "cv": true
+      ]
     },
     {
       "icon": "🔄",
@@ -152,7 +177,8 @@
         "Medallón",
         "Dashboard HTML"
       ],
-      "link": ""
+      "link": "",
+      "cv": true
     },
     {
       "icon": "📦",
@@ -215,15 +241,15 @@
   ],
   "education": [
     {
-      "title": "Ingeniería en Automática Industrial",
-      "meta": "Universidad del Cauca · Graduado 2025",
-      "text": ""
-    },
-    {
       "title": "Formación complementaria",
       "meta": "",
       "text": "Bootcamp de Inteligencia Artificial (MinTIC / Talento Tech) · Data Science, Python y Machine Learning (Platzi)",
       "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/"
+    },
+    {
+      "title": "Ingeniería en Automática Industrial",
+      "meta": "Universidad del Cauca · Graduado 2025",
+      "text": ""
     }
   ],
   "youtube": "https://www.youtube.com/@akazuia"
