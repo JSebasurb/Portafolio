@@ -1,6 +1,6 @@
 {
   "name": "Juan Sebastián Sánchez Urbano",
-  "headline": "Desarrollador de Soluciones Digitales, Machine Learning & Cloud (AWS) · Ingeniero en Automática Industrial",
+  "headline": "Ingeniero en Automática Industrial · Soluciones digitales, Machine Learning y Ciencia de Datos",
   "location": "Cali, Colombia",
   "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
@@ -65,7 +65,7 @@
       "role": "Fundador & Consultor de Soluciones Digitales",
       "company": "JS Soluciones · Cali, Colombia",
       "text": "Diseño y despliegue de soluciones digitales a la medida para negocios: páginas y aplicaciones web, automatización de procesos con n8n, integración de chatbots con IA y servicios en la nube (AWS).",
-      "achievement": "Logro: gestión integral del ciclo comercial y técnico, desde el diagnóstico de requerimientos hasta la entrega en producción."
+      "achievement": "Logro: gestión integral del ciclo comercial y técnico, del diagnóstico a la entrega."
     },
     {
       "period": "2019 – Nov 2025 · Mar – Sep 2026",
@@ -86,7 +86,7 @@
       "role": "Fundador & Diseñador de Fabricación Digital",
       "company": "JS Taller · Cali, Colombia",
       "text": "Emprendimiento paralelo de prototipado rápido: diseño, impresión 3D y mecanizado a pequeña escala en CNC router (corte de acrílico y materiales técnicos) para soluciones personalizadas.",
-      "achievement": "Logro: productos personalizados en impresión 3D, mostrados en la tienda y en la sección de impresión 3D de este portafolio."
+      "achievement": "Logro: productos personalizados en impresión 3D (ver tienda)."
     }
   ],
   "projects": [
@@ -245,9 +245,14 @@
   ],
   "education": [
     {
+      "title": "Maestría en Ciencia de Datos e IA",
+      "meta": "Universidad Autónoma de Occidente · En curso (1.er semestre)",
+      "text": ""
+    },
+    {
       "title": "Formación complementaria",
       "meta": "",
-      "text": "Bootcamp de IA (MinTIC / Talento Tech) · Data Science, Python y ML (Platzi) · AWS",
+      "text": "Bootcamp de IA (MinTIC / Talento Tech) · Data Science y ML (Platzi) · AWS",
       "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/"
     },
     {
@@ -256,5 +261,29 @@
       "text": ""
     }
   ],
-  "youtube": "https://www.youtube.com/@akazuia"
+  "youtube": "https://www.youtube.com/@akazuia",
+  "focus": "Me interesa que la tecnología se entienda. Diseño herramientas de aprendizaje, como una academia técnica, juegos de agilidad mental y un reto de entrevista, y explico lo que no es obvio para que cada decisión tenga sentido para quien la toma.",
+  "courses": [
+    {
+      "title": "Automatización con n8n para negocios",
+      "para": "Pequeños negocios y emprendedores que quieren ahorrar tiempo.",
+      "duracion": "4 sesiones (borrador)",
+      "logro": "Crear flujos de correos, formularios y seguimiento sin programar.",
+      "formato": "En línea"
+    },
+    {
+      "title": "Python para analizar datos",
+      "para": "Personas que usan Excel y quieren automatizar sus reportes.",
+      "duracion": "6 sesiones (borrador)",
+      "logro": "Limpiar datos y construir un tablero sencillo.",
+      "formato": "En línea o presencial"
+    },
+    {
+      "title": "Ventas técnicas para ingenieros",
+      "para": "Técnicos que quieren presentar y vender sus soluciones.",
+      "duracion": "4 sesiones (borrador)",
+      "logro": "Preparar una propuesta y conducir una conversación consultiva.",
+      "formato": "En línea"
+    }
+  ]
 }

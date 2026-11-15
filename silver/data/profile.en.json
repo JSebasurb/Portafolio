@@ -1,6 +1,6 @@
 {
   "name": "Juan Sebastián Sánchez Urbano",
-  "headline": "Digital Solutions Developer, Machine Learning & Cloud (AWS) · Industrial Automation Engineer",
+  "headline": "Industrial Automation Engineer · Digital solutions, Machine Learning and Data Science",
   "location": "Cali, Colombia",
   "email": "jsebasurb@hotmail.com",
   "phone_display": "+57 301 389 2534",
@@ -248,9 +248,14 @@
   ],
   "education": [
     {
+      "title": "Master's in Data Science and AI",
+      "meta": "Universidad Autónoma de Occidente · In progress (1st semester)",
+      "text": ""
+    },
+    {
       "title": "Complementary training",
       "meta": "",
-      "text": "Artificial Intelligence Bootcamp (MinTIC / Talento Tech) · Data Science, Python and Machine Learning path (Platzi) · AWS Cloud preparation",
+      "text": "AI Bootcamp (MinTIC / Talento Tech) · Data Science and ML (Platzi) · AWS",
       "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/"
     },
     {
@@ -259,5 +264,29 @@
       "text": ""
     }
   ],
-  "youtube": "https://www.youtube.com/@akazuia"
+  "youtube": "https://www.youtube.com/@akazuia",
+  "focus": "I care about technology being understood. I design learning tools, such as a technical academy, mental-agility games and an interview challenge, and I explain what is not obvious so that every decision makes sense to the person making it.",
+  "courses": [
+    {
+      "title": "Automation with n8n for businesses",
+      "para": "Small businesses and entrepreneurs who want to save time.",
+      "duracion": "4 sessions (draft)",
+      "logro": "Build email, form and follow-up flows without coding.",
+      "formato": "Online"
+    },
+    {
+      "title": "Python for data analysis",
+      "para": "People who use Excel and want to automate their reports.",
+      "duracion": "6 sessions (draft)",
+      "logro": "Clean data and build a simple dashboard.",
+      "formato": "Online or in person"
+    },
+    {
+      "title": "Technical sales for engineers",
+      "para": "Technical people who want to present and sell their solutions.",
+      "duracion": "4 sessions (draft)",
+      "logro": "Prepare a proposal and lead a consultative conversation.",
+      "formato": "Online"
+    }
+  ]
 }

@@ -20,7 +20,7 @@ UI = {
                k_title="Hechos en el taller", k_sub="Toca una foto para verla más grande y pídela por WhatsApp.", k_order="Pedir este diseño ›",
                k_msg="Hola, quiero pedir el diseño «{name}». ¿Me cotizas?", k_zoom="Ampliar {name}",
                b_title="Blog.", b_sub="Notas cortas sobre datos y automatización.", faq="Preguntas frecuentes", faq_btn="Ver preguntas frecuentes",
-               fab="Hola, quiero cotizar un servicio", job="Ingeniero en Automática Industrial · ML y Ventas", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
+               fab="Hola, quiero cotizar un servicio", job="Ingeniero en Automática Industrial · Soluciones digitales y ML", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
                locale="es_CO", root=""),
     "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", edu_link="View Platzi profile ↗", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
                s_proj="Featured projects", s_edu="Education", win="Achievement:", impact="Impact:", all_proj="See all my projects",
@@ -31,7 +31,7 @@ UI = {
                k_title="Made in the workshop", k_sub="Tap a photo to see it larger and order it via WhatsApp.", k_order="Order this design ›",
                k_msg="Hi, I'd like to order the design “{name}”. Could you quote it?", k_zoom="Enlarge {name}",
                b_title="Blog.", b_sub="Short notes on data and automation.", faq="Frequently asked questions", faq_btn="See FAQ",
-               fab="Hi, I'd like a quote for a service", job="Industrial Automation Engineer · ML and Sales", alt_label="ES", alt_aria="Cambiar a español", alt_code="es", alt_url="../",
+               fab="Hi, I'd like a quote for a service", job="Industrial Automation Engineer · Digital solutions and ML", alt_label="ES", alt_aria="Cambiar a español", alt_code="es", alt_url="../",
                locale="en_US", root="../"),
 }
 
@@ -115,7 +115,7 @@ def render_profile(p, num, u, root):
     <a class="link" href="{e(p["github"])}" target="_blank" rel="noopener">GitHub ›</a>
     <a class="link" href="{e(p["youtube"])}" target="_blank" rel="noopener">YouTube ›</a>
   </div>
-  <div class="cv-sum rv"><p class="eyebrow">{e(u["s_profile"])}</p><p>{e(p["summary"])}</p></div>
+  <div class="cv-sum rv"><p class="eyebrow">{e(u["s_profile"])}</p><p>{e(p["summary"])}</p>{("<p class=\"enfoque\">"+e(p["focus"])+"</p>") if p.get("focus") else ""}</div>{courses_html(p, u["s_profile"].lower().startswith("perfil"), "https://jsebasurb.github.io/Academy-tornillos/")}
   <h3 class="sec">{e(u["s_skills"])}</h3><div class="bento">{skills}</div>
   <h3 class="sec">{e(u["s_exp"])}</h3><div class="tl">{exp}</div>
   <h3 class="sec">{e(u["s_proj"])}</h3><div class="bento">{projs}</div>
@@ -320,6 +320,27 @@ def render_faq(faq, u):
     qa = "".join(f'<details class="qa"><summary>{e(x["q"])}</summary><p>{e(x["a"])}</p></details>' for x in faq)
     return f'<h3 class="sec">{e(u["faq"])}</h3><div class="faq">{qa}</div>'
 
+
+
+def courses_html(p, es, cato_url):
+    """Cursos (borrador) y recursos de aprendizaje, en la sección de Perfil."""
+    head = "Cursos (próximamente)" if es else "Courses (coming soon)"
+    note = ("Borrador: duración, precio y fechas se confirman al lanzar cada curso." if es
+            else "Draft: duration, price and dates are confirmed when each course launches.")
+    cards = []
+    for c in p.get("courses", []):
+        cards.append('<article class="curso"><h3>' + e(c["title"]) + '</h3><p>' + e(c["para"]) + '</p>'
+                     '<p class="curso-meta">' + e(c["duracion"]) + ' · ' + e(c["formato"]) + '</p>'
+                     '<p><strong>' + ("Logro: " if es else "Outcome: ") + '</strong>' + e(c["logro"]) + '</p></article>')
+    rec_t = "Recursos para aprender" if es else "Learning resources"
+    rec = [
+        ('Academia técnica' if es else 'Technical academy', ('Preguntas por niveles y curiosidades sobre roscas y materiales.' if es else 'Leveled questions and curiosities about threads and materials.'), cato_url, 'Abrir ↗' if es else 'Open ↗'),
+        ('Juegos de agilidad mental' if es else 'Mental-agility games', ('Entrenamiento de atención, memoria y cálculo, dentro de este portafolio.' if es else 'Training for attention, memory and calculation, inside this portfolio.'), '#juegos', 'Jugar ›' if es else 'Play ›'),
+    ]
+    rec_html = ''.join('<article class="curso"><h3>' + e(t) + '</h3><p>' + e(d) + '</p><p><a class="link" href="' + e(u, quote=True) + '"' + ('' if u.startswith('#') else ' target="_blank" rel="noopener"') + '>' + e(l) + '</a></p></article>' for t, d, u, l in rec)
+    return ('<div class="cursos rv"><p class="eyebrow">' + e(head) + '</p><p class="curso-nota">' + e(note) + '</p>'
+            '<div class="cursos-grid">' + ''.join(cards) + '</div>'
+            '<p class="eyebrow">' + e(rec_t) + '</p><div class="cursos-grid">' + rec_html + '</div></div>')
 
 def json_ld(p, cfg, u, url, L):
     data = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "jobTitle": u["job"], "url": url, "inLanguage": L,

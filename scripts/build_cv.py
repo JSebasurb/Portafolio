@@ -31,10 +31,10 @@ S = {
     "head": ParagraphStyle("head", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=BLUE),
     "contact": ParagraphStyle("contact", fontName="Helvetica", fontSize=8.6, leading=11.5, textColor=GRAY),
     "h2": ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=BLUE, spaceBefore=6, spaceAfter=1),
-    "body": ParagraphStyle("body", fontName="Helvetica", fontSize=8.6, leading=11.2, textColor=DARK),
+    "body": ParagraphStyle("body", fontName="Helvetica", fontSize=8.6, leading=10.9, textColor=DARK),
     "role": ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=9.2, leading=11.5, textColor=DARK, spaceBefore=2),
     "meta": ParagraphStyle("meta", fontName="Helvetica-Oblique", fontSize=8.4, leading=11, textColor=GRAY),
-    "li": ParagraphStyle("li", fontName="Helvetica", fontSize=8.6, leading=11.2, leftIndent=10, bulletIndent=1, textColor=DARK),
+    "li": ParagraphStyle("li", fontName="Helvetica", fontSize=8.6, leading=10.9, leftIndent=10, bulletIndent=1, textColor=DARK),
 }
 
 def link(url, label):

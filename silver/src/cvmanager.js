@@ -8,13 +8,16 @@
   var ESTADOS=[['enviada',L('Enviada','Sent')],['revision',L('En revisión','Under review')],['entrevista',L('Entrevista','Interview')],['oferta',L('Oferta','Offer')],['rechazada',L('No seleccionado','Not selected')]];
   var ACTIVOS=['enviada','revision','entrevista'];
   function hoy(){return new Date().toISOString().slice(0,10);}
+  function addDays(iso,n){var d=new Date(iso+"T00:00:00"); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10);}
+  function icsDate(iso){return iso.replace(/-/g,"");}
+  function icsEsc(s){return String(s||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\r?\n/g,"\\n");}
   function uid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36);}
   function load(){
     try{var d=JSON.parse(localStorage.getItem(KEY)||'null'); if(d&&d.areas&&d.areas.length){d.versions=d.versions||[];d.apps=d.apps||[];return d;}}catch(e){}
     return {areas:[{id:'general',name:L('General','General')}],versions:[],apps:[]};
   }
   var data=load();
-  var state={area:(data.lastArea&&data.areas.some(function(a){return a.id===data.lastArea;}))?data.lastArea:data.areas[0].id, busq:'', filtro:''};
+  var state={area:(data.lastArea&&data.areas.some(function(a){return a.id===data.lastArea;}))?data.lastArea:data.areas[0].id, busq:'', filtro:'', vista:(data.lastView==='apps'?'apps':'cv')};
   var msgEl=document.createElement('p'); msgEl.className='etlmuted cvmsg'; msgEl.setAttribute('aria-live','polite');
   function msg(t){msgEl.textContent=t;}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(data));return true;}catch(e){msg(L('No se pudo guardar en este navegador.','Could not save in this browser.'));return false;}}
@@ -144,7 +147,7 @@
     verS.appendChild(el('option',{value:'',text:L('— CV enviado —','— CV sent —')}));
     data.versions.forEach(function(v){verS.appendChild(el('option',{value:v.id,text:verLabel(v)}));});
     var fecI=el('input',{type:'date','aria-label':L('Fecha de postulación','Application date'),value:hoy()});
-    var segI=el('input',{type:'date','aria-label':L('Fecha de seguimiento','Follow-up date')});
+    var segI=el('input',{type:'date','aria-label':L('Fecha de seguimiento (sugerida: 7 días)','Follow-up date (suggested: 7 days)'),value:addDays(hoy(),7)});
     var notI=el('input',{type:'text',maxlength:'200',placeholder:L('Notas (contacto, siguiente paso…)','Notes (contact, next step…)'),'aria-label':L('Notas','Notes')});
     var add=el('button',{type:'button',class:'pill sm',text:L('Agregar postulación','Add application')});
     add.addEventListener('click',function(){
@@ -154,7 +157,8 @@
       if(link && !/^https:\/\//i.test(link)) return msg(L('El enlace debe empezar con https://','The link must start with https://'));
       var dup=data.apps.find(function(a){return a.empresa.toLowerCase()===emp.toLowerCase()&&a.cargo.toLowerCase()===car.toLowerCase();});
       if(dup && !confirm(L('Ya registraste esta postulación ('+dup.fecha+'). ¿Agregarla de nuevo?','You already logged this application ('+dup.fecha+'). Add it again?'))) return;
-      data.apps.unshift({id:uid(),empresa:emp,cargo:car,link:link,version:verS.value,fecha:fecI.value||hoy(),seguimiento:segI.value||'',estado:'enviada',notas:notI.value.trim()});
+      var fechaApp=fecI.value||hoy();
+      data.apps.unshift({id:uid(),empresa:emp,cargo:car,link:link,version:verS.value,fecha:fechaApp,seguimiento:segI.value||addDays(fechaApp,7),estado:'enviada',notas:notI.value.trim()});
       if(save()) render();
     });
     var form=el('div',{class:'cvform'},[empI,carI,linkI,verS,fecI,segI,notI,add]);
@@ -196,6 +200,19 @@
       var open=a.link?el('a',{class:'pill sm',href:a.link,target:'_blank',rel:'noopener',text:L('Ver oferta ↗','View offer ↗')}):null;
       var dcv=ver&&ver.file?el('button',{type:'button',class:'pill sm',text:L('Descargar CV enviado','Download CV sent')}):null;
       if(dcv) dcv.addEventListener('click',function(){descargarVersion(ver);});
+      var cal=a.seguimiento?el('button',{type:'button',class:'pill sm',text:L('Agendar seguimiento (.ics)','Add follow-up (.ics)')}):null;
+      if(cal) cal.addEventListener('click',function(){
+        /* 9:00 a.m. hora de Colombia (UTC-5, sin horario de verano) = 14:00 UTC; 30 min; aviso 15 min antes */
+        var ahora=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+        var dia=icsDate(a.seguimiento);
+        var lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JS Soluciones//Gestion de CV//ES','CALSCALE:GREGORIAN','BEGIN:VEVENT',
+          'UID:'+a.id+'@js-soluciones','DTSTAMP:'+ahora,'DTSTART:'+dia+'T140000Z','DTEND:'+dia+'T143000Z',
+          'SUMMARY:'+icsEsc(L('Seguimiento: ','Follow-up: ')+a.empresa+' — '+a.cargo),
+          'DESCRIPTION:'+icsEsc(L('CV enviado: ','CV sent: ')+(ver?verLabel(ver):L('no registrado','not recorded'))+(a.link?' · '+a.link:'')),
+          'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsEsc(L('Seguimiento en 15 minutos','Follow-up in 15 minutes')),'TRIGGER:-PT15M','END:VALARM',
+          'END:VEVENT','END:VCALENDAR'];
+        downloadBlob(new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'}),'seguimiento-'+a.empresa.replace(/[^\w-]+/g,'_')+'.ics');
+      });
       var rm=el('button',{type:'button',class:'link',text:L('Eliminar','Delete')});
       rm.addEventListener('click',function(){
         if(!confirm(L('¿Eliminar esta postulación?','Delete this application?'))) return;
@@ -209,7 +226,7 @@
         el('p',{class:'etlmuted',text:seguimientoTxt}),
         el('div',{class:'cvact'},[el('label',{class:'etlmuted',text:L('Estado ','Status ')},[est]),el('label',{class:'etlmuted',text:L('Seguimiento ','Follow-up ')},[segIn])]),
         el('div',{class:'cvform'},[notas]),
-        el('div',{class:'cvact'},[open,dcv,rm])
+        el('div',{class:'cvact'},[open,dcv,cal,rm])
       ]));
     });
     return el('section',{class:'cvsec'},[
@@ -239,13 +256,24 @@
   }
 
   function render(){
-    data.lastArea=state.area;
+    data.lastArea=state.area; data.lastView=state.vista;
     root.textContent='';
+    function tab(v,label){
+      var b=el('button',{type:'button',class:'cvchip'+(state.vista===v?' on':''),text:label});
+      b.setAttribute('aria-pressed',state.vista===v?'true':'false');
+      b.addEventListener('click',function(){state.vista=v; render();});
+      return b;
+    }
+    var nVer=data.versions.length, nApp=data.apps.length;
+    var tabs=el('div',{class:'cvchips cvtabs','aria-label':L('Vistas de gestión de CV','CV manager views')},[
+      tab('cv',L('Mis CV','My CVs')+' ('+nVer+')'),
+      tab('apps',L('Postulaciones','Applications')+' ('+nApp+')')
+    ]);
+    var secciones = state.vista==='apps' ? [sectionApps()] : [sectionAreas(), sectionVersions()];
     root.appendChild(el('div',{class:'mini-card etlcard'},[
       el('div',{class:'etlhead'},[el('b',{text:L('Gestión de CV','CV manager')}),el('span',{class:'etlmuted',text:L('Organiza tus CV por área, descárgalos cuando los necesites y lleva el seguimiento de cada postulación.','Organize your CVs by area, download them when needed and track every application.')})]),
-      msgEl,
-      sectionAreas(), sectionVersions(), sectionApps(), backupBar()
-    ]));
+      tabs, msgEl
+    ].concat(secciones, [backupBar()])));
     msg('');
   }
   render();

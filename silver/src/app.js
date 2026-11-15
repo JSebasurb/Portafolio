@@ -56,7 +56,7 @@ document.getElementById('goCv').addEventListener('click',function(){show('perfil
     document.querySelectorAll('.tabs button').forEach(function(b){b.setAttribute('role','tab');b.setAttribute('aria-selected',b.dataset.t===t?'true':'false')});
     try{history.replaceState(null,'','#'+t)}catch(e){}
     var names={perfil:'Perfil',proyectos:'Proyectos',tienda:'Tienda',imp3d:'Impresión 3D',video:'Audiovisual',juegos:'Juegos',auto:'Automatización',ia:'Contenido IA',ing:'Ingeniería',tools:'Herramientas',blog:'Blog',contacto:'Contacto'};
-    document.title=(names[t]?T(names[t])+' · ':'')+'JSebasurb';
+    document.title=(names[t]?T(names[t])+' · ':'')+'JS Soluciones';
     var lb=document.getElementById('langBtn');if(lb)lb.href=lb.getAttribute('data-base')+'#'+t;
   };
   function fromHash(){var id=location.hash.slice(1),el=id&&document.getElementById(id);if(el&&el.classList.contains('tab'))show(id)}
@@ -281,7 +281,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   var b=document.getElementById('bnVcard'); if(!b) return;
   b.addEventListener('click',function(){
     var v=['BEGIN:VCARD','VERSION:3.0','N:Sánchez Urbano;Juan Sebastián;;;','FN:Juan Sebastián Sánchez Urbano',
-      'ORG:JSebasurb','TITLE:Ingeniero en Automática Industrial','TEL;TYPE=CELL:+573013892534',
+      'ORG:JS Soluciones','TITLE:Ingeniero en Automática Industrial','TEL;TYPE=CELL:+573013892534',
       'EMAIL;TYPE=INTERNET:jsebasurb@hotmail.com','URL:https://jsebasurb.github.io/Portafolio/',
       'ADR;TYPE=WORK:;;Cali;;;;Colombia','END:VCARD'].join('\r\n');
     var a=document.createElement('a');
@@ -296,7 +296,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
 (function(){
   var b=document.getElementById('bnShare'); if(!b) return;
   b.addEventListener('click',function(){
-    var data={title:'JSebasurb',text:'Juan Sebastián Sánchez Urbano · Ingeniero en Automática Industrial',url:'https://jsebasurb.github.io/Portafolio/'};
+    var data={title:'JS Soluciones',text:'Juan Sebastián Sánchez Urbano · Ingeniero en Automática Industrial',url:'https://jsebasurb.github.io/Portafolio/'};
     if(navigator.share){ navigator.share(data).catch(function(){}); return; }
     if(navigator.clipboard){ navigator.clipboard.writeText(data.url).then(function(){
       b.classList.add('copied'); setTimeout(function(){b.classList.remove('copied');},2200); }).catch(function(){}); }

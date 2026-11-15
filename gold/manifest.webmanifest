@@ -1,7 +1,7 @@
 {
   "name": "Juan Sebastián Sánchez · Portafolio",
   "short_name": "Sebas",
-  "description": "Portafolio de Juan Sebastián Sánchez Urbano: machine learning, ventas técnicas, Power BI, IA y automatización, con herramientas propias e impresión 3D.",
+  "description": "Portafolio de Juan Sebastián Sánchez Urbano: soluciones digitales, Machine Learning, ciencia de datos, automatización con IA y servicios en AWS.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
