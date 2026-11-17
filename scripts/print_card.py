@@ -37,7 +37,7 @@ def front(c):
     c.drawImage(str(ROOT / "silver" / "assets" / "qr.png"), BLEED + 64.6*mm, y0 + 7.6*mm, width=15.8*mm, height=15.8*mm, mask=None)
     c.setFont("Helvetica", 6.6); c.setFillColor(HexColor("#cbd5e1"))
     for i, line in enumerate(["jsebasurb@hotmail.com", "+57 301 389 2534",
-                              "jsebasurb.github.io/Portafolio", "Cali, Colombia"]):
+                              "jsebasurb.github.io/Portafolio", "Cali · linkedin.com/in/jsebasurb"]):
         c.drawString(x0, y0 + 12.5*mm - i*2.9*mm, line)
 
 def back(c):

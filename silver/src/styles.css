@@ -763,7 +763,7 @@ html[lang="en"] .t-es{display:none!important}
 .bn-ac{color:#2997ff}
 .bn-front .bn-ic,.bn-front .bn-ci{stroke:#2997ff}
 .bn-back .bn-ci,.bn-chip .bn-ci{stroke:#0071e3}
-.bn-kicker{color:#0071e3}
+.bn-kicker{color:#0060c0}
 .bn-foot b{color:#0071e3}
 .bn-contacts{font-size:clamp(.7rem,2.6vw,.9rem)}
 .bn-role{font-size:clamp(.8rem,3vw,1.05rem)}
@@ -873,3 +873,18 @@ h3{letter-spacing:-.015em}
 .curso p{margin:4px 0;font-size:.95rem;color:var(--text)}
 .curso-meta{color:var(--muted)!important;font-size:.85rem!important}
 .curso-nota{color:var(--muted);font-size:.9rem;font-style:italic}
+
+/* Interruptor de educación: mostrar solo la maestría */
+.edu-switch{display:inline-flex;align-items:center;gap:10px;margin:4px 0 14px;font-size:.95rem;color:var(--muted);cursor:pointer;user-select:none}
+.edu-switch input{width:18px;height:18px;accent-color:var(--blue);cursor:pointer}
+#eduWrap.solo .tl-item:not(.principal){display:none}
+
+/* Interruptor estilo iOS */
+.edu-switch input[type="checkbox"]{-webkit-appearance:none;appearance:none;position:relative;width:51px;height:31px;border-radius:999px;background:var(--line);border:0;margin:0;flex:none;cursor:pointer;transition:background .25s ease}
+.edu-switch input[type="checkbox"]::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.25);transition:transform .25s ease}
+.edu-switch input[type="checkbox"]:checked{background:#34c759}
+.edu-switch input[type="checkbox"]:checked::after{transform:translateX(20px)}
+.edu-switch input[type="checkbox"]:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.edu-switch span{color:var(--text)}
+
+.bn-kicker{color:#0060c0}

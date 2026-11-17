@@ -105,7 +105,7 @@ def render_profile(p, num, u, root):
         + '<div class="tag-row">' + "".join(f"<span>{e(t)}</span>" for t in x.get("tags", [])) + "</div>"
         + (f'<a class="repo" href="{e(x["link"])}" target="_blank" rel="noopener">{e(u["repo"])} ›</a>' if x.get("link") else "")
         + "</div></div>" for x in p["projects"][:3])
-    edu = "".join(f'<div class="tl-item rv"><div class="tl-per">{e(x["meta"])}</div><h3>{e(x["title"])}</h3>' + (f'<p>{e(x["text"])}</p>' if x["text"] else "") + (f'<p><a href="{e(x["url"])}" target="_blank" rel="noopener">{e(u["edu_link"])}</a></p>' if x.get("url") else "") + "</div>" for x in p["education"])
+    edu = "".join(f'<div class="tl-item rv{' principal' if x.get("principal") else ''}"><div class="tl-per">{e(x["meta"])}</div><h3>{e(x["title"])}</h3>' + (f'<p>{e(x["text"])}</p>' if x["text"] else "") + (f'<p><a href="{e(x["url"])}" target="_blank" rel="noopener">{e(u["edu_link"])}</a></p>' if x.get("url") else "") + "</div>" for x in p["education"])
     return f'''<section class="tab on" id="perfil">
   <h2>{e(p["name"])}</h2>
   <p class="sub">{e(p["headline"])}</p>
@@ -115,12 +115,12 @@ def render_profile(p, num, u, root):
     <a class="link" href="{e(p["github"])}" target="_blank" rel="noopener">GitHub ›</a>
     <a class="link" href="{e(p["youtube"])}" target="_blank" rel="noopener">YouTube ›</a>
   </div>
-  <div class="cv-sum rv"><p class="eyebrow">{e(u["s_profile"])}</p><p>{e(p["summary"])}</p>{("<p class=\"enfoque\">"+e(p["focus"])+"</p>") if p.get("focus") else ""}</div>{courses_html(p, u["s_profile"].lower().startswith("perfil"), "https://jsebasurb.github.io/Academy-tornillos/")}
+  <div class="cv-sum rv"><p class="eyebrow">{e(u["s_profile"])}</p><p>{e(p["summary"])}</p>{("<p class=\"enfoque\">"+e(p["focus"])+"</p>") if p.get("focus") else ""}</div>
   <h3 class="sec">{e(u["s_skills"])}</h3><div class="bento">{skills}</div>
   <h3 class="sec">{e(u["s_exp"])}</h3><div class="tl">{exp}</div>
   <h3 class="sec">{e(u["s_proj"])}</h3><div class="bento">{projs}</div>
   <div class="ctas" style="margin-top:22px"><button class="pill" data-go="proyectos">{e(u["all_proj"])}</button></div>
-  <h3 class="sec">{e(u["s_edu"])}</h3><div class="tl">{edu}</div>
+  <h3 class="sec">{e(u["s_edu"])}</h3><label class="edu-switch"><input type="checkbox" id="soloPrincipal" role="switch" checked> <span>{e("Mostrar solo la maestría" if u["s_edu"].lower().startswith("educ") else "Show only the master's")}</span></label><div class="tl solo" id="eduWrap">{edu}</div>
   <div class="cta rv" style="margin-top:50px">
     <h2>{e(u["work"])}</h2>
     <p class="sub">📍 {e(p["location"])} · ✉️ <a class="link" style="padding:0" href="mailto:{e(p["email"])}">{e(p["email"])}</a> · 📞 {e(p["phone_display"])}</p>
@@ -322,25 +322,6 @@ def render_faq(faq, u):
 
 
 
-def courses_html(p, es, cato_url):
-    """Cursos (borrador) y recursos de aprendizaje, en la sección de Perfil."""
-    head = "Cursos (próximamente)" if es else "Courses (coming soon)"
-    note = ("Borrador: duración, precio y fechas se confirman al lanzar cada curso." if es
-            else "Draft: duration, price and dates are confirmed when each course launches.")
-    cards = []
-    for c in p.get("courses", []):
-        cards.append('<article class="curso"><h3>' + e(c["title"]) + '</h3><p>' + e(c["para"]) + '</p>'
-                     '<p class="curso-meta">' + e(c["duracion"]) + ' · ' + e(c["formato"]) + '</p>'
-                     '<p><strong>' + ("Logro: " if es else "Outcome: ") + '</strong>' + e(c["logro"]) + '</p></article>')
-    rec_t = "Recursos para aprender" if es else "Learning resources"
-    rec = [
-        ('Academia técnica' if es else 'Technical academy', ('Preguntas por niveles y curiosidades sobre roscas y materiales.' if es else 'Leveled questions and curiosities about threads and materials.'), cato_url, 'Abrir ↗' if es else 'Open ↗'),
-        ('Juegos de agilidad mental' if es else 'Mental-agility games', ('Entrenamiento de atención, memoria y cálculo, dentro de este portafolio.' if es else 'Training for attention, memory and calculation, inside this portfolio.'), '#juegos', 'Jugar ›' if es else 'Play ›'),
-    ]
-    rec_html = ''.join('<article class="curso"><h3>' + e(t) + '</h3><p>' + e(d) + '</p><p><a class="link" href="' + e(u, quote=True) + '"' + ('' if u.startswith('#') else ' target="_blank" rel="noopener"') + '>' + e(l) + '</a></p></article>' for t, d, u, l in rec)
-    return ('<div class="cursos rv"><p class="eyebrow">' + e(head) + '</p><p class="curso-nota">' + e(note) + '</p>'
-            '<div class="cursos-grid">' + ''.join(cards) + '</div>'
-            '<p class="eyebrow">' + e(rec_t) + '</p><div class="cursos-grid">' + rec_html + '</div></div>')
 
 def json_ld(p, cfg, u, url, L):
     data = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "jobTitle": u["job"], "url": url, "inLanguage": L,

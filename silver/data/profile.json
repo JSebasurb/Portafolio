@@ -247,43 +247,23 @@
     {
       "title": "Maestría en Ciencia de Datos e IA",
       "meta": "Universidad Autónoma de Occidente · En curso (1.er semestre)",
-      "text": ""
+      "text": "",
+      "principal": true
     },
     {
       "title": "Formación complementaria",
       "meta": "",
       "text": "Bootcamp de IA (MinTIC / Talento Tech) · Data Science y ML (Platzi) · AWS",
-      "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/"
+      "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/",
+      "principal": false
     },
     {
       "title": "Ingeniería en Automática Industrial",
       "meta": "Universidad del Cauca · Graduado 2025",
-      "text": ""
+      "text": "",
+      "principal": false
     }
   ],
   "youtube": "https://www.youtube.com/@akazuia",
-  "focus": "Me interesa que la tecnología se entienda. Diseño herramientas de aprendizaje, como una academia técnica, juegos de agilidad mental y un reto de entrevista, y explico lo que no es obvio para que cada decisión tenga sentido para quien la toma.",
-  "courses": [
-    {
-      "title": "Automatización con n8n para negocios",
-      "para": "Pequeños negocios y emprendedores que quieren ahorrar tiempo.",
-      "duracion": "4 sesiones (borrador)",
-      "logro": "Crear flujos de correos, formularios y seguimiento sin programar.",
-      "formato": "En línea"
-    },
-    {
-      "title": "Python para analizar datos",
-      "para": "Personas que usan Excel y quieren automatizar sus reportes.",
-      "duracion": "6 sesiones (borrador)",
-      "logro": "Limpiar datos y construir un tablero sencillo.",
-      "formato": "En línea o presencial"
-    },
-    {
-      "title": "Ventas técnicas para ingenieros",
-      "para": "Técnicos que quieren presentar y vender sus soluciones.",
-      "duracion": "4 sesiones (borrador)",
-      "logro": "Preparar una propuesta y conducir una conversación consultiva.",
-      "formato": "En línea"
-    }
-  ]
+  "focus": "Me interesa que la tecnología se entienda. Diseño herramientas de aprendizaje, como una academia técnica, juegos de agilidad mental y un reto de entrevista, y explico lo que no es obvio para que cada decisión tenga sentido para quien la toma."
 }

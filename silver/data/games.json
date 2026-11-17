@@ -6,6 +6,16 @@
     "note": "Tip: en el computador también se juega con el teclado. Pulsa P para pausar y Esc para salir.",
     "cards": [
       {
+        "id": "cuatro",
+        "emoji": "👻",
+        "g1": "#0a0a2a",
+        "g2": "#3a4bd6",
+        "title": "Cuatro sombras al acecho",
+        "desc": "Un laberinto con cuatro sombras que te persiguen al ritmo de la canción. Come todos los puntos para pasar de nivel; las píldoras doradas te dan la oportunidad de cazarlas.",
+        "hint": "Usa las flechas o WASD. En celular, desliza para cambiar de dirección. Tienes tres vidas.",
+        "section": "Arcade y reflejos"
+      },
+      {
         "id": "runner",
         "emoji": "🤖",
         "g1": "#5e5ce6",
@@ -208,6 +218,16 @@
     "play": "Play",
     "note": "Tip: on a computer you can also play with the keyboard. Press P to pause and Esc to exit.",
     "cards": [
+      {
+        "id": "cuatro",
+        "emoji": "👻",
+        "g1": "#0a0a2a",
+        "g2": "#3a4bd6",
+        "title": "Four shadows lurking",
+        "desc": "A maze with four shadows chasing you to the rhythm of the song. Eat every dot to clear a level; the golden pellets let you hunt them down.",
+        "hint": "Use the arrow keys or WASD. On mobile, swipe to change direction. You have three lives.",
+        "section": "Arcade y reflejos"
+      },
       {
         "id": "runner",
         "emoji": "🤖",

@@ -2,6 +2,30 @@
   "_ayuda": "Cada proyecto: title, category, description, thumbnail (nombre del archivo en silver/assets/projects/, ej. 'etl-sivigila.webp'; vacío = ícono con color), link (URL del proyecto, repo o demo; vacío = sin botón), tags, emoji, year. Pon visible:false para ocultar un proyecto sin borrarlo.",
   "projects": [
     {
+      "id": "cursos-en-proceso",
+      "title": "Cursos en diseño",
+      "category": "Educación",
+      "year": "2026",
+      "emoji": "📚",
+      "thumbnail": "",
+      "link": "https://wa.me/573013892534?text=Hola%2C%20me%20interesa%20recibir%20informaci%C3%B3n%20sobre%20los%20cursos%20en%20dise%C3%B1o%20%28n8n%2C%20Python%20o%20ventas%20t%C3%A9cnicas%29.",
+      "link_label": "Quiero información ›",
+      "description": "En proceso: tres cursos en diseño. Automatización con n8n para negocios, Python para analizar datos y ventas técnicas para ingenieros. Duración, formato y precio se confirman al lanzar cada curso.",
+      "tags": [
+        "En proceso",
+        "Educación",
+        "Borrador"
+      ],
+      "visible": true,
+      "en": {
+        "title": "Courses in development",
+        "category": "Education",
+        "description": "In progress: three courses in development. Automation with n8n for businesses, Python for data analysis and technical sales for engineers. Duration, format and price are confirmed when each course launches.",
+        "link_label": "I want information ›",
+        "link": "https://wa.me/573013892534?text=Hi%2C%20I%27m%20interested%20in%20information%20about%20the%20courses%20in%20development%20%28n8n%2C%20Python%20or%20technical%20sales%29."
+      }
+    },
+    {
       "title": "Pipeline ETL automatizado end-to-end",
       "category": "Datos",
       "year": "2026",

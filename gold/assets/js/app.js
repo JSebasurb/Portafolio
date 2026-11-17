@@ -312,3 +312,12 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
   new MutationObserver(sync).observe(list,{subtree:true,attributes:true,attributeFilter:['class']});
   sync();
 })();
+
+/* Educación: interruptor para mostrar solo la maestría */
+(function(){
+  document.addEventListener("change",function(e){
+    if(e.target&&e.target.id==="soloPrincipal"){
+      var w=document.getElementById("eduWrap"); if(w) w.classList.toggle("solo",e.target.checked);
+    }
+  });
+})();
