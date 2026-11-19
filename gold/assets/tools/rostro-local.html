@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rostro local · dibujar desde texto</title>
+<style>
+  :root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+  header{padding:16px 20px;border-bottom:1px solid var(--line)}
+  header h1{margin:0;font-size:1.15rem}
+  header p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+  main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;padding:18px;max-width:1100px;margin:0 auto}
+  @media(max-width:820px){main{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 6px}
+  textarea{width:100%;min-height:110px;resize:vertical;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;font-size:.95rem}
+  textarea:focus{outline:2px solid var(--acc);border-color:transparent}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer}
+  button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+  button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .ex{font-size:.8rem;padding:6px 10px;background:#222838;color:var(--text);font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;min-height:28px}
+  .chip{background:#223152;color:#cfe0ff;border-radius:999px;padding:4px 10px;font-size:.8rem}
+  .chip.neg{background:#3a2230;color:#ffc9d6}
+  .hint{color:var(--muted);font-size:.85rem;margin-top:8px}
+  .sliders{margin-top:14px}
+  .sl{display:grid;grid-template-columns:110px 1fr 40px;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);margin:6px 0}
+  input[type=range]{width:100%}
+  canvas{width:100%;height:auto;max-width:512px;display:block;margin:0 auto;background:#fff;border-radius:12px}
+  .foot{color:var(--muted);font-size:.8rem;margin-top:10px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>Rostro local · dibujar desde texto</h1>
+  <p>Describe los rasgos y la app dibuja un rostro ilustrado. Todo ocurre en tu computador: no se envía nada a internet.</p>
+</header>
+<main>
+  <section class="panel">
+    <label for="prompt">Describe el rostro (español o inglés)</label>
+    <textarea id="prompt" placeholder="Ej.: mujer, cabello rizado castaño, ojos verdes, sonrisa, pecas, aretes"></textarea>
+    <div class="row">
+      <button id="draw">Dibujar</button>
+      <button class="ghost" id="variant">Otra variante</button>
+      <button class="ghost" id="save">Guardar PNG</button>
+    </div>
+    <div class="row">
+      <button class="ghost ex" data-ex="mujer, cabello rizado castaño, ojos verdes, sonrisa, pecas, aretes">Ejemplo 1</button>
+      <button class="ghost ex" data-ex="hombre, barba corta, cabello corto negro, ojos cafés, gafas, serio">Ejemplo 2</button>
+      <button class="ghost ex" data-ex="anciano, cabello blanco, arrugas, ojos azules, sonrisa, gorra">Ejemplo 3</button>
+      <button class="ghost ex" data-ex="niño, cabello rubio, ojos grandes azules, sorpresa, pecas">Ejemplo 4</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="hint" id="hint">Reconocidos aparecen como etiquetas. Los que no entiendo se marcan en rojo.</div>
+    <div class="sliders">
+      <div class="sl"><span>Sonrisa</span><input type="range" id="s-smile" min="-1" max="1" step="0.05" value="0"><span id="v-smile">0</span></div>
+      <div class="sl"><span>Tamaño de ojos</span><input type="range" id="s-eyes" min="0.6" max="1.6" step="0.05" value="1"><span id="v-eyes">1</span></div>
+      <div class="sl"><span>Cejas</span><input type="range" id="s-brow" min="-1" max="1" step="0.05" value="0"><span id="v-brow">0</span></div>
+    </div>
+  </section>
+  <section class="panel">
+    <canvas id="cv" width="512" height="512" aria-label="Rostro dibujado"></canvas>
+    <div class="foot">Ilustración estilizada generada a partir de rasgos, no una foto real.</div>
+  </section>
+</main>
+<script>
+(function () {
+  /* ---------- 1. Interpretar el texto ---------- */
+  var RULES = {
+    sexo: [
+      { k: 'mujer', re: /\b(mujer|femenina?|chica|senora|woman|female|girl|lady)\b/ },
+      { k: 'hombre', re: /\b(hombre|masculino|chico|senor|man|male|boy|guy)\b/ }
+    ],
+    edad: [
+      { k: 'niño', re: /\b(nino|nina|nino|nina|infantil|child|kid|boy|girl)\b/, set: { child: 1 } },
+      { k: 'anciano', re: /\b(anciano|anciana|viejo|vieja|mayor|old|elderly|senior)\b/, set: { wrinkles: 1, age: 1 } },
+      { k: 'joven', re: /\b(joven|young)\b/ }
+    ],
+    piel: [],
+    cabello_color: [],
+    peinado: [
+      { k: 'cabello rizado', re: /\b(rizad[oa]s?|crespo|curly|curls)\b/, style: 'rizado' },
+      { k: 'cabello largo', re: /\b(largo|larga|long)\b/, style: 'largo' },
+      { k: 'cabello corto', re: /\b(corto|corta|short)\b/, style: 'corto' },
+      { k: 'afro', re: /\b(afro)\b/, style: 'afro' },
+      { k: 'trenza', re: /\b(trenza|trenzas|braid|braids)\b/, style: 'trenza' },
+      { k: 'moño', re: /\b(mo[nn]o|bun)\b/, style: 'mono' },
+      { k: 'calvo', re: /\b(calv[oa]|bald)\b/, style: 'calvo' },
+      { k: 'cabello liso', re: /\b(liso|lisa|straight)\b/, style: 'corto' }
+    ],
+    ojos_color: [],
+    ojos_forma: [
+      { k: 'ojos grandes', re: /\bojos? grandes?|big eyes|large eyes\b/, eyeScale: 1.3 },
+      { k: 'ojos pequeños', re: /\bojos? peque(ñ|n)os?|small eyes\b/, eyeScale: 0.8 },
+      { k: 'ojos rasgados', re: /\bojos? rasgados?|slanted eyes|almond eyes\b/, slant: 1 }
+    ],
+    cejas: [
+      { k: 'cejas gruesas', re: /\bcejas? (gruesas?|pobladas?)|thick eyebrows\b/, brow: 1.6 },
+      { k: 'cejas finas', re: /\bcejas? finas?|thin eyebrows\b/, brow: 0.7 }
+    ],
+    rostro: [
+      { k: 'rostro redondo', re: /\b(redond[oa]|round)\b/, face: 'redondo' },
+      { k: 'rostro ovalado', re: /\b(oval(ado|ada)?|oval)\b/, face: 'ovalado' },
+      { k: 'rostro cuadrado', re: /\b(cuadrad[oa]|square|mandibula)\b/, face: 'cuadrado' },
+      { k: 'rostro alargado', re: /\b(alargad[oa]|larg[oa] de cara|long face)\b/, face: 'alargado' }
+    ],
+    expresion: [
+      { k: 'sonrisa', re: /\b(sonrisa|sonriente|sonrie|sonriendo|smile|smiling|feliz|happy|alegre)\b/, smile: 0.9 },
+      { k: 'triste', re: /\b(triste|sad|llorando|melancolico)\b/, smile: -0.8 },
+      { k: 'serio', re: /\b(serio|seria|neutral|serious|calm|tranquilo)\b/, smile: 0 },
+      { k: 'enojado', re: /\b(enojad[oa]|enfadad[oa]|furioso|angry|mad)\b/, smile: -0.5, brow: -1 },
+      { k: 'sorpresa', re: /\b(sorpresa|sorprendid[oa]|surprised|shock)\b/, smile: 0, surprised: 1 },
+      { k: 'guiño', re: /\b(gui[nn]o|wink|winking)\b/, wink: 1, smile: 0.6 }
+    ],
+    vello: [
+      { k: 'barba', re: /\b(barba|barbudo|bearded|beard)\b/, beard: 1 },
+      { k: 'bigote', re: /\b(bigote|mustache|moustache)\b/, mustache: 1 },
+      { k: 'sin barba', re: /\b(sin barba|afeitad[oa]|clean shaven)\b/, beard: 0, mustache: 0 }
+    ],
+    extras: [
+      { k: 'gafas', re: /\b(gafas|lentes|anteojos|glasses|eyeglasses|spectacles)\b/, glasses: 1 },
+      { k: 'gafas de sol', re: /\b(gafas de sol|lentes de sol|sunglasses|shades)\b/, glasses: 2 },
+      { k: 'aretes', re: /\b(aretes|pendientes|earrings|pendants)\b/, earrings: 1 },
+      { k: 'gorra', re: /\b(gorra|cap|baseball cap)\b/, hat: 'gorra' },
+      { k: 'sombrero', re: /\b(sombrero|hat)\b/, hat: 'sombrero' },
+      { k: 'pecas', re: /\b(pecas|freckles|pecoso|pecosa)\b/, freckles: 1 },
+      { k: 'lunar', re: /\b(lunar|mole|beauty mark)\b/, mole: 1 },
+      { k: 'arrugas', re: /\b(arrugas|arrugado|arrugada|wrinkles|wrinkled)\b/, wrinkles: 1 }
+    ]
+  };
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ñ/g, 'n'); }
+  function parse(text) {
+    var s = norm(text), f = { sexo: 'neutro', skin: '#e8b796', hair: '#3b2a1e', style: 'corto', eye: '#4b3621', eyeScale: 1, slant: 0,
+      brow: 1, face: 'ovalado', smile: 0.3, surprised: 0, wink: 0, beard: 0, mustache: 0, glasses: 0, earrings: 0, hat: '', freckles: 0,
+      mole: 0, wrinkles: 0, child: 0, age: 0 };
+    var found = [];
+    var clauses = s.split(/[,;.]| y | con /);
+    var hairCl = clauses.filter(function (c) { return /\b(cabello|pelo|hair)\b/.test(c); }).join(' ');
+    var eyeCl = clauses.filter(function (c) { return /\b(ojos?|eyes?)\b/.test(c); }).join(' ');
+    var skinCl = clauses.filter(function (c) { return /\b(piel|tez|skin|tono)\b/.test(c); }).join(' ');
+    var colorRules = [
+      { k: 'cabello negro', re: /\b(negr[oa]s?|azabache|black)\b/, t: 'hair', v: '#1c1c1c' },
+      { k: 'cabello castaño', re: /\b(castan[oa]|marron|chatain|brown hair|chestnut)\b/, t: 'hair', v: '#6b4226' },
+      { k: 'cabello rubio', re: /\b(rubi[oa]|blond[ea]?|blonde|yellow hair)\b/, t: 'hair', v: '#e3c16f' },
+      { k: 'cabello pelirrojo', re: /\b(pelirroj[oa]|rojiz[oa]|red hair|ginger)\b/, t: 'hair', v: '#b5482b' },
+      { k: 'cabello canoso', re: /\b(blanc[oa]|canos[oa]|gris|white hair|gray hair|grey hair)\b/, t: 'hair', v: '#d9d9d9' },
+      { k: 'cabello azul', re: /\b(azul|blue hair)\b/, t: 'hair', v: '#3a7bd5' },
+      { k: 'cabello rosa', re: /\b(rosa|pink hair)\b/, t: 'hair', v: '#e7779a' },
+      { k: 'cabello verde', re: /\b(verde|green hair)\b/, t: 'hair', v: '#3aa55c' },
+      { k: 'cabello morado', re: /\b(morad[oa]|purple hair|violeta)\b/, t: 'hair', v: '#8a4fbf' },
+      { k: 'ojos verdes', re: /\b(verdes?|green)\b/, t: 'eye', v: '#3aa55c' },
+      { k: 'ojos azules', re: /\b(azules?|blue)\b/, t: 'eye', v: '#3a7bd5' },
+      { k: 'ojos cafés', re: /\b(cafes?|marrones?|brown)\b/, t: 'eye', v: '#7a4a22' },
+      { k: 'ojos negros', re: /\b(negr[oa]s?|black)\b/, t: 'eye', v: '#1a1a1a' },
+      { k: 'ojos grises', re: /\b(grises?|gray|grey)\b/, t: 'eye', v: '#7d8b96' },
+      { k: 'piel clara', re: /\b(piel clara|claro|clara|blanca|light|fair|pale)\b/, t: 'skin', v: '#f6d5bd' },
+      { k: 'piel media', re: /\b(piel media|trigueno|triguena|medio|mestiz[oa]|olive|tan)\b/, t: 'skin', v: '#e8b796' },
+      { k: 'piel morena', re: /\b(morena|morenos?|moreno|cafe con leche|tostada|brown|bronze)\b/, t: 'skin', v: '#c68a5e' },
+      { k: 'piel oscura', re: /\b(piel oscura|oscura|negra|negro de piel|dark|black)\b/, t: 'skin', v: '#8d5a3b' },
+    ];
+    colorRules.forEach(function (r) {
+      var src = r.t === 'hair' ? hairCl : r.t === 'eye' ? eyeCl : (skinCl + ' ' + (/\b(morena|moreno|tostada|tostado)\b/.test(s) && r.t === 'skin' ? s : ''));
+      if (!src.trim() || !r.re.test(src)) return;
+      found.push({ k: r.k });
+      if (r.t === 'hair') f.hair = r.v; else if (r.t === 'eye') f.eye = r.v; else f.skin = r.v;
+    });
+    Object.keys(RULES).forEach(function (grp) {
+      RULES[grp].forEach(function (r) {
+        if (!r.re.test(s)) return;
+        found.push({ k: r.k, neg: /^sin |sin /.test(r.k) });
+        if (r.k === 'mujer' || r.k === 'hombre') f.sexo = r.k;
+        if (r.skin) f.skin = r.skin;
+        if (r.hair) f.hair = r.hair;
+        if (r.style) f.style = r.style;
+        if (r.eye) f.eye = r.eye;
+        if (r.eyeScale) f.eyeScale = r.eyeScale;
+        if (r.slant) f.slant = r.slant;
+        if (r.brow && grp === 'cejas') f.brow = r.brow;
+        if (r.brow && grp === 'expresion') f.brow = r.brow;
+        if (r.face) f.face = r.face;
+        if (r.smile !== undefined) f.smile = r.smile;
+        if (r.surprised) f.surprised = r.surprised;
+        if (r.wink) f.wink = r.wink;
+        if (r.beard !== undefined) f.beard = r.beard;
+        if (r.mustache !== undefined) f.mustache = r.mustache;
+        if (r.glasses) f.glasses = r.glasses;
+        if (r.earrings) f.earrings = r.earrings;
+        if (r.hat) f.hat = r.hat;
+        if (r.freckles) f.freckles = r.freckles;
+        if (r.mole) f.mole = r.mole;
+        if (r.wrinkles) f.wrinkles = r.wrinkles;
+        if (r.set) Object.keys(r.set).forEach(function (k) { f[k] = r.set[k]; });
+      });
+    });
+    if (found.some(function (x) { return x.k === 'gafas de sol'; })) found = found.filter(function (x) { return x.k !== 'gafas'; });
+    if (f.child) { f.eyeScale = Math.max(f.eyeScale, 1.2); }
+    if (f.age && f.wrinkles) f.wrinkles = 1;
+    /* pelo lo más cercano al color pedido: si hay "calvo", sin pelo */
+    if (f.style === 'calvo') f.hair = null;
+    return { f: f, found: found };
+  }
+  /* ---------- 2. Dibujar ---------- */
+  var cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  var state = { f: null, seed: 1, smile: 0.3, eyes: 1, brow: 0 };
+  function rnd(seed, k) { var x = Math.sin(seed * 999 + k * 37.1) * 10000; return x - Math.floor(x); }
+  function draw() {
+    var f = state.f, W = cv.width, H = cv.height, S = state.seed;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#f4f6fb'; ctx.fillRect(0, 0, W, H);
+    var jit = function (k, a) { return (rnd(S, k) - 0.5) * a; };
+    var cx = W / 2, cy = 270;
+    var fw = { redondo: 180, ovalado: 165, cuadrado: 185, alargado: 145 }[f.face] || 165;
+    var fh = { redondo: 185, ovalado: 215, cuadrado: 205, alargado: 240 }[f.face] || 215;
+    if (f.child) { fw += 12; fh -= 10; }
+    fw *= 1 + jit(1, 0.06); fh *= 1 + jit(2, 0.05);
+    var sc = state.eyes, smile = state.smile, brow = state.brow;
+    var skin = f.skin, hair = f.hair;
+    /* cuello */
+    ctx.fillStyle = shade(skin, -0.08); ctx.fillRect(cx - 42, cy + fh * 0.35, 84, 90);
+    /* pelo de atrás */
+    if (hair) {
+      ctx.fillStyle = hair;
+      if (f.style === 'afro') { ctx.beginPath(); ctx.arc(cx, cy - 20, fw * 0.78, 0, Math.PI * 2); ctx.fill(); }
+      if (f.style === 'largo') { ctx.beginPath(); ctx.ellipse(cx, cy + 40, fw * 0.72, fh * 0.75, 0, 0, Math.PI * 2); ctx.fill(); }
+      if (f.style === 'rizado') { for (var i = 0; i < 14; i++) { var a = Math.PI * (0.05 + i / 13 * 0.9); ctx.beginPath(); ctx.arc(cx + Math.cos(a + Math.PI) * fw * 0.85, cy - fh * 0.35 + Math.sin(a) * fh * 0.55 - 40, 26, 0, 7); ctx.fill(); } }
+      if (f.style === 'trenza') { ctx.fillRect(cx - fw * 0.86, cy - 30, 26, 230); ctx.fillRect(cx + fw * 0.86 - 26, cy - 30, 26, 230); ctx.beginPath(); ctx.arc(cx - fw * 0.73, cy + 200, 16, 0, 7); ctx.fill(); ctx.beginPath(); ctx.arc(cx + fw * 0.73, cy + 200, 16, 0, 7); ctx.fill(); }
+      if (f.style === 'mono') { ctx.beginPath(); ctx.arc(cx, cy - fh * 0.62, 46, 0, 7); ctx.fill(); }
+    }
+    /* cabeza */
+    ctx.fillStyle = skin; faceShape(cx, cy, fw, fh, f.face, f.sexo === 'hombre' ? 1.08 : 1);
+    ctx.fill(); ctx.strokeStyle = shade(skin, -0.25); ctx.lineWidth = 2; ctx.stroke();
+    /* orejas */
+    ctx.fillStyle = skin; ctx.strokeStyle = shade(skin, -0.25);
+    [-1, 1].forEach(function (side) { ctx.beginPath(); ctx.ellipse(cx + side * fw * 0.98, cy + 10, 14, 24, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); });
+    if (f.earrings) { ctx.fillStyle = '#e6b422'; [-1, 1].forEach(function (side) { ctx.beginPath(); ctx.arc(cx + side * fw * 0.98, cy + 38, 6, 0, 7); ctx.fill(); }); }
+    /* pelo de delante */
+    if (hair && f.style !== 'calvo' && f.style !== 'afro') {
+      ctx.fillStyle = hair;
+      ctx.beginPath(); ctx.moveTo(cx - fw * 1.02, cy - 10);
+      ctx.bezierCurveTo(cx - fw * 1.0, cy - fh * 0.95, cx + fw * 1.0, cy - fh * 0.95, cx + fw * 1.02, cy - 10);
+      ctx.bezierCurveTo(cx + fw * 0.4, cy - fh * 0.52, cx - fw * 0.4, cy - fh * 0.52, cx - fw * 1.02, cy - 10);
+      ctx.closePath(); ctx.fill();
+      if (f.style === 'rizado') { for (var j = 0; j < 9; j++) { ctx.beginPath(); ctx.arc(cx - fw * 0.9 + j * fw * 0.22, cy - fh * 0.72 + (j % 2) * 10, 22, 0, 7); ctx.fill(); } }
+    }
+    if (f.style === 'afro' && hair) { ctx.fillStyle = hair; ctx.beginPath(); ctx.ellipse(cx, cy - fh * 0.42, fw * 0.92, fh * 0.42, 0, Math.PI, 0); ctx.fill(); }
+    /* sombrero / gorra */
+    if (f.hat === 'sombrero') { ctx.fillStyle = '#8b5a2b'; ctx.beginPath(); ctx.ellipse(cx, cy - fh * 0.55, fw * 1.35, 26, 0, 0, Math.PI * 2); ctx.fill(); ctx.fillRect(cx - fw * 0.6, cy - fh * 0.98, fw * 1.2, fh * 0.42); }
+    if (f.hat === 'gorra') { ctx.fillStyle = '#2c4bb0'; ctx.beginPath(); ctx.arc(cx, cy - fh * 0.5, fw * 0.8, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.fillStyle = '#1e3380'; ctx.beginPath(); ctx.ellipse(cx + fw * 0.25, cy - fh * 0.44, fw * 0.62, 16, 0, 0, Math.PI * 2); ctx.fill(); }
+    /* arrugas (frente y ojos) */
+    if (f.wrinkles) { ctx.strokeStyle = shade(skin, -0.35); ctx.lineWidth = 2; [-0.2, 0, 0.2].forEach(function (d) { ctx.beginPath(); ctx.moveTo(cx - 55, cy - 90 + d * 18); ctx.quadraticCurveTo(cx, cy - 98 + d * 18, cx + 55, cy - 90 + d * 18); ctx.stroke(); }); }
+    /* ojos */
+    var ey = cy - 15, ex = 46 * (f.child ? 1.08 : 1), eScale = f.eyeScale * sc;
+    [-1, 1].forEach(function (side) {
+      var x = cx + side * ex, isWink = f.wink && side === 1;
+      if (isWink) { ctx.strokeStyle = '#222'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, ey + 2, 14, Math.PI * 0.15, Math.PI * 0.85); ctx.stroke(); return; }
+      ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
+      var ew = 22 * eScale, eh = 13 * eScale;
+      ctx.beginPath(); ctx.ellipse(x, ey, ew, eh, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = f.eye; ctx.beginPath(); ctx.arc(x, ey, Math.min(ew, eh) * 0.62, 0, 7); ctx.fill();
+      ctx.fillStyle = '#111'; ctx.beginPath(); ctx.arc(x, ey, Math.min(ew, eh) * 0.3, 0, 7); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x + 3, ey - 3, 2.2, 0, 7); ctx.fill();
+      if (f.slant) { ctx.fillStyle = skin; ctx.beginPath(); ctx.moveTo(x - ew - 2, ey - 1); ctx.lineTo(x + side * ew * 0.9 + side * 3, ey - eh * 0.9 - side * 4); ctx.lineTo(x + ew + 2, ey - eh - 4); ctx.lineTo(x + ew + 2, ey - eh - 10); ctx.lineTo(x - ew - 2, ey - 10); ctx.fill(); }
+      /* pestañas arriba */
+      ctx.strokeStyle = '#222'; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.ellipse(x, ey, ew, eh, 0, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke();
+      if (f.glasses === 1) { ctx.strokeStyle = '#333'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, ey, ew + 9, 0, Math.PI * 2); ctx.stroke(); }
+      if (f.glasses === 2) { ctx.fillStyle = 'rgba(20,20,25,0.9)'; ctx.strokeStyle = '#111'; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(x, ey, ew + 10, eh + 9, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+    });
+    if (f.glasses) { ctx.strokeStyle = f.glasses === 2 ? '#111' : '#333'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(cx - ex + 32 * (f.child ? 1 : 1), ey - 2); ctx.lineTo(cx + ex - 32, ey - 2); ctx.stroke(); }
+    /* cejas */
+    var bw = f.brow * brow >= 0 ? 1 : 1;
+    ctx.strokeStyle = hair || '#3a2a1f'; ctx.lineCap = 'round'; ctx.lineWidth = 4.5 * f.brow;
+    [-1, 1].forEach(function (side) {
+      var x = cx + side * ex, tilt = (state.brow) * 9 * side * -1 + (f.brow < 1 ? 0 : 0);
+      if (f.surprised) tilt -= 5;
+      ctx.beginPath(); ctx.moveTo(x - side * 22, ey - 30 + tilt); ctx.quadraticCurveTo(x, ey - 40 - (f.surprised ? 6 : 0) + tilt * 0.4, x + side * 22, ey - 30 + tilt); ctx.stroke();
+    });
+    ctx.lineCap = 'butt';
+    /* nariz */
+    ctx.strokeStyle = shade(skin, -0.3); ctx.lineWidth = 2.4; ctx.beginPath(); ctx.moveTo(cx, ey + 12); ctx.quadraticCurveTo(cx + 9, ey + 42, cx + 2, ey + 48); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx - 6, ey + 50, 4, 0, Math.PI); ctx.stroke();
+    /* lunar */
+    if (f.mole) { ctx.fillStyle = '#4a2c1a'; ctx.beginPath(); ctx.arc(cx + 70, cy + 40, 3.5, 0, 7); ctx.fill(); }
+    /* pecas */
+    if (f.freckles) { ctx.fillStyle = 'rgba(120,60,30,0.7)'; for (var k = 0; k < 14; k++) { var fx = cx + (rnd(S, 100 + k) - 0.5) * 110, fy = cy + 25 + rnd(S, 200 + k) * 22; if (Math.abs(fx - cx) < 22) continue; ctx.beginPath(); ctx.arc(fx, fy, 2.3, 0, 7); ctx.fill(); } }
+    /* boca */
+    var my = cy + 68, mw = f.child ? 30 : 36, mx = cx;
+    if (f.surprised) { ctx.fillStyle = '#7a2a33'; ctx.strokeStyle = '#4a1a20'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(mx, my + 4, 14, 18, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+    else {
+      var lip = f.sexo === 'mujer' ? '#b5485c' : '#8a4a4a';
+      var curve = smile * 22;
+      ctx.strokeStyle = lip; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(mx - mw, my - curve * 0.25); ctx.quadraticCurveTo(mx, my + curve + (smile < 0 ? -curve : 0), mx + mw, my - curve * 0.25); ctx.stroke();
+      if (smile > 0.5) { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(mx - mw + 6, my - curve * 0.25 + 1); ctx.quadraticCurveTo(mx, my + curve * 0.9, mx + mw - 6, my - curve * 0.25 + 1); ctx.lineTo(mx + mw - 6, my + curve * 0.5); ctx.quadraticCurveTo(mx, my + curve * 1.1 + 6, mx - mw + 6, my + curve * 0.5); ctx.fill(); }
+      ctx.lineCap = 'butt';
+    }
+    /* bigote y barba */
+    if (f.mustache || f.beard) {
+      ctx.fillStyle = hair || '#3a2a1f';
+      if (f.beard) { ctx.beginPath(); ctx.moveTo(cx - fw * 0.92, cy + 20); ctx.quadraticCurveTo(cx, cy + 128, cx + fw * 0.92, cy + 20); ctx.quadraticCurveTo(cx + fw * 0.95, cy + fh * 0.95, cx, cy + fh * 1.02); ctx.quadraticCurveTo(cx - fw * 0.95, cy + fh * 0.95, cx - fw * 0.92, cy + 20); ctx.closePath(); ctx.fill(); }
+      if (f.mustache) { ctx.beginPath(); ctx.moveTo(cx - 40, my - 10); ctx.quadraticCurveTo(cx - 18, my - 22, cx, my - 8); ctx.quadraticCurveTo(cx + 18, my - 22, cx + 40, my - 10); ctx.quadraticCurveTo(cx + 18, my - 2, cx, my - 6); ctx.quadraticCurveTo(cx - 18, my - 2, cx - 40, my - 10); ctx.fill(); }
+    }
+  }
+  function faceShape(cx, cy, fw, fh, kind, jaw) {
+    var c = ctx; c.beginPath();
+    if (kind === 'cuadrado') {
+      c.moveTo(cx, cy - fh); c.bezierCurveTo(cx + fw * 0.9, cy - fh, cx + fw, cy - fh * 0.6, cx + fw, cy); c.lineTo(cx + fw * 0.85 * jaw, cy + fh * 0.5); c.lineTo(cx, cy + fh); c.lineTo(cx - fw * 0.85 * jaw, cy + fh * 0.5); c.lineTo(cx - fw, cy); c.bezierCurveTo(cx - fw, cy - fh * 0.6, cx - fw * 0.9, cy - fh, cx, cy - fh);
+    } else {
+      c.ellipse(cx, cy, fw, fh, 0, 0, Math.PI * 2);
+      if (jaw > 1) { c.closePath(); c.beginPath(); c.moveTo(cx, cy - fh); c.bezierCurveTo(cx + fw * 1.02, cy - fh, cx + fw * 1.05 * jaw, cy + fh * 0.2, cx + fw * 0.7, cy + fh * 0.78); c.quadraticCurveTo(cx, cy + fh * 1.02, cx - fw * 0.7, cy + fh * 0.78); c.bezierCurveTo(cx - fw * 1.05 * jaw, cy + fh * 0.2, cx - fw * 1.02, cy - fh, cx, cy - fh); }
+    }
+    c.closePath();
+  }
+  function shade(hex, amt) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    var m = amt < 0 ? 0 : 255, p = Math.abs(amt);
+    r = Math.round((m - r) * p + r); g = Math.round((m - g) * p + g); b = Math.round((m - b) * p + b);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+  /* ---------- 3. Interfaz ---------- */
+  function render(text) {
+    var res = parse(text);
+    state.f = res.f;
+    state.smile = res.f.smile; state.brow = res.f.brow >= 1.3 ? 0 : 0;
+    state.eyes = res.f.eyeScale; state.brow = 0;
+    document.getElementById('s-smile').value = state.smile; document.getElementById('v-smile').textContent = state.smile.toFixed(2);
+    document.getElementById('s-eyes').value = state.eyes; document.getElementById('v-eyes').textContent = state.eyes.toFixed(2);
+    document.getElementById('s-brow').value = 0; document.getElementById('v-brow').textContent = '0';
+    var chips = document.getElementById('chips'); chips.innerHTML = '';
+    res.found.forEach(function (x) { var s = document.createElement('span'); s.className = 'chip' + (x.neg ? ' neg' : ''); s.textContent = x.k; chips.appendChild(s); });
+    document.getElementById('hint').textContent = res.found.length ? (res.found.length + ' rasgos reconocidos.') : 'No reconocí rasgos. Prueba con: sexo, color de cabello, forma de cabello, color de ojos, expresión.';
+    draw();
+  }
+  document.getElementById('draw').addEventListener('click', function () { render(document.getElementById('prompt').value); });
+  document.getElementById('variant').addEventListener('click', function () { state.seed++; if (state.f) draw(); });
+  document.getElementById('save').addEventListener('click', function () {
+    cv.toBlob(function (b) { var a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'rostro.png'; document.body.appendChild(a); a.click(); a.remove(); }, 'image/png');
+  });
+  document.querySelectorAll('.ex').forEach(function (b) { b.addEventListener('click', function () { document.getElementById('prompt').value = b.getAttribute('data-ex'); render(b.getAttribute('data-ex')); }); });
+  document.getElementById('s-smile').addEventListener('input', function (e) { state.smile = parseFloat(e.target.value); document.getElementById('v-smile').textContent = state.smile.toFixed(2); if (state.f) draw(); });
+  document.getElementById('s-eyes').addEventListener('input', function (e) { state.eyes = parseFloat(e.target.value); document.getElementById('v-eyes').textContent = state.eyes.toFixed(2); if (state.f) draw(); });
+  document.getElementById('s-brow').addEventListener('input', function (e) { state.brow = parseFloat(e.target.value); document.getElementById('v-brow').textContent = state.brow.toFixed(2); if (state.f) draw(); });
+  render('');
+  document.getElementById('prompt').value = '';
+})();
+</script>
+</body>
+</html>

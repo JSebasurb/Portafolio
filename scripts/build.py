@@ -390,8 +390,9 @@ def main():
     for f in assets.iterdir():
         if f.is_file() and f.name != ".gitkeep":
             shutil.copy(f, GOLD / "assets/img" / f.name)
-    for sub in ("projects", "catalog", "docs", "audio"):
+    for sub in ("projects", "catalog", "docs", "audio", "tools"):
         if (assets / sub).exists():
+            (GOLD / "assets" / sub).mkdir(parents=True, exist_ok=True)
             for f in (assets / sub).iterdir():
                 if f.is_file() and f.name != ".gitkeep":
                     shutil.copy(f, GOLD / "assets" / sub / f.name)
