@@ -1,5 +1,5 @@
 {
-  "site_title": "JS Soluciones | Ingeniero en Automática Industrial · Soluciones digitales, ML y Ciencia de Datos",
+  "site_title": "JS Soluciones | Ingeniero en Automática Industrial",
   "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: soluciones digitales, Machine Learning, ciencia de datos, automatización con IA y servicios en AWS.",
   "whatsapp_number": "573013892534",
   "nota": "Número tomado de tu CV. Formato: código de país + número, sin + ni espacios.",
@@ -9,11 +9,11 @@
   "nota_endpoints": "form_endpoint: URL del webhook (n8n, Google Apps Script o Formspree) que recibe el formulario. Vacío = el formulario abre WhatsApp con los datos. chat_endpoint: URL del webhook de n8n que responde con IA. Vacío = el asistente usa respuestas locales.",
   "i18n": {
     "es": {
-      "site_title": "JS Soluciones | Ingeniero en Automática Industrial · Soluciones digitales, ML y Ciencia de Datos",
+      "site_title": "JS Soluciones | Ingeniero en Automática Industrial",
       "site_description": "Portafolio de Juan Sebastián Sánchez Urbano: soluciones digitales, Machine Learning, ciencia de datos, automatización con IA y servicios en AWS."
     },
     "en": {
-      "site_title": "JS Soluciones | Industrial Automation Engineer · Digital solutions, ML and Data Science",
+      "site_title": "JS Soluciones | Industrial Automation Engineer",
       "site_description": "Portfolio of Juan Sebastián Sánchez Urbano: digital solutions, Machine Learning, data science, AI automation and AWS services."
     }
   },

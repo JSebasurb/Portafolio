@@ -324,9 +324,31 @@ def render_faq(faq, u):
 
 
 def json_ld(p, cfg, u, url, L):
-    data = {"@context": "https://schema.org", "@type": "Person", "name": p["name"], "jobTitle": u["job"], "url": url, "inLanguage": L,
-            "email": "mailto:" + p["email"], "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"},
-            "sameAs": [p["linkedin"], p["github"], p["youtube"]], "knowsAbout": ["Machine Learning", "AWS", "Desarrollo web", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}
+    """Datos estructurados (schema.org) en un solo bloque @graph: persona, organización y sitio."""
+    base = p.get("portfolio") or "https://jsebasurb.github.io/Portafolio/"
+    es = L != "en"
+    persona_id = base + "#persona"
+    org_id = base + "#organizacion"
+    servicios = (["Machine Learning", "Inteligencia artificial", "Cloud y AWS", "Apps y dashboards",
+                  "Automatización con n8n", "Ventas consultivas"] if es else
+                 ["Machine Learning", "Artificial intelligence", "Cloud and AWS", "Apps and dashboards",
+                  "Automation with n8n", "Consultative sales"])
+    persona = {"@type": "Person", "@id": persona_id, "name": p["name"], "jobTitle": u["job"], "url": url,
+               "email": "mailto:" + p["email"],
+               "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO"},
+               "worksFor": {"@id": org_id},
+               "sameAs": [x for x in [p.get("linkedin"), p.get("github"), p.get("youtube")] if x],
+               "knowsAbout": ["Machine Learning", "AWS", "Desarrollo web", "IA", "ETL", "Python", "SQL", "n8n", "Industrial automation"]}
+    organizacion = {"@type": "ProfessionalService", "@id": org_id, "name": "JS Soluciones",
+                    "url": base, "logo": base + "assets/img/logo.webp",
+                    "founder": {"@id": persona_id}, "areaServed": {"@type": "Country", "name": "Colombia"},
+                    "description": cfg.get("site_description", ""),
+                    "serviceType": servicios,
+                    "sameAs": [x for x in [p.get("linkedin"), p.get("github")] if x]}
+    sitio = {"@type": "WebSite", "@id": base + "#sitio", "name": "JS Soluciones", "url": base,
+             "inLanguage": L, "description": cfg.get("site_description", ""),
+             "publisher": {"@id": org_id}}
+    data = {"@context": "https://schema.org", "@graph": [persona, organizacion, sitio]}
     return json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
 
