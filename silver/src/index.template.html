@@ -224,7 +224,7 @@
 <section class="tab" id="tools" role="tabpanel">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
-  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button><button data-v="t13">📄 Gestión de CV</button><button data-v="t14">🙂 Rostro local</button></div>
+  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button><button data-v="t13">📄 Gestión de CV</button><button data-v="t14">🙂 Rostro local</button><button data-v="t15">🌳 Árbol de decisiones</button><button data-v="t16">🔳 Código QR</button><button data-v="t17">🏦 Préstamos e interés</button><button data-v="t18">🗂️ Tablero de tareas</button><button data-v="t19">🔐 Contraseñas</button><button data-v="t20">🎡 Ruleta</button></div>
 
   <div class="tool on" id="t1">
     <div class="rd">
@@ -375,6 +375,36 @@
 
   <div class="tool" id="t13">
     <div id="cvMgr"></div>
+  </div>
+
+  <div class="tool" id="t15">
+    <p class="etlmuted">Crea ramas con acciones y consecuencias, puntúalas y descubre cuál conviene más. Todo se guarda en tu navegador.</p>
+    <iframe class="rostro-frame" src="{{ROOT}}assets/tools/arbol-decisiones.html" title="Árbol de decisiones interactivo" loading="lazy"></iframe>
+  </div>
+
+  <div class="tool" id="t16">
+    <p class="etlmuted">Genera un código QR con tu enlace o texto y descárgalo como imagen. Todo ocurre en tu navegador.</p>
+    <iframe class="rostro-frame" style="height:640px" src="{{ROOT}}assets/tools/qr-codigo.html" title="Generador de códigos QR" loading="lazy"></iframe>
+  </div>
+
+  <div class="tool" id="t17">
+    <p class="etlmuted">Calcula la cuota de un préstamo con su tabla de amortización, o cuánto crece un ahorro con aportes mensuales.</p>
+    <iframe class="rostro-frame" style="height:760px" src="{{ROOT}}assets/tools/calculadora-prestamos.html" title="Calculadora de préstamos e interés compuesto" loading="lazy"></iframe>
+  </div>
+
+  <div class="tool" id="t18">
+    <p class="etlmuted">Organiza tus tareas en por hacer, en curso y listo. Se guardan en este navegador.</p>
+    <iframe class="rostro-frame" style="height:720px" src="{{ROOT}}assets/tools/tablero-tareas.html" title="Tablero de tareas" loading="lazy"></iframe>
+  </div>
+
+  <div class="tool" id="t19">
+    <p class="etlmuted">Crea contraseñas seguras con el largo y los caracteres que elijas. Se generan aquí y no se guardan.</p>
+    <iframe class="rostro-frame" style="height:640px" src="{{ROOT}}assets/tools/generador-contrasenas.html" title="Generador de contraseñas" loading="lazy"></iframe>
+  </div>
+
+  <div class="tool" id="t20">
+    <p class="etlmuted">Define las opciones y su probabilidad de caer. La ruleta respeta esos porcentajes, que son los reales.</p>
+    <iframe class="rostro-frame" style="height:760px" src="{{ROOT}}assets/tools/ruleta.html" title="Ruleta con probabilidades" loading="lazy"></iframe>
   </div>
 
   <div class="tool" id="t14">

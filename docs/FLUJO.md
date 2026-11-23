@@ -53,6 +53,7 @@ Los textos están en `scripts/print_card.py`. Regenera el PDF con:
     python scripts/check_links.py --offline
     python scripts/smoke_test.py     # prueba de humo en navegador
     python scripts/visual_check.py   # cambios visuales inesperados
+    python scripts/test_tools.py     # pruebas funcionales de las herramientas (préstamos, ruleta, contraseñas, tablero, QR)
 
 Si la prueba visual marca cambios que sí querías, actualiza las líneas base:
 
@@ -61,6 +62,8 @@ Si la prueba visual marca cambios que sí querías, actualiza las líneas base:
 Requiere `pip install playwright pillow` y `python -m playwright install chromium`.
 
 ## Publicar
+
+El zip no incluye `gold/`: GitHub Actions lo reconstruye desde `silver/` en cada envío a `main`.
 
 Sube el contenido del proyecto a `main` del repositorio `JSebasurb/Portafolio`. GitHub Actions (`.github/workflows/pages.yml`) reconstruye y publica el sitio en https://jsebasurb.github.io/Portafolio/.
 

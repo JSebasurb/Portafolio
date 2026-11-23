@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Calculadora de préstamos e interés</title>
+<style>
+:root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:14px}
+h1{font-size:1.05rem;margin:0 0 10px}.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:14px;max-width:1000px;margin:0 auto}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+label{display:block;font-size:.82rem;color:var(--muted);margin:10px 0 4px}
+input,select{width:100%;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;font:inherit}
+.tabs{display:flex;gap:6px;margin-bottom:10px}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:9px 12px;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.kpi div{background:#0c0e13;border:1px solid var(--line);border-radius:10px;padding:10px}
+.kpi b{display:block;font-size:1.1rem}.kpi span{font-size:.78rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:10px}
+th,td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}
+.wrap{max-height:460px;overflow:auto}.note{color:var(--muted);font-size:.8rem;margin-top:8px;line-height:1.4}
+</style></head><body>
+<h1>Calculadora de préstamos e interés compuesto</h1>
+<div class="grid">
+<section class="panel">
+  <div class="tabs"><button id="mP">Préstamo</button><button id="mI" class="ghost">Interés compuesto</button></div>
+  <div id="fP">
+    <label>Monto del préstamo</label><input aria-label="Monto del préstamo" id="p-m" type="number" min="0" value="10000000">
+    <label>Tasa de interés anual (%)</label><input aria-label="Tasa de interés anual" id="p-t" type="number" min="0" step="0.01" value="18">
+    <label>Plazo (meses)</label><input aria-label="Plazo en meses" id="p-n" type="number" min="1" step="1" value="36">
+  </div>
+  <div id="fI" hidden>
+    <label>Capital inicial</label><input aria-label="Capital inicial" id="i-c" type="number" min="0" value="1000000">
+    <label>Aporte mensual</label><input aria-label="Aporte mensual" id="i-a" type="number" min="0" value="100000">
+    <label>Tasa de interés anual (%)</label><input aria-label="Tasa de interés anual para ahorro" id="i-t" type="number" min="0" step="0.01" value="10">
+    <label>Años</label><input aria-label="Años de ahorro" id="i-y" type="number" min="1" step="1" value="5">
+  </div>
+  <div class="row" style="margin-top:12px"><button id="calc">Calcular</button></div>
+  <div class="note">Los valores son una estimación. Las condiciones reales (seguros, comisiones, tasas variables) las define cada entidad.</div>
+</section>
+<section class="panel">
+  <div class="kpi" id="kpi"></div>
+  <div class="wrap" id="tbl"></div>
+</section>
+</div>
+<script>
+(function(){
+  var mode='p';
+  function $(id){return document.getElementById(id);}
+  function money(v){return '$ '+Math.round(v).toLocaleString('es-CO');}
+  function num(id){return parseFloat($(id).value)||0;}
+  function setMode(m){mode=m;$('fP').hidden=m!=='p';$('fI').hidden=m!=='i';$('mP').className=m==='p'?'':'ghost';$('mI').className=m==='i'?'':'ghost';$('kpi').innerHTML='';$('tbl').innerHTML='';}
+  function kpi(items){var k=$('kpi');k.innerHTML='';items.forEach(function(it){var d=document.createElement('div');var b=document.createElement('b');b.textContent=it[1];var s=document.createElement('span');s.textContent=it[0];d.appendChild(b);d.appendChild(s);k.appendChild(d);});}
+  function table(head,rows){var t=document.createElement('table');var th='<tr>'+head.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr>';t.innerHTML='<thead>'+th+'</thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(c){return '<td>'+c+'</td>';}).join('')+'</tr>';}).join('')+'</tbody>';$('tbl').innerHTML='';$('tbl').appendChild(t);}
+  function loan(){
+    var P=num('p-m'),r=num('p-t')/100/12,n=Math.max(1,Math.round(num('p-n')));
+    var cuota = r===0 ? P/n : P*r/(1-Math.pow(1+r,-n));
+    var saldo=P,tot=0,totI=0,rows=[];
+    for(var k=1;k<=n;k++){var int=saldo*r,cap=cuota-int;saldo=Math.max(0,saldo-cap);tot+=cuota;totI+=int;if(k<=12||k===n)rows.push([k,money(cuota),money(int),money(cap),money(saldo)]);}
+    kpi([['Cuota mensual',money(cuota)],['Total intereses',money(totI)],['Total a pagar',money(tot)],['Tasa mensual',(r*100).toFixed(3)+' %']]);
+    table(['Mes','Cuota','Interés','Capital','Saldo'],rows);
+    if(n>12)$('tbl').insertAdjacentHTML('beforeend','<div class="note">Se muestran los primeros 12 meses y el último.</div>');
+  }
+  function comp(){
+    var C=num('i-c'),A=num('i-a'),r=num('i-t')/100/12,y=Math.max(1,Math.round(num('i-y'))),n=y*12;
+    var bal=C,aport=0,rows=[];
+    for(var k=1;k<=n;k++){bal=bal*(1+r)+A;aport+=A;if(k%12===0)rows.push([k/12,money(aport+C),money(bal-aport-C),money(bal)]);}
+    kpi([['Saldo final',money(bal)],['Total aportado',money(aport+C)],['Intereses ganados',money(bal-aport-C)],['Años',y]]);
+    table(['Año','Aportado','Intereses','Saldo'],rows);
+  }
+  $('mP').onclick=function(){setMode('p');};$('mI').onclick=function(){setMode('i');};
+  $('calc').onclick=function(){if(mode==='p')loan();else comp();};
+  loan();
+})();
+</script><script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Calculadora de préstamos e interés compuesto": "Loan and compound interest calculator", "Préstamo": "Loan", "Interés compuesto": "Compound interest", "Monto del préstamo": "Loan amount", "Tasa de interés anual (%)": "Annual interest rate (%)", "Plazo (meses)": "Term (months)", "Capital inicial": "Initial capital", "Aporte mensual": "Monthly contribution", "Años": "Years", "Calcular": "Calculate", "Los valores son una estimación. Las condiciones reales (seguros, comisiones, tasas variables) las define cada entidad.": "Values are an estimate. Actual terms (insurance, fees, variable rates) are set by each lender.", "Cuota mensual": "Monthly payment", "Total intereses": "Total interest", "Total a pagar": "Total to pay", "Tasa mensual": "Monthly rate", "Mes": "Month", "Cuota": "Payment", "Interés": "Interest", "Capital": "Principal", "Saldo": "Balance", "Año": "Year", "Aportado": "Contributed", "Intereses": "Interest", "Saldo final": "Final balance", "Total aportado": "Total contributed", "Intereses ganados": "Interest earned", "Se muestran los primeros 12 meses y el último.": "The first 12 months and the last one are shown."};
+var RX=[];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
+</body></html>

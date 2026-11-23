@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tablero de tareas</title>
+<style>
+:root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:14px}
+h1{font-size:1.05rem;margin:0 0 10px}
+.add{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,textarea,select{background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;font:inherit}
+input.t{flex:2 1 200px}textarea{flex:3 1 260px;min-height:40px;resize:vertical}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer;font-size:.85rem}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:760px){.board{grid-template-columns:1fr}}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:200px}
+.col h2{font-size:.92rem;margin:4px 4px 10px;display:flex;justify-content:space-between}
+.count{color:var(--muted);font-weight:500}
+.card{background:#0c0e13;border:1px solid var(--line);border-radius:11px;padding:10px;margin-bottom:8px}
+.card.p-alta{border-left:4px solid #e74c3c}.card.p-media{border-left:4px solid #f5c542}.card.p-baja{border-left:4px solid #2ecc71}
+.card b{display:block;margin-bottom:4px}.card p{margin:0 0 8px;color:var(--muted);font-size:.85rem;white-space:pre-wrap}
+.acts{display:flex;gap:6px;flex-wrap:wrap}.acts button{padding:5px 9px;font-size:.78rem}
+.foot{color:var(--muted);font-size:.8rem;margin-top:10px}
+</style></head><body>
+<h1>Tablero de tareas</h1>
+<div class="add">
+  <input class="t" id="tt" placeholder="Título de la tarea" maxlength="80">
+  <textarea id="td" placeholder="Notas (opcional)" maxlength="300"></textarea>
+  <select aria-label="Prioridad" id="tp"><option value="media">Prioridad media</option><option value="alta">Alta</option><option value="baja">Baja</option></select>
+  <button id="add">Agregar</button>
+</div>
+<div class="board" id="board"></div>
+<div class="foot" id="foot"></div>
+<script>
+(function(){
+  var COLS=['Por hacer','En curso','Listo'];
+  var KEY='tablero-tareas.v1', tasks=[];
+  function load(){try{tasks=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){tasks=[];}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(tasks));}catch(e){document.getElementById('foot').textContent='No se pudo guardar en este navegador; los cambios solo viven mientras esté abierta la página.';}}
+  function id(){return 't'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+  function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
+  function btn(text,cls,fn){var b=el('button',cls,text);b.onclick=fn;return b;}
+  function render(){
+    var board=document.getElementById('board');board.textContent='';
+    COLS.forEach(function(name,ci){
+      var col=el('div','col');var mine=tasks.filter(function(t){return t.col===ci;});
+      var h=el('h2');h.appendChild(el('span',null,name));h.appendChild(el('span','count',String(mine.length)));col.appendChild(h);
+      mine.forEach(function(t){
+        var c=el('div','card p-'+t.p);c.appendChild(el('b',null,t.title));if(t.notes)c.appendChild(el('p',null,t.notes));
+        var a=el('div','acts');
+        if(ci>0)a.appendChild(btn('← '+COLS[ci-1],'ghost',function(){t.col=ci-1;save();render();}));
+        if(ci<COLS.length-1)a.appendChild(btn(COLS[ci+1]+' →','',function(){t.col=ci+1;save();render();}));
+        a.appendChild(btn('Eliminar','ghost',function(){if(confirm('¿Eliminar esta tarea?')){tasks=tasks.filter(function(x){return x.id!==t.id;});save();render();}}));
+        c.appendChild(a);col.appendChild(c);
+      });
+      board.appendChild(col);
+    });
+    var done=tasks.filter(function(t){return t.col===2;}).length;
+    document.getElementById('foot').textContent=tasks.length?('Completadas: '+done+' de '+tasks.length+' ('+Math.round(done/tasks.length*100)+' %)'):'Agrega tu primera tarea. Se guarda en este navegador.';
+  }
+  document.getElementById('add').onclick=function(){
+    var t=document.getElementById('tt').value.trim();if(!t){document.getElementById('tt').focus();return;}
+    tasks.push({id:id(),title:t,notes:document.getElementById('td').value.trim(),p:document.getElementById('tp').value,col:0});
+    document.getElementById('tt').value='';document.getElementById('td').value='';save();render();
+  };
+  load();render();
+})();
+</script><script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Tablero de tareas": "Task board", "Agregar": "Add", "Prioridad media": "Medium priority", "Alta": "High", "Baja": "Low", "Título de la tarea": "Task title", "Notas (opcional)": "Notes (optional)", "Por hacer": "To do", "En curso": "In progress", "Listo": "Done", "Eliminar": "Delete", "Agrega tu primera tarea. Se guarda en este navegador.": "Add your first task. It is saved in this browser."};
+var RX=[["^Completadas: (\\d+) de (\\d+) \\((\\d+) %\\)$", "Completed: \\1 of \\2 (\\3 %)"]];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
+</body></html>

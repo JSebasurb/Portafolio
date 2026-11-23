@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Generador de códigos QR</title>
+<style>
+:root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:14px}
+h1{font-size:1.05rem;margin:0 0 10px}.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+label{display:block;font-size:.82rem;color:var(--muted);margin:10px 0 4px}
+textarea{width:100%;min-height:90px;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;font:inherit;resize:vertical}
+select,input[type=number]{width:100%;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px;font:inherit}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.out{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;min-height:300px;padding:10px}
+canvas{max-width:100%;height:auto;image-rendering:pixelated}
+.info{color:var(--muted);font-size:.82rem;margin-top:8px;line-height:1.4}.err{color:#ff8a8a}
+</style></head><body>
+<h1>Generador de códigos QR</h1>
+<div class="grid">
+<section class="panel">
+  <label for="txt">Texto o enlace</label>
+  <textarea id="txt" placeholder="https://jsebasurb.github.io/Portafolio/">https://jsebasurb.github.io/Portafolio/</textarea>
+  <label for="sc">Tamaño de cada cuadro (px)</label>
+  <select id="sc"><option value="6">6</option><option value="8" selected>8</option><option value="10">10</option><option value="12">12</option></select>
+  <div class="row"><button id="mk">Generar</button> <button id="dl" class="ghost">Descargar PNG</button></div>
+  <div class="info" id="info">Admite hasta 84 bytes (aprox. 84 caracteres en ASCII). Se genera todo en tu navegador.</div>
+</section>
+<section class="panel"><div class="out"><canvas id="cv" width="10" height="10"></canvas></div><div class="info" id="msg"></div></section>
+</div>
+<script>
+(function(){
+  /* ---- Galois field GF(256) y Reed-Solomon ---- */
+  var EXP=new Array(512), LOG=new Array(256), x=1, i;
+  for(i=0;i<255;i++){EXP[i]=x;LOG[x]=i;x<<=1;if(x&0x100)x^=0x11D;}
+  for(i=255;i<512;i++)EXP[i]=EXP[i-255];
+  function gmul(a,b){return (a&&b)?EXP[LOG[a]+LOG[b]]:0;}
+  function rsDivisor(deg){
+    var d=new Array(deg).fill(0);d[deg-1]=1;var root=1;
+    for(var k=0;k<deg;k++){
+      for(var j=0;j<deg;j++){d[j]=gmul(d[j],root);if(j+1<deg)d[j]^=d[j+1];}
+      root=gmul(root,2);
+    }
+    return d;
+  }
+  function rsRemainder(data,div){
+    var deg=div.length, res=new Array(deg).fill(0);
+    data.forEach(function(b){var f=b^res.shift();res.push(0);for(var j=0;j<deg;j++)res[j]^=gmul(div[j],f);});
+    return res;
+  }
+  /* ---- versiones 1-5, nivel de corrección M ---- */
+  var VER={1:{ec:10,blocks:[16]},2:{ec:16,blocks:[28]},3:{ec:26,blocks:[44]},4:{ec:18,blocks:[32,32]},5:{ec:24,blocks:[43,43]}};
+  var ALIGN={2:[6,18],3:[6,22],4:[6,26],5:[6,30]};
+  function utf8(s){return Array.from(unescape(encodeURIComponent(s))).map(function(c){return c.charCodeAt(0);});}
+  function encodeData(bytes,v){
+    var cap=VER[v].blocks.reduce(function(a,b){return a+b;},0);
+    var bits=[];function put(val,n){for(var k=n-1;k>=0;k--)bits.push((val>>k)&1);}
+    put(4,4);put(bytes.length,8);bytes.forEach(function(b){put(b,8);});
+    var total=cap*8, term=Math.min(4,total-bits.length);for(k=0;k<term;k++)bits.push(0);
+    while(bits.length%8)bits.push(0);
+    var out=[];for(var q=0;q<bits.length;q+=8){var v8=0;for(var r=0;r<8;r++)v8=(v8<<1)|bits[q+r];out.push(v8);}
+    var pad=[0xEC,0x11],pi=0;while(out.length<cap)out.push(pad[pi++%2]);
+    return out;
+  }
+  function interleave(data,v){
+    var spec=VER[v], blocks=[], pos=0;
+    spec.blocks.forEach(function(len){blocks.push(data.slice(pos,pos+len));pos+=len;});
+    var div=rsDivisor(spec.ec), ecc=blocks.map(function(b){return rsRemainder(b,div);});
+    var out=[], maxD=Math.max.apply(null,spec.blocks);
+    for(var i2=0;i2<maxD;i2++)blocks.forEach(function(b){if(i2<b.length)out.push(b[i2]);});
+    for(var e=0;e<spec.ec;e++)ecc.forEach(function(b){out.push(b[e]);});
+    return out;
+  }
+  /* ---- matriz ---- */
+  function build(codewords,v,mask){
+    var n=17+4*v, M=[], F=[], i2,j2;
+    for(i2=0;i2<n;i2++){M.push(new Array(n).fill(0));F.push(new Array(n).fill(false));}
+    function set(x2,y2,val,func){M[y2][x2]=val?1:0;if(func)F[y2][x2]=true;}
+    function finder(cx,cy){for(var dy=-1;dy<=7;dy++)for(var dx=-1;dx<=7;dx++){var X=cx+dx,Y=cy+dy;if(X<0||Y<0||X>=n||Y>=n)continue;var inside=dx>=0&&dx<=6&&dy>=0&&dy<=6;var d=Math.max(Math.abs(dx-3),Math.abs(dy-3));set(X,Y,inside&&d!==2,true);}}
+    finder(0,0);finder(n-7,0);finder(0,n-7);
+    for(i2=8;i2<n-8;i2++){set(i2,6,i2%2===0,true);set(6,i2,i2%2===0,true);}
+    if(v>=2){var a=ALIGN[v],last=a[a.length-1];a.forEach(function(ay){a.forEach(function(ax){if((ax===6&&ay===6)||(ax===6&&ay===last)||(ax===last&&ay===6))return;for(var dy=-2;dy<=2;dy++)for(var dx=-2;dx<=2;dx++){var d=Math.max(Math.abs(dx),Math.abs(dy));set(ax+dx,ay+dy,d!==1,true);}});});}
+    /* reservar área de formato */
+    for(i2=0;i2<9;i2++){F[8][i2]=true;F[i2][8]=true;}
+    for(i2=0;i2<8;i2++){F[n-1-i2][8]=true;F[8][n-1-i2]=true;}
+    set(8,n-8,1,true);
+    /* colocar datos en zigzag */
+    var bi=0, total=codewords.length*8;
+    for(var right=n-1;right>=1;right-=2){
+      if(right===6)right=5;
+      for(var vert=0;vert<n;vert++)for(var jj=0;jj<2;jj++){
+        var X2=right-jj, upward=((right+1)&2)===0, Y2=upward?n-1-vert:vert;
+        if(!F[Y2][X2]&&bi<total){M[Y2][X2]=(codewords[bi>>3]>>(7-(bi&7)))&1;bi++;}
+      }
+    }
+    /* máscara */
+    var MF=[function(x3,y3){return (x3+y3)%2===0;},function(x3,y3){return y3%2===0;},function(x3,y3){return x3%3===0;},function(x3,y3){return (x3+y3)%3===0;},
+      function(x3,y3){return (Math.floor(y3/2)+Math.floor(x3/3))%2===0;},function(x3,y3){return (x3*y3)%2+(x3*y3)%3===0;},
+      function(x3,y3){return ((x3*y3)%2+(x3*y3)%3)%2===0;},function(x3,y3){return ((x3+y3)%2+(x3*y3)%3)%2===0;}];
+    for(var y4=0;y4<n;y4++)for(var x4=0;x4<n;x4++)if(!F[y4][x4]&&MF[mask](x4,y4))M[y4][x4]^=1;
+    /* formato: nivel M = 00 */
+    var d5=(0<<3)|mask, rem=d5<<10; for(var k=14;k>=10;k--)if((rem>>k)&1)rem^=0x537<<(k-10);
+    var fb=((d5<<10)|rem)^0x5412;
+    function bit(k){return (fb>>k)&1;}
+    for(i2=0;i2<=5;i2++)M[i2][8]=bit(i2);
+    M[7][8]=bit(6);M[8][8]=bit(7);M[8][7]=bit(8);
+    for(i2=9;i2<15;i2++)M[8][14-i2]=bit(i2);
+    for(i2=0;i2<8;i2++)M[8][n-1-i2]=bit(i2);
+    for(i2=8;i2<15;i2++)M[n-15+i2][8]=bit(i2);
+    M[n-8][8]=1;
+    return M;
+  }
+  function penalty(M){
+    var n=M.length,p=0,i2,j2;
+    for(i2=0;i2<n;i2++){var run=1;for(j2=1;j2<=n;j2++){if(j2<n&&M[i2][j2]===M[i2][j2-1])run++;else{if(run>=5)p+=3+(run-5);run=1;}}}
+    for(j2=0;j2<n;j2++){var run2=1;for(i2=1;i2<=n;i2++){if(i2<n&&M[i2][j2]===M[i2-1][j2])run2++;else{if(run2>=5)p+=3+(run2-5);run2=1;}}}
+    for(i2=0;i2<n-1;i2++)for(j2=0;j2<n-1;j2++){var c=M[i2][j2];if(c===M[i2][j2+1]&&c===M[i2+1][j2]&&c===M[i2+1][j2+1])p+=3;}
+    var pat1=[1,0,1,1,1,0,1,0,0,0,0],pat2=[0,0,0,0,1,0,1,1,1,0,1];
+    function m(a){for(var k=0;k+11<=a.length;k++){var ok1=true,ok2=true;for(var q=0;q<11;q++){if(a[k+q]!==pat1[q])ok1=false;if(a[k+q]!==pat2[q])ok2=false;}if(ok1||ok2)p+=40;}}
+    for(i2=0;i2<n;i2++){m(M[i2]);m(M.map(function(r){return r[i2];}));}
+    var dark=0;M.forEach(function(r){r.forEach(function(c){dark+=c;});});
+    var pct=dark*100/(n*n);p+=Math.floor(Math.abs(pct-50)/5)*10;
+    return p;
+  }
+  function makeQR(text){
+    var bytes=utf8(text), v=0;
+    for(var cand=1;cand<=5;cand++){var cap=VER[cand].blocks.reduce(function(a,b){return a+b;},0);if(4+8+bytes.length*8<=cap*8){v=cand;break;}}
+    if(!v)return null;
+    var cw=interleave(encodeData(bytes,v),v);
+    var best=null,bp=Infinity;
+    for(var mask=0;mask<8;mask++){var M=build(cw,v,mask),p=penalty(M);if(p<bp){bp=p;best=M;}}
+    return best;
+  }
+  /* ---- interfaz ---- */
+  var cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+  function draw(){
+    var t=document.getElementById('txt').value;
+    var msg=document.getElementById('msg');
+    if(!t){msg.className='info err';msg.textContent='Escribe un texto o enlace.';return;}
+    var M=makeQR(t);
+    if(!M){msg.className='info err';msg.textContent='El texto es demasiado largo para este generador (máximo 84 bytes).';return;}
+    var s=parseInt(document.getElementById('sc').value,10), q=4, n=M.length, size=(n+2*q)*s;
+    cv.width=size;cv.height=size;ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);ctx.fillStyle='#000';
+    for(var y=0;y<n;y++)for(var x=0;x<n;x++)if(M[y][x])ctx.fillRect((x+q)*s,(y+q)*s,s,s);
+    msg.className='info';msg.textContent='Código generado ('+n+'×'+n+' módulos). Escanéalo con la cámara del celular.';
+  }
+  document.getElementById('mk').onclick=draw;
+  document.getElementById('dl').onclick=function(){cv.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='codigo-qr.png';document.body.appendChild(a);a.click();a.remove();},'image/png');};
+  document.getElementById('txt').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){draw();}});
+  window.__qr=makeQR;
+  draw();
+})();
+</script><script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Generador de códigos QR": "QR code generator", "Texto o enlace": "Text or link", "Tamaño de cada cuadro (px)": "Size of each square (px)", "Generar": "Generate", "Descargar PNG": "Download PNG", "Admite hasta 84 bytes (aprox. 84 caracteres en ASCII). Se genera todo en tu navegador.": "Supports up to 84 bytes (about 84 ASCII characters). Everything is generated in your browser.", "Escribe un texto o enlace.": "Write a text or link.", "El texto es demasiado largo para este generador (máximo 84 bytes).": "The text is too long for this generator (maximum 84 bytes)."};
+var RX=[["^Código generado \\((\\d+)×(\\d+) módulos\\)\\. Escanéalo con la cámara del celular\\.$", "Code generated (\\1×\\2 modules). Scan it with your phone camera."]];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
+</body></html>

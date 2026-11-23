@@ -321,3 +321,12 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-go]'
     }
   });
 })();
+
+/* Herramientas embebidas: en inglés abren con ?lang=en */
+(function(){
+  if(document.documentElement.lang!=="en")return;
+  document.querySelectorAll("iframe.rostro-frame").forEach(function(f){
+    var s=f.getAttribute("src")||"";
+    if(s&&s.indexOf("data:")!==0&&s.indexOf("?")<0)f.setAttribute("src",s+"?lang=en");
+  });
+})();

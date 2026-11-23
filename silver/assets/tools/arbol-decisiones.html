@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Árbol de decisiones interactivo</title>
+<style>
+  :root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff;--pos:#2ecc71;--neg:#e74c3c;--neu:#95a5a6;--gold:#f5c542}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+  header h1{margin:0;font-size:1.05rem}
+  .tabs{display:flex;gap:6px}
+  button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer;font-size:.9rem}
+  button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+  button.pos{background:var(--pos)} button.neg{background:var(--neg)} button.neu{background:var(--neu)}
+  button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  main{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;padding:14px;max-width:1200px;margin:0 auto}
+  @media(max-width:860px){main{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .canvasWrap{overflow:auto;border-radius:12px;background:#0b0d12;border:1px solid var(--line)}
+  svg{display:block}
+  .rec{border-left:4px solid var(--gold);padding:10px 12px;background:#1f1c12;border-radius:10px;margin-bottom:12px;font-size:.92rem;line-height:1.45}
+  .rec b{color:var(--gold)}
+  label{display:block;font-size:.8rem;color:var(--muted);margin:10px 0 4px}
+  input[type=text],input[type=number],textarea{width:100%;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:8px;font:inherit;font-size:.92rem}
+  textarea{min-height:70px;resize:vertical}
+  .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .hint{color:var(--muted);font-size:.82rem;margin-top:8px;line-height:1.4}
+  .opt{display:flex;flex-direction:column;align-items:stretch;gap:4px;margin:8px 0}
+  .opt small{color:#f0f3fa;opacity:.9;font-weight:400}
+  .hist{font-size:.85rem;color:var(--muted);margin-top:10px;line-height:1.5}
+  .hist span{color:var(--text)}
+  .end{background:#15231b;border:1px solid #2e6a45;border-radius:10px;padding:12px;margin-top:10px}
+  svg text{font-family:system-ui,sans-serif}
+  .node rect{fill:#1d2230;stroke:#3a4256;stroke-width:1.5;cursor:pointer}
+  .node.sel rect{stroke:var(--acc);stroke-width:2.5}
+  .node.leaf rect{fill:#1b2a22}
+  .node text{fill:var(--text);font-size:12px;pointer-events:none}
+  .node .acc{fill:var(--muted);font-size:10px}
+  .edge{fill:none;stroke-width:3;cursor:pointer}
+  .edge.best{stroke:var(--gold);stroke-width:6}
+  .edge.sel{stroke-width:6}
+  .edgeLbl{font-size:11px;font-weight:700;cursor:pointer}
+  .foot{color:var(--muted);font-size:.8rem;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Árbol de decisiones interactivo</h1>
+  <div class="tabs">
+    <button id="tEdit" class="ghost">Editar</button>
+    <button id="tWalk">Recorrer</button>
+    <button id="ex" class="ghost">Ejemplo</button>
+    <button id="exp" class="ghost">Exportar</button>
+    <button id="imp" class="ghost">Importar</button>
+    <input type="file" aria-label="Importar archivo JSON" id="impFile" accept="application/json" style="display:none">
+  </div>
+</header>
+<main>
+  <section class="panel">
+    <div class="rec" id="rec"></div>
+    <div class="canvasWrap"><svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div class="foot">Verde: rama positiva · Rojo: negativa · Gris: neutra · Dorado: ruta más aconsejada. Toca un nodo o una rama para editarla.</div>
+  </section>
+  <aside class="panel" id="side"></aside>
+</main>
+<script>
+(function () {
+  var ROOT = null, SEL = null, MODE = 'edit', WALK = [];
+  var MAP = {}, POS = {}, BEST = null;
+  function uid() { return 'i' + Math.random().toString(36).slice(2, 9); }
+  function mkNode(text) { return { id: uid(), text: text || 'Nueva situación', kids: [] }; }
+  function mkBranch(label) { return { id: uid(), label: label || 'Nueva acción', score: 0, cons: '', child: mkNode('Resultado') }; }
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    if (attrs) for (var k in attrs) { if (k === 'text') n.textContent = attrs[k]; else if (k === 'class') n.className = attrs[k]; else if (k.indexOf('on') === 0) n[k] = attrs[k]; else n.setAttribute(k, attrs[k]); }
+    (kids || []).forEach(function (c) { if (c) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function colorOf(s) { return s > 0 ? 'var(--pos)' : s < 0 ? 'var(--neg)' : 'var(--neu)'; }
+  function cls(s) { return s > 0 ? 'pos' : s < 0 ? 'neg' : 'neu'; }
+  /* mejor ruta desde un nodo: suma de puntajes de las ramas */
+  function best(n) {
+    if (!n.kids.length) return { total: 0, path: [] };
+    var bt = -1e9, bp = [];
+    n.kids.forEach(function (b) { var r = best(b.child), t = b.score + r.total; if (t > bt) { bt = t; bp = [b].concat(r.path); } });
+    return { total: bt, path: bp };
+  }
+  function indexTree(n, parent) {
+    MAP[n.id] = { type: 'node', obj: n, parent: parent || null };
+    n.kids.forEach(function (b) { MAP[b.id] = { type: 'branch', obj: b, parent: n }; indexTree(b.child, n); });
+  }
+  /* disposición: profundidad en X, hojas en Y */
+  var leafY = 0;
+  function layout(n, depth, acc) {
+    if (!n.kids.length) { POS[n.id] = { x: depth * 230, y: 40 + leafY * 78, acc: acc }; leafY++; return POS[n.id].y; }
+    var ys = n.kids.map(function (b) { return layout(b.child, depth + 1, acc + b.score); });
+    var y = (Math.min.apply(null, ys) + Math.max.apply(null, ys)) / 2;
+    POS[n.id] = { x: depth * 230, y: y, acc: acc };
+    return y;
+  }
+  function topRecommendation() {
+    if (!ROOT.kids.length) return null;
+    var bestB = null, bv = -1e9;
+    ROOT.kids.forEach(function (b) { var v = b.score + best(b.child).total; if (v > bv) { bv = v; bestB = b; } });
+    return { branch: bestB, value: bv };
+  }
+  function renderRec() {
+    var box = document.getElementById('rec'); box.textContent = '';
+    var r = topRecommendation();
+    if (!r) { box.appendChild(el('span', { text: 'Agrega ramas a la situación inicial para ver la recomendación.' })); return; }
+    var path = best(ROOT).path.map(function (b) { return b.label; }).join(' → ');
+    box.appendChild(el('div', null, [el('b', { text: 'Rama más aconsejada: ' }), r.branch.label + ' (valor total ' + (r.value > 0 ? '+' : '') + r.value + ')']));
+    box.appendChild(el('div', { text: 'Ruta óptima: ' + (path || '—') + ' · puntaje ' + best(ROOT).total }));
+  }
+  function renderTree() {
+    POS = {}; leafY = 0; layout(ROOT, 0, 0);
+    var svg = document.getElementById('svg'); svg.textContent = '';
+    var maxX = 0, maxY = 0;
+    Object.keys(POS).forEach(function (k) { maxX = Math.max(maxX, POS[k].x); maxY = Math.max(maxY, POS[k].y); });
+    var W = maxX + 230, H = maxY + 90;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('width', Math.max(W, 620)); svg.setAttribute('height', Math.max(H, 260));
+    var bestIds = {}; best(ROOT).path.forEach(function (b) { bestIds[b.id] = true; });
+    function drawBranch(n) {
+      n.kids.forEach(function (b) {
+        var p = POS[n.id], c = POS[b.child.id];
+        var x1 = p.x + 180, y1 = p.y, x2 = c.x, y2 = c.y, mx = (x1 + x2) / 2;
+        var d = 'M' + x1 + ' ' + y1 + ' C' + mx + ' ' + y1 + ' ' + mx + ' ' + y2 + ' ' + x2 + ' ' + y2;
+        var isSel = SEL && SEL.id === b.id;
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', d); path.setAttribute('class', 'edge' + (bestIds[b.id] ? ' best' : '') + (isSel ? ' sel' : ''));
+        path.setAttribute('stroke', colorOf(b.score)); path.dataset.id = b.id; path.dataset.type = 'branch';
+        path.addEventListener('click', function () { select('branch', b.id); });
+        svg.appendChild(path);
+        var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('x', mx); t.setAttribute('y', (y1 + y2) / 2 - 6); t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('class', 'edgeLbl'); t.setAttribute('fill', colorOf(b.score));
+        t.textContent = (b.score > 0 ? '+' : '') + b.score; t.dataset.id = b.id; t.dataset.type = 'branch';
+        t.addEventListener('click', function () { select('branch', b.id); });
+        svg.appendChild(t);
+        drawBranch(b.child);
+      });
+    }
+    /* nodos */
+    function drawNode(n) {
+      var p = POS[n.id], g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'node' + (SEL && SEL.id === n.id ? ' sel' : '') + (!n.kids.length ? ' leaf' : ''));
+      g.dataset.id = n.id; g.dataset.type = 'node';
+      var r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      r.setAttribute('x', p.x); r.setAttribute('y', p.y - 24); r.setAttribute('width', 180); r.setAttribute('height', 48); r.setAttribute('rx', 10);
+      g.appendChild(r);
+      var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', p.x + 10); t.setAttribute('y', p.y - 4);
+      t.textContent = shorten(n.text, 26); g.appendChild(t);
+      var a = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      a.setAttribute('x', p.x + 10); a.setAttribute('y', p.y + 13); a.setAttribute('class', 'acc');
+      a.textContent = 'acumulado: ' + (p.acc > 0 ? '+' : '') + p.acc; g.appendChild(a);
+      g.addEventListener('click', function () { select('node', n.id); });
+      svg.appendChild(g);
+      n.kids.forEach(function (b) { drawNode(b.child); });
+    }
+    drawBranch(ROOT); drawNode(ROOT);
+  }
+  function shorten(s, n) { s = s || ''; return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+  function select(type, id) { SEL = { type: type, id: id }; render(); }
+  function renderEditor() {
+    var side = document.getElementById('side'); side.textContent = '';
+    if (!SEL) { side.appendChild(el('div', { class: 'hint', text: 'Toca un nodo (situación) o una rama (acción) para editarla. Puedes crear varias ramas por cada situación.' })); side.appendChild(el('div', { class: 'row' }, [el('button', { text: '+ Rama en la situación inicial', onclick: function () { addBranch(ROOT); } })])); return; }
+    var info = MAP[SEL.id];
+    if (!info) { SEL = null; return renderEditor(); }
+    if (SEL.type === 'node') {
+      var n = info.obj;
+      var txt = el('textarea', { oninput: function () { n.text = this.value; renderTree(); renderRec(); } }); txt.value = n.text;
+      side.appendChild(el('label', { text: 'Situación o pregunta' })); side.appendChild(txt);
+      side.appendChild(el('div', { class: 'row' }, [
+        el('button', { text: '+ Agregar rama', onclick: function () { addBranch(n); } }),
+        n === ROOT ? null : el('button', { class: 'ghost', text: 'Eliminar esta situación', onclick: function () { removeNode(n); } })
+      ]));
+      side.appendChild(el('div', { class: 'hint', text: n.kids.length + ' rama(s) en esta situación.' }));
+    } else {
+      var b = info.obj;
+      var lbl = el('input', { type: 'text', oninput: function () { b.label = this.value; renderTree(); renderRec(); } }); lbl.value = b.label;
+      var sc = el('input', { type: 'number', min: '-10', max: '10', step: '1', onchange: function () { var v = Math.max(-10, Math.min(10, parseInt(this.value, 10) || 0)); b.score = v; this.value = v; renderTree(); renderRec(); } }); sc.value = b.score;
+      var cons = el('textarea', { oninput: function () { b.cons = this.value; } }); cons.value = b.cons;
+      var res = el('textarea', { oninput: function () { b.child.text = this.value; renderTree(); } }); res.value = b.child.text;
+      side.appendChild(el('label', { text: 'Acción de esta rama' })); side.appendChild(lbl);
+      side.appendChild(el('label', { text: 'Puntaje (−10 a +10): verde si es positivo, rojo si es negativo' })); side.appendChild(sc);
+      side.appendChild(el('label', { text: 'Consecuencia' })); side.appendChild(cons);
+      side.appendChild(el('label', { text: 'Resultado al que lleva (puede ser una nueva situación)' })); side.appendChild(res);
+      side.appendChild(el('div', { class: 'row' }, [
+        el('button', { class: cls(b.score), text: 'Puntaje ' + (b.score > 0 ? '+' : '') + b.score }),
+        el('button', { class: 'ghost', text: 'Eliminar rama', onclick: function () { removeBranch(b, info.parent); } })
+      ]));
+      side.appendChild(el('div', { class: 'hint', text: 'Para seguir decidiendo después de esta acción, toca el resultado en el árbol y agrega ramas.' }));
+    }
+  }
+  function addBranch(node) { var b = mkBranch(); node.kids.push(b); select('branch', b.id); }
+  function removeBranch(b, parent) { parent.kids = parent.kids.filter(function (x) { return x !== b; }); SEL = null; render(); }
+  function removeNode(n) {
+    var p = MAP[n.id] && MAP[n.id].parent; /* el padre de un nodo es el dueño de la rama que lo contiene */
+    var br = Object.keys(MAP).map(function (k) { return MAP[k]; }).filter(function (x) { return x.type === 'branch' && x.obj.child === n; })[0];
+    if (br) br.parent.kids = br.parent.kids.filter(function (x) { return x !== br.obj; });
+    SEL = null; render();
+  }
+  /* ---------- modo recorrer ---------- */
+  function renderWalk() {
+    var side = document.getElementById('side'); side.textContent = '';
+    if (!WALK.length) WALK = [{ node: ROOT, via: null, acc: 0 }];
+    var cur = WALK[WALK.length - 1], n = cur.node;
+    side.appendChild(el('div', { class: 'hint', text: 'Recorre el árbol: elige una opción y mira la consecuencia.' }));
+    side.appendChild(el('div', { style: 'font-size:1.05rem;font-weight:700;margin:6px 0 4px', text: n.text }));
+    side.appendChild(el('div', { class: 'hint', text: 'Puntaje acumulado: ' + (cur.acc > 0 ? '+' : '') + cur.acc }));
+    if (n.kids.length) {
+      n.kids.forEach(function (b) {
+        var txt = (b.score > 0 ? '+' : '') + b.score + ' · ' + b.label;
+        side.appendChild(el('div', { class: 'opt' }, [
+          el('button', { class: cls(b.score), text: txt, onclick: function () { WALK.push({ node: b.child, via: b, acc: cur.acc + b.score }); render(); } }),
+          b.cons ? el('small', { text: b.cons }) : null
+        ]));
+      });
+    } else {
+      side.appendChild(el('div', { class: 'end' }, [el('b', { text: 'Fin del camino' }), el('div', { text: 'Puntaje total: ' + (cur.acc > 0 ? '+' : '') + cur.acc })]));
+    }
+    var hist = WALK.slice(1).map(function (s) { return (s.via.score > 0 ? '+' : '') + s.via.score + ' ' + s.via.label; });
+    if (hist.length) side.appendChild(el('div', { class: 'hist' }, [el('b', { text: 'Tu camino:' }), el('div', { text: hist.join(' → ') })]));
+    side.appendChild(el('div', { class: 'row' }, [
+      WALK.length > 1 ? el('button', { class: 'ghost', text: 'Volver un paso', onclick: function () { WALK.pop(); render(); } }) : null,
+      el('button', { class: 'ghost', text: 'Reiniciar', onclick: function () { WALK = []; render(); } })
+    ]));
+  }
+  function render() {
+    indexTree(ROOT, null);
+    renderRec(); renderTree();
+    if (MODE === 'edit') renderEditor(); else renderWalk();
+    document.getElementById('tEdit').className = MODE === 'edit' ? '' : 'ghost';
+    document.getElementById('tWalk').className = MODE === 'walk' ? '' : 'ghost';
+  }
+  /* ---------- ejemplo, exportar, importar ---------- */
+  function example() {
+    var n = function (t) { return mkNode(t); };
+    function br(label, score, cons, child) { return { id: uid(), label: label, score: score, cons: cons, child: child }; }
+    ROOT = n('¿Acepto la oferta de trabajo?');
+    ROOT.kids = [
+      br('Aceptarla', 7, 'Mejor sueldo y experiencia nueva.', (function () { var m = n('¿Negocio mejores condiciones?'); m.kids = [br('Sí, negocio', 3, 'Contrato más claro y beneficios.', n('Mejor contrato')), br('No negocio', -2, 'Me quedo con lo ofrecido.', n('Condiciones iniciales'))]; return m; })()),
+      br('Rechazarla', -3, 'Pierdo la oportunidad.', (function () { var m = n('¿Qué hago después?'); m.kids = [br('Sigo buscando', 1, 'Tengo otras opciones abiertas.', n('Otra oferta')), br('Me quedo quieto', -6, 'Estancamiento.', n('Sin avance'))]; return m; })()),
+      br('Pedir tiempo para decidir', 2, 'Tengo margen para comparar.', (function () { var m = n('¿Qué investigo?'); m.kids = [br('Comparar 3 ofertas', 4, 'Decido con datos.', n('Decisión informada')), br('No investigo', -2, 'Decido a ciegas.', n('Decisión apresurada'))]; return m; })())
+    ];
+    WALK = []; SEL = null;
+  }
+  function freshRoot() { ROOT = mkNode('¿Qué decisión tomo?'); }
+  document.getElementById('tEdit').addEventListener('click', function () { MODE = 'edit'; WALK = []; render(); });
+  document.getElementById('tWalk').addEventListener('click', function () { MODE = 'walk'; WALK = []; render(); });
+  document.getElementById('ex').addEventListener('click', function () { example(); MODE = 'edit'; render(); });
+  document.getElementById('exp').addEventListener('click', function () {
+    var b = new Blob([JSON.stringify(ROOT, null, 2)], { type: 'application/json' }), u = URL.createObjectURL(b);
+    var a = el('a', { href: u, download: 'arbol-decisiones.json' }); document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 3000);
+  });
+  document.getElementById('imp').addEventListener('click', function () { document.getElementById('impFile').click(); });
+  document.getElementById('impFile').addEventListener('change', function () {
+    var f = this.files && this.files[0]; if (!f) return;
+    f.text().then(function (t) { var d = JSON.parse(t); if (!d || typeof d.text !== 'string' || !Array.isArray(d.kids)) throw new Error('formato'); ROOT = d; WALK = []; SEL = null; render(); })
+      .catch(function () { alert('El archivo no es un árbol válido.'); });
+  });
+  example(); MODE = 'edit'; render();
+})();
+</script>
+<script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Editar": "Edit", "Ejemplo": "Example", "Exportar": "Export", "Importar": "Import", "Recorrer": "Walk", "Verde: rama positiva · Rojo: negativa · Gris: neutra · Dorado: ruta más aconsejada. Toca un nodo o una rama para editarla.": "Green: positive branch · Red: negative branch · Gray: neutral · Gold: most advisable path. Tap a node or a branch to edit it.", "Árbol de decisiones interactivo": "Interactive decision tree", "Toca un nodo (situación) o una rama (acción) para editarla. Puedes crear varias ramas por cada situación.": "Tap a node (situation) or a branch (action) to edit it. You can create several branches for each situation.", "+ Rama en la situación inicial": "+ Branch on the starting situation", "Situación o pregunta": "Situation or question", "+ Agregar rama": "+ Add branch", "Eliminar esta situación": "Delete this situation", "Acción de esta rama": "Action of this branch", "Puntaje (−10 a +10): verde si es positivo, rojo si es negativo": "Score (−10 to +10): green if positive, red if negative", "Consecuencia": "Consequence", "Resultado al que lleva (puede ser una nueva situación)": "Result it leads to (can be a new situation)", "Eliminar rama": "Delete branch", "Para seguir decidiendo después de esta acción, toca el resultado en el árbol y agrega ramas.": "To keep deciding after this action, tap the result in the tree and add branches.", "Recorre el árbol: elige una opción y mira la consecuencia.": "Walk the tree: choose an option and see the consequence.", "Volver un paso": "Go back one step", "Reiniciar": "Restart", "Ruta óptima: ": "Best path: ", "Agrega ramas a la situación inicial para ver la recomendación.": "Add branches to the starting situation to see the recommendation.", "Fin del camino": "End of path", "Tu camino:": "Your path:", "Rama más aconsejada: ": "Most advisable branch: "};
+var RX=[["^(.*) \\(valor total ([+\\-]?\\d+)\\)$", "\\1 (total value \\2)"], ["^Ruta óptima: (.*) · puntaje (-?\\d+)$", "Best path: \\1 · score \\2"], ["^(\\d+) rama\\(s\\) en esta situación\\.$", "\\1 branch(es) in this situation."], ["^Puntaje acumulado: (.+)$", "Accumulated score: \\1"], ["^Puntaje total: (.+)$", "Total score: \\1"], ["^acumulado: (.+)$", "accumulated: \\1"]];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
+</body>
+</html>

@@ -56,9 +56,9 @@
     <div class="chips" id="chips"></div>
     <div class="hint" id="hint">Reconocidos aparecen como etiquetas. Los que no entiendo se marcan en rojo.</div>
     <div class="sliders">
-      <div class="sl"><span>Sonrisa</span><input type="range" id="s-smile" min="-1" max="1" step="0.05" value="0"><span id="v-smile">0</span></div>
-      <div class="sl"><span>Tamaño de ojos</span><input type="range" id="s-eyes" min="0.6" max="1.6" step="0.05" value="1"><span id="v-eyes">1</span></div>
-      <div class="sl"><span>Cejas</span><input type="range" id="s-brow" min="-1" max="1" step="0.05" value="0"><span id="v-brow">0</span></div>
+      <div class="sl"><span>Sonrisa</span><input type="range" aria-label="Sonrisa" id="s-smile" min="-1" max="1" step="0.05" value="0"><span id="v-smile">0</span></div>
+      <div class="sl"><span>Tamaño de ojos</span><input type="range" aria-label="Tamaño de ojos" id="s-eyes" min="0.6" max="1.6" step="0.05" value="1"><span id="v-eyes">1</span></div>
+      <div class="sl"><span>Cejas</span><input type="range" aria-label="Cejas" id="s-brow" min="-1" max="1" step="0.05" value="0"><span id="v-brow">0</span></div>
     </div>
   </section>
   <section class="panel">
@@ -346,5 +346,18 @@
   document.getElementById('prompt').value = '';
 })();
 </script>
+<script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Rostro local · dibujar desde texto": "Local face · draw from text", "Describe los rasgos y la app dibuja un rostro ilustrado. Todo ocurre en tu computador: no se envía nada a internet.": "Describe the features and the app draws an illustrated face. Everything happens on your computer: nothing is sent to the internet.", "Describe el rostro (español o inglés)": "Describe the face (Spanish or English)", "Dibujar": "Draw", "Otra variante": "Another variant", "Guardar PNG": "Save PNG", "Ejemplo 1": "Example 1", "Ejemplo 2": "Example 2", "Ejemplo 3": "Example 3", "Ejemplo 4": "Example 4", "Reconocidos aparecen como etiquetas. Los que no entiendo se marcan en rojo.": "Recognized features appear as tags. Ones I do not understand are marked in red.", "Sonrisa": "Smile", "Tamaño de ojos": "Eye size", "Cejas": "Eyebrows", "Ilustración estilizada generada a partir de rasgos, no una foto real.": "Stylized illustration generated from features, not a real photo.", "Rostro dibujado": "Drawn face", "Ej.: mujer, cabello rizado castaño, ojos verdes, sonrisa, pecas, aretes": "E.g.: woman, curly chestnut hair, green eyes, smile, freckles, earrings", "mujer": "woman", "hombre": "man", "niño": "child", "anciano": "elderly", "joven": "young", "piel clara": "light skin", "piel media": "medium skin", "piel morena": "brown skin", "piel oscura": "dark skin", "cabello negro": "black hair", "cabello castaño": "brown hair", "cabello rubio": "blond hair", "cabello pelirrojo": "red hair", "cabello canoso": "white hair", "cabello azul": "blue hair", "cabello rosa": "pink hair", "cabello verde": "green hair", "cabello morado": "purple hair", "cabello rizado": "curly hair", "cabello largo": "long hair", "cabello corto": "short hair", "afro": "afro", "trenza": "braid", "moño": "bun", "calvo": "bald", "ojos verdes": "green eyes", "ojos azules": "blue eyes", "ojos cafés": "brown eyes", "ojos negros": "black eyes", "ojos grises": "gray eyes", "ojos grandes": "big eyes", "ojos pequeños": "small eyes", "ojos rasgados": "almond eyes", "cejas gruesas": "thick eyebrows", "cejas finas": "thin eyebrows", "rostro redondo": "round face", "rostro ovalado": "oval face", "rostro cuadrado": "square face", "rostro alargado": "long face", "sonrisa": "smile", "triste": "sad", "serio": "serious", "enojado": "angry", "sorpresa": "surprised", "guiño": "wink", "barba": "beard", "bigote": "mustache", "sin barba": "clean shaven", "gafas": "glasses", "gafas de sol": "sunglasses", "aretes": "earrings", "gorra": "cap", "sombrero": "hat", "pecas": "freckles", "lunar": "mole", "arrugas": "wrinkles"};
+var RX=[["^(\\d+) rasgos reconocidos\\.$", "\\1 features recognized."], ["^No reconocí rasgos\\. Prueba con: .*$", "No features recognized. Try: sex, hair color, hair style, eye color, expression."]];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
 </body>
 </html>

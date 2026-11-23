@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ruleta con probabilidades</title>
+<style>
+:root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff;--warn:#f5c542}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:14px}
+h1{font-size:1.05rem;margin:0 0 10px}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;max-width:1000px;margin:0 auto}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.wheelbox{position:relative;display:flex;flex-direction:column;align-items:center}
+canvas{max-width:100%;height:auto}
+.ptr{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--warn);filter:drop-shadow(0 2px 2px #000)}
+.res{min-height:48px;margin-top:12px;text-align:center;font-size:1.05rem}
+.res b{color:var(--warn)}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+button:disabled{opacity:.5;cursor:not-allowed}
+.opt{display:grid;grid-template-columns:14px minmax(0,1fr) 62px 28px;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.sw{width:14px;height:14px;border-radius:4px}
+input[type=text]{background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit;width:100%;min-width:0}
+input[type=number]{background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px;font:inherit;width:100%}
+input[type=range]{width:100%;margin:4px 0 2px}
+.del{background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 7px;border-radius:7px;font-size:.8rem}
+.real{font-size:.78rem;color:var(--muted)}
+.sum{font-size:.85rem;margin-top:10px;color:var(--muted);line-height:1.4}
+.sum.warn{color:var(--warn)}
+.hist{margin-top:12px;font-size:.85rem;color:var(--muted);max-height:180px;overflow:auto}
+.hist div{padding:4px 0;border-bottom:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+</style></head><body>
+<h1>Ruleta con probabilidades</h1>
+<div class="grid">
+  <section class="panel wheelbox">
+    <div class="ptr" aria-hidden="true"></div>
+    <canvas id="wh" width="420" height="420" aria-label="Ruleta"></canvas>
+    <div class="row"><button id="spin">Girar</button><button id="reset" class="ghost">Restablecer</button></div>
+    <div class="res" id="res" aria-live="polite"></div>
+    <div class="hist" id="hist"></div>
+  </section>
+  <section class="panel">
+    <div id="opts"></div>
+    <div class="row"><button id="add" class="ghost">+ Opción</button><button id="eq" class="ghost">Igualar probabilidades</button></div>
+    <div class="sum" id="sum"></div>
+    <div class="sum">Los porcentajes son las probabilidades reales de cada opción. Si la ruleta se usa en un sorteo, muestra estos valores a los participantes.</div>
+  </section>
+</div>
+<script>
+(function(){
+  var KEY='ruleta.v1', COLS=['#4f8cff','#2ecc71','#e74c3c','#f5c542','#9b59b6','#1abc9c','#e67e22','#ec407a','#26c6da','#8d6e63'];
+  var items=[{label:'Opción 1',w:25},{label:'Opción 2',w:25},{label:'Opción 3',w:25},{label:'Opción 4',w:25}];
+  var angle=0, spinning=false, hist=[];
+  function $(i){return document.getElementById(i);}
+  function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&Array.isArray(d.items)&&d.items.length){items=d.items;hist=d.hist||[];}}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({items:items,hist:hist.slice(0,20)}));}catch(e){}}
+  function total(){return items.reduce(function(a,b){return a+(parseFloat(b.w)||0);},0);}
+  function probs(){var t=total();return items.map(function(b){return t>0?(parseFloat(b.w)||0)/t:0;});}
+  function pick(){
+    var p=probs(), a=new Uint32Array(1); crypto.getRandomValues(a);
+    var r=a[0]/4294967296, acc=0;
+    for(var i=0;i<p.length;i++){acc+=p[i];if(r<acc)return i;}
+    return p.length-1;
+  }
+  function draw(){
+    var c=$('wh'), g=c.getContext('2d'), W=c.width, R=W/2-6, p=probs(), start=angle;
+    g.clearRect(0,0,W,W);
+    var acc=0;
+    items.forEach(function(it,i){
+      var a0=start+acc*Math.PI*2-Math.PI/2, a1=a0+p[i]*Math.PI*2;
+      if(p[i]>0){
+        g.beginPath();g.moveTo(W/2,W/2);g.arc(W/2,W/2,R,a0,a1);g.closePath();
+        g.fillStyle=COLS[i%COLS.length];g.fill();g.strokeStyle='#0f1116';g.lineWidth=2;g.stroke();
+        var mid=(a0+a1)/2, tr=R*0.62;
+        if(p[i]>0.04){
+          g.save();g.translate(W/2+Math.cos(mid)*tr,W/2+Math.sin(mid)*tr);g.rotate(mid+(Math.cos(mid)<0?Math.PI:0));
+          g.fillStyle='#fff';g.font='bold '+(p[i]>0.12?16:12)+'px system-ui';g.textAlign='center';g.textBaseline='middle';
+          var lbl=it.label.length>14?it.label.slice(0,13)+'…':it.label;g.fillText(lbl,0,0);g.restore();
+        }
+      }
+      acc+=p[i];
+    });
+    g.beginPath();g.arc(W/2,W/2,10,0,Math.PI*2);g.fillStyle='#fff';g.fill();
+  }
+  function renderOpts(){
+    var box=$('opts');box.textContent='';var p=probs();
+    items.forEach(function(it,i){
+      var row=document.createElement('div');row.className='opt';
+      var sw=document.createElement('div');sw.className='sw';sw.style.background=COLS[i%COLS.length];
+      var lab=document.createElement('input');lab.type='text';lab.value=it.label;lab.maxLength=40;lab.setAttribute('aria-label','Nombre de la opción');
+      lab.oninput=function(){it.label=this.value;draw();save();};
+      var pct=document.createElement('input');pct.type='number';pct.min='0';pct.max='100';pct.step='1';pct.value=it.w;pct.setAttribute('aria-label','Porcentaje');
+      pct.onchange=function(){var v=Math.max(0,Math.min(100,parseFloat(this.value)||0));it.w=v;this.value=v;render();};
+      var del=document.createElement('button');del.className='del';del.textContent='✕';del.setAttribute('aria-label','Eliminar opción');
+      del.onclick=function(){if(items.length<=2){alert('Debe quedar al menos una opción con otra alternativa.');return;}items.splice(i,1);render();};
+      var s=document.createElement('input');s.type='range';s.min='0';s.max='100';s.step='1';s.value=it.w;s.setAttribute('aria-label','Ajustar porcentaje');
+      s.oninput=function(){it.w=parseFloat(this.value);pct.value=it.w;draw();};
+      s.onchange=function(){render();};
+      var real=document.createElement('div');real.className='real';real.textContent='Probabilidad real: '+(p[i]*100).toFixed(1)+' %';
+      var wrap=document.createElement('div');wrap.style.gridColumn='2 / 4';wrap.appendChild(lab);wrap.appendChild(s);wrap.appendChild(real);
+      row.appendChild(sw);row.appendChild(wrap);row.appendChild(pct);row.appendChild(del);
+      box.appendChild(row);
+    });
+    var t=total(), sum=$('sum');
+    sum.className='sum'+(Math.abs(t-100)>0.01?' warn':'');
+    sum.textContent='Total ingresado: '+t.toFixed(0)+' %. '+(Math.abs(t-100)>0.01?'Las probabilidades se ajustan automáticamente a 100 %.':'Suma 100 %.');
+  }
+  function renderHist(){
+    var h=$('hist');h.textContent='';
+    hist.slice(0,10).forEach(function(x){var d=document.createElement('div');d.textContent=x;h.appendChild(d);});
+  }
+  function render(){renderOpts();draw();save();renderHist();}
+  $('add').onclick=function(){if(items.length>=10){alert('Máximo 10 opciones.');return;}items.push({label:'Opción '+(items.length+1),w:10});render();};
+  $('eq').onclick=function(){items.forEach(function(it){it.w=100/items.length;});render();};
+  $('reset').onclick=function(){items=[{label:'Opción 1',w:25},{label:'Opción 2',w:25},{label:'Opción 3',w:25},{label:'Opción 4',w:25}];hist=[];$('res').textContent='';render();};
+  $('spin').onclick=function(){
+    if(spinning)return;
+    var p=probs(); if(p.every(function(x){return x===0;})){$('res').textContent='Ajusta al menos una probabilidad.';return;}
+    var idx=pick(), p2=probs(), acc=0;
+    for(var i=0;i<idx;i++)acc+=p2[i];
+    var mid=acc+p2[idx]/2;
+    var extra=(5+Math.floor(Math.random()*3))*Math.PI*2;
+    var target=extra-(mid*Math.PI*2);
+    var from=angle, t0=performance.now(), dur=3200;
+    spinning=true;$('spin').disabled=true;$('res').textContent='Girando…';
+    function step(now){
+      var k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3);
+      angle=from+(target-from)*e; draw();
+      if(k<1){requestAnimationFrame(step);}
+      else{
+        angle=target%(Math.PI*2); draw(); spinning=false; $('spin').disabled=false;
+        var pr=(p2[idx]*100).toFixed(1), name=items[idx].label;
+        $('res').innerHTML='Resultado: <b></b> <span class="real"></span>';
+        $('res').querySelector('b').textContent=name;
+        $('res').querySelector('.real').textContent='(probabilidad '+pr+' %)';
+        hist.unshift(name+' · '+pr+' %');save();renderHist();
+      }
+    }
+    requestAnimationFrame(step);
+  };
+  load(); render();
+})();
+</script><script data-i18n>(function(){
+if(new URLSearchParams(location.search).get("lang")!=="en")return;
+document.documentElement.lang="en";
+var D={"Ruleta con probabilidades": "Probability wheel", "Girar": "Spin", "Restablecer": "Reset", "+ Opción": "+ Option", "Igualar probabilidades": "Equalize probabilities", "Los porcentajes son las probabilidades reales de cada opción. Si la ruleta se usa en un sorteo, muestra estos valores a los participantes.": "The percentages are the real odds for each option. If the wheel is used in a raffle, show these values to the participants.", "Ruleta": "Wheel", "Nombre de la opción": "Option name", "Porcentaje": "Percentage", "Eliminar opción": "Delete option", "Ajustar porcentaje": "Adjust percentage", "Girando…": "Spinning…", "Ajusta al menos una probabilidad.": "Adjust at least one probability."};
+var RX=[["^\\(probabilidad ([\\d.]+) %\\)$", "(probability \\1 %)"], ["^Probabilidad real: ([\\d.]+) %$", "Real probability: \\1 %"], ["^Total ingresado: (\\d+) %\\. Suma 100 %\\.$", "Total entered: \\1 %. Adds up to 100 %."], ["^Total ingresado: (\\d+) %\\. Las probabilidades se ajustan automáticamente a 100 %\\.$", "Total entered: \\1 %. Probabilities are adjusted automatically to 100 %."], ["^Resultado: $", "Result: "]];
+function one(t){if(D[t]!==undefined)return D[t];for(var i=0;i<RX.length;i++){var re=new RegExp(RX[i][0]);if(re.test(t))return t.replace(re,RX[i][1]);}return null;}
+function tr(s){var t=s.trim();if(!t)return s;var out=one(t);if(out===null){if(t.indexOf("← ")===0){var r=one(t.slice(2));if(r!==null)out="← "+r;}else if(t.slice(-2)===" →"){var r2=one(t.slice(0,-2));if(r2!==null)out=r2+" →";}}if(out===null)return s;return s.replace(t,out);}
+function attrs(root){root.querySelectorAll&&root.querySelectorAll("[placeholder],[aria-label],[title]").forEach(function(e){["placeholder","aria-label","title"].forEach(function(a){if(e.hasAttribute(a)){var v=e.getAttribute(a).trim(),nv=one(v);if(nv)e.setAttribute(a,nv);}});});}
+function walk(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n;while((n=w.nextNode())){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}attrs(root);}
+walk(document.body);
+document.title=tr(document.title);
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType===1)walk(n);else if(n.nodeType===3){var nv=tr(n.nodeValue);if(nv!==n.nodeValue)n.nodeValue=nv;}});});}).observe(document.body,{childList:true,subtree:true});
+})();</script>
+</body></html>

@@ -46,6 +46,20 @@
   function getFile(id){return db().then(function(d){return new Promise(function(res,rej){var q=d.transaction('files').objectStore('files').get(id); q.onsuccess=function(){res(q.result);}; q.onerror=function(){rej(q.error);};});});}
   function delFile(id){return db().then(function(d){return new Promise(function(res){var tx=d.transaction('files','readwrite'); tx.objectStore('files').delete(id); tx.oncomplete=res; tx.onerror=res;});}).catch(function(){});}
 
+  /* sincronización con el tablero de tareas: cada postulación es una tarea */
+  var TKEY='tablero-tareas.v1';
+  function colFor(estado){return (estado==='oferta'||estado==='rechazada')?2:1;}
+  function readTasks(){try{var t=JSON.parse(localStorage.getItem(TKEY)||'[]');return Array.isArray(t)?t:[];}catch(e){return [];}}
+  function writeTasks(t){try{localStorage.setItem(TKEY,JSON.stringify(t));}catch(e){}}
+  function syncTask(a){
+    var tasks=readTasks(), id='app-'+a.id, ver=verById(a.version);
+    var title=a.empresa+' — '+a.cargo, notes=(ver?'CV: '+verLabel(ver):'CV: sin registrar')+(a.link?'\n'+a.link:'');
+    var t=tasks.find(function(x){return x.id===id;});
+    if(t){t.title=title;t.notes=notes;t.col=colFor(a.estado);}
+    else tasks.push({id:id,title:title,notes:notes,p:'media',col:colFor(a.estado)});
+    writeTasks(tasks);
+  }
+  function removeTask(aid){writeTasks(readTasks().filter(function(x){return x.id!=='app-'+aid;}));}
   function areaName(id){var a=data.areas.find(function(x){return x.id===id;}); return a?a.name:'—';}
   function verById(id){return data.versions.find(function(v){return v.id===id;});}
   function verLabel(v){return areaName(v.area)+' · '+v.name;}
@@ -159,6 +173,7 @@
       if(dup && !confirm(L('Ya registraste esta postulación ('+dup.fecha+'). ¿Agregarla de nuevo?','You already logged this application ('+dup.fecha+'). Add it again?'))) return;
       var fechaApp=fecI.value||hoy();
       data.apps.unshift({id:uid(),empresa:emp,cargo:car,link:link,version:verS.value,fecha:fechaApp,seguimiento:segI.value||addDays(fechaApp,7),estado:'enviada',notas:notI.value.trim()});
+      syncTask(data.apps[0]);
       if(save()) render();
     });
     var form=el('div',{class:'cvform'},[empI,carI,linkI,verS,fecI,segI,notI,add]);
@@ -191,7 +206,7 @@
     shown.forEach(function(a){
       var est=el('select',{'aria-label':L('Estado','Status')});
       ESTADOS.forEach(function(e){var o=el('option',{value:e[0],text:e[1]}); if(e[0]===a.estado) o.selected=true; est.appendChild(o);});
-      est.addEventListener('change',function(){a.estado=est.value; if(save()) render();});
+      est.addEventListener('change',function(){a.estado=est.value; syncTask(a); if(save()) render();});
       var segIn=el('input',{type:'date','aria-label':L('Fecha de seguimiento','Follow-up date'),value:a.seguimiento||''});
       segIn.addEventListener('change',function(){a.seguimiento=segIn.value; if(save()) render();});
       var notas=el('input',{type:'text',maxlength:'200',value:a.notas||'','aria-label':L('Notas','Notes'),placeholder:L('Notas','Notes')});
@@ -216,7 +231,7 @@
       var rm=el('button',{type:'button',class:'link',text:L('Eliminar','Delete')});
       rm.addEventListener('click',function(){
         if(!confirm(L('¿Eliminar esta postulación?','Delete this application?'))) return;
-        data.apps=data.apps.filter(function(x){return x.id!==a.id;}); if(save()) render();
+        removeTask(a.id); data.apps=data.apps.filter(function(x){return x.id!==a.id;}); if(save()) render();
       });
       var vencido=a.seguimiento&&a.seguimiento<=hoyS&&ACTIVOS.indexOf(a.estado)>=0;
       var seguimientoTxt=a.seguimiento?(vencido?L('⚠ Seguimiento pendiente: ','⚠ Follow-up due: ')+a.seguimiento:L('Seguimiento: ','Follow-up: ')+a.seguimiento):L('Sin fecha de seguimiento','No follow-up date');

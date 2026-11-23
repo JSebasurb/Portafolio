@@ -59,6 +59,37 @@ def extra_checks(browser, base, check_fn, fails, errors):
     ctx.close()
 
 
+def embedded_tools_check(browser, base, check_fn, fails, errors):
+    """Cada herramienta embebida carga y su control principal responde (ES y EN)."""
+    tools = [
+        ("t14", "Rostro local: dibujar desde texto", "#draw", "Draw"),
+        ("t15", "Árbol de decisiones interactivo", "#svg", "Walk"),
+        ("t16", "Generador de códigos QR", "#mk", "Generate"),
+        ("t17", "Calculadora de préstamos e interés compuesto", "#calc", "Calculate"),
+        ("t18", "Tablero de tareas", "#add", "Add"),
+        ("t19", "Generador de contraseñas", "#gen", "Generate"),
+        ("t20", "Ruleta con probabilidades", "#spin", "Spin"),
+    ]
+    ctx = browser.new_context(viewport={"width": 390, "height": 844})
+    page = ctx.new_page()
+    page.on("pageerror", lambda e: errors.append(str(e)))
+    for data_v, title, sel, en_word in tools:
+        page.goto(f"{base}/index.html#tools")
+        page.wait_for_timeout(500)
+        page.click(f"#toolSel button[data-v={data_v}]")
+        page.wait_for_timeout(500)
+        fr = page.frame_locator(f'iframe[title="{title}"]')
+        ok = fr.locator(sel).count() > 0
+        check_fn(f"herramienta embebida carga: {title}", ok, fails)
+    page.goto(f"{base}/en/index.html#tools")
+    page.wait_for_timeout(500)
+    page.click("#toolSel button[data-v=t14]")
+    page.wait_for_timeout(600)
+    txt = page.frame_locator('iframe[title="Rostro local: dibujar desde texto"]').locator("#draw").inner_text()
+    check_fn("la versión en inglés traduce la herramienta de rostros", txt.strip() == "Draw", fails)
+    ctx.close()
+
+
 def main():
     srv, base = serve()
     fails, errors = [], []
@@ -92,6 +123,7 @@ def main():
     with sync_playwright() as p2:
         b2 = p2.chromium.launch()
         extra_checks(b2, base, check, fails, errors)
+        embedded_tools_check(b2, base, check, fails, errors)
         b2.close()
     srv.shutdown()
     check("sin errores de JavaScript en la página", not errors, fails)

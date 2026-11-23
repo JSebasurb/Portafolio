@@ -235,7 +235,19 @@
   "Desarrollador de soluciones digitales e ingeniero en automática industrial. Diseño y despliego modelos de Machine Learning, arquitecturas en AWS y aplicaciones web, y automatizo procesos con n8n y chatbots con IA. Desde mi taller creo productos personalizados en 3D. Vivo en Cali, Colombia.": "Digital solutions developer and industrial automation engineer. I design and deploy Machine Learning models, AWS architectures and web applications, and automate processes with n8n and AI chatbots. From my workshop I create custom 3D products. I live in Cali, Colombia.",
   "📄 Gestión de CV": "📄 CV manager",
   "🙂 Rostro local": "🙂 Local face",
-  "Describe un rostro y la app lo dibuja aquí mismo, sin internet. Es una ilustración estilizada, no una foto.": "Describe a face and the app draws it right here, without internet. It is a stylized illustration, not a photo."
+  "Describe un rostro y la app lo dibuja aquí mismo, sin internet. Es una ilustración estilizada, no una foto.": "Describe a face and the app draws it right here, without internet. It is a stylized illustration, not a photo.",
+  "🌳 Árbol de decisiones": "🌳 Decision tree",
+  "Crea ramas con acciones y consecuencias, puntúalas y descubre cuál conviene más. Todo se guarda en tu navegador.": "Create branches with actions and consequences, score them and find out which one is best. Everything stays in your browser.",
+  "🔳 Código QR": "🔳 QR code",
+  "Genera un código QR con tu enlace o texto y descárgalo como imagen. Todo ocurre en tu navegador.": "Create a QR code from your link or text and download it as an image. Everything happens in your browser.",
+  "🏦 Préstamos e interés": "🏦 Loans & interest",
+  "Calcula la cuota de un préstamo con su tabla de amortización, o cuánto crece un ahorro con aportes mensuales.": "Calculate a loan payment with its amortization table, or how much a savings plan grows with monthly contributions.",
+  "🗂️ Tablero de tareas": "🗂️ Task board",
+  "Organiza tus tareas en por hacer, en curso y listo. Se guardan en este navegador.": "Organize your tasks into to do, in progress and done. They are saved in this browser.",
+  "🔐 Contraseñas": "🔐 Passwords",
+  "Crea contraseñas seguras con el largo y los caracteres que elijas. Se generan aquí y no se guardan.": "Create strong passwords with the length and characters you choose. They are generated here and never stored.",
+  "🎡 Ruleta": "🎡 Wheel",
+  "Define las opciones y su probabilidad de caer. La ruleta respeta esos porcentajes, que son los reales.": "Set the options and their chance of landing. The wheel respects those percentages, which are the real odds."
  },
  "js": {
   "Hola, quiero cotizar un servicio": "Hi, I'd like a quote for a service",

@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-11-22",
+      "es": "Nuevas herramientas: árbol de decisiones, rostro local, código QR, calculadora de préstamos, tablero de tareas, contraseñas y ruleta con probabilidades. Juego Cuatro sombras con modo Bomberman.",
+      "en": "New tools: decision tree, local face, QR code, loan calculator, task board, passwords and a probability wheel. Four Shadows game with Bomberman mode."
+    },
+    {
       "date": "2026-11-11",
       "es": "Logo transparente, nuevo código QR, botón para guardar contacto y versión para imprimir.",
       "en": "Transparent logo, new QR code, save-contact button and a print version."
