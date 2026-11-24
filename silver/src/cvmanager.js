@@ -189,7 +189,6 @@
     });
     return el('section',{class:'cvsec'},[
       el('h3',{text:L('2 · Versiones de CV · ','2 · CV versions · ')+areaName(state.area)}),
-      (function(){var bb=el('button',{type:'button',class:'link',text:L('Cargar bases de CV que falten','Load missing CV bases')});bb.addEventListener('click',function(){seedBases(true);});return el('p',{class:'cvrow'},[bb]);})(),
       list,
       el('div',{class:'cvform'},[nameI,descI,fileI,save_])
     ]);
@@ -313,6 +312,11 @@
     return el('p',{class:'cvrow'},[exp,impBtn,imp,el('span',{class:'etlmuted',text:L('Los PDF se guardan en este navegador; el JSON respalda áreas, versiones y postulaciones.','PDFs are saved in this browser; the JSON backs up areas, versions and applications.')})]);
   }
 
+  function loadBasesRow(){
+    var bb=el('button',{type:'button',class:'pill sm',text:L('Cargar CVs base','Load base CVs')});
+    bb.addEventListener('click',function(){seedBases(true);});
+    return el('div',{class:'cvrow'},[bb,el('span',{class:'etlmuted',text:L('Agrega las tres bases (automatización, ventas y marketing, datos e IA) que no tengas.','Adds the three base CVs (automation, sales and marketing, data and AI) you do not have yet.')})]);
+  }
   function render(){
     data.lastArea=state.area; data.lastView=state.vista;
     root.textContent='';
@@ -330,7 +334,7 @@
     var secciones = state.vista==='apps' ? [sectionApps()] : [sectionAreas(), sectionVersions()];
     root.appendChild(el('div',{class:'mini-card etlcard'},[
       el('div',{class:'etlhead'},[el('b',{text:L('Gestión de CV','CV manager')}),el('span',{class:'etlmuted',text:L('Organiza tus CV por área, descárgalos cuando los necesites y lleva el seguimiento de cada postulación.','Organize your CVs by area, download them when needed and track every application.')})]),
-      tabs, msgEl
+      tabs, msgEl, state.vista==='cv' ? loadBasesRow() : null
     ].concat(secciones, [backupBar()])));
     msg('');
   }
