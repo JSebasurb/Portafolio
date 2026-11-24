@@ -76,20 +76,27 @@
     return fetch(DOCS_BASE+item.file).then(function(r){if(!r.ok)throw 0;return r.blob();});
   }
   /* bases de CV: al abrir si la herramienta está vacía (una vez), o con el botón 'Cargar bases' */
-  function seedBases(force){
-    if(!force){
+  function seedBases(mode){
+    /* mode: undefined = automático (solo si está vacía, una vez); 'update' = botón: actualiza y agrega */
+    var manual=mode==='update';
+    if(!manual){
       if(localStorage.getItem('cvmgr.seeded'))return;
       if(data.versions.length){localStorage.setItem('cvmgr.seeded','1');return;}
     }
+    var updated=0, added=0;
     loadManifest().then(function(list){
       var first=null;
       return list.reduce(function(chain,item){
         return chain.then(function(){
-          var exists=data.versions.some(function(v){return v.name===item.name&&areaName(v.area)===item.area;});
-          if(exists)return;
+          var existing=data.versions.find(function(v){return v.name===item.name&&areaName(v.area)===item.area;});
+          if(existing&&!manual)return;
           return fetchBlob(item).then(function(blob){
+            if(existing){
+              return putFile(existing.id,blob).then(function(){existing.file=item.file;existing.desc=item.desc;existing.date=hoy();updated++;});
+            }
             var aid=ensureArea(item.area), id=uid();
             if(first===null)first=aid;
+            added++;
             return putFile(id,blob).then(function(){data.versions.push({id:id,area:aid,name:item.name,desc:item.desc,date:hoy(),file:item.file});});
           });
         });
@@ -97,10 +104,11 @@
         if(first!==null)state.area=first;
         localStorage.setItem('cvmgr.seeded','1');
         data.lastArea=state.area;
-        if(save())render();
-        else render();
+        save();
+        render();
+        if(manual)msg(L('CVs revisados: '+updated+' actualizados · '+added+' nuevos.','CVs checked: '+updated+' updated · '+added+' new.'));
       });
-    }).catch(function(){msg(L('No se pudieron cargar las bases de CV.','Could not load the CV bases.'));});
+    }).catch(function(){msg(L('No se pudieron leer las CVs base del proyecto.','Could not read the base CVs from the project.'));});
   }
   function areaName(id){var a=data.areas.find(function(x){return x.id===id;}); return a?a.name:'—';}
   function verById(id){return data.versions.find(function(v){return v.id===id;});}
@@ -313,9 +321,9 @@
   }
 
   function loadBasesRow(){
-    var bb=el('button',{type:'button',class:'pill sm',text:L('Cargar CVs base','Load base CVs')});
-    bb.addEventListener('click',function(){seedBases(true);});
-    return el('div',{class:'cvrow'},[bb,el('span',{class:'etlmuted',text:L('Agrega las tres bases (automatización, ventas y marketing, datos e IA) que no tengas.','Adds the three base CVs (automation, sales and marketing, data and AI) you do not have yet.')})]);
+    var bb=el('button',{type:'button',class:'pill sm',text:L('Actualizar CVs base','Update base CVs')});
+    bb.addEventListener('click',function(){seedBases('update');});
+    return el('div',{class:'cvrow'},[bb,el('span',{class:'etlmuted',text:L('Lee las CVs base del proyecto: actualiza las que ya tienes y agrega las que falten.','Reads the base CVs from the project: updates the ones you have and adds the missing ones.')})]);
   }
   function render(){
     data.lastArea=state.area; data.lastView=state.vista;
