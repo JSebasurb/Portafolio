@@ -64,20 +64,43 @@
   var BASE_CSS=(document.querySelector('link[href*="styles.css"]')||{getAttribute:function(){return "";}}).getAttribute('href')||'';
   var DOCS_BASE=BASE_CSS.replace(/css\/styles\.css.*$/,'')+'docs/';
   function ensureArea(name){var a=data.areas.find(function(x){return x.name===name;});if(!a){a={id:uid(),name:name};data.areas.push(a);}return a.id;}
-  function seedBases(){
-    if(localStorage.getItem('cvmgr.seeded'))return;
-    if(data.versions.length){localStorage.setItem('cvmgr.seeded','1');return;}
-    fetch(DOCS_BASE+'cv-bases.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(list){
-      state.area=ensureArea(list[0].area);
+  function b64ToBlob(b64){var bin=atob(b64),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new Blob([u],{type:'application/pdf'});}
+  function loadManifest(){
+    if(window.CV_BASES_INLINE){
+      return Promise.resolve(window.CV_BASES_INLINE.map(function(it){return {file:it.file,area:it.area,name:it.name,desc:it.desc,blob:b64ToBlob(it.b64)};}));
+    }
+    return fetch(DOCS_BASE+'cv-bases.json').then(function(r){if(!r.ok)throw 0;return r.json();});
+  }
+  function fetchBlob(item){
+    if(item.blob)return Promise.resolve(item.blob);
+    return fetch(DOCS_BASE+item.file).then(function(r){if(!r.ok)throw 0;return r.blob();});
+  }
+  /* bases de CV: al abrir si la herramienta está vacía (una vez), o con el botón 'Cargar bases' */
+  function seedBases(force){
+    if(!force){
+      if(localStorage.getItem('cvmgr.seeded'))return;
+      if(data.versions.length){localStorage.setItem('cvmgr.seeded','1');return;}
+    }
+    loadManifest().then(function(list){
+      var first=null;
       return list.reduce(function(chain,item){
         return chain.then(function(){
-          return fetch(DOCS_BASE+item.file).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(blob){
+          var exists=data.versions.some(function(v){return v.name===item.name&&areaName(v.area)===item.area;});
+          if(exists)return;
+          return fetchBlob(item).then(function(blob){
             var aid=ensureArea(item.area), id=uid();
+            if(first===null)first=aid;
             return putFile(id,blob).then(function(){data.versions.push({id:id,area:aid,name:item.name,desc:item.desc,date:hoy(),file:item.file});});
           });
         });
-      },Promise.resolve());
-    }).then(function(){localStorage.setItem('cvmgr.seeded','1');data.lastArea=state.area;if(save())render();}).catch(function(){});
+      },Promise.resolve()).then(function(){
+        if(first!==null)state.area=first;
+        localStorage.setItem('cvmgr.seeded','1');
+        data.lastArea=state.area;
+        if(save())render();
+        else render();
+      });
+    }).catch(function(){msg(L('No se pudieron cargar las bases de CV.','Could not load the CV bases.'));});
   }
   function areaName(id){var a=data.areas.find(function(x){return x.id===id;}); return a?a.name:'—';}
   function verById(id){return data.versions.find(function(v){return v.id===id;});}
@@ -166,6 +189,7 @@
     });
     return el('section',{class:'cvsec'},[
       el('h3',{text:L('2 · Versiones de CV · ','2 · CV versions · ')+areaName(state.area)}),
+      (function(){var bb=el('button',{type:'button',class:'link',text:L('Cargar bases de CV que falten','Load missing CV bases')});bb.addEventListener('click',function(){seedBases(true);});return el('p',{class:'cvrow'},[bb]);})(),
       list,
       el('div',{class:'cvform'},[nameI,descI,fileI,save_])
     ]);
