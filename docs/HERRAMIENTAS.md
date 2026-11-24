@@ -13,6 +13,20 @@ Cada herramienta es un archivo HTML independiente en `silver/assets/tools/`. El 
 | 🔐 Contraseñas | `generador-contrasenas.html` | ninguno | test_tools |
 | 🎡 Ruleta | `ruleta.html` | localStorage `ruleta.v1` | test_tools |
 
+## Bases de CV precargadas
+
+La gestión de CV trae tres bases en su primera apertura (solo si está vacía, y una sola vez):
+
+| Área | Base | Enfoque |
+|---|---|---|
+| Ingeniería y automatización | `cv-base-automatizacion.pdf` | PLC, CNC, robótica e IoT |
+| Ventas y marketing digital | `cv-base-marketing-ventas.pdf` | Ventas consultivas, canal web con chatbot, servicios |
+| Datos e IA | `cv-base-datos-ia.pdf` | Machine Learning, ETL, AWS, dashboards |
+
+Se generan con `python scripts/build_cv_bases.py`, con el mismo diseño que el CV principal y solo datos de `silver/data/profile.json`. La lista de bases está en `silver/assets/docs/cv-bases.json`. Para cambiar un enfoque, edita `BASES` en ese script.
+
+Nota: la base de marketing no tiene experiencia de marketing en el perfil; enfatiza ventas y el canal web. Si agregas experiencia real, actualiza el perfil y regenera las bases.
+
 ## Idioma
 
 - En el sitio en inglés, el `iframe` se abre con `?lang=en`.

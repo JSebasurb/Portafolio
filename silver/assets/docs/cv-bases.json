@@ -1,0 +1,5 @@
+[
+  {"file": "cv-base-automatizacion.pdf", "area": "Ingeniería y automatización", "name": "Automatización industrial · base", "desc": "Base para cargos de ingeniería y automatización: PLC, CNC, robótica, IoT y procesos de planta."},
+  {"file": "cv-base-marketing-ventas.pdf", "area": "Ventas y marketing digital", "name": "Ventas consultivas · base", "desc": "Base para cargos comerciales y de soluciones digitales: ventas consultivas, canal web con chatbot y servicios."},
+  {"file": "cv-base-datos-ia.pdf", "area": "Datos e IA", "name": "Machine Learning y datos · base", "desc": "Base para ciencia de datos e IA: Machine Learning, ETL, AWS y dashboards."}
+]

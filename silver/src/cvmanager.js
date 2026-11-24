@@ -60,6 +60,25 @@
     writeTasks(tasks);
   }
   function removeTask(aid){writeTasks(readTasks().filter(function(x){return x.id!=='app-'+aid;}));}
+  /* bases de CV precargadas: solo si la herramienta está vacía (una sola vez) */
+  var BASE_CSS=(document.querySelector('link[href*="styles.css"]')||{getAttribute:function(){return "";}}).getAttribute('href')||'';
+  var DOCS_BASE=BASE_CSS.replace(/css\/styles\.css.*$/,'')+'docs/';
+  function ensureArea(name){var a=data.areas.find(function(x){return x.name===name;});if(!a){a={id:uid(),name:name};data.areas.push(a);}return a.id;}
+  function seedBases(){
+    if(localStorage.getItem('cvmgr.seeded'))return;
+    if(data.versions.length){localStorage.setItem('cvmgr.seeded','1');return;}
+    fetch(DOCS_BASE+'cv-bases.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(list){
+      state.area=ensureArea(list[0].area);
+      return list.reduce(function(chain,item){
+        return chain.then(function(){
+          return fetch(DOCS_BASE+item.file).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(blob){
+            var aid=ensureArea(item.area), id=uid();
+            return putFile(id,blob).then(function(){data.versions.push({id:id,area:aid,name:item.name,desc:item.desc,date:hoy(),file:item.file});});
+          });
+        });
+      },Promise.resolve());
+    }).then(function(){localStorage.setItem('cvmgr.seeded','1');data.lastArea=state.area;if(save())render();}).catch(function(){});
+  }
   function areaName(id){var a=data.areas.find(function(x){return x.id===id;}); return a?a.name:'—';}
   function verById(id){return data.versions.find(function(v){return v.id===id;});}
   function verLabel(v){return areaName(v.area)+' · '+v.name;}
@@ -292,4 +311,5 @@
     msg('');
   }
   render();
+  seedBases();
 })();
