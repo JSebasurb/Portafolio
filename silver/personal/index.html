@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Área personal</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
+<style>
+:root{--bg:#0f1116;--panel:#171a22;--line:#2a2f3c;--text:#e8ebf2;--muted:#9aa3b8;--acc:#4f8cff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:16px;min-height:100vh}
+.box{max-width:960px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+h1{font-size:1.1rem;margin:0 0 6px}p{color:var(--muted);font-size:.9rem;line-height:1.45}
+form{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+input{background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font:inherit;min-width:0;flex:1 1 180px}
+button{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.err{color:#ff8a8a;font-size:.9rem;min-height:1.2em;margin-top:8px}
+.top{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+iframe{width:100%;height:78vh;min-height:480px;border:1px solid var(--line);border-radius:12px;margin-top:14px;background:#fff}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Área personal</h1>
+  <p>Acceso restringido. Esta página no aparece en el menú del portafolio.</p>
+  <div id="gate">
+    <form id="f" autocomplete="off">
+      <input type="password" id="pw" placeholder="Contraseña" aria-label="Contraseña" inputmode="numeric">
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="err" id="err" role="alert"></div>
+  </div>
+  <div id="inside" hidden>
+    <div class="top"><p style="margin:0">Área personal</p><button class="ghost" id="out" type="button">Salir</button></div>
+    <h2 style="font-size:1.05rem;margin:18px 0 6px">Gestión de CV</h2>
+    <div id="cvMgr"></div>
+    <h2 style="font-size:1.05rem;margin:22px 0 6px">Bitácora</h2>
+    <iframe id="frm" title="Bitácora personal" referrerpolicy="no-referrer"></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="3646e8f854b0cfc7a3471bf9bcc7a7a7848d5a2cd1e555a31765c9913cded4d0";
+  var URL_BITACORA="https://jsebasurb.github.io/bitacora/";
+  var gate=document.getElementById("gate"), inside=document.getElementById("inside"), err=document.getElementById("err"), frm=document.getElementById("frm");
+  function show(ok){
+    gate.hidden=ok; inside.hidden=!ok;
+    if(ok){
+      if(!frm.getAttribute("src")) frm.setAttribute("src",URL_BITACORA);
+      if(!document.getElementById('cvLoaded')){ var sc=document.createElement('script'); sc.id='cvLoaded'; sc.src='../assets/js/cvmanager.js'; document.body.appendChild(sc); }
+    }
+    else { frm.removeAttribute("src"); }
+  }
+  function hex(buf){return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0");}).join("");}
+  document.getElementById("f").addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("pw").value;
+    if(!(window.crypto&&crypto.subtle)){err.textContent="Este navegador no puede verificar la contraseña.";return;}
+    crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(d){
+      if(hex(d)===HASH){ err.textContent=""; sessionStorage.setItem("personal.ok","1"); show(true); }
+      else { err.textContent="Contraseña incorrecta."; }
+    });
+  });
+  document.getElementById("out").addEventListener("click",function(){
+    sessionStorage.removeItem("personal.ok"); document.getElementById("pw").value=""; show(false);
+  });
+  if(sessionStorage.getItem("personal.ok")==="1") show(true);
+})();
+</script>
+</body>
+</html>

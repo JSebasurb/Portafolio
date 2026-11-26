@@ -69,13 +69,24 @@
     if(window.CV_BASES_INLINE){
       return Promise.resolve(window.CV_BASES_INLINE.map(function(it){return {file:it.file,area:it.area,name:it.name,desc:it.desc,blob:b64ToBlob(it.b64)};}));
     }
-    return fetch(DOCS_BASE+'cv-bases.json').then(function(r){if(!r.ok)throw 0;return r.json();});
+    return fetch(DOCS_BASE+'cv-bases.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();});
   }
   function fetchBlob(item){
     if(item.blob)return Promise.resolve(item.blob);
-    return fetch(DOCS_BASE+item.file).then(function(r){if(!r.ok)throw 0;return r.blob();});
+    return fetch(DOCS_BASE+item.file,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.blob();});
   }
   /* bases de CV: al abrir si la herramienta está vacía (una vez), o con el botón 'Cargar bases' */
+  function readSigs(){try{return JSON.parse(localStorage.getItem('cvmgr.basesSig')||'{}')||{};}catch(e){return {};}}
+  function saveSigs(list){var s={};list.forEach(function(it){if(it.sha1)s[it.file]=it.sha1;});try{localStorage.setItem('cvmgr.basesSig',JSON.stringify(s));}catch(e){}}
+  /* al abrir: si el proyecto trae una base distinta a la guardada, se actualiza sola */
+  function autoUpdateBases(){
+    if(window.CV_BASES_INLINE)return;
+    loadManifest().then(function(list){
+      var sigs=readSigs();
+      var changed=list.some(function(it){return it.sha1&&sigs[it.file]!==it.sha1;});
+      if(changed)seedBases('update');
+    }).catch(function(){});
+  }
   function seedBases(mode){
     /* mode: undefined = automático (solo si está vacía, una vez); 'update' = botón: actualiza y agrega */
     var manual=mode==='update';
@@ -103,6 +114,7 @@
       },Promise.resolve()).then(function(){
         if(first!==null)state.area=first;
         localStorage.setItem('cvmgr.seeded','1');
+        saveSigs(list);
         data.lastArea=state.area;
         save();
         render();
@@ -347,5 +359,5 @@
     msg('');
   }
   render();
-  seedBases();
+  if(localStorage.getItem('cvmgr.seeded'))autoUpdateBases(); else seedBases();
 })();

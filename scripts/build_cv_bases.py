@@ -72,7 +72,14 @@ def main():
         cv.P = variant(base)
         cv.OUT = DOCS / base["file"]
         cv.build()
-    print("bases generadas:", ", ".join(b["file"] for b in BASES))
+    import hashlib
+    manifest_path = DOCS / "cv-bases.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for item in manifest:
+        digest = hashlib.sha1((DOCS / item["file"]).read_bytes()).hexdigest()
+        item["sha1"] = digest
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print("bases generadas y huellas actualizadas:", ", ".join(b["file"] for b in BASES))
 
 if __name__ == "__main__":
     main()

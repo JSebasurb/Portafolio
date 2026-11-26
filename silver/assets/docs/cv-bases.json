@@ -1,5 +1,23 @@
 [
-  {"file": "cv-base-automatizacion.pdf", "area": "Ingeniería y automatización", "name": "Automatización industrial · base", "desc": "Base para cargos de ingeniería y automatización: PLC, CNC, robótica, IoT y procesos de planta."},
-  {"file": "cv-base-marketing-ventas.pdf", "area": "Ventas y marketing digital", "name": "Ventas consultivas · base", "desc": "Base para cargos comerciales y de soluciones digitales: ventas consultivas, canal web con chatbot y servicios."},
-  {"file": "cv-base-datos-ia.pdf", "area": "Datos e IA", "name": "Machine Learning y datos · base", "desc": "Base para ciencia de datos e IA: Machine Learning, ETL, AWS y dashboards."}
+  {
+    "file": "cv-base-automatizacion.pdf",
+    "area": "Ingeniería y automatización",
+    "name": "Automatización industrial · base",
+    "desc": "Base para cargos de ingeniería y automatización: PLC, CNC, robótica, IoT y procesos de planta.",
+    "sha1": "4508f477b8ce1479ee4af945e1aa01ae2e674e37"
+  },
+  {
+    "file": "cv-base-marketing-ventas.pdf",
+    "area": "Ventas y marketing digital",
+    "name": "Ventas consultivas · base",
+    "desc": "Base para cargos comerciales y de soluciones digitales: ventas consultivas, canal web con chatbot y servicios.",
+    "sha1": "e1cf8c704b02ab2d1a3def786b3c0424356595c6"
+  },
+  {
+    "file": "cv-base-datos-ia.pdf",
+    "area": "Datos e IA",
+    "name": "Machine Learning y datos · base",
+    "desc": "Base para ciencia de datos e IA: Machine Learning, ETL, AWS y dashboards.",
+    "sha1": "d13de45839b279e6ad59bb47d4e56f54b195fcb7"
+  }
 ]

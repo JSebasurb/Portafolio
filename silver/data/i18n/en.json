@@ -247,7 +247,8 @@
   "🔐 Contraseñas": "🔐 Passwords",
   "Crea contraseñas seguras con el largo y los caracteres que elijas. Se generan aquí y no se guardan.": "Create strong passwords with the length and characters you choose. They are generated here and never stored.",
   "🎡 Ruleta": "🎡 Wheel",
-  "Define las opciones y su probabilidad de caer. La ruleta respeta esos porcentajes, que son los reales.": "Set the options and their chance of landing. The wheel respects those percentages, which are the real odds."
+  "Define las opciones y su probabilidad de caer. La ruleta respeta esos porcentajes, que son los reales.": "Set the options and their chance of landing. The wheel respects those percentages, which are the real odds.",
+  "🔒 Área personal · acceso restringido ↗": "🔒 Personal area · restricted access ↗"
  },
  "js": {
   "Hola, quiero cotizar un servicio": "Hi, I'd like a quote for a service",

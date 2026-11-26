@@ -419,6 +419,10 @@ def main():
                 if f.is_file() and f.name != ".gitkeep":
                     shutil.copy(f, GOLD / "assets" / sub / f.name)
 
+    # --- página personal (sin enlace en el menú, protegida con contraseña en el cliente)
+    if (SILVER / "personal").exists():
+        shutil.copytree(SILVER / "personal", GOLD / "personal", dirs_exist_ok=True)
+
     # --- datos de la academia CATO (apps creadas)
 
     # --- una página por idioma
@@ -445,7 +449,7 @@ def main():
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
             "{{SITE_TITLE}}": e(site_i["site_title"]), "{{SITE_DESC}}": e(site_i["site_description"], quote=True),
-            "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L), "{{ANALYTICS}}": analytics_html(cfg), "{{CALENDLY}}": calendly_html(cfg, L),
+            "{{BUILD_STAMP}}": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"), "{{BUILD_LABEL}}": "Built" if L == "en" else "Compilado", "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L), "{{ANALYTICS}}": analytics_html(cfg), "{{CALENDLY}}": calendly_html(cfg, L),
             "{{CONTACT_EMAIL}}": e(prof["email"]), "{{SITE_URL}}": site, "{{CANONICAL}}": page_url,
             "{{ROOT}}": root, "{{LANG}}": L, "{{OG_LOCALE}}": u["locale"],
             "{{ALT_URL}}": u["alt_url"], "{{ALT_CODE}}": u["alt_code"], "{{ALT_LABEL}}": u["alt_label"], "{{ALT_ARIA}}": e(u["alt_aria"], quote=True),

@@ -225,7 +225,8 @@
 <section class="tab" id="tools" role="tabpanel">
   <h2>Herramientas hechas por mí.</h2>
   <p class="sub">Utilidades que desarrollé y puedes usar aquí mismo. Todo corre en tu navegador: nada se sube a ningún servidor.</p>
-  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button><button data-v="t13">📄 Gestión de CV</button><button data-v="t14">🙂 Rostro local</button><button data-v="t15">🌳 Árbol de decisiones</button><button data-v="t16">🔳 Código QR</button><button data-v="t17">🏦 Préstamos e interés</button><button data-v="t18">🗂️ Tablero de tareas</button><button data-v="t19">🔐 Contraseñas</button><button data-v="t20">🎡 Ruleta</button></div>
+  <p class="etlmuted" style="margin:0 0 10px"><a class="link" href="{{ROOT}}personal/" target="_blank" rel="noopener">🔒 Área personal · acceso restringido ↗</a></p>
+  <div class="seg tsel" id="toolSel"><button class="on" data-v="t1">🔍 Lector HTML</button><button data-v="t2">💬 Link WhatsApp</button><button data-v="t3">{ } JSON</button><button data-v="t4">📐 Roscas</button><button data-v="t5">💰 Cotizar</button><button data-v="t6">🏗️ ETL</button><button data-v="t7">📊 CSV</button><button data-v="t8">🛠️ Mantenimiento</button><button data-v="t9">🔍 Visión</button><button data-v="t10">📈 Producción</button><button data-v="t11">🧠 Fichas</button><button data-v="t14">🙂 Rostro local</button><button data-v="t15">🌳 Árbol de decisiones</button><button data-v="t16">🔳 Código QR</button><button data-v="t17">🏦 Préstamos e interés</button><button data-v="t18">🗂️ Tablero de tareas</button><button data-v="t19">🔐 Contraseñas</button><button data-v="t20">🎡 Ruleta</button></div>
 
   <div class="tool on" id="t1">
     <div class="rd">
@@ -374,10 +375,6 @@
     </div>
   </div>
 
-  <div class="tool" id="t13">
-    <div id="cvMgr"></div>
-  </div>
-
   <div class="tool" id="t15">
     <p class="etlmuted">Crea ramas con acciones y consecuencias, puntúalas y descubre cuál conviene más. Todo se guarda en tu navegador.</p>
     <iframe class="rostro-frame" src="{{ROOT}}assets/tools/arbol-decisiones.html" title="Árbol de decisiones interactivo" loading="lazy"></iframe>
@@ -469,7 +466,7 @@
 </div>
 </main>
 <a class="fab" href="https://wa.me/{{WA_NUMBER}}?text={{FAB_MSG}}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬 <span>WhatsApp</span></a>
-<footer>© {{YEAR}} Taller 3D &amp; Automatización · Colombia</footer>
+<footer>© {{YEAR}} Taller 3D &amp; Automatización · Colombia · <span class="build-stamp">{{BUILD_LABEL}} {{BUILD_STAMP}}</span></footer>
 <script src="{{ROOT}}assets/js/i18n.{{LANG}}.js" defer></script>
 <script src="{{ROOT}}assets/js/app.js" defer></script>
 <script src="{{ROOT}}assets/js/catalog.js" defer></script>
