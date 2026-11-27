@@ -891,3 +891,19 @@ h3{letter-spacing:-.015em}
 
 .rostro-frame{width:100%;height:900px;border:0;border-radius:16px;background:#0f1116;display:block}
 @media(max-width:640px){.rostro-frame{height:1000px}}
+
+/* ---------- Constructor de CV ---------- */
+dialog.cvdlg{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:18px;width:min(560px,92vw);max-height:86vh;box-shadow:var(--shadow)}
+dialog.cvdlg::backdrop{background:rgba(0,0,0,.55)}
+.cvdlg-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cvdlg-h h3{margin:0;font-size:1.1rem}
+.cvdlg-x{background:none;border:0;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:4px 8px}
+.cvdlg-i{color:var(--muted);font-size:.9rem;line-height:1.4;margin:8px 0 10px}
+#cvList{overflow:auto;max-height:52vh;padding-right:4px}
+fieldset.cvsec{border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:0 0 10px}
+fieldset.cvsec legend{font-weight:700;font-size:.9rem;padding:0 6px;color:var(--text)}
+.cvchk{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;padding:4px 0;cursor:pointer}
+.cvchk input{margin-top:3px;accent-color:var(--blue)}
+.cvdlg-f{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.cvdlg-f button{background:var(--blue);color:#fff;border:0;border-radius:999px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.cvdlg-f button.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}

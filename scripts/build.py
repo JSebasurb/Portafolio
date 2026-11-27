@@ -11,7 +11,7 @@ LANGS = ("es", "en")
 GRADS = [("#ff9f0a", "#ff375f"), ("#5e5ce6", "#0a84ff"), ("#30d158", "#0a9d8f"), ("#bf5af2", "#ff2d92"), ("#48484a", "#1c1c1e"), ("#ff375f", "#bf5af2")]
 
 UI = {
-    "es": dict(cv="Descargar CV (PDF)", try_tool="Abrir la herramienta ›", edu_link="Ver perfil en Platzi ↗", try_go="Ver ›", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
+    "es": dict(cv="Descargar CV", try_tool="Abrir la herramienta ›", edu_link="Ver perfil en Platzi ↗", try_go="Ver ›", s_profile="Perfil profesional", s_skills="Competencias técnicas", s_exp="Experiencia profesional",
                s_proj="Proyectos destacados", s_edu="Educación", win="Logro:", impact="Impacto:", all_proj="Ver todos mis proyectos",
                work="Trabajemos juntos", wa="Escribir por WhatsApp", use_form="Usar el formulario ›",
                p_title="Mis proyectos.", p_sub="Datos, automatización, web e ingeniería. Toca una miniatura para abrir el proyecto.",
@@ -22,7 +22,7 @@ UI = {
                b_title="Blog.", b_sub="Notas cortas sobre datos y automatización.", faq="Preguntas frecuentes", faq_btn="Ver preguntas frecuentes",
                fab="Hola, quiero cotizar un servicio", job="Ingeniero en Automática Industrial · Soluciones digitales y ML", alt_label="EN", alt_aria="Switch to English", alt_code="en", alt_url="en/",
                locale="es_CO", root=""),
-    "en": dict(cv="Download CV (PDF)", try_tool="Open the tool ›", edu_link="View Platzi profile ↗", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
+    "en": dict(cv="Download CV", try_tool="Open the tool ›", edu_link="View Platzi profile ↗", try_go="View ›", s_profile="Professional profile", s_skills="Technical skills", s_exp="Professional experience",
                s_proj="Featured projects", s_edu="Education", win="Achievement:", impact="Impact:", all_proj="See all my projects",
                work="Let's work together", wa="Message on WhatsApp", use_form="Use the form ›",
                p_title="My projects.", p_sub="Data, automation, web and engineering. Tap a thumbnail to open the project.",
@@ -110,7 +110,7 @@ def render_profile(p, num, u, root):
   <h2>{e(p["name"])}</h2>
   <p class="sub">{e(p["headline"])}</p>
   <div class="ctas" style="margin:0 0 34px">
-    <a class="pill" href="{root}{e(p["cv_file"])}" download>{e(u["cv"])}</a>
+    <button class="pill" type="button" id="cvOpen">{e(u["cv"])}</button>
     <a class="link" href="{e(p["linkedin"])}" target="_blank" rel="noopener">LinkedIn ›</a>
     <a class="link" href="{e(p["github"])}" target="_blank" rel="noopener">GitHub ›</a>
     <a class="link" href="{e(p["youtube"])}" target="_blank" rel="noopener">YouTube ›</a>
@@ -323,6 +323,39 @@ def render_faq(faq, u):
 
 
 
+CVB = {
+    "es": dict(title="Descargar CV", intro="Se descargará con la selección predeterminada: formación, experiencia y habilidades de ingeniería de datos.", advanced="Configuración avanzada", edu="Educación", exp="Experiencia", skills="Habilidades", proj="Proyectos", gen="Descargar CV", cancel="Cancelar", close="Cerrar", profile="Perfil profesional", contact="Contacto", blocked="Permite las ventanas emergentes para descargar el CV.", achievement_prefix="Logro: "),
+    "en": dict(title="Download CV", intro="It will download with the default selection: education, experience and data engineering skills.", advanced="Advanced settings", edu="Education", exp="Experience", skills="Skills", proj="Projects", gen="Download CV", cancel="Cancel", close="Close", profile="Professional profile", contact="Contact", blocked="Allow pop-ups to download the CV.", achievement_prefix="Achievement: "),
+}
+# grupos de habilidades y proyectos que aparecen marcados por defecto (enfoque: ingeniería de datos)
+CVB_EDU_DEFAULT = {0, 1, 2, 4, 6}  # Maestría, Ingeniería, Platzi ingeniero de datos, Bootcamp IA, Ciberseguridad estratégica
+CVB_SKILL_DEFAULT = {0, 1}  # Machine Learning & IA, Cloud/Datos
+CVB_PROJECT_DEFAULT = ("Pipeline ETL", "ETL epidemiológico", "Mantenimiento predictivo", "Dashboard de producción", "Laboratorio ETL")
+
+def cv_builder_html(prof, L, root):
+    c = CVB[L]
+    raw = jl("projects.json")["projects"]
+    proj_src = [x for x in raw if x.get("visible", True) and x.get("id") != "cursos-en-proceso"]
+    data = {
+        "lang": L, "labels": c,
+        "name": prof["name"], "headline": prof["headline"], "summary": prof["summary"],
+        "contact": [prof.get("email", ""), prof.get("phone_display", ""), prof.get("portfolio", ""), prof.get("linkedin", "")],
+        "education": [{"id": f"e{i}", "title": x["title"], "meta": x.get("meta", ""), "checked": i in CVB_EDU_DEFAULT} for i, x in enumerate(prof["education"])],
+        "experience": [{"id": f"x{i}", "role": x["role"], "company": x["company"], "period": x.get("period", ""), "text": x.get("text", ""), "achievement": x.get("achievement", ""), "checked": x["company"].startswith("JS Soluciones")} for i, x in enumerate(prof["experience"])],
+        "skills": [{"id": f"s{i}", "title": s["title"], "items": s["items"], "checked": i in CVB_SKILL_DEFAULT} for i, s in enumerate(prof["skills"])],
+        "projects": [{"id": f"p{i}", "title": localize(x, L)["title"], "description": localize(x, L).get("description", ""), "checked": x["title"].startswith(CVB_PROJECT_DEFAULT)} for i, x in enumerate(proj_src)],
+    }
+    js = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return ('<dialog id="cvDlg" class="cvdlg" aria-labelledby="cvDlgT">'
+            f'<div class="cvdlg-h"><h3 id="cvDlgT">{e(c["title"])}</h3><button type="button" class="cvdlg-x" id="cvX" aria-label="{e(c["close"])}">✕</button></div>'
+            f'<p class="cvdlg-i">{e(c["intro"])}</p>'
+            f'<label class="cvadv-t"><input type="checkbox" id="cvAdvT"> <span>{e(c["advanced"])}</span></label>'
+            '<div id="cvAdv" hidden><div id="cvList"></div></div>'
+            f'<div class="cvdlg-f"><button type="button" class="ghost" id="cvCancel">{e(c["cancel"])}</button><button type="button" id="cvGen">{e(c["gen"])}</button></div>'
+            '</dialog>'
+            f'<script type="application/json" id="cvData">{js}</script>'
+            f'<script src="{root}assets/js/cvbuilder.js" defer></script>')
+
 def json_ld(p, cfg, u, url, L):
     """Datos estructurados (schema.org) en un solo bloque @graph: persona, organización y sitio."""
     base = p.get("portfolio") or "https://jsebasurb.github.io/Portafolio/"
@@ -440,6 +473,7 @@ def main():
         html = translate(template, en_dict["template"]) if L == "en" else template
         rep = {
             "{{PROFILE_SECTION}}": render_profile(prof, num, u, root),
+            "{{CV_BUILDER}}": cv_builder_html(prof, L, root),
             "{{PROJECTS_SECTION}}": render_projects(pj, L, u, root),
             "{{CATALOG_SECTION}}": render_catalog(cat, L, u, root, num),
             "{{BLOG_SECTION}}": render_blog(blog[L], u),
@@ -449,7 +483,7 @@ def main():
             "{{PRINT3D_SECTION}}": render_print3d(p3d[L], num, root),
             "{{FAQ_SECTION}}": render_faq(faq[L], u),
             "{{SITE_TITLE}}": e(site_i["site_title"]), "{{SITE_DESC}}": e(site_i["site_description"], quote=True),
-            "{{BUILD_STAMP}}": __import__("datetime").datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"), "{{BUILD_LABEL}}": "Built" if L == "en" else "Compilado", "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L), "{{ANALYTICS}}": analytics_html(cfg), "{{CALENDLY}}": calendly_html(cfg, L),
+            "{{BUILD_STAMP}}": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "{{BUILD_LABEL}}": "Built" if L == "en" else "Compilado", "{{JSON_LD}}": json_ld(prof, cfg, u, page_url, L), "{{ANALYTICS}}": analytics_html(cfg), "{{CALENDLY}}": calendly_html(cfg, L),
             "{{CONTACT_EMAIL}}": e(prof["email"]), "{{SITE_URL}}": site, "{{CANONICAL}}": page_url,
             "{{ROOT}}": root, "{{LANG}}": L, "{{OG_LOCALE}}": u["locale"],
             "{{ALT_URL}}": u["alt_url"], "{{ALT_CODE}}": u["alt_code"], "{{ALT_LABEL}}": u["alt_label"], "{{ALT_ARIA}}": e(u["alt_aria"], quote=True),

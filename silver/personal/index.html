@@ -18,6 +18,7 @@ button.ghost{background:transparent;color:var(--text);border:1px solid var(--lin
 .err{color:#ff8a8a;font-size:.9rem;min-height:1.2em;margin-top:8px}
 .top{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 iframe{width:100%;height:78vh;min-height:480px;border:1px solid var(--line);border-radius:12px;margin-top:14px;background:#fff}
+.pill-link{background:var(--acc);color:#fff;text-decoration:none;border-radius:9px;padding:10px 14px;font-weight:600;font-size:.9rem}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -36,7 +37,7 @@ iframe{width:100%;height:78vh;min-height:480px;border:1px solid var(--line);bord
     <div class="top"><p style="margin:0">Área personal</p><button class="ghost" id="out" type="button">Salir</button></div>
     <h2 style="font-size:1.05rem;margin:18px 0 6px">Gestión de CV</h2>
     <div id="cvMgr"></div>
-    <h2 style="font-size:1.05rem;margin:22px 0 6px">Bitácora</h2>
+    <div class="top" style="margin-top:22px"><h2 style="font-size:1.05rem;margin:0">Bitácora</h2><a class="pill-link" href="https://jsebasurb.github.io/bitacora/" target="_blank" rel="noopener">Abrir bitácora ↗</a></div>
     <iframe id="frm" title="Bitácora personal" referrerpolicy="no-referrer"></iframe>
   </div>
 </div>

@@ -251,17 +251,44 @@
       "principal": true
     },
     {
-      "title": "Formación complementaria",
-      "meta": "",
-      "text": "Bootcamp de IA (MinTIC / Talento Tech) · Data Science y ML (Platzi) · AWS",
-      "url": "https://platzi.com/p/JUAN_SEBASTIAN_SANCHEZ_URBANO/",
-      "principal": false
-    },
-    {
       "title": "Ingeniería en Automática Industrial",
       "meta": "Universidad del Cauca · Graduado 2025",
-      "text": "",
-      "principal": false
+      "text": ""
+    },
+    {
+      "title": "Ingeniero de datos",
+      "meta": "Platzi",
+      "text": ""
+    },
+    {
+      "title": "Fundamentos en ciencia de datos e inteligencia artificial",
+      "meta": "",
+      "text": ""
+    },
+    {
+      "title": "Bootcamp de IA",
+      "meta": "MinTIC · Talento Tech",
+      "text": ""
+    },
+    {
+      "title": "Marketing digital",
+      "meta": "",
+      "text": ""
+    },
+    {
+      "title": "Ciberseguridad estratégica",
+      "meta": "",
+      "text": ""
+    },
+    {
+      "title": "Diplomado en Marketing Digital y Analítica",
+      "meta": "Fundación Unipymes / Coomeva · 2025",
+      "text": ""
+    },
+    {
+      "title": "Técnico en sistemas",
+      "meta": "SENA · 2012",
+      "text": ""
     }
   ],
   "youtube": "https://www.youtube.com/@akazuia",
