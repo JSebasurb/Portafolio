@@ -49,15 +49,23 @@
       .map(function (c) { return c.getAttribute('data-id'); });
   }
   function item(sec, id) { return D[sec].filter(function (x) { return x.id === id; })[0]; }
+  function linkOf(v) {
+    v = String(v || '').trim();
+    if (!v) return '';
+    if (/^https?:\/\//.test(v)) return '<a href="' + esc(v) + '">' + esc(v.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</a>';
+    if (/@/.test(v)) return '<a href="mailto:' + esc(v) + '">' + esc(v) + '</a>';
+    if (/^\+?[\d ]{7,}$/.test(v)) return '<a href="tel:' + esc(v.replace(/ /g, '')) + '">' + esc(v) + '</a>';
+    return esc(v);
+  }
   function sectionHtml(title, body) {
     return body ? '<section><h2>' + esc(title) + '</h2>' + body + '</section>' : '';
   }
   function documentHtml() {
     var ch = {};
     SECTIONS.forEach(function (s) { ch[s.key] = picked(s.key); });
-    var contact = D.contact.filter(function (x) { return x; }).map(esc).join(' · ');
+    var contact = D.contact.filter(function (x) { return x; }).map(linkOf).join(' · ');
     var edu = ch.education.map(function (id) { var x = item('education', id);
-      return '<div class="it"><b>' + esc(x.title) + '</b>' + (x.meta ? '<div class="m">' + esc(x.meta) + '</div>' : '') + '</div>';
+      return '<div class="it"><b>' + esc(x.title) + '</b>' + (x.meta ? ' <span class="m">· ' + esc(x.meta) + '</span>' : '') + '</div>';
     }).join('');
     var exp = ch.experience.map(function (id) { var x = item('experience', id);
       return '<div class="it"><b>' + esc(x.role) + '</b><div class="m">' + esc(x.company) + (x.period ? ' · ' + esc(x.period) : '') + '</div>'
@@ -68,16 +76,17 @@
       return '<div class="it"><b>' + esc(x.title) + ':</b> ' + x.items.map(esc).join(', ') + '</div>';
     }).join('');
     var proj = ch.projects.map(function (id) { var x = item('projects', id);
-      return '<div class="it"><b>' + esc(x.title) + '</b>' + (x.description ? '<p>' + esc(x.description) + '</p>' : '') + '</div>';
+      return '<div class="it"><b>' + esc(x.title) + '</b>' + (x.link ? ' · <a href="' + esc(x.link) + '">' + esc(x.link.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</a>' : '') + (x.description ? '<p>' + esc(x.description) + '</p>' : '') + '</div>';
     }).join('');
     return '<!DOCTYPE html><html lang="' + esc(D.lang) + '"><head><meta charset="UTF-8"><title>' + esc(D.name) + ' · CV</title><style>'
-      + '@page{size:A4;margin:14mm}body{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;color:#111;line-height:1.35;margin:0}'
-      + 'h1{font-size:20pt;margin:0 0 2px}.hl{font-size:11pt;margin:0 0 4px;color:#222}.ct{font-size:9.5pt;color:#444;margin:0 0 6px}'
-      + 'h2{font-size:11pt;border-bottom:1px solid #999;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em}'
-      + '.it{margin:0 0 8px;break-inside:avoid}.m{color:#555;font-size:9.5pt}p{margin:3px 0}</style></head><body>'
+      + '@page{size:A4;margin:10mm}body{font-family:Arial,Helvetica,sans-serif;font-size:9.2pt;color:#111;line-height:1.28;margin:0}'
+      + 'h1{font-size:16pt;margin:0 0 1px}.hl{font-size:10pt;margin:0 0 2px;color:#222}.ct{font-size:8.6pt;color:#333;margin:0 0 4px}'
+      + 'h2{font-size:9.6pt;border-bottom:1px solid #999;margin:7px 0 3px;text-transform:uppercase;letter-spacing:.04em;break-after:avoid}'
+      + '.it{margin:0 0 3px;break-inside:avoid}.m{color:#555;font-size:8.6pt}p{margin:1px 0}a{color:#0b4f9c;text-decoration:none}'
+      + '.edu .it{margin:0 0 1px}</style></head><body>'
       + '<h1>' + esc(D.name) + '</h1><p class="hl">' + esc(D.headline) + '</p><p class="ct">' + contact + '</p>'
       + sectionHtml(L.profile, '<p>' + esc(D.summary) + '</p>')
-      + sectionHtml(L.exp, exp) + sectionHtml(L.edu, edu) + sectionHtml(L.skills, skills) + sectionHtml(L.proj, proj)
+      + sectionHtml(L.exp, exp) + sectionHtml(L.edu, '<div class="edu">' + edu + '</div>') + sectionHtml(L.skills, skills) + sectionHtml(L.proj, proj)
       + '</body></html>';
   }
   function generate() {

@@ -339,11 +339,11 @@ def cv_builder_html(prof, L, root):
     data = {
         "lang": L, "labels": c,
         "name": prof["name"], "headline": prof["headline"], "summary": prof["summary"],
-        "contact": [prof.get("email", ""), prof.get("phone_display", ""), prof.get("portfolio", ""), prof.get("linkedin", "")],
+        "contact": [prof.get("email", ""), prof.get("phone_display", ""), prof.get("portfolio", ""), prof.get("linkedin", ""), prof.get("github", "")],
         "education": [{"id": f"e{i}", "title": x["title"], "meta": x.get("meta", ""), "checked": i in CVB_EDU_DEFAULT} for i, x in enumerate(prof["education"])],
         "experience": [{"id": f"x{i}", "role": x["role"], "company": x["company"], "period": x.get("period", ""), "text": x.get("text", ""), "achievement": x.get("achievement", ""), "checked": x["company"].startswith("JS Soluciones")} for i, x in enumerate(prof["experience"])],
         "skills": [{"id": f"s{i}", "title": s["title"], "items": s["items"], "checked": i in CVB_SKILL_DEFAULT} for i, s in enumerate(prof["skills"])],
-        "projects": [{"id": f"p{i}", "title": localize(x, L)["title"], "description": localize(x, L).get("description", ""), "checked": x["title"].startswith(CVB_PROJECT_DEFAULT)} for i, x in enumerate(proj_src)],
+        "projects": [{"id": f"p{i}", "title": localize(x, L)["title"], "description": localize(x, L).get("description", ""), "link": x.get("link", "") if x.get("link", "").startswith("https://") and "wa.me" not in x.get("link", "") else "", "checked": x["title"].startswith(CVB_PROJECT_DEFAULT)} for i, x in enumerate(proj_src)],
     }
     js = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     return ('<dialog id="cvDlg" class="cvdlg" aria-labelledby="cvDlgT">'
